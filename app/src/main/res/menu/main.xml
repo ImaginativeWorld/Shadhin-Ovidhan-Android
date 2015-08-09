@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="org.imaginativeworld.shadhinovidhan.main_activity">
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_add_white_48dp"
+        android:title="Add Entry"
+        android:onClick="addEntry"
+        app:showAsAction="always"
+        app:actionViewClass="android.support.v7.widget.SearchView"/>
+
+    <item
+        android:id="@+id/add_record"
+        android:icon="@drawable/ic_add_white_48dp"
+        android:title="Add Entry"
+        android:onClick="addEntry"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/about"
+        android:icon="@drawable/ic_info_white_48dp"
+        android:title="About"
+        android:onClick="showAbout"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/exit"
+        android:title="Exit"
+        android:onClick="exitApp"
+        app:showAsAction="never"/>
+
+</menu>

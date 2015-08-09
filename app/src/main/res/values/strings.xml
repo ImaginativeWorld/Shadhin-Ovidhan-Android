@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">স্বাধীন অভিধান</string>
+    <string name="app_version">0.1 (Altu-Faltu One)</string>
+    <string name="organization_name">Imaginative World</string>
+    <string name="copyrights">Copyright © 2015 Imaginative World</string>
+    <string name="about_description">সম্পূর্ণ স্বাধীন একটি ইংরেজি-বাংলা অভিধান</string>
+
+
+    <string name="add_entry_title">Add Entry</string>
+    <string name="modify_entry_title">Modify Entry</string>
+    <string name="view_details_title">Details</string>
+
+    <string name="new_item_text">New Item</string>
+
+
+
+    <string name="unable_create_database">Unable to create database!</string>
+    <string name="empty_list_text">দেখানোর মত কিছু পাওয়া যায়নি!</string>
+
+</resources>

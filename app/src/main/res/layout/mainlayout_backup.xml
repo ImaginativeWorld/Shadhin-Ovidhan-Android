@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimaryDark">
+
+        </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/action_bar_height"
+        android:orientation="horizontal"
+        android:background="@color/light_green_700"
+        android:weightSum="1"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:elevation="4dp"
+        android:gravity="center_vertical">
+
+        <AutoCompleteTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/SrcEditText"
+            android:hint="Write something.."
+            android:textColor="#ffffffff"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:layout_width="@dimen/app_bar_icon_size"
+            android:layout_height="@dimen/app_bar_icon_size"
+            android:src="@drawable/ic_more_vert_white_48dp"
+            android:background="#00000000"
+            android:scaleType="centerInside"
+            android:padding="@dimen/app_bar_icon_padding"
+            android:id="@+id/button"
+            android:onClick="showPopup"
+            android:layout_marginLeft="@dimen/border_margin"/>
+
+    </LinearLayout>
+
+
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="0dp"
+            android:dividerHeight="0dp"
+            android:divider="@null">
+        </ListView>
+
+
+        <TextView
+            android:id="@+id/empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="@dimen/abc_text_size_medium_material"
+            android:text="@string/empty_list_text" />
+
+
+        <!--<android.support.v7.widget.CardView-->
+        <!--xmlns:card_view="http://schemas.android.com/apk/res-auto"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="10dp"-->
+        <!--android:padding="15dp">-->
+
+        <!--</android.support.v7.widget.CardView>-->
+
+    </RelativeLayout>
+
+</LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

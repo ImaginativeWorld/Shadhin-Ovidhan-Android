@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="0dp">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_entry_title"
+        android:textColor="@color/light_green_500"
+        android:textSize="@dimen/title_text_size"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_margin="5dp"
+        android:layout_alignParentTop="true"
+        android:id="@+id/title"/>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/layout_background"
+        android:layout_below="@+id/title"
+        android:layout_above="@+id/buttons_layout">
+        <EditText
+            android:id="@+id/txt_edit_word"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter The Word Here" >
+
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/txt_edit_pos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter PoS Here"
+            android:inputType="textMultiLine">
+        </EditText>
+
+        <EditText
+            android:id="@+id/txt_edit_meaning"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:hint="Enter Meaning Here"
+            android:inputType="textMultiLine"
+            android:minLines="5" >
+        </EditText>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/buttons_layout">
+
+        <Button
+            android:id="@+id/btn_close"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:text="Close"
+            android:onClick="btnClose"/>
+
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:text="Add" />
+    </LinearLayout>
+</RelativeLayout>

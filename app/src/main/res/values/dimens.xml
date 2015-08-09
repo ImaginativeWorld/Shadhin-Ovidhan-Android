@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Material Metrics & Keylines -->
+
+    <dimen name="title_text_size">32sp</dimen>
+
+    <dimen name="action_bar_height">56dp</dimen>
+    <dimen name="border_margin">16dp</dimen>
+
+    <dimen name="app_bar_icon_size">48dp</dimen>
+    <dimen name="app_bar_icon_padding">12dp</dimen>
+
+    <dimen name="button_bar_height">48dp</dimen>
+    <dimen name="button_height">36dp</dimen>
+    <dimen name="button_bar_top_bottom_padding">6dp</dimen>
+
+
+
+    <!-- details layout dimens -->
+    <dimen name="details_word">26sp</dimen>
+    <dimen name="details_pos">21sp</dimen>
+    <dimen name="details_meaning">21sp</dimen>
+</resources>
