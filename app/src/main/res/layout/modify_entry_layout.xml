@@ -8,83 +8,115 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="10dp"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
-        <TextView
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/modify_entry_title"
-            android:textColor="@color/light_green_500"
-            android:textSize="@dimen/title_text_size"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:layout_margin="5dp"
-            android:id="@+id/title"/>
+            android:orientation="vertical"
+            android:padding="@dimen/dialog_padding">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/modify_entry_title"
+                android:textSize="@dimen/title_text_size"
+                android:textColor="@color/light_green_700"
+                android:textStyle="bold"
+                android:id="@+id/title"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dialog_padding"
+            android:paddingRight="@dimen/dialog_padding">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt_word"
+                android:textSize="@dimen/details_word"
+                android:text="Word"
+                android:textStyle="bold"
+                android:textColor="@color/grey_800"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt_pos"
+                android:textSize="@dimen/details_pos"
+                android:text="pos"
+                android:textStyle="italic"/>
+
+            <View style="@style/Divider"/>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:minHeight="200dp">
+
+                <ListView
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:id="@+id/meaning_list"
+                    android:dividerHeight="2dp"
+                    android:divider="@color/grey_300"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="5dp"
-            android:id="@+id/btn_layout">
+            android:gravity="center"
+            android:paddingTop="@dimen/button_bar_padding"
+            android:paddingBottom="@dimen/button_bar_padding"
+            android:paddingLeft="@dimen/dialog_padding"
+            android:paddingRight="@dimen/dialog_padding">
 
-            <Button
+            <ImageButton
                 android:id="@+id/btn_add"
+                android:src="@drawable/button_selector_effect"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_gravity="center"
-                android:text="Add Meaning"/>
+                android:layout_height="wrap_content"
+                style="?android:attr/borderlessButtonStyle"/>
 
-            <Button
+            <ImageButton
+                android:id="@+id/btn_delete"
+                android:src="@drawable/ic_delete_black_48dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                style="?android:attr/borderlessButtonStyle"
+                android:tint="@color/red_600"/>
+
+            <ImageButton
                 android:id="@+id/btn_save"
+                android:src="@drawable/ic_save_black_48dp"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_gravity="center"
-                android:text="Save"/>
+                android:layout_height="wrap_content"
+                style="?android:attr/borderlessButtonStyle"
+                android:tint="@color/light_green_700"/>
 
-            <Button
+            <ImageButton
                 android:id="@+id/btn_close"
+                android:src="@drawable/ic_arrow_back_black_48dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_gravity="center"
-                android:text="Close"/>
+                style="?android:attr/borderlessButtonStyle"
+                android:textAllCaps="true"
+                android:tint="@color/grey_800"/>
         </LinearLayout>
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txt_word"
-            android:textSize="@dimen/details_word"
-            android:text="Word"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txt_pos"
-            android:textSize="@dimen/details_pos"
-            android:text="pos"
-            android:textStyle="italic"/>
-
-        <View style="@style/Divider"/>
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent">
-
-            <ListView
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/meaning_list"
-                android:dividerHeight="2dp"
-                android:divider="@color/grey_300"
-                />
-        </RelativeLayout>
 
 
     </LinearLayout>

@@ -13,7 +13,7 @@
     <string name="new_item_text">New Item</string>
 
 
-
+    <string name="search_hint">এখানে অনুসন্ধান করুন</string>
     <string name="unable_create_database">Unable to create database!</string>
     <string name="empty_list_text">দেখানোর মত কিছু পাওয়া যায়নি!</string>
 

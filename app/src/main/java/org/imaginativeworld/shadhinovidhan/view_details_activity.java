@@ -1,8 +1,10 @@
 package org.imaginativeworld.shadhinovidhan;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,7 +12,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,8 +29,8 @@ public class view_details_activity extends Activity implements OnClickListener {
 
     private ListView meaningList;
 
-    private Button btnClose;
-    private Button btnEdit;
+    private ImageButton btnClose;
+    private ImageButton btnEdit;
 
     private String sWord;
     private String sPos;
@@ -37,6 +39,9 @@ public class view_details_activity extends Activity implements OnClickListener {
     private String[] sMeaningArray;
 
     ArrayAdapter<String> adapter;
+
+    AlertDialog.Builder builder;
+    DialogInterface.OnClickListener dialogClickListener;
 
     //private DBManager dbManager;
 
@@ -49,7 +54,7 @@ public class view_details_activity extends Activity implements OnClickListener {
         setContentView(R.layout.details_view_layout);
 
         //Make window fill full width
-        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         //================================================================
 
@@ -70,10 +75,10 @@ public class view_details_activity extends Activity implements OnClickListener {
         //txtmeaning.setText(sMeaning);
 
         //Set Listener for Buttons
-        btnClose = (Button) findViewById(R.id.btn_close);
+        btnClose = (ImageButton) findViewById(R.id.btn_close);
         btnClose.setOnClickListener(this);
-        btnEdit = (Button) findViewById(R.id.btn_edit);
-        btnEdit.setOnClickListener(this);
+//        btnEdit = (ImageButton) findViewById(R.id.btn_edit);
+//        btnEdit.setOnClickListener(this);
 
         //================================================================
 
@@ -103,25 +108,58 @@ public class view_details_activity extends Activity implements OnClickListener {
         // Forth - the Array of data
 
         adapter = new ArrayAdapter<String>(this,
-                R.layout.meaning_list_layout, android.R.id.text1, sMeaningArray);
+                R.layout.meaning_list_layout, R.id.text_view, sMeaningArray);
 
         // Assign adapter to ListView
         meaningList.setAdapter(adapter);
+
+        //=============================================================
+        dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        //Yes button clicked
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No button clicked
+                        break;
+                }
+            }
+        };
+
+        builder = new AlertDialog.Builder(view_details_activity.this);
+
 
         //================================================================
 
         meaningList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String selectedFromList = (meaningList.getItemAtPosition(position)).toString();
+                TextView text = (TextView) view.findViewById(R.id.text_view);
+
+                String tEXT = text.getText().toString();
 
                 //Copy to Clip Board (Only support API >=11)
                 ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("SO_Meaning", selectedFromList);
+                ClipData clip = ClipData.newPlainText("SO_Meaning", tEXT);
                 clipboard.setPrimaryClip(clip);
 
                 Toast t = Toast.makeText(view_details_activity.this, "Text Copied to Clipboard.", Toast.LENGTH_LONG);
                 t.show();
+
+
+                //====================================================
+                builder
+                        .setMessage("Position: " + position)
+                        .setPositiveButton("Yes", dialogClickListener)
+                        .setNegativeButton("No", dialogClickListener)
+                ;
+
+                builder.show();
+
+
             }
         });
 
@@ -136,17 +174,17 @@ public class view_details_activity extends Activity implements OnClickListener {
 
                 break;
 
-            case R.id.btn_edit:
-
-                Intent modify_intent = new Intent(getApplicationContext(), modify_entry_activity.class);
-                modify_intent.putExtra("word", sWord);
-                modify_intent.putExtra("pos", sPos);
-                modify_intent.putExtra("meaning", tempSmeaning);
-
-                startActivity(modify_intent);
-
-                this.finish();
-                break;
+//            case R.id.btn_edit:
+//
+//                Intent modify_intent = new Intent(getApplicationContext(), modify_entry_activity.class);
+//                modify_intent.putExtra("word", sWord);
+//                modify_intent.putExtra("pos", sPos);
+//                modify_intent.putExtra("meaning", tempSmeaning);
+//
+//                startActivity(modify_intent);
+//
+//                this.finish();
+//                break;
 
         }
     }

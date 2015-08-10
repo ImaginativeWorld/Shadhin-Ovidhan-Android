@@ -1,59 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<RelativeLayout-->
+<!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:orientation="vertical"-->
+<!--android:padding="2dp">-->
+
+<!--&lt;!&ndash;<android.support.v7.widget.CardView&ndash;&gt;-->
+<!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;android:layout_marginLeft="10dp"&ndash;&gt;-->
+<!--&lt;!&ndash;android:layout_marginRight="10dp"&ndash;&gt;-->
+<!--&lt;!&ndash;android:layout_marginTop="2dp"&ndash;&gt;-->
+<!--&lt;!&ndash;android:layout_marginBottom="2dp"&ndash;&gt;-->
+<!--&lt;!&ndash;android:padding="10dp">&ndash;&gt;-->
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="2dp"
-    >
+    android:padding="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/id"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="2dp"
-        android:padding="10dp">
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="5dp">
+        android:visibility="visible"
+        android:textSize="@dimen/list_word_text"
+        android:textStyle="bold"  />
 
-            <TextView
-                android:id="@+id/id"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:padding="3dp"
-                android:visibility="visible"
-                android:textSize="18sp"
-                android:textStyle="bold"  />
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:textSize="@dimen/list_pos_text"
+        android:textStyle="italic"/>
 
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:padding="3dp"
-                android:textSize="16sp"
-                android:textStyle="italic"/>
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:visibility="visible"
+        android:textSize="@dimen/list_meaning_text"
+        android:maxLines="2"
+        android:paddingTop="3dp"/>
 
-            <TextView
-                android:id="@+id/desc"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:padding="3dp"
-                android:visibility="visible"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:maxLines="2"/>
+</LinearLayout>
+    <!--</android.support.v7.widget.CardView>-->
 
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
-
-</RelativeLayout>
+    <!--</RelativeLayout>-->
 
 
 

@@ -3,26 +3,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/view_details_title"
-        android:textColor="@color/light_green_500"
-        android:textSize="@dimen/title_text_size"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:layout_margin="5dp"
-        android:layout_alignParentTop="true"
-        android:id="@+id/title"/>
-
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp"
-        android:layout_margin="10dp"
-        android:background="@drawable/layout_background"
+        android:padding="@dimen/dialog_padding"
+        android:layout_alignParentTop="true"
+        android:id="@+id/title">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/view_details_title"
+            android:textSize="@dimen/title_text_size"
+            android:textColor="@color/light_green_700"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/dialog_padding"
+        android:paddingRight="@dimen/dialog_padding"
         android:id="@+id/body_layout"
         android:layout_below="@+id/title"
         android:layout_above="@+id/btn_layout"
@@ -34,7 +37,8 @@
             android:id="@+id/txt_word"
             android:textSize="@dimen/details_word"
             android:text="Word"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="@color/grey_800"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -52,7 +56,8 @@
             android:layout_height="fill_parent"
             android:id="@+id/meaning_list"
             android:dividerHeight="2dp"
-            android:divider="@color/grey_300"/>
+            android:divider="@color/grey_300"
+            android:choiceMode="singleChoice"/>
 
 
     </LinearLayout>
@@ -61,25 +66,32 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="5dp"
+        android:gravity="center"
+        android:paddingTop="@dimen/button_bar_padding"
+        android:paddingBottom="@dimen/button_bar_padding"
+        android:paddingLeft="@dimen/dialog_padding"
+        android:paddingRight="@dimen/dialog_padding"
         android:layout_alignParentBottom="true"
         android:id="@+id/btn_layout">
 
-        <Button
-            android:id="@+id/btn_edit"
+        <ImageButton
+            android:id="@+id/btn_add"
+            android:src="@drawable/ic_add_black_48dp"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_gravity="center"
-            android:text="Edit"/>
+            android:layout_height="wrap_content"
+            style="?android:attr/borderlessButtonStyle"
+            android:tint="@color/grey_800"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_close"
+            android:src="@drawable/ic_arrow_back_black_48dp"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_gravity="center"
-            android:text="Close"/>
+            android:layout_height="wrap_content"
+            style="?android:attr/borderlessButtonStyle"
+            android:tint="@color/grey_800"/>
 
     </LinearLayout>
+
 </RelativeLayout>

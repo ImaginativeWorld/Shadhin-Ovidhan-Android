@@ -4,14 +4,13 @@ import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Intent;
-import android.database.SQLException;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,11 +24,10 @@ public class modify_entry_activity extends Activity implements OnClickListener {
 
     private TextView txtWord;
     private TextView txtpos;
-    private TextView txtmeaning;
 
     private ListView meaningList;
 
-    private Button btnClose, btnAdd, btnSave;
+    private ImageButton btnClose, btnAdd, btnSave;
 
     String sWord;
     String sPos;
@@ -50,7 +48,7 @@ public class modify_entry_activity extends Activity implements OnClickListener {
         setContentView(R.layout.modify_entry_layout);
 
         //Make window fill full width
-        //getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         dbManager = new DBManager(this);
         dbManager.open();
@@ -72,13 +70,13 @@ public class modify_entry_activity extends Activity implements OnClickListener {
 //        //txtmeaning.setText(sMeaning);
 
         //Add listener to Buttons
-        btnClose = (Button) findViewById(R.id.btn_close);
+        btnClose = (ImageButton) findViewById(R.id.btn_close);
         btnClose.setOnClickListener(this);
 
-        btnAdd = (Button) findViewById(R.id.btn_add);
+        btnAdd = (ImageButton) findViewById(R.id.btn_add);
         btnAdd.setOnClickListener(this);
 
-        btnSave = (Button) findViewById(R.id.btn_save);
+        btnSave = (ImageButton) findViewById(R.id.btn_save);
         btnSave.setOnClickListener(this);
 
 
@@ -137,6 +135,7 @@ public class modify_entry_activity extends Activity implements OnClickListener {
 
     }
 
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -146,37 +145,38 @@ public class modify_entry_activity extends Activity implements OnClickListener {
                 break;
             case R.id.btn_add:
 
-                adapter.add("New Item");
+                adapter.add(getString(R.string.new_item_text));
                 break;
 
             case R.id.btn_save:
                 String meaning;
                 int len, i;
 
-                len = meaningList.getCount();
+                len = meaningList.getAdapter().getCount();
                 meaning = meaningList.getItemAtPosition(0).toString();
                 for(i=1;i<len;i++)
                 {
-                    if(meaningList.getItemAtPosition(i).toString() != "" &&
-                            meaningList.getItemAtPosition(i).toString() != "New Item")
+                    if(!meaningList.getItemAtPosition(i).toString().equals("") ||
+                            !meaningList.getItemAtPosition(i).toString().equals(getString(R.string.new_item_text)))
                         meaning += "; " + meaningList.getItemAtPosition(i).toString();
-                    else
-                        break;
                 }
+
+                Toast t = Toast.makeText(this, meaning + "  " + len, Toast.LENGTH_LONG);
+                t.show();
 
                 dbManager.update(sWord, sPos, meaning);
 
-                this.returnHome();
+                this.finish();
 
                 break;
         }
 
     }
 
-    public void returnHome() {
-        Intent home_intent = new Intent(getApplicationContext(), main_activity.class)
-                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(home_intent);
-    }
+//    public void returnHome() {
+//        Intent home_intent = new Intent(getApplicationContext(), main_activity.class)
+//                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        startActivity(home_intent);
+//    }
 
 }

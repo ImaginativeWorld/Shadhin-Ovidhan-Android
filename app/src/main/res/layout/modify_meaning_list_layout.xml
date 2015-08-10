@@ -6,4 +6,6 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:textSize="@dimen/details_meaning"
+    android:maxLines="1"
+    android:singleLine="true"
     />

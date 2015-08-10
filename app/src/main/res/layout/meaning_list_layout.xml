@@ -1,9 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@android:id/text1"
-    android:paddingTop="2dip"
-    android:paddingBottom="3dip"
-    android:layout_width="fill_parent"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="wrap_content"
-    android:textSize="@dimen/details_meaning"
-    />
+    android:layout_width="fill_parent"
+    android:descendantFocusability="blocksDescendants">
+
+    <TextView
+        android:id="@+id/text_view"
+        android:paddingTop="2dip"
+        android:paddingBottom="3dip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/details_meaning"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/button_edit"
+        android:layout_toStartOf="@+id/button_edit"
+        android:layout_alignParentTop="true"/>
+
+    <ImageButton
+        android:id="@+id/button_edit"
+        android:src="@drawable/ic_edit_black_48dp"
+        android:layout_height="match_parent"
+        android:layout_width="48dp"
+        style="?android:attr/borderlessButtonStyle"
+        android:tint="@color/grey_800"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/btn_delete"
+        android:layout_toStartOf="@+id/btn_delete"/>
+
+    <ImageButton
+        android:id="@+id/btn_delete"
+        android:src="@drawable/ic_delete_black_48dp"
+        android:layout_height="match_parent"
+        android:layout_width="48dp"
+        style="?android:attr/borderlessButtonStyle"
+        android:tint="@color/red_700"
+        android:layout_alignParentRight="true"/>
+</RelativeLayout>
