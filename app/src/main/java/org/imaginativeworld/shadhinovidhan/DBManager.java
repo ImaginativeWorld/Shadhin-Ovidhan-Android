@@ -71,13 +71,39 @@ public class DBManager {
                 DatabaseHelper.SO_POS,
                 DatabaseHelper.SO_MEANING
         };
-        String whereClause = "_id like ?";
+        String whereClause = DatabaseHelper._WORD + " like ?";
         String[] whereArgs = new String[] {
                 _word + "%"
         };
-        String orderBy = "_id";
+        //String orderBy = "_id";
         Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, tableColumns, whereClause, whereArgs,
-                null, null, orderBy);
+                null, null, null);
+
+        // since we have a named column we can do
+        //int idx = c.getColumnIndex("max");
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        return cursor;
+
+    }
+
+    public Cursor searchBN(String _word) {
+
+        String[] tableColumns = new String[]{
+                DatabaseHelper._WORD,
+                DatabaseHelper.SO_POS,
+                DatabaseHelper.SO_MEANING
+        };
+        String whereClause =
+                DatabaseHelper.SO_MEANING + " like ?";
+        String[] whereArgs = new String[]{
+                "%" + _word + "%"
+        };
+        //String orderBy = "_id";
+        Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, tableColumns, whereClause, whereArgs,
+                null, null, null);
 
         // since we have a named column we can do
         //int idx = c.getColumnIndex("max");

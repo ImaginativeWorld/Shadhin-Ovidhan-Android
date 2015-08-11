@@ -50,7 +50,6 @@
 
         <View style="@style/Divider"/>
 
-
         <ListView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -58,8 +57,6 @@
             android:dividerHeight="2dp"
             android:divider="@color/grey_300"
             android:choiceMode="singleChoice"/>
-
-
     </LinearLayout>
 
     <LinearLayout
@@ -93,5 +90,95 @@
             android:tint="@color/grey_800"/>
 
     </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone"
+        android:id="@+id/layout_options"
+        android:clickable="true">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#99000000">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/option_view"
+                android:background="@color/white"
+                android:paddingTop="@dimen/button_bar_padding"
+                android:paddingBottom="@dimen/button_bar_padding"
+                android:paddingLeft="@dimen/dialog_padding"
+                android:paddingRight="@dimen/dialog_padding"
+                android:layout_marginBottom="5dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:minLines="5"
+                    android:id="@+id/txtEdit_meaning"
+                    android:textSize="@dimen/details_meaning"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:minLines="5"
+                    android:id="@+id/txtView_meaning"
+                    android:textSize="@dimen/details_meaning"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:paddingTop="@dimen/button_bar_padding"
+                android:paddingBottom="@dimen/button_bar_padding"
+                android:paddingLeft="@dimen/dialog_padding"
+                android:paddingRight="@dimen/dialog_padding"
+                android:layout_alignParentBottom="true"
+                android:background="@color/white"
+                android:id="@+id/option_view">
+
+                <ImageButton
+                    android:src="@drawable/ic_delete_black_48dp"
+                    android:tint="@color/red_700"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:id="@+id/btn_delete_meaning_part" />
+
+                <ImageButton
+                    android:src="@drawable/ic_edit_black_48dp"
+                    android:tint="@color/grey_800"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:id="@+id/btn_edit" />
+
+                <ImageButton
+                    android:src="@drawable/ic_arrow_back_black_48dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:tint="@color/grey_800"
+                    android:id="@+id/btn_close_options" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+    </FrameLayout>
 
 </RelativeLayout>

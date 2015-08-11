@@ -10,7 +10,7 @@
     <string name="modify_entry_title">Modify Entry</string>
     <string name="view_details_title">Details</string>
 
-    <string name="new_item_text">New Item</string>
+    <string name="new_item_text">Hold to edit this</string>
 
 
     <string name="search_hint">এখানে অনুসন্ধান করুন</string>

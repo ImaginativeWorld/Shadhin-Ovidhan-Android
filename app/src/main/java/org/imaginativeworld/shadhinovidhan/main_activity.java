@@ -27,6 +27,8 @@ public class main_activity extends ActionBarActivity {
 
     private ListView listView;
 
+    SearchView searchView;
+
     //private AutoCompleteTextView SrcTxtView;
 
     private SimpleCursorAdapter adapter;
@@ -72,32 +74,6 @@ public class main_activity extends ActionBarActivity {
 
         listView.setAdapter(adapter);
 
-//        SrcTxtView = (AutoCompleteTextView) findViewById(R.id.SrcEditText);
-//
-//        SrcTxtView.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//                if (!s.toString().equals("")) {
-//
-//                    //Just change the adapter cursor to change the data view.. :)
-//                    adapter.changeCursor(dbManager.searchEN(s.toString()));
-//
-//                } else
-//                    adapter.changeCursor(null);
-//
-//            }
-//        });
-
         listView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -115,11 +91,7 @@ public class main_activity extends ActionBarActivity {
                 modify_intent.putExtra("desc", sdesc);
                 modify_intent.putExtra("id", sid);
 
-                startActivity(modify_intent);
-
-//                Toast.makeText(getBaseContext(), tvCountry.getText().toString(), Toast.LENGTH_SHORT).show();
-
-
+                startActivityForResult(modify_intent, 100);
 
             }
         });
@@ -127,18 +99,28 @@ public class main_activity extends ActionBarActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-
-        adapter.notifyDataSetChanged();
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case 100:
+                if (resultCode == RESULT_OK) {
+                    Bundle res = data.getExtras();
+                    Boolean result = res.getBoolean("results");
+                    if (result) {
+                        searchView.setQuery("", true);
+                    }
+                }
+                break;
+        }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
 
         MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
 
         searchView.setQueryHint(getString(R.string.search_hint));
         //searchView.setIconifiedByDefault(false);
@@ -154,12 +136,16 @@ public class main_activity extends ActionBarActivity {
             public boolean onQueryTextChange(String s) {
                 if (!s.equals("")) {
 
+
                     //Just change the adapter cursor to change the data view.. :)
-                    adapter.changeCursor(dbManager.searchEN(s));
+                    if (s.charAt(0) < 128)
+                        adapter.changeCursor(dbManager.searchEN(s));
+                    else
+                        adapter.changeCursor(dbManager.searchBN(s));
 
                 } else
                     adapter.changeCursor(null);
-                return false;
+                return true;
             }
         });
 

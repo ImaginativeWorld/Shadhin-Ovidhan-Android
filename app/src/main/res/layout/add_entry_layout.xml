@@ -2,84 +2,120 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="0dp">
-
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/add_entry_title"
-        android:textColor="@color/light_green_500"
-        android:textSize="@dimen/title_text_size"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:layout_margin="5dp"
-        android:layout_alignParentTop="true"
-        android:id="@+id/title"/>
+    android:layout_height="match_parent">
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp"
-        android:layout_margin="10dp"
-        android:background="@drawable/layout_background"
-        android:layout_below="@+id/title"
-        android:layout_above="@+id/buttons_layout">
-        <EditText
-            android:id="@+id/txt_edit_word"
-            android:layout_width="match_parent"
+        android:padding="@dimen/dialog_padding"
+        android:layout_alignParentTop="true"
+        android:id="@+id/title">
+
+        <TextView
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Enter The Word Here" >
-
-            <requestFocus />
-        </EditText>
-
-        <EditText
-            android:id="@+id/txt_edit_pos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Enter PoS Here"
-            android:inputType="textMultiLine">
-        </EditText>
-
-        <EditText
-            android:id="@+id/txt_edit_meaning"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:ems="10"
-            android:hint="Enter Meaning Here"
-            android:inputType="textMultiLine"
-            android:minLines="5" >
-        </EditText>
-
+            android:text="@string/add_entry_title"
+            android:textSize="@dimen/title_text_size"
+            android:textColor="@color/light_green_700"
+            android:textStyle="bold" />
     </LinearLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_above="@+id/btn_layout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:layout_margin="10dp">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Word/Phrase"
+                android:textSize="@dimen/title_text_size" />
+
+            <EditText
+                android:id="@+id/txt_edit_word"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter The Word Here"
+                android:layout_marginBottom="6dp">
+
+                <requestFocus />
+            </EditText>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Parts Of Speech"
+                android:textSize="@dimen/title_text_size" />
+
+            <EditText
+                android:id="@+id/txt_edit_pos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter PoS Here"
+                android:inputType="textMultiLine"
+                android:layout_marginBottom="6dp" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Meaning"
+                android:textSize="@dimen/title_text_size" />
+
+            <EditText
+                android:id="@+id/txt_edit_meaning"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:hint="Enter Meaning Here"
+                android:inputType="textMultiLine"
+                android:minLines="3"
+                android:layout_marginBottom="6dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="@dimen/button_bar_padding"
+        android:paddingBottom="@dimen/button_bar_padding"
+        android:paddingLeft="@dimen/dialog_padding"
+        android:paddingRight="@dimen/dialog_padding"
         android:layout_alignParentBottom="true"
-        android:id="@+id/buttons_layout">
+        android:id="@+id/btn_layout">
 
-        <Button
-            android:id="@+id/btn_close"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:text="Close"
-            android:onClick="btnClose"/>
-
-        <Button
+        <ImageButton
             android:id="@+id/btn_add"
+            android:src="@drawable/ic_add_black_48dp"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_gravity="center"
-            android:text="Add" />
+            android:layout_height="wrap_content"
+            style="?android:attr/borderlessButtonStyle"
+            android:tint="@color/grey_800" />
+
+        <ImageButton
+            android:id="@+id/btn_close"
+            android:src="@drawable/ic_arrow_back_black_48dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            style="?android:attr/borderlessButtonStyle"
+            android:tint="@color/grey_800" />
+
     </LinearLayout>
+
 </RelativeLayout>
