@@ -29,6 +29,8 @@ public class main_activity extends ActionBarActivity {
 
     SearchView searchView;
 
+    View welcomeLayout;
+
     //private AutoCompleteTextView SrcTxtView;
 
     private SimpleCursorAdapter adapter;
@@ -57,12 +59,19 @@ public class main_activity extends ActionBarActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //============================================================
+
+        welcomeLayout = (View) findViewById(R.id.layout_welcome);
+        welcomeLayout.setVisibility(View.VISIBLE);
 
         //============================================================
 
         dbManager = new DBManager(this);
         dbManager.open();
         //Cursor cursor = dbManager.fetch();
+
+        //============================================================
+
         Cursor cursor = null;
 
         listView = (ListView) findViewById(R.id.list_view);
@@ -82,19 +91,20 @@ public class main_activity extends ActionBarActivity {
                 TextView titleTextView = (TextView) view.findViewById(R.id.title);
                 TextView descTextView = (TextView) view.findViewById(R.id.desc);
 
-                String sid = idTextView.getText().toString();
-                String stitle = titleTextView.getText().toString();
-                String sdesc = descTextView.getText().toString();
+                String s_word = idTextView.getText().toString();
+                String s_pos = titleTextView.getText().toString();
+                String s_meaning = descTextView.getText().toString();
 
                 Intent modify_intent = new Intent(getApplicationContext(), view_details_activity.class);
-                modify_intent.putExtra("title", stitle);
-                modify_intent.putExtra("desc", sdesc);
-                modify_intent.putExtra("id", sid);
+                modify_intent.putExtra("word", s_word);
+                modify_intent.putExtra("pos", s_pos);
+                modify_intent.putExtra("meaning", s_meaning);
 
                 startActivityForResult(modify_intent, 100);
 
             }
         });
+
 
     }
 
@@ -136,6 +146,7 @@ public class main_activity extends ActionBarActivity {
             public boolean onQueryTextChange(String s) {
                 if (!s.equals("")) {
 
+                    welcomeLayout.setVisibility(View.GONE);
 
                     //Just change the adapter cursor to change the data view.. :)
                     if (s.charAt(0) < 128)
@@ -143,8 +154,10 @@ public class main_activity extends ActionBarActivity {
                     else
                         adapter.changeCursor(dbManager.searchBN(s));
 
-                } else
+                } else {
                     adapter.changeCursor(null);
+                    welcomeLayout.setVisibility(View.VISIBLE);
+                }
                 return true;
             }
         });

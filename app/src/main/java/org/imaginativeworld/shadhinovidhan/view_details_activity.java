@@ -39,7 +39,7 @@ public class view_details_activity extends Activity implements OnClickListener {
 
     private ImageButton btnClose;
 
-    private ImageButton btnDelete, btnEdit, btnCloseOptions, btnMeaningPartDelete;
+    private ImageButton btnDelete, btnEdit, btnCloseOptions, btnMeaningPartDelete, btnDeleteEntry;
 
     private View OptionView;
 
@@ -90,6 +90,8 @@ public class view_details_activity extends Activity implements OnClickListener {
         btnDelete = (ImageButton) findViewById(R.id.btn_add);
         btnDelete.setOnClickListener(this);
 
+        btnDeleteEntry = (ImageButton) findViewById(R.id.btn_delete_entry);
+        btnDeleteEntry.setOnClickListener(this);
 
         //================================================================
 
@@ -110,9 +112,9 @@ public class view_details_activity extends Activity implements OnClickListener {
         //txtmeaning = (TextView) findViewById(R.id.txt_meaning);
 
         Intent intent = getIntent();
-        sWord = intent.getStringExtra("id");
-        sPos = intent.getStringExtra("title");
-        tempSmeaning = sMeaning = intent.getStringExtra("desc");
+        sWord = intent.getStringExtra("word");
+        sPos = intent.getStringExtra("pos");
+        tempSmeaning = sMeaning = intent.getStringExtra("meaning");
 
         txtWord.setText(sWord);
         txtpos.setText(sPos);
@@ -253,12 +255,12 @@ public class view_details_activity extends Activity implements OnClickListener {
 
                 if (txtViewMeaning.getVisibility() == View.VISIBLE) {
                     txtViewMeaning.setVisibility(View.GONE);
+
                     txtEditMeaning.setText(tEXT);
                     txtEditMeaning.setVisibility(View.VISIBLE);
 
                     btnEdit.setImageResource(R.drawable.ic_save_black_48dp);
 
-                    updateDB();
                 } else {
                     txtEditMeaning.setVisibility(View.GONE);
 
@@ -269,28 +271,37 @@ public class view_details_activity extends Activity implements OnClickListener {
 
                     btnEdit.setImageResource(R.drawable.ic_edit_black_48dp);
 
-                    clickedTxtView.setText(tEXT);
+
+                    sMeaningArrList.set(pOSITION, tEXT);
+                    adapter.notifyDataSetChanged();
+
+                    updateDB();
 
                 }
+
+                break;
+
+            case R.id.btn_delete_entry:
+                AlertDialog.Builder adb2 = new AlertDialog.Builder(view_details_activity.this);
+                adb2.setTitle("Delete?");
+                adb2.setMessage("Are you sure you want to delete entry \"" + sWord + "\"?");
+                adb2.setNegativeButton("No", null);
+                adb2.setPositiveButton("Yes", new AlertDialog.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        if (dbManager.delete(sWord) != 0)
+                            isDBchanged = true;
+
+                        finishWithResult();
+                    }
+                });
+                adb2.show();
 
                 break;
 
             case R.id.btn_close_options:
                 closeEditView();
                 break;
-
-//            case R.id.btn_edit:
-//
-//                Intent modify_intent = new Intent(getApplicationContext(), modify_entry_activity.class);
-//                modify_intent.putExtra("word", sWord);
-//                modify_intent.putExtra("pos", sPos);
-//                modify_intent.putExtra("meaning", tempSmeaning);
-//
-//                startActivity(modify_intent);
-//
-//                this.finish();
-//                break;
-
         }
     }
 
@@ -300,15 +311,19 @@ public class view_details_activity extends Activity implements OnClickListener {
         int len, i;
 
         len = meaningList.getAdapter().getCount();
-        meaning = meaningList.getItemAtPosition(0).toString();
-        for (i = 1; i < len; i++) {
-            if (!meaningList.getItemAtPosition(i).toString().equals("") ||
-                    !meaningList.getItemAtPosition(i).toString().equals(getString(R.string.new_item_text)))
-                meaning += "; " + meaningList.getItemAtPosition(i).toString();
-        }
+        if (len > 0) {
+            meaning = meaningList.getItemAtPosition(0).toString();
+            for (i = 1; i < len; i++) {
+                if (!meaningList.getItemAtPosition(i).toString().equals("") &&
+                        !meaningList.getItemAtPosition(i).toString().equals(getString(R.string.new_item_text)))
+                    meaning += "; " + meaningList.getItemAtPosition(i).toString();
+            }
+        } else
+            meaning = getString(R.string.no_meaning_text);
 
         if (dbManager.update(sWord, sPos, meaning) != 0)
             isDBchanged = true;
+
     }
 
     void closeEditView() {

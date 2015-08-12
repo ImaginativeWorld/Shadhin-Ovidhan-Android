@@ -124,9 +124,11 @@ public class DBManager {
         return i;
     }
 
-//    public void delete(long _id) {
-//        database.delete(DatabaseHelper.TABLE_NAME, DatabaseHelper._WORD + "=" + _id, null);
-//    }
+    public int delete(String _id) {
+        //Must use double quotation mark for string logic in sql language.
+        int i = database.delete(DatabaseHelper.TABLE_NAME, DatabaseHelper._WORD + " = \"" + _id + "\"", null);
+        return i;
+    }
 
 }
 

@@ -72,6 +72,15 @@
         android:id="@+id/btn_layout">
 
         <ImageButton
+            android:src="@drawable/ic_delete_black_48dp"
+            android:tint="@color/red_700"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            style="?android:attr/borderlessButtonStyle"
+            android:id="@+id/btn_delete_entry" />
+
+        <ImageButton
             android:id="@+id/btn_add"
             android:src="@drawable/ic_add_black_48dp"
             android:layout_width="0dp"

@@ -70,6 +70,15 @@
         android:id="@+id/btn_layout">
 
         <ImageButton
+            android:id="@+id/btn_send"
+            android:src="@android:drawable/ic_menu_send"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            style="?android:attr/borderlessButtonStyle"
+            android:tint="@color/grey_800" />
+
+        <ImageButton
             android:id="@+id/btn_close"
             android:src="@drawable/ic_arrow_back_black_48dp"
             android:layout_width="0dp"
