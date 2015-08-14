@@ -40,7 +40,8 @@
         android:layout_height="fill_parent"
         android:visibility="visible"
         android:id="@+id/layout_welcome"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:layout_below="@id/toolbar">
 
 
         <LinearLayout

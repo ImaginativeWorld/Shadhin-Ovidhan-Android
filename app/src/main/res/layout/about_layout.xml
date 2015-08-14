@@ -38,6 +38,7 @@
         android:layout_marginRight="@dimen/border_margin">
 
         <TextView
+            android:id="@+id/txt_des"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/about_description"
@@ -48,6 +49,7 @@
         <View style="@style/Divider" />
 
         <TextView
+            android:id="@+id/txt_copy_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/copyrights"
