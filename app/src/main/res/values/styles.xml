@@ -58,6 +58,20 @@
 
     <!-- ======================================================================= -->
 
+    <style name="OptionDivider">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">3dp</item>
+        <item name="android:background">@color/grey_300</item>
+
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">0dp</item>
+        <item name="android:layout_marginLeft">0dp</item>
+        <item name="android:layout_marginRight">0dp</item>
+
+    </style>
+
+    <!-- ======================================================================= -->
+
     <style name="CustomMenuTextApearance" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
         <item name="android:textColor">@color/black</item>
     </style>

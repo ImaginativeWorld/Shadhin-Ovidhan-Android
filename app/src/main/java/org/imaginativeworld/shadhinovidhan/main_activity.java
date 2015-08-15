@@ -7,13 +7,11 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.PopupMenu;
 import android.widget.SearchView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
@@ -36,15 +34,15 @@ public class main_activity extends ActionBarActivity {
     private SimpleCursorAdapter adapter;
 
     final String[] from = new String[] {
-            DatabaseHelper._WORD,
+            DatabaseHelper.SO_PRON,
             DatabaseHelper.SO_POS,
             DatabaseHelper.SO_MEANING
     };
 
     final int[] to = new int[] {
-            R.id.id,
-            R.id.title,
-            R.id.desc
+            R.id.txt_pron,
+            R.id.txt_pos,
+            R.id.txt_meaning
     };
 
     @Override
@@ -68,7 +66,6 @@ public class main_activity extends ActionBarActivity {
 
         dbManager = new DBManager(this);
         dbManager.open();
-        //Cursor cursor = dbManager.fetch();
 
         //============================================================
 
@@ -87,9 +84,9 @@ public class main_activity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                TextView idTextView = (TextView) view.findViewById(R.id.id);
-                TextView titleTextView = (TextView) view.findViewById(R.id.title);
-                TextView descTextView = (TextView) view.findViewById(R.id.desc);
+                TextView idTextView = (TextView) view.findViewById(R.id.txt_pron);
+                TextView titleTextView = (TextView) view.findViewById(R.id.txt_pos);
+                TextView descTextView = (TextView) view.findViewById(R.id.txt_meaning);
 
                 String s_word = idTextView.getText().toString();
                 String s_pos = titleTextView.getText().toString();
@@ -113,6 +110,7 @@ public class main_activity extends ActionBarActivity {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case 100:
+            case 200:
                 if (resultCode == RESULT_OK) {
                     Bundle res = data.getExtras();
                     Boolean result = res.getBoolean("results");
@@ -167,14 +165,14 @@ public class main_activity extends ActionBarActivity {
         return true;
     }
 
-    public void showPopup(View v) {
-
-        PopupMenu popup = new PopupMenu(this, v);
-
-        MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.main, popup.getMenu());
-        popup.show();
-    }
+//    public void showPopup(View v) {
+//
+//        PopupMenu popup = new PopupMenu(this, v);
+//
+//        MenuInflater inflater = popup.getMenuInflater();
+//        inflater.inflate(R.menu.main, popup.getMenu());
+//        popup.show();
+//    }
 
     public void addEntry(MenuItem item) {
 
@@ -182,8 +180,9 @@ public class main_activity extends ActionBarActivity {
          * Must Add the intent/activity class name into Manifest.xml
          */
 
-        Intent intent = new Intent(this, add_new_entry.class);
-        startActivity(intent);
+        Intent add_entry_intent = new Intent(this, add_new_entry.class);
+        //startActivity(intent);
+        startActivityForResult(add_entry_intent, 200);
     }
 
     public void showAbout(MenuItem item) {

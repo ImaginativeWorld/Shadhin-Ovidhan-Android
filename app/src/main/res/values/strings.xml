@@ -5,6 +5,7 @@
     <string name="copyrights">Copyright © 2015 Imaginative World</string>
     <string name="about_description">সম্পূর্ণ স্বাধীন একটি ইংরেজি-বাংলা অভিধান</string>
 
+    <string name="server_post_url">http://10.0.2.2/so/new_predict.php</string>
 
     <string name="add_entry_title">Add Entry</string>
     <string name="modify_entry_title">Modify Entry</string>
@@ -13,10 +14,20 @@
     <string name="new_item_text">Hold to edit this</string>
     <string name="no_meaning_text">No Meaning</string>
 
-
     <string name="search_hint">এখানে অনুসন্ধান করুন</string>
     <string name="unable_create_database">Unable to create database!</string>
     <string name="empty_list_text">দেখানোর মত কিছু পাওয়া যায়নি!</string>
     <string name="main_window_welcome_text">অনুসন্ধান করতে অনুসন্ধান বাক্সে বাংলা অথবা ইংরেজি শব্দটি লিখুন</string>
+
+    <string name="dialog_message_error">ত্রুটি!</string>
+    <string name="dialog_message_successful">সফল!</string>
+    <string name="dialog_message_insert_error">নতুন শব্দ যুক্ত করা যায়নি!\nশব্দটি হয়ত ইতিমধ্যে ডেটাবেজে যুক্ত আছে!</string>
+    <string name="dialog_message_insert_successful">নতুন শব্দ সফলভাবে যুক্ত করা হয়েছে!</string>
+    <string name="dialog_message_fill_all_field">সব তথ্য আগে পূরণ করুন!</string>
+    <string name="dialog_message_ok">ঠিক আছে</string>
+    <string name="dialog_message_close">বন্ধ করুন</string>
+    <string name="dialog_message_add_another_entry">আরেকটি যুক্ত করুন</string>
+
+    <string name="send_new_entry_to_server">Send new entry to server (Experimental)</string>
 
 </resources>

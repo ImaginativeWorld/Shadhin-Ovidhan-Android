@@ -46,7 +46,9 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Enter The Word Here"
-                android:layout_marginBottom="6dp">
+                android:layout_marginBottom="6dp"
+                android:maxLines="1"
+                android:singleLine="true">
 
                 <requestFocus />
             </EditText>
@@ -63,8 +65,9 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Enter PoS Here"
-                android:inputType="textMultiLine"
-                android:layout_marginBottom="6dp" />
+                android:layout_marginBottom="6dp"
+                android:maxLines="1"
+                android:singleLine="true" />
 
             <TextView
                 android:layout_width="fill_parent"
@@ -80,7 +83,20 @@
                 android:hint="Enter Meaning Here"
                 android:inputType="textMultiLine"
                 android:minLines="3"
+                android:maxLines="5"
                 android:layout_marginBottom="6dp" />
+
+            <View style="@style/OptionDivider" />
+
+            <CheckBox
+                android:id="@+id/chkBox_online"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/send_new_entry_to_server"
+                android:textSize="@dimen/title_text_size"
+                android:layout_marginTop="@dimen/title_bottom_margin"
+                android:layout_marginBottom="@dimen/title_bottom_margin"
+                android:checked="true" />
 
         </LinearLayout>
 

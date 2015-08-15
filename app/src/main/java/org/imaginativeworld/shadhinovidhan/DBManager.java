@@ -32,7 +32,8 @@ public class DBManager {
 
         } catch (IOException ioe) {
 
-            throw new Error("@strings/unable_create_database");
+            //Unfortunately without activity or service class you can't use resources.. :'(
+            throw new Error("Unable to create database!");
 
         }
 
@@ -54,33 +55,32 @@ public class DBManager {
         dbHelper.close();
     }
 
-    public void insert(String _word, String _pos, String _meaning) {
+    public long insert(String _word, String _pos, String _meaning) {
         ContentValues contentValue = new ContentValues();
 
-        contentValue.put(DatabaseHelper._WORD, _word);
+        contentValue.put(DatabaseHelper._WORD, so_tools.removeSymbolFromText(_word));
+        contentValue.put(DatabaseHelper.SO_PRON, _word);
         contentValue.put(DatabaseHelper.SO_POS, _pos);
         contentValue.put(DatabaseHelper.SO_MEANING, _meaning);
 
-        database.insert(DatabaseHelper.TABLE_NAME, null, contentValue);
+        return database.insert(DatabaseHelper.TABLE_NAME, null, contentValue);
     }
 
     public Cursor searchEN(String _word) {
 
         String[] tableColumns = new String[] {
-                DatabaseHelper._WORD,
+                DatabaseHelper._WORD, //_id column must needed for cursor adaptor.. O.o
+                DatabaseHelper.SO_PRON,
                 DatabaseHelper.SO_POS,
                 DatabaseHelper.SO_MEANING
         };
         String whereClause = DatabaseHelper._WORD + " like ?";
         String[] whereArgs = new String[] {
-                _word + "%"
+                so_tools.removeSymbolFromText(_word) + "%"
         };
         //String orderBy = "_id";
         Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, tableColumns, whereClause, whereArgs,
                 null, null, null);
-
-        // since we have a named column we can do
-        //int idx = c.getColumnIndex("max");
 
         if (cursor != null) {
             cursor.moveToFirst();
@@ -93,6 +93,7 @@ public class DBManager {
 
         String[] tableColumns = new String[]{
                 DatabaseHelper._WORD,
+                DatabaseHelper.SO_PRON,
                 DatabaseHelper.SO_POS,
                 DatabaseHelper.SO_MEANING
         };
@@ -105,9 +106,6 @@ public class DBManager {
         Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, tableColumns, whereClause, whereArgs,
                 null, null, null);
 
-        // since we have a named column we can do
-        //int idx = c.getColumnIndex("max");
-
         if (cursor != null) {
             cursor.moveToFirst();
         }
@@ -117,16 +115,18 @@ public class DBManager {
 
     public int update(String _word, String _pos, String _meaning) {
         ContentValues contentValues = new ContentValues();
-
+        contentValues.put(DatabaseHelper.SO_PRON, _word);
         contentValues.put(DatabaseHelper.SO_POS, _pos);
         contentValues.put(DatabaseHelper.SO_MEANING, _meaning);
-        int i = database.update(DatabaseHelper.TABLE_NAME, contentValues, DatabaseHelper._WORD + " = \"" + _word + "\"", null);
+        int i = database.update(DatabaseHelper.TABLE_NAME, contentValues,
+                DatabaseHelper._WORD + " = \"" + so_tools.removeSymbolFromText(_word) + "\"", null);
         return i;
     }
 
-    public int delete(String _id) {
+    public int delete(String _word) {
         //Must use double quotation mark for string logic in sql language.
-        int i = database.delete(DatabaseHelper.TABLE_NAME, DatabaseHelper._WORD + " = \"" + _id + "\"", null);
+        int i = database.delete(DatabaseHelper.TABLE_NAME,
+                DatabaseHelper._WORD + " = \"" + so_tools.removeSymbolFromText(_word) + "\"", null);
         return i;
     }
 

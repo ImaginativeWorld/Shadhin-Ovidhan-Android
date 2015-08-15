@@ -1,13 +1,21 @@
 package org.imaginativeworld.shadhinovidhan;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+
+import java.util.HashMap;
 
 /**
  * Created by Shohag on 26 Jul 15.
@@ -20,7 +28,13 @@ public class add_new_entry extends Activity implements OnClickListener {
     private EditText posEditText;
     private EditText meaningEditText;
 
+    private CheckBox chkBoxSend;
+
     private DBManager dbManager;
+
+    private Boolean isDBchanged = false;
+
+    HashMap<String, String> hashMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +52,8 @@ public class add_new_entry extends Activity implements OnClickListener {
         dbManager = new DBManager(this);
         dbManager.open();
 
+        hashMap = new HashMap<String, String>();
+
         //=================================================================
 
         wordEditText = (EditText) findViewById(R.id.txt_edit_word);
@@ -51,6 +67,9 @@ public class add_new_entry extends Activity implements OnClickListener {
 
         btnClose = (ImageButton) findViewById(R.id.btn_close);
         btnClose.setOnClickListener(add_new_entry.this);
+
+        chkBoxSend = (CheckBox) findViewById(R.id.chkBox_online);
+
 
         //=================================================================
     }
@@ -66,18 +85,110 @@ public class add_new_entry extends Activity implements OnClickListener {
                 final String pos = posEditText.getText().toString();
                 final String meaning = meaningEditText.getText().toString();
 
-                dbManager.insert(word, pos, meaning);
+                if (word.equals("") || pos.equals("") || meaning.equals("")) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(add_new_entry.this);
 
-                Intent main = new Intent(add_new_entry.this, main_activity.class)
-                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    builder.setMessage(R.string.dialog_message_fill_all_field)
+                            .setTitle(R.string.dialog_message_error)
+                            .setPositiveButton(R.string.dialog_message_ok, null);
 
-                startActivity(main);
+                    AlertDialog dialog = builder.create();
+
+                    dialog.show();
+
+                    break;
+
+                } else {
+
+                    long r = dbManager.insert(word, pos, meaning);
+
+                    if (r != -1) {
+
+                        isDBchanged = true;
+
+                        if (chkBoxSend.isChecked()) {
+                            sendData(word, pos, meaning);
+                        }
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(add_new_entry.this);
+
+                        builder.setMessage(R.string.dialog_message_insert_successful)
+                                .setTitle(R.string.dialog_message_successful)
+                                .setPositiveButton(R.string.dialog_message_add_another_entry, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                        wordEditText.setText("");
+                                        posEditText.setText("");
+                                        meaningEditText.setText("");
+
+                                    }
+                                })
+
+                                .setNegativeButton(R.string.dialog_message_close, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                        finishWithResult();
+
+                                    }
+                                });
+
+                        AlertDialog dialog = builder.create();
+
+                        dialog.show();
+
+                    } else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(add_new_entry.this);
+
+                        builder.setMessage(R.string.dialog_message_insert_error)
+                                .setTitle(R.string.dialog_message_error)
+                                .setPositiveButton(R.string.dialog_message_ok, null);
+
+                        AlertDialog dialog = builder.create();
+
+                        dialog.show();
+                    }
+
+                }
+
                 break;
             case R.id.btn_close:
                 finish();
                 break;
         }
 
+    }
+
+    void sendData(String word, String pos, String meaning) {
+        hashMap.clear();
+
+        //?arg1=val1&arg2=val2
+        hashMap.put("info", "New");
+        hashMap.put("word", so_tools.removeSymbolFromText(word));
+        hashMap.put("pron", word);
+        hashMap.put("pos", pos);
+        hashMap.put("meaning", meaning);
+
+        // Gets the URL from the UI's text field.
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            new sendDataToServer(hashMap, getString(R.string.server_post_url));
+        } else {
+            //Keep Silent :)
+            //textview.setText("No network connection available.");
+        }
+    }
+
+    private void finishWithResult() {
+        Bundle conData = new Bundle();
+        conData.putBoolean("results", isDBchanged);
+        Intent intent = new Intent();
+        intent.putExtras(conData);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 }
 

@@ -262,6 +262,7 @@ public class view_details_activity extends Activity implements OnClickListener {
                     btnEdit.setImageResource(R.drawable.ic_save_black_48dp);
 
                 } else {
+
                     txtEditMeaning.setVisibility(View.GONE);
 
                     tEXT = txtEditMeaning.getText().toString();
@@ -270,7 +271,6 @@ public class view_details_activity extends Activity implements OnClickListener {
                     txtViewMeaning.setVisibility(View.VISIBLE);
 
                     btnEdit.setImageResource(R.drawable.ic_edit_black_48dp);
-
 
                     sMeaningArrList.set(pOSITION, tEXT);
                     adapter.notifyDataSetChanged();

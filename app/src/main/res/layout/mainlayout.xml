@@ -63,6 +63,7 @@
                 android:layout_marginBottom="24dp" />
 
             <TextView
+                android:id="@+id/txt_welcome"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"

@@ -24,6 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Table columns
     public static final String _WORD = "_id"; // It must be "_id", or many error happened.. :(
+    public static final String SO_PRON = "pron";
     public static final String SO_POS = "pos";
     public static final String SO_MEANING = "meaning";
 
@@ -69,7 +70,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             } catch (IOException e) {
 
-                throw new Error("@strings/unable_create_database");
+                throw new Error("Unable to create database!");
 
             }
         }

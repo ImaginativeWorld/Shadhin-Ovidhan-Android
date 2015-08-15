@@ -22,7 +22,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <TextView
-        android:id="@+id/id"
+        android:id="@+id/txt_pron"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:visibility="visible"
@@ -30,7 +30,7 @@
         android:textStyle="bold"  />
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/txt_pos"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:maxLines="1"
@@ -38,7 +38,7 @@
         android:textStyle="italic"/>
 
     <TextView
-        android:id="@+id/desc"
+        android:id="@+id/txt_meaning"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:ellipsize="end"
