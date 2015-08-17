@@ -6,10 +6,10 @@
     >
 
     <item
-        android:id="@+id/action_search"
+        android:id="@+id/searchNow"
         android:title="Search Here"
-        app:showAsAction="always"
-        app:actionViewClass="android.widget.SearchView"/>
+        android:icon="@drawable/ic_search_white_48dp"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/add_record"

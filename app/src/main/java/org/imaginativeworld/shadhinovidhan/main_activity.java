@@ -1,19 +1,24 @@
 package org.imaginativeworld.shadhinovidhan;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.SimpleCursorAdapter;
@@ -22,15 +27,21 @@ import android.widget.TextView;
 /**
  * Created by Shohag on 18 Jul 15.
  */
-public class main_activity extends ActionBarActivity {
+public class main_activity extends ActionBarActivity implements View.OnClickListener {
 
     private DBManager dbManager;
 
     private ListView listView;
 
+    Toolbar toolbar;
+
     SearchView searchView;
 
-    View searchBar;
+    EditText editTextSearch;
+
+    View searchBar;//, toolBar;
+
+    ImageButton btnClearSearch;
 
     View welcomeLayout;
 
@@ -59,8 +70,14 @@ public class main_activity extends ActionBarActivity {
 
         setContentView(R.layout.mainlayout); // select default layout
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //============================================================
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        toolbar.setVisibility(View.VISIBLE);
+
+        //============================================================
 
         //Load default preference for first time only. Must make the last argument is false.
         //Or every time the application reset it to default value.
@@ -68,10 +85,21 @@ public class main_activity extends ActionBarActivity {
 
         //============================================================
 
-        welcomeLayout = (View) findViewById(R.id.layout_welcome);
+        welcomeLayout = findViewById(R.id.layout_welcome);
         welcomeLayout.setVisibility(View.VISIBLE);
 
+        //============================================================
+
         searchBar = findViewById(R.id.search_bar);
+        searchBar.setY(-getPixels(56));
+
+        editTextSearch = (EditText) findViewById(R.id.editTextSearch);
+        editTextSearch.setHint(R.string.search_hint);
+
+        //============================================================
+
+        btnClearSearch = (ImageButton) findViewById(R.id.searchClear);
+        btnClearSearch.setOnClickListener(this);
 
         //============================================================
 
@@ -113,6 +141,38 @@ public class main_activity extends ActionBarActivity {
             }
         });
 
+        editTextSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                if (!s.toString().equals("")) {
+
+                    welcomeLayout.setVisibility(View.GONE);
+
+                    //Just change the adapter cursor to change the data view.. :)
+                    if (s.toString().charAt(0) < 128)
+                        adapter.changeCursor(dbManager.searchEN(s.toString()));
+                    else
+                        adapter.changeCursor(dbManager.searchBN(s.toString()));
+
+                } else {
+                    adapter.changeCursor(null);
+                    welcomeLayout.setVisibility(View.VISIBLE);
+                }
+
+            }
+        });
+
 
     }
 
@@ -138,42 +198,6 @@ public class main_activity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
 
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-
-
-        searchView.setQueryHint(getString(R.string.search_hint));
-        //searchView.setIconifiedByDefault(false);
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                if (!s.equals("")) {
-
-                    welcomeLayout.setVisibility(View.GONE);
-
-                    //Just change the adapter cursor to change the data view.. :)
-                    if (s.charAt(0) < 128)
-                        adapter.changeCursor(dbManager.searchEN(s));
-                    else
-                        adapter.changeCursor(dbManager.searchBN(s));
-
-                } else {
-                    adapter.changeCursor(null);
-                    welcomeLayout.setVisibility(View.VISIBLE);
-                }
-                return true;
-            }
-        });
-
-
-
         return true;
     }
 
@@ -188,6 +212,12 @@ public class main_activity extends ActionBarActivity {
 
                 Intent add_entry_intent = new Intent(this, add_new_entry.class);
                 startActivityForResult(add_entry_intent, 200);
+
+                break;
+
+            case R.id.searchNow:
+
+                showSearchBar();
 
                 break;
 
@@ -217,22 +247,54 @@ public class main_activity extends ActionBarActivity {
 
     void showSearchBar() {
 
-        searchBar.setVisibility(View.VISIBLE);
-        final Animation animationFade =
-                AnimationUtils.loadAnimation(main_activity.this, android.R.anim.slide_in_left);
-        searchBar.clearAnimation();
-        searchBar.startAnimation(animationFade);
+        toolbar.animate()
+                .translationY(-toolbar.getBottom())
+                .setInterpolator(new AccelerateInterpolator())
+                .start();
+
+        searchBar.animate()
+                .translationY(0)
+                .setInterpolator(new DecelerateInterpolator())
+                .start();
+
     }
 
     void hideSearchBar() {
-        final Animation animationFade =
-                AnimationUtils.loadAnimation(main_activity.this, android.R.anim.slide_out_right);
-        searchBar.clearAnimation();
-        searchBar.startAnimation(animationFade);
-        searchBar.setVisibility(View.GONE);
+        toolbar.animate()
+                .translationY(0)
+                .setInterpolator(new DecelerateInterpolator())
+                .start();
+
+        searchBar.animate()
+                .translationY(-searchBar.getBottom())
+                .setInterpolator(new AccelerateInterpolator())
+                .start();
+
+
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.searchClear:
+                if (editTextSearch.getText().toString().equals(""))
+                    hideSearchBar();
+                else
+                    editTextSearch.setText("");
+                break;
+
+
+        }
+    }
+
+
+    private int getPixels(int dipValue) {
+        Resources r = getResources();
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dipValue, r.getDisplayMetrics());
+    }
 }
+
+
 //    public void showPopup(View v) {
 //
 //        PopupMenu popup = new PopupMenu(this, v);

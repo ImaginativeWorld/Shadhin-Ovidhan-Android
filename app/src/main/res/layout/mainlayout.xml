@@ -5,17 +5,7 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar"
-        android:visibility="visible" />
-
-    <FrameLayout
-        android:id="@+id/search_bar"
-        android:layout_width="fill_parent"
-        android:layout_height="@dimen/abc_action_bar_default_height_material"
-        android:background="?attr/colorPrimary"
-        android:clickable="true">
-
-    </FrameLayout>
+        layout="@layout/toolbar" />
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -68,7 +58,8 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/so_icon"
+                android:src="@drawable/ic_search_white_48dp"
+                android:tint="@color/grey_500"
                 android:layout_marginBottom="24dp" />
 
             <TextView
@@ -82,6 +73,45 @@
         </LinearLayout>
 
     </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/search_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/abc_action_bar_default_height_material"
+        android:clickable="true"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@color/deep_orange_500"
+            android:elevation="4dp">
+
+            <EditText
+                android:id="@+id/editTextSearch"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/border_margin"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/abc_text_size_title_material_toolbar"
+                android:layout_gravity="center" />
+
+            <ImageButton
+                android:padding="12dp"
+                android:scaleType="fitCenter"
+                android:layout_margin="12dp"
+                android:id="@+id/searchClear"
+                android:layout_width="@dimen/abc_action_bar_default_height_material"
+                android:layout_height="@dimen/abc_action_bar_default_height_material"
+                android:src="@drawable/ic_clear_white_48dp"
+                android:background="@android:color/transparent" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
 
 </RelativeLayout>
 
