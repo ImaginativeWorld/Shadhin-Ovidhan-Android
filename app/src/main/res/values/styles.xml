@@ -3,13 +3,14 @@
     <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
     -->
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:textColorSecondary">@color/white</item>
         <item name="android:textColorHint">@color/white</item>
-        <item name="android:colorForeground">@color/white</item>
-        <item name="android:windowBackground">@color/white</item>
+        <!--<item name="android:colorForeground">@color/white</item>-->
+        <!--<item name="android:windowBackground">@color/white</item>-->
 
         <item name="colorPrimary">@color/light_green_700</item>
         <item name="colorPrimaryDark">@color/light_green_800</item>
@@ -19,10 +20,25 @@
         <item name="windowActionBar">false</item>
 
         <item name="android:itemTextAppearance">@style/CustomMenuTextApearance</item>
+
+
     </style>
 
     <!-- Application theme. -->
-    <style name="AppTheme" parent="AppTheme.Base"/>
+    <style name="AppTheme" parent="AppTheme.Base">
+
+    </style>
+
+
+    <style name="AppOptionsTheme" parent="AppTheme.Base">
+
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColorSecondary">@color/grey_900</item>
+        <item name="android:textColorHint">@color/grey_700</item>
+        <item name="colorAccent">@color/light_green_700</item>
+
+    </style>
+
 
     <!-- ======================================================================= -->
 
@@ -79,12 +95,12 @@
     <!-- ======================================================================= -->
 
     <!--<style name="CustomButtonStyle" parent="android:Widget.Button">>-->
-        <!--&lt;!&ndash;<item name="android:textSize">19sp</item>&ndash;&gt;-->
-        <!--&lt;!&ndash;<item name="android:textStyle">bold</item>&ndash;&gt;-->
-        <!--<item name="android:layout_margin">8dp</item>-->
-        <!--&lt;!&ndash;<item name="android:textAllCaps">true</item>&ndash;&gt;-->
-        <!--<item name="android:layout_gravity">center_vertical</item>-->
-        <!--<item name="android:borderlessButtonStyle"/>-->
+    <!--&lt;!&ndash;<item name="android:textSize">19sp</item>&ndash;&gt;-->
+    <!--&lt;!&ndash;<item name="android:textStyle">bold</item>&ndash;&gt;-->
+    <!--<item name="android:layout_margin">8dp</item>-->
+    <!--&lt;!&ndash;<item name="android:textAllCaps">true</item>&ndash;&gt;-->
+    <!--<item name="android:layout_gravity">center_vertical</item>-->
+    <!--<item name="android:borderlessButtonStyle"/>-->
     <!--</style>-->
 
 </resources>

@@ -334,6 +334,7 @@ public class view_details_activity extends Activity implements OnClickListener {
         OptionView.setVisibility(View.GONE);
     }
 
+
     private void finishWithResult() {
         Bundle conData = new Bundle();
         conData.putBoolean("results", isDBchanged);

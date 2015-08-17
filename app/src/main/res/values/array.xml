@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="bnAdvSearchListArray">
+        <item>প্রথম থেকে অনুসন্ধান</item>
+        <item>মাঝ থেকে অনুসন্ধান</item>
+        <item>শেষ থেকে অনুসন্ধান</item>
+    </string-array>
+    <string-array name="bnAdvSearchListValues">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="enAdvSearchListArray">
+        <item>Search from start</item>
+        <item>Search from middle</item>
+        <item>Search from last</item>
+    </string-array>
+    <string-array name="enAdvSearchListValues">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+</resources>

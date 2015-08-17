@@ -3,12 +3,15 @@ package org.imaginativeworld.shadhinovidhan;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
@@ -26,6 +29,8 @@ public class main_activity extends ActionBarActivity {
     private ListView listView;
 
     SearchView searchView;
+
+    View searchBar;
 
     View welcomeLayout;
 
@@ -57,10 +62,16 @@ public class main_activity extends ActionBarActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Load default preference for first time only. Must make the last argument is false.
+        //Or every time the application reset it to default value.
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+
         //============================================================
 
         welcomeLayout = (View) findViewById(R.id.layout_welcome);
         welcomeLayout.setVisibility(View.VISIBLE);
+
+        searchBar = findViewById(R.id.search_bar);
 
         //============================================================
 
@@ -130,6 +141,7 @@ public class main_activity extends ActionBarActivity {
         MenuItem searchItem = menu.findItem(R.id.action_search);
         searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
 
+
         searchView.setQueryHint(getString(R.string.search_hint));
         //searchView.setIconifiedByDefault(false);
 
@@ -165,6 +177,62 @@ public class main_activity extends ActionBarActivity {
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        /*
+         * Must Add the intent/activity class name into Manifest.xml
+         */
+
+        switch (item.getItemId()) {
+            case R.id.add_record:
+
+                Intent add_entry_intent = new Intent(this, add_new_entry.class);
+                startActivityForResult(add_entry_intent, 200);
+
+                break;
+
+            case R.id.prefs:
+
+                Intent prefs_intent = new Intent(this, preference_activity.class);
+                startActivity(prefs_intent);
+
+                break;
+
+            case R.id.about:
+
+                Intent intent = new Intent(this, about_activity.class);
+                startActivity(intent);
+
+                break;
+
+            case R.id.exit:
+
+                this.finishAffinity();
+
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    void showSearchBar() {
+
+        searchBar.setVisibility(View.VISIBLE);
+        final Animation animationFade =
+                AnimationUtils.loadAnimation(main_activity.this, android.R.anim.slide_in_left);
+        searchBar.clearAnimation();
+        searchBar.startAnimation(animationFade);
+    }
+
+    void hideSearchBar() {
+        final Animation animationFade =
+                AnimationUtils.loadAnimation(main_activity.this, android.R.anim.slide_out_right);
+        searchBar.clearAnimation();
+        searchBar.startAnimation(animationFade);
+        searchBar.setVisibility(View.GONE);
+    }
+
+}
 //    public void showPopup(View v) {
 //
 //        PopupMenu popup = new PopupMenu(this, v);
@@ -173,34 +241,6 @@ public class main_activity extends ActionBarActivity {
 //        inflater.inflate(R.menu.main, popup.getMenu());
 //        popup.show();
 //    }
-
-    public void addEntry(MenuItem item) {
-
-        /*
-         * Must Add the intent/activity class name into Manifest.xml
-         */
-
-        Intent add_entry_intent = new Intent(this, add_new_entry.class);
-        //startActivity(intent);
-        startActivityForResult(add_entry_intent, 200);
-    }
-
-    public void showAbout(MenuItem item) {
-
-        /*
-         * Must Add the intent/activity class name into Manifest.xml
-         */
-
-        Intent intent = new Intent(this, about_activity.class);
-        startActivity(intent);
-
-    }
-
-    public void exitApp(MenuItem item) {
-        this.finishAffinity();
-    }
-}
-
 
 //Just making a toast u need to write below those 5 line of code.. :'(
 //        Context context = getApplicationContext();

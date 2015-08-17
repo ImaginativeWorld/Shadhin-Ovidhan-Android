@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="Advance Search"
+        android:key="pref_key_storage_settings">
+
+        <ListPreference
+            android:title="Bangla Search"
+            android:summary="Select..."
+            android:key="bnAdvSearchType"
+            android:defaultValue="2"
+            android:entries="@array/bnAdvSearchListArray"
+            android:entryValues="@array/bnAdvSearchListValues" />
+
+        <ListPreference
+            android:title="English Search"
+            android:summary="Select..."
+            android:key="enAdvSearchType"
+            android:defaultValue="1"
+            android:entries="@array/enAdvSearchListArray"
+            android:entryValues="@array/enAdvSearchListValues" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Server"
+        android:key="pref_key_server">
+
+        <CheckBoxPreference
+            android:key="pref_key_send_to_server"
+            android:summary="Only if internet connection found.\nNote: Application only send the entries."
+            android:title="Send new and modified entries to server"
+            android:defaultValue="false" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

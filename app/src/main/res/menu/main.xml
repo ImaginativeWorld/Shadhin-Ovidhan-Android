@@ -8,7 +8,6 @@
     <item
         android:id="@+id/action_search"
         android:title="Search Here"
-        android:onClick="addEntry"
         app:showAsAction="always"
         app:actionViewClass="android.widget.SearchView"/>
 
@@ -16,20 +15,22 @@
         android:id="@+id/add_record"
         android:icon="@drawable/ic_add_white_48dp"
         android:title="Add Entry"
-        android:onClick="addEntry"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/prefs"
+        android:title="Options"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/about"
         android:icon="@drawable/ic_info_white_48dp"
         android:title="About"
-        android:onClick="showAbout"
         app:showAsAction="never"/>
 
     <item
         android:id="@+id/exit"
         android:title="Exit"
-        android:onClick="exitApp"
         app:showAsAction="never"/>
 
 </menu>
