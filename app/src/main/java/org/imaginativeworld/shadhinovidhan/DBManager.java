@@ -66,7 +66,7 @@ public class DBManager {
         return database.insert(DatabaseHelper.TABLE_NAME, null, contentValue);
     }
 
-    public Cursor searchEN(String _word) {
+    public Cursor searchEN(String _word, String type) {
 
         String[] tableColumns = new String[] {
                 DatabaseHelper._WORD, //_id column must needed for cursor adaptor.. O.o
@@ -74,10 +74,31 @@ public class DBManager {
                 DatabaseHelper.SO_POS,
                 DatabaseHelper.SO_MEANING
         };
+
         String whereClause = DatabaseHelper._WORD + " like ?";
-        String[] whereArgs = new String[] {
-                so_tools.removeSymbolFromText(_word) + "%"
-        };
+
+        String[] whereArgs;
+
+        if (type.equals("1")) {
+
+            whereArgs = new String[]{
+                    so_tools.removeSymbolFromText(_word) + "%"
+            };
+
+        } else if (type.equals("2")) {
+
+            whereArgs = new String[]{
+                    "%" + so_tools.removeSymbolFromText(_word) + "%"
+            };
+
+        } else {
+
+            whereArgs = new String[]{
+                    "%" + so_tools.removeSymbolFromText(_word)
+            };
+
+        }
+
         //String orderBy = "_id";
         Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, tableColumns, whereClause, whereArgs,
                 null, null, null);
@@ -89,7 +110,7 @@ public class DBManager {
 
     }
 
-    public Cursor searchBN(String _word) {
+    public Cursor searchBN(String _word, String type) {
 
         String[] tableColumns = new String[]{
                 DatabaseHelper._WORD,
@@ -99,9 +120,29 @@ public class DBManager {
         };
         String whereClause =
                 DatabaseHelper.SO_MEANING + " like ?";
-        String[] whereArgs = new String[]{
-                "%" + _word + "%"
-        };
+
+        String[] whereArgs;
+
+        if (type.equals("1")) {
+
+            whereArgs = new String[]{
+                    _word + "%"
+            };
+
+        } else if (type.equals("1")) {
+
+            whereArgs = new String[]{
+                    "%" + _word + "%"
+            };
+
+        } else {
+
+            whereArgs = new String[]{
+                    "%" + _word
+            };
+
+        }
+
         //String orderBy = "_id";
         Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, tableColumns, whereClause, whereArgs,
                 null, null, null);

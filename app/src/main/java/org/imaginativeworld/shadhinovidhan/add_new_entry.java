@@ -5,13 +5,14 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -28,11 +29,13 @@ public class add_new_entry extends Activity implements OnClickListener {
     private EditText posEditText;
     private EditText meaningEditText;
 
-    private CheckBox chkBoxSend;
+    // private CheckBox chkBoxSend;
 
     private DBManager dbManager;
 
     private Boolean isDBchanged = false;
+
+    Boolean IsSendToServer;
 
     HashMap<String, String> hashMap;
 
@@ -68,10 +71,12 @@ public class add_new_entry extends Activity implements OnClickListener {
         btnClose = (ImageButton) findViewById(R.id.btn_close);
         btnClose.setOnClickListener(add_new_entry.this);
 
-        chkBoxSend = (CheckBox) findViewById(R.id.chkBox_online);
-
-
         //=================================================================
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        IsSendToServer = sharedPref.getBoolean(preference_activity.pref_key_send_to_server, true);
+
+
     }
 
 
@@ -106,8 +111,8 @@ public class add_new_entry extends Activity implements OnClickListener {
 
                         isDBchanged = true;
 
-                        if (chkBoxSend.isChecked()) {
-                            sendData(word, pos, meaning);
+                        if (IsSendToServer) {
+                            sendData(getString(R.string.server_txt_new), word, pos, meaning);
                         }
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(add_new_entry.this);
@@ -160,11 +165,11 @@ public class add_new_entry extends Activity implements OnClickListener {
 
     }
 
-    void sendData(String word, String pos, String meaning) {
+    void sendData(String info, String word, String pos, String meaning) {
         hashMap.clear();
 
         //?arg1=val1&arg2=val2
-        hashMap.put("info", "New");
+        hashMap.put("info", info);
         hashMap.put("word", so_tools.removeSymbolFromText(word));
         hashMap.put("pron", word);
         hashMap.put("pos", pos);

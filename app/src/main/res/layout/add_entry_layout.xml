@@ -86,18 +86,6 @@
                 android:maxLines="5"
                 android:layout_marginBottom="6dp" />
 
-            <View style="@style/OptionDivider" />
-
-            <CheckBox
-                android:id="@+id/chkBox_online"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/send_new_entry_to_server"
-                android:textSize="@dimen/title_text_size"
-                android:layout_marginTop="@dimen/title_bottom_margin"
-                android:layout_marginBottom="@dimen/title_bottom_margin"
-                android:checked="true" />
-
         </LinearLayout>
 
     </ScrollView>

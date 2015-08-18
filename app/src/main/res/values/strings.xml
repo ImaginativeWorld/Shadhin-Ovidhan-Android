@@ -30,4 +30,16 @@
 
     <string name="send_new_entry_to_server">Send new entry to server (Experimental)</string>
 
+    <string name="bn_search_summary">অনুসন্ধানে অর্থের %1$s থেকে মিল খোঁজা হবে</string>
+    <string name="en_search_summary">অনুসন্ধানে ইংরেজি শব্দ/শব্দাংশের %1$s থেকে মিল খোঁজা হবে</string>
+
+    <string name="search_type_from_first">শুরু</string>
+    <string name="search_type_from_middle">যে কোন যায়গা</string>
+    <string name="search_type_from_last">শেষ</string>
+
+
+    <string name="server_txt_new">NEW</string>
+    <string name="server_txt_modified">MODIFIED</string>
+
+
 </resources>

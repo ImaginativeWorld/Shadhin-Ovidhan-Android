@@ -39,7 +39,7 @@
         android:layout_height="fill_parent"
         android:visibility="visible"
         android:id="@+id/layout_welcome"
-        android:background="@color/white"
+        android:background="@color/background_material_light"
         android:layout_below="@id/toolbar">
 
 
@@ -86,7 +86,7 @@
             android:layout_height="fill_parent"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:background="@color/deep_orange_500"
+            android:background="?attr/colorPrimary"
             android:elevation="4dp">
 
             <EditText
@@ -101,12 +101,11 @@
             <ImageButton
                 android:padding="12dp"
                 android:scaleType="fitCenter"
-                android:layout_margin="12dp"
                 android:id="@+id/searchClear"
                 android:layout_width="@dimen/abc_action_bar_default_height_material"
                 android:layout_height="@dimen/abc_action_bar_default_height_material"
                 android:src="@drawable/ic_clear_white_48dp"
-                android:background="@android:color/transparent" />
+                android:background="?attr/selectableItemBackground" />
 
         </LinearLayout>
 

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory
-        android:title="Advance Search"
+        android:title="উন্নত অনুসন্ধান"
         android:key="pref_key_storage_settings">
 
         <ListPreference
-            android:title="Bangla Search"
-            android:summary="Select..."
+            android:title="বাংলা অনুসন্ধান"
+            android:summary="@string/bn_search_summary"
             android:key="bnAdvSearchType"
             android:defaultValue="2"
             android:entries="@array/bnAdvSearchListArray"
             android:entryValues="@array/bnAdvSearchListValues" />
 
         <ListPreference
-            android:title="English Search"
-            android:summary="Select..."
+            android:title="ইংরেজি অনুসন্ধান"
+            android:summary="@string/en_search_summary"
             android:key="enAdvSearchType"
             android:defaultValue="1"
             android:entries="@array/enAdvSearchListArray"
@@ -22,14 +22,14 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="Server"
+        android:title="সার্ভার"
         android:key="pref_key_server">
 
         <CheckBoxPreference
             android:key="pref_key_send_to_server"
-            android:summary="Only if internet connection found.\nNote: Application only send the entries."
-            android:title="Send new and modified entries to server"
-            android:defaultValue="false" />
+            android:title="সার্ভারে নতুন/পরিবর্ধিত অন্তর্ভুক্তি পাঠানো হবে"
+            android:summary="নতুন অন্তর্ভুক্তি যুক্ত বা পরিবর্তিত বা পরিবর্ধিত করার সময় ইন্টারনেটের সংযোগ পাওয়া গেলে অন্তর্ভুক্তিসমূহ সার্ভারে পাঠানো হবে। যা স্বাধীনের ডেটাবেজকে উন্নত করনে আমাদের সহায়তা করবে।"
+            android:defaultValue="true" />
     </PreferenceCategory>
 
 </PreferenceScreen>

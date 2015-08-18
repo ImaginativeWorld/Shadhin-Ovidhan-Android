@@ -4,9 +4,14 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -22,6 +27,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 
 /**
@@ -51,14 +57,16 @@ public class view_details_activity extends Activity implements OnClickListener {
     private int pOSITION;
 
     private boolean isDBchanged = false;
+    Boolean IsSendToServer;
 
     private String[] sMeaningArray;
     private ArrayList<String> sMeaningArrList;
 
     ArrayAdapter<String> adapter;
 
-
     private DBManager dbManager;
+
+    HashMap<String, String> hashMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,9 +111,12 @@ public class view_details_activity extends Activity implements OnClickListener {
 
         //================================================================
 
-
         dbManager = new DBManager(this);
         dbManager.open();
+
+        hashMap = new HashMap<String, String>();
+
+        //================================================================
 
         txtWord = (TextView) findViewById(R.id.txt_word);
         txtpos = (TextView) findViewById(R.id.txt_pos);
@@ -164,7 +175,8 @@ public class view_details_activity extends Activity implements OnClickListener {
 
         //=============================================================
 
-
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        IsSendToServer = sharedPref.getBoolean(preference_activity.pref_key_send_to_server, true);
 
         //================================================================
 
@@ -209,7 +221,6 @@ public class view_details_activity extends Activity implements OnClickListener {
                         AnimationUtils.loadAnimation(view_details_activity.this, android.R.anim.fade_in);
 
                 OptionView.clearAnimation();
-                //OptionView.setAnimation(animationFade);
                 OptionView.startAnimation(animationFade);
 
                 return true;
@@ -222,6 +233,12 @@ public class view_details_activity extends Activity implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_close:
+
+                if (isDBchanged) {
+                    if (IsSendToServer) {
+                        sendData(getString(R.string.server_txt_modified), sWord, sPos, sMeaning);
+                    }
+                }
 
                 finishWithResult();
 
@@ -324,6 +341,8 @@ public class view_details_activity extends Activity implements OnClickListener {
         if (dbManager.update(sWord, sPos, meaning) != 0)
             isDBchanged = true;
 
+        sMeaning = meaning;
+
     }
 
     void closeEditView() {
@@ -334,6 +353,27 @@ public class view_details_activity extends Activity implements OnClickListener {
         OptionView.setVisibility(View.GONE);
     }
 
+    void sendData(String info, String word, String pos, String meaning) {
+        hashMap.clear();
+
+        //?arg1=val1&arg2=val2
+        hashMap.put("info", info);
+        hashMap.put("word", so_tools.removeSymbolFromText(word));
+        hashMap.put("pron", word);
+        hashMap.put("pos", pos);
+        hashMap.put("meaning", meaning);
+
+        // Gets the URL from the UI's text field.
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            new sendDataToServer(hashMap, getString(R.string.server_post_url));
+        } else {
+            //Keep Silent :)
+            //textview.setText("No network connection available.");
+        }
+    }
 
     private void finishWithResult() {
         Bundle conData = new Bundle();

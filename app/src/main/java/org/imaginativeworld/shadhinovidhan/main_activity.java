@@ -1,6 +1,7 @@
 package org.imaginativeworld.shadhinovidhan;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -44,6 +45,9 @@ public class main_activity extends ActionBarActivity implements View.OnClickList
     ImageButton btnClearSearch;
 
     View welcomeLayout;
+
+    SharedPreferences sharedPref;
+    String BnSearchType, EnSearchType;
 
     //private AutoCompleteTextView SrcTxtView;
 
@@ -100,6 +104,12 @@ public class main_activity extends ActionBarActivity implements View.OnClickList
 
         btnClearSearch = (ImageButton) findViewById(R.id.searchClear);
         btnClearSearch.setOnClickListener(this);
+
+        //============================================================
+
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
+        setSettings();
 
         //============================================================
 
@@ -161,9 +171,9 @@ public class main_activity extends ActionBarActivity implements View.OnClickList
 
                     //Just change the adapter cursor to change the data view.. :)
                     if (s.toString().charAt(0) < 128)
-                        adapter.changeCursor(dbManager.searchEN(s.toString()));
+                        adapter.changeCursor(dbManager.searchEN(s.toString(), EnSearchType));
                     else
-                        adapter.changeCursor(dbManager.searchBN(s.toString()));
+                        adapter.changeCursor(dbManager.searchBN(s.toString(), BnSearchType));
 
                 } else {
                     adapter.changeCursor(null);
@@ -189,6 +199,12 @@ public class main_activity extends ActionBarActivity implements View.OnClickList
                         searchView.setQuery("", true);
                     }
                 }
+                break;
+
+            case 300:
+
+                setSettings();
+
                 break;
         }
     }
@@ -224,7 +240,7 @@ public class main_activity extends ActionBarActivity implements View.OnClickList
             case R.id.prefs:
 
                 Intent prefs_intent = new Intent(this, preference_activity.class);
-                startActivity(prefs_intent);
+                startActivityForResult(prefs_intent, 300);
 
                 break;
 
@@ -247,6 +263,9 @@ public class main_activity extends ActionBarActivity implements View.OnClickList
 
     void showSearchBar() {
 
+        editTextSearch.setEnabled(true);
+        editTextSearch.requestFocus();
+
         toolbar.animate()
                 .translationY(-toolbar.getBottom())
                 .setInterpolator(new AccelerateInterpolator())
@@ -260,6 +279,7 @@ public class main_activity extends ActionBarActivity implements View.OnClickList
     }
 
     void hideSearchBar() {
+
         toolbar.animate()
                 .translationY(0)
                 .setInterpolator(new DecelerateInterpolator())
@@ -269,6 +289,12 @@ public class main_activity extends ActionBarActivity implements View.OnClickList
                 .translationY(-searchBar.getBottom())
                 .setInterpolator(new AccelerateInterpolator())
                 .start();
+
+
+        editTextSearch.setEnabled(false);
+
+        //editTextSearch.setFocusable(false);
+        //editTextSearch.setClickable(false);
 
 
     }
@@ -287,6 +313,11 @@ public class main_activity extends ActionBarActivity implements View.OnClickList
         }
     }
 
+    private void setSettings() {
+        BnSearchType = sharedPref.getString(preference_activity.bnAdvSearchType, "2");
+
+        EnSearchType = sharedPref.getString(preference_activity.enAdvSearchType, "1");
+    }
 
     private int getPixels(int dipValue) {
         Resources r = getResources();
