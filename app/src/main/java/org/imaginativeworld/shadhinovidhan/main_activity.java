@@ -21,7 +21,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.SearchView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
@@ -30,13 +29,17 @@ import android.widget.TextView;
  */
 public class main_activity extends ActionBarActivity implements View.OnClickListener {
 
-    private DBManager dbManager;
-
-    private ListView listView;
-
+    final String[] from = new String[]{
+            DatabaseHelper.SO_PRON,
+            DatabaseHelper.SO_POS,
+            DatabaseHelper.SO_MEANING
+    };
+    final int[] to = new int[]{
+            R.id.txt_pron,
+            R.id.txt_pos,
+            R.id.txt_meaning
+    };
     Toolbar toolbar;
-
-    SearchView searchView;
 
     EditText editTextSearch;
 
@@ -50,20 +53,9 @@ public class main_activity extends ActionBarActivity implements View.OnClickList
     String BnSearchType, EnSearchType;
 
     //private AutoCompleteTextView SrcTxtView;
-
+    private DBManager dbManager;
+    private ListView listView;
     private SimpleCursorAdapter adapter;
-
-    final String[] from = new String[] {
-            DatabaseHelper.SO_PRON,
-            DatabaseHelper.SO_POS,
-            DatabaseHelper.SO_MEANING
-    };
-
-    final int[] to = new int[] {
-            R.id.txt_pron,
-            R.id.txt_pos,
-            R.id.txt_meaning
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -196,7 +188,7 @@ public class main_activity extends ActionBarActivity implements View.OnClickList
                     Bundle res = data.getExtras();
                     Boolean result = res.getBoolean("results");
                     if (result) {
-                        searchView.setQuery("", true);
+                        editTextSearch.setText("");
                     }
                 }
                 break;

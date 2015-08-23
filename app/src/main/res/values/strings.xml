@@ -1,11 +1,13 @@
 <resources>
     <string name="app_name">স্বাধীন অভিধান</string>
-    <string name="app_version">0.1 (Altu-Faltu One)</string>
+    <string name="app_version">0.1.230815</string>
     <string name="organization_name">Imaginative World</string>
     <string name="copyrights">Copyright © 2015 Imaginative World</string>
     <string name="about_description">সম্পূর্ণ স্বাধীন একটি ইংরেজি-বাংলা অভিধান</string>
 
-    <string name="server_post_url">http://10.0.2.2/so/new_predict.php</string>
+    <string name="server_post_url">http://imaginativeworld.org/srv/soa/add.php</string>
+    <string name="update_check_url">http://imaginativeworld.org/update/soa/soa_update.xml</string>
+
 
     <string name="add_entry_title">Add Entry</string>
     <string name="modify_entry_title">Modify Entry</string>
@@ -41,5 +43,36 @@
     <string name="server_txt_new">NEW</string>
     <string name="server_txt_modified">MODIFIED</string>
 
+    <string name="check_update">Check Update</string>
+    <string name="update_now">Update Now</string>
+    <string name="wait">Wait...</string>
+    <string name="update_not_found">No Update!</string>
+
+    <string name="new_update_info">Latest Version: %1$s.%2$s.%3$s</string>
+    <string name="update_release_date">Release Date: %1$s</string>
+
+    <string name="update_error">Error! Try Again.</string>
+    <string name="internet_not_connected">Internet not Connected!</string>
+
 
 </resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

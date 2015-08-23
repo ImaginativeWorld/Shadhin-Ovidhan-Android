@@ -35,38 +35,26 @@ import java.util.HashMap;
  */
 public class view_details_activity extends Activity implements OnClickListener {
 
+    TextView clickedTxtView;
+    Boolean IsSendToServer;
+    ArrayAdapter<String> adapter;
+    HashMap<String, String> hashMap;
     private TextView txtWord;
     private TextView txtpos;
-
     private TextView txtViewMeaning;
     private EditText txtEditMeaning;
-
     private ListView meaningList;
-
     private ImageButton btnClose;
-
     private ImageButton btnDelete, btnEdit, btnCloseOptions, btnMeaningPartDelete, btnDeleteEntry;
-
     private View OptionView;
-
-    TextView clickedTxtView;
-
     private String sWord;
     private String sPos;
     private String sMeaning, tempSmeaning, tEXT;
     private int pOSITION;
-
     private boolean isDBchanged = false;
-    Boolean IsSendToServer;
-
     private String[] sMeaningArray;
     private ArrayList<String> sMeaningArrList;
-
-    ArrayAdapter<String> adapter;
-
     private DBManager dbManager;
-
-    HashMap<String, String> hashMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -369,10 +357,11 @@ public class view_details_activity extends Activity implements OnClickListener {
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
             new sendDataToServer(hashMap, getString(R.string.server_post_url));
-        } else {
+        }
+//        else {
             //Keep Silent :)
             //textview.setText("No network connection available.");
-        }
+//        }
     }
 
     private void finishWithResult() {

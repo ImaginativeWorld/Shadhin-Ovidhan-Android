@@ -16,6 +16,8 @@
         <item name="colorPrimaryDark">@color/light_green_800</item>
         <item name="colorAccent">@color/white</item>
 
+        <item name="android:textColor">@color/grey_800</item>
+
         <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
 

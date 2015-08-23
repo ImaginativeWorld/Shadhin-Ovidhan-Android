@@ -16,27 +16,21 @@ import java.io.OutputStream;
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    //The Android's default system path of your application database. //===
-    private static String DB_PATH = "/data/data/org.imaginativeworld.shadhinovidhan/databases/";
-
     // Table Name
     public static final String TABLE_NAME = "ovidhan";
-
     // Table columns
     public static final String _WORD = "_id"; // It must be "_id", or many error happened.. :(
     public static final String SO_PRON = "pron";
     public static final String SO_POS = "pos";
     public static final String SO_MEANING = "meaning";
-
     // Database Information //===
     static final String DB_NAME = "IWSO.DB"; // Must NOT USE UNDERSCORE ("_") in database name
-
     // database version
     static final int DB_VERSION = 1;
-
-    private SQLiteDatabase myDataBase;
-
+    //The Android's default system path of your application database. //===
+    private static String DB_PATH = "/data/data/org.imaginativeworld.shadhinovidhan/databases/";
     private final Context myContext;
+    private SQLiteDatabase myDataBase;
 
     /**
      * Constructor
@@ -155,10 +149,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+        //By calling this method and empty database will be created into the default system path
+        //of your application so we are gonna be able to overwrite that database with our database.
+//        this.getReadableDatabase();
+//
+//        try {
+//
+//            copyDataBase();
+//
+//        } catch (IOException e) {
+//
+//            throw new Error("Unable to create database!");
+//
+//        }
 
     }
 
