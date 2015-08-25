@@ -10,17 +10,17 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/toolbar">
 
         <ListView
             android:id="@+id/list_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/border_margin"
-            android:paddingRight="@dimen/border_margin"
+            android:divider="@color/grey_300"
             android:dividerHeight="1dp"
-            android:divider="@color/grey_300">
+            android:paddingLeft="@dimen/border_margin"
+            android:paddingRight="@dimen/border_margin">
         </ListView>
 
 
@@ -29,46 +29,46 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:textSize="@dimen/abc_text_size_medium_material"
-            android:text="@string/empty_list_text" />
+            android:text="@string/empty_list_text"
+            android:textSize="@dimen/abc_text_size_medium_material" />
 
     </RelativeLayout>
 
     <FrameLayout
+        android:id="@+id/layout_welcome"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:visibility="visible"
-        android:id="@+id/layout_welcome"
+        android:layout_below="@id/toolbar"
         android:background="@color/background_material_light"
-        android:layout_below="@id/toolbar">
+        android:visibility="visible">
 
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/button_bar_padding"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
             android:paddingBottom="@dimen/button_bar_padding"
             android:paddingLeft="@dimen/dialog_padding"
             android:paddingRight="@dimen/dialog_padding"
-            android:layout_marginBottom="5dp"
-            android:orientation="vertical"
-            android:layout_gravity="center"
-            android:gravity="center_horizontal">
+            android:paddingTop="@dimen/button_bar_padding">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
                 android:src="@drawable/ic_search_white_48dp"
-                android:tint="@color/grey_500"
-                android:layout_marginBottom="24dp" />
+                android:tint="@color/grey_500" />
 
             <TextView
                 android:id="@+id/txt_welcome"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:textSize="@dimen/abc_text_size_large_material"
-                android:text="@string/main_window_welcome_text" />
+                android:text="@string/main_window_welcome_text"
+                android:textSize="@dimen/abc_text_size_large_material" />
 
         </LinearLayout>
 
@@ -78,34 +78,35 @@
         android:id="@+id/search_bar"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/abc_action_bar_default_height_material"
-        android:clickable="true"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:clickable="true">
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
             android:background="?attr/colorPrimary"
-            android:elevation="4dp">
+            android:elevation="4dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/editTextSearch"
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_marginLeft="@dimen/border_margin"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/abc_text_size_title_material_toolbar"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/border_margin"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:textSize="@dimen/abc_text_size_title_material_toolbar" />
 
             <ImageButton
-                android:padding="12dp"
-                android:scaleType="fitCenter"
                 android:id="@+id/searchClear"
                 android:layout_width="@dimen/abc_action_bar_default_height_material"
                 android:layout_height="@dimen/abc_action_bar_default_height_material"
-                android:src="@drawable/ic_clear_white_48dp"
-                android:background="?attr/selectableItemBackground" />
+                android:background="?attr/selectableItemBackground"
+                android:padding="12dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_clear_white_48dp" />
 
         </LinearLayout>
 

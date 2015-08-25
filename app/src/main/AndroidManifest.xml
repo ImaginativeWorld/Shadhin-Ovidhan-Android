@@ -1,7 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.imaginativeworld.shadhinovidhan"
     android:versionCode="1"
-    android:versionName="0.1.230815">
+    android:versionName="0.1.250815">
+
+    <!-- 4.1.x	Jelly Bean	16 -->
 
     <uses-sdk
         android:minSdkVersion="16"
@@ -59,6 +61,13 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppOptionsTheme" />
+
+        <activity
+            android:name="org.imaginativeworld.shadhinovidhan.favorite_list_activity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/DialogTheme" />
 
     </application>
 

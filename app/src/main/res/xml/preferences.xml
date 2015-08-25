@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory
-        android:title="উন্নত অনুসন্ধান"
-        android:key="pref_key_storage_settings">
+        android:key="pref_key_storage_settings"
+        android:title="@string/title_advance_search">
 
         <ListPreference
-            android:title="বাংলা অনুসন্ধান"
-            android:summary="@string/bn_search_summary"
-            android:key="bnAdvSearchType"
             android:defaultValue="2"
             android:entries="@array/bnAdvSearchListArray"
-            android:entryValues="@array/bnAdvSearchListValues" />
+            android:entryValues="@array/bnAdvSearchListValues"
+            android:key="bnAdvSearchType"
+            android:summary="@string/summary_bn_search"
+            android:title="@string/sub_title_bn_search" />
 
         <ListPreference
-            android:title="ইংরেজি অনুসন্ধান"
-            android:summary="@string/en_search_summary"
-            android:key="enAdvSearchType"
             android:defaultValue="1"
             android:entries="@array/enAdvSearchListArray"
-            android:entryValues="@array/enAdvSearchListValues" />
+            android:entryValues="@array/enAdvSearchListValues"
+            android:key="enAdvSearchType"
+            android:summary="@string/summary_en_search"
+            android:title="@string/sub_title_en_search" />
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="সার্ভার"
-        android:key="pref_key_server">
+        android:key="pref_key_server"
+        android:title="@string/title_cloud">
 
         <CheckBoxPreference
+            android:defaultValue="true"
             android:key="pref_key_send_to_server"
-            android:title="সার্ভারে নতুন/পরিবর্ধিত অন্তর্ভুক্তি পাঠানো হবে"
-            android:summary="নতুন অন্তর্ভুক্তি যুক্ত বা পরিবর্তিত বা পরিবর্ধিত করার সময় ইন্টারনেটের সংযোগ পাওয়া গেলে অন্তর্ভুক্তিসমূহ সার্ভারে পাঠানো হবে। যা স্বাধীনের ডেটাবেজকে উন্নত করনে আমাদের সহায়তা করবে।"
-            android:defaultValue="true" />
+            android:summary="@string/summary_send_to_server"
+            android:title="@string/sub_title_send_to_server" />
     </PreferenceCategory>
 
 </PreferenceScreen>

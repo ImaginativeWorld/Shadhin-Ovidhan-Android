@@ -1,33 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<RelativeLayout-->
-<!--xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--android:layout_width="match_parent"-->
-<!--android:layout_height="wrap_content"-->
-<!--android:orientation="vertical"-->
-<!--android:padding="2dp">-->
 
-<!--&lt;!&ndash;<android.support.v7.widget.CardView&ndash;&gt;-->
-<!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
-<!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;android:layout_marginLeft="10dp"&ndash;&gt;-->
-<!--&lt;!&ndash;android:layout_marginRight="10dp"&ndash;&gt;-->
-<!--&lt;!&ndash;android:layout_marginTop="2dp"&ndash;&gt;-->
-<!--&lt;!&ndash;android:layout_marginBottom="2dp"&ndash;&gt;-->
-<!--&lt;!&ndash;android:padding="10dp">&ndash;&gt;-->
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="10dp"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/txt_pron"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible"
         android:textSize="@dimen/list_word_text"
-        android:textStyle="bold"  />
+        android:textStyle="bold"
+        android:visibility="visible" />
 
     <TextView
         android:id="@+id/txt_pos"
@@ -42,15 +27,12 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:ellipsize="end"
-        android:visibility="visible"
-        android:textSize="@dimen/list_meaning_text"
         android:maxLines="2"
-        android:paddingTop="3dp"/>
+        android:paddingTop="3dp"
+        android:textSize="@dimen/list_meaning_text"
+        android:visibility="visible" />
 
 </LinearLayout>
-    <!--</android.support.v7.widget.CardView>-->
-
-    <!--</RelativeLayout>-->
 
 
 

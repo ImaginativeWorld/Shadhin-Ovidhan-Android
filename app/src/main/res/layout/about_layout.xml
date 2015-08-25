@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/dialog_padding">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -13,9 +13,18 @@
         android:layout_marginBottom="@dimen/border_margin"
         android:orientation="vertical">
 
+        <ImageView
+            android:id="@+id/img_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="14dp"
+            android:src="@drawable/so_icon" />
+
         <TextView
+            android:id="@+id/title_text"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/img_logo"
             android:text="@string/app_name"
             android:textColor="@color/light_green_700"
             android:textSize="@dimen/title_text_size"
@@ -24,10 +33,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_below="@+id/title_text"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@+id/img_logo"
             android:text="@string/app_version"
             android:textSize="12sp" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/view_update"
@@ -43,7 +54,7 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Update Available!"
+            android:text="@string/update_available"
             android:textColor="@color/black"
             android:textSize="@dimen/abc_text_size_medium_material" />
 

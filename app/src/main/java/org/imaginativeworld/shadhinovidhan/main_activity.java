@@ -29,6 +29,7 @@ import android.widget.TextView;
  */
 public class main_activity extends ActionBarActivity implements View.OnClickListener {
 
+    //for DB ovidhan
     final String[] from = new String[]{
             DatabaseHelper.SO_PRON,
             DatabaseHelper.SO_POS,
@@ -39,6 +40,7 @@ public class main_activity extends ActionBarActivity implements View.OnClickList
             R.id.txt_pos,
             R.id.txt_meaning
     };
+
     Toolbar toolbar;
 
     EditText editTextSearch;
@@ -161,11 +163,36 @@ public class main_activity extends ActionBarActivity implements View.OnClickList
 
                     welcomeLayout.setVisibility(View.GONE);
 
+                    Cursor cursor;
+                    String str = s.toString();
+
                     //Just change the adapter cursor to change the data view.. :)
-                    if (s.toString().charAt(0) < 128)
-                        adapter.changeCursor(dbManager.searchEN(s.toString(), EnSearchType));
-                    else
-                        adapter.changeCursor(dbManager.searchBN(s.toString(), BnSearchType));
+                    if (s.toString().charAt(0) < 128) {
+                        do {
+                            cursor = dbManager.searchEN(str, EnSearchType);
+
+                            if (str.length() >= 3)
+                                str = str.substring(0, str.length() - 1);
+
+                            if (str.equals(""))
+                                break;
+
+                        } while (cursor.getCount() == 0);
+                    } else {
+                        do {
+                            cursor = dbManager.searchBN(str, BnSearchType);
+
+                            if (str.length() >= 3)
+                                str = str.substring(0, str.length() - 1);
+
+                            if (str.equals(""))
+                                break;
+
+                        } while (cursor.getCount() == 0);
+                    }
+
+                    if (cursor.getCount() != 0)
+                        adapter.changeCursor(cursor);
 
                 } else {
                     adapter.changeCursor(null);
@@ -196,6 +223,18 @@ public class main_activity extends ActionBarActivity implements View.OnClickList
             case 300:
 
                 setSettings();
+
+                break;
+
+            case 400:
+
+                if (resultCode == RESULT_OK) {
+                    Bundle res = data.getExtras();
+                    String result = res.getString("results");
+//                    if (!result.equals("")) {
+                    editTextSearch.setText(result);
+//                    }
+                }
 
                 break;
         }
@@ -240,6 +279,13 @@ public class main_activity extends ActionBarActivity implements View.OnClickList
 
                 Intent intent = new Intent(this, about_activity.class);
                 startActivity(intent);
+
+                break;
+
+            case R.id.favorite:
+
+                Intent fav_intent = new Intent(this, favorite_list_activity.class);
+                startActivityForResult(fav_intent, 400);
 
                 break;
 

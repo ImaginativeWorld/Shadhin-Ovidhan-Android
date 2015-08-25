@@ -1,36 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:context="org.imaginativeworld.shadhinovidhan.main_activity"
     >
 
     <item
         android:id="@+id/searchNow"
-        android:title="Search Here"
         android:icon="@drawable/ic_search_white_48dp"
+        android:title="Search Here"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/add_record"
         android:icon="@drawable/ic_add_white_48dp"
-        android:title="Add Entry"
+        android:title="@string/menu_text_add_entry"
         app:showAsAction="never"/>
 
     <item
+        android:id="@+id/favorite"
+        android:title="@string/menu_text_favorite_list"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/prefs"
-        android:title="Options"
+        android:title="@string/menu_text_options"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/about"
         android:icon="@drawable/ic_info_white_48dp"
-        android:title="About"
+        android:title="@string/menu_text_about"
         app:showAsAction="never"/>
 
     <item
         android:id="@+id/exit"
-        android:title="Exit"
+        android:title="@string/menu_text_exit"
         app:showAsAction="never"/>
 
 </menu>

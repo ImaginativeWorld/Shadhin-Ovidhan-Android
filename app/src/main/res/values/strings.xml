@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">স্বাধীন অভিধান</string>
-    <string name="app_version">0.1.230815</string>
+    <string name="app_version">0.1.250815</string>
     <string name="organization_name">Imaginative World</string>
     <string name="copyrights">Copyright © 2015 Imaginative World</string>
     <string name="about_description">সম্পূর্ণ স্বাধীন একটি ইংরেজি-বাংলা অভিধান</string>
@@ -9,15 +9,16 @@
     <string name="update_check_url">http://imaginativeworld.org/update/soa/soa_update.xml</string>
 
 
-    <string name="add_entry_title">Add Entry</string>
-    <string name="modify_entry_title">Modify Entry</string>
-    <string name="view_details_title">Details</string>
+    <string name="add_entry_title">নতুন অন্তর্ভুক্তি</string>
+    <string name="modify_entry_title">অন্তর্ভুক্তি পরিবর্তন</string>
+    <string name="view_details_title">বিস্তারিত</string>
+    <string name="favorite_title">প্রিয় সমূহ</string>
 
-    <string name="new_item_text">Hold to edit this</string>
-    <string name="no_meaning_text">No Meaning</string>
+    <string name="new_item_text">এটি পরিবর্তন করতে এতে টাচ্‌ করুন</string>
+    <string name="no_meaning_text">কোন অর্থ পাওয়া যাচ্ছে না!</string>
 
     <string name="search_hint">এখানে অনুসন্ধান করুন</string>
-    <string name="unable_create_database">Unable to create database!</string>
+    <string name="unable_create_database">ডেটাবেজ তৈরি করা যাচ্ছে না!</string>
     <string name="empty_list_text">দেখানোর মত কিছু পাওয়া যায়নি!</string>
     <string name="main_window_welcome_text">অনুসন্ধান করতে অনুসন্ধান বাক্সে বাংলা অথবা ইংরেজি শব্দটি লিখুন</string>
 
@@ -30,30 +31,43 @@
     <string name="dialog_message_close">বন্ধ করুন</string>
     <string name="dialog_message_add_another_entry">আরেকটি যুক্ত করুন</string>
 
-    <string name="send_new_entry_to_server">Send new entry to server (Experimental)</string>
-
-    <string name="bn_search_summary">অনুসন্ধানে অর্থের %1$s থেকে মিল খোঁজা হবে</string>
-    <string name="en_search_summary">অনুসন্ধানে ইংরেজি শব্দ/শব্দাংশের %1$s থেকে মিল খোঁজা হবে</string>
-
     <string name="search_type_from_first">শুরু</string>
     <string name="search_type_from_middle">যে কোন যায়গা</string>
     <string name="search_type_from_last">শেষ</string>
 
-
     <string name="server_txt_new">NEW</string>
     <string name="server_txt_modified">MODIFIED</string>
 
-    <string name="check_update">Check Update</string>
-    <string name="update_now">Update Now</string>
-    <string name="wait">Wait...</string>
-    <string name="update_not_found">No Update!</string>
+    <string name="update_available">হালনাগাদ পাওয়া যাচ্ছে!</string>
+    <string name="check_update">হালনাগাদ\nপরীক্ষা করুন</string>
+    <string name="update_now">এখনি হালনাগাদ করুন</string>
+    <string name="wait">অপেক্ষা\nকরুন&#8230;</string>
+    <string name="update_not_found">কোনো হালনাগাদ\nনেই!</string>
 
-    <string name="new_update_info">Latest Version: %1$s.%2$s.%3$s</string>
-    <string name="update_release_date">Release Date: %1$s</string>
+    <string name="new_update_info">সর্বশেষ সংস্করণ: %1$s.%2$s.%3$s</string>
+    <string name="update_release_date">উন্মুক্তের তারিখ: %1$s</string>
 
-    <string name="update_error">Error! Try Again.</string>
-    <string name="internet_not_connected">Internet not Connected!</string>
+    <string name="update_error">ত্রুটি!\nআবার চেষ্টা করুন.</string>
+    <string name="internet_not_connected">ইন্টারনেট সংযুক্ত নয়!</string>
 
+    <!-- Menu -->
+    <string name="menu_text_add_entry">নতুন অন্তর্ভুক্তি</string>
+    <string name="menu_text_favorite_list">প্রিয় তালিকা</string>
+    <string name="menu_text_options">বিকল্প</string>
+    <string name="menu_text_about">সম্পর্ক</string>
+    <string name="menu_text_exit">বন্ধ</string>
+
+    <!-- preference -->
+
+    <string name="title_advance_search">উন্নত অনুসন্ধান</string>
+    <string name="sub_title_bn_search">বাংলা অনুসন্ধান</string>
+    <string name="summary_bn_search">অনুসন্ধানে অর্থের %1$s থেকে মিল খোঁজা হবে</string>
+    <string name="sub_title_en_search">ইংরেজি অনুসন্ধান</string>
+    <string name="summary_en_search">অনুসন্ধানে ইংরেজি শব্দ/শব্দাংশের %1$s থেকে মিল খোঁজা হবে</string>
+
+    <string name="title_cloud">ক্লাউড</string>
+    <string name="sub_title_send_to_server">সার্ভারে নতুন/পরিবর্তিত অন্তর্ভুক্তি পাঠানো হবে</string>
+    <string name="summary_send_to_server">নতুন অন্তর্ভুক্তি যুক্ত বা পরিবর্তিত বা পরিবর্ধিত করার সময় ইন্টারনেটের সংযোগ পাওয়া গেলে অন্তর্ভুক্তিসমূহ সার্ভারে পাঠানো হবে। যা স্বাধীনের ডেটাবেজকে উন্নত করনে আমাদের সহায়তা করবে।</string>
 
 </resources>
 

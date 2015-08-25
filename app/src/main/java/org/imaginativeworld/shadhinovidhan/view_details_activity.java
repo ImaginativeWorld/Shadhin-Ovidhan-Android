@@ -45,7 +45,7 @@ public class view_details_activity extends Activity implements OnClickListener {
     private EditText txtEditMeaning;
     private ListView meaningList;
     private ImageButton btnClose;
-    private ImageButton btnDelete, btnEdit, btnCloseOptions, btnMeaningPartDelete, btnDeleteEntry;
+    private ImageButton btnDelete, btnEdit, btnCloseOptions, btnMeaningPartDelete, btnDeleteEntry, btnFavorite;
     private View OptionView;
     private String sWord;
     private String sPos;
@@ -88,6 +88,9 @@ public class view_details_activity extends Activity implements OnClickListener {
 
         btnDeleteEntry = (ImageButton) findViewById(R.id.btn_delete_entry);
         btnDeleteEntry.setOnClickListener(this);
+
+        btnFavorite = (ImageButton) findViewById(R.id.btn_favorite);
+        btnFavorite.setOnClickListener(this);
 
         //================================================================
 
@@ -148,7 +151,7 @@ public class view_details_activity extends Activity implements OnClickListener {
 
         // Get ListView object from xml
         meaningList = (ListView) findViewById(R.id.meaning_list);
-
+        meaningList.setEmptyView(findViewById(R.id.txt_empty));
         // Define a new Adapter
         // First parameter - Context
         // Second parameter - Layout for the row
@@ -175,17 +178,35 @@ public class view_details_activity extends Activity implements OnClickListener {
 
                 tEXT = text.getText().toString();
 
-                //Copy to Clip Board (Only support API >=11)
-                ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("SO_Meaning", tEXT);
-                clipboard.setPrimaryClip(clip);
+                if (!tEXT.equals(getString(R.string.no_meaning_text)) &&
+                        !tEXT.equals(getString(R.string.new_item_text))) {
+                    //Copy to Clip Board (Only support API >=11)
+                    ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                    ClipData clip = ClipData.newPlainText("SO_Meaning", tEXT);
+                    clipboard.setPrimaryClip(clip);
 
-                Toast t = Toast.makeText(view_details_activity.this, "Text Copied to Clipboard.", Toast.LENGTH_LONG);
-                t.show();
+                    Toast t = Toast.makeText(view_details_activity.this, "Text Copied to Clipboard.", Toast.LENGTH_LONG);
+                    t.show();
+                } else {
+                    // NOTE: Same Code: longClickListener
+
+                    pOSITION = position;
+
+                    txtEditMeaning.setVisibility(View.GONE);
+                    txtViewMeaning.setText(tEXT);
+                    txtViewMeaning.setVisibility(View.VISIBLE);
+
+                    OptionView.setVisibility(View.VISIBLE);
+
+                    final Animation animationFade =
+                            AnimationUtils.loadAnimation(view_details_activity.this, android.R.anim.fade_in);
+
+                    OptionView.clearAnimation();
+                    OptionView.startAnimation(animationFade);
+                }
+
 
                 //====================================================
-
-
 
             }
         });
@@ -196,6 +217,7 @@ public class view_details_activity extends Activity implements OnClickListener {
 
                 clickedTxtView = (TextView) view.findViewById(R.id.text_view);
 
+                // NOTE: Same Code: longClickListener
                 tEXT = clickedTxtView.getText().toString();
                 pOSITION = position;
 
@@ -259,12 +281,14 @@ public class view_details_activity extends Activity implements OnClickListener {
             case R.id.btn_edit:
 
                 if (txtViewMeaning.getVisibility() == View.VISIBLE) {
+
                     txtViewMeaning.setVisibility(View.GONE);
 
                     txtEditMeaning.setText(tEXT);
                     txtEditMeaning.setVisibility(View.VISIBLE);
 
                     btnEdit.setImageResource(R.drawable.ic_save_black_48dp);
+
 
                 } else {
 
@@ -304,6 +328,18 @@ public class view_details_activity extends Activity implements OnClickListener {
 
                 break;
 
+            case R.id.btn_favorite:
+
+                if (dbManager.insertIntoFavorite(sWord) != -1) {
+                    Toast t = Toast.makeText(view_details_activity.this, "Add to Favorite.", Toast.LENGTH_SHORT);
+                    t.show();
+                } else {
+                    Toast t = Toast.makeText(view_details_activity.this, "Already in Favorite List!", Toast.LENGTH_LONG);
+                    t.show();
+                }
+
+                break;
+
             case R.id.btn_close_options:
                 closeEditView();
                 break;
@@ -326,8 +362,9 @@ public class view_details_activity extends Activity implements OnClickListener {
         } else
             meaning = getString(R.string.no_meaning_text);
 
-        if (dbManager.update(sWord, sPos, meaning) != 0)
+        if (dbManager.update(sWord, sPos, meaning) != 0) {
             isDBchanged = true;
+        }
 
         sMeaning = meaning;
 
@@ -340,6 +377,7 @@ public class view_details_activity extends Activity implements OnClickListener {
         OptionView.startAnimation(animationFade);
         OptionView.setVisibility(View.GONE);
     }
+
 
     void sendData(String info, String word, String pos, String meaning) {
         hashMap.clear();
@@ -363,6 +401,7 @@ public class view_details_activity extends Activity implements OnClickListener {
             //textview.setText("No network connection available.");
 //        }
     }
+
 
     private void finishWithResult() {
         Bundle conData = new Bundle();

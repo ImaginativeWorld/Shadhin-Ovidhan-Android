@@ -18,15 +18,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Table Name
     public static final String TABLE_NAME = "ovidhan";
+    public static final String TABLE_FAVORITE_NAME = "favorite";
+
     // Table columns
     public static final String _WORD = "_id"; // It must be "_id", or many error happened.. :(
     public static final String SO_PRON = "pron";
     public static final String SO_POS = "pos";
     public static final String SO_MEANING = "meaning";
+
+
+    public static final String SO_FAVORITE = "word";
+
     // Database Information //===
     static final String DB_NAME = "IWSO.DB"; // Must NOT USE UNDERSCORE ("_") in database name
+
     // database version
     static final int DB_VERSION = 1;
+
     //The Android's default system path of your application database. //===
     private static String DB_PATH = "/data/data/org.imaginativeworld.shadhinovidhan/databases/";
     private final Context myContext;

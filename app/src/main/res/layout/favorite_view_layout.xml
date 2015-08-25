@@ -14,44 +14,24 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/view_details_title"
+            android:text="@string/favorite_title"
             android:textColor="@color/light_green_700"
             android:textSize="@dimen/title_text_size"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/body_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/btn_layout"
         android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
-        android:orientation="vertical"
         android:paddingLeft="@dimen/dialog_padding"
         android:paddingRight="@dimen/dialog_padding">
 
-        <TextView
-            android:id="@+id/txt_word"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Word"
-            android:textColor="@color/grey_800"
-            android:textSize="@dimen/details_word"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/txt_pos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="pos"
-            android:textSize="@dimen/details_pos"
-            android:textStyle="italic"/>
-
-        <View style="@style/Divider"/>
-
         <ListView
-            android:id="@+id/meaning_list"
+            android:id="@+id/favorite_list"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:choiceMode="singleChoice"
@@ -59,13 +39,14 @@
             android:dividerHeight="2dp" />
 
         <TextView
-            android:id="@+id/txt_empty"
-            android:layout_width="fill_parent"
+            android:id="@+id/empty"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:text="@string/no_meaning_text"
-            android:textSize="@dimen/list_meaning_text" />
-    </LinearLayout>
+            android:layout_centerInParent="true"
+            android:text="@string/empty_list_text"
+            android:textSize="@dimen/abc_text_size_medium_material" />
+
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/btn_layout"
@@ -80,22 +61,14 @@
         android:paddingTop="@dimen/button_bar_padding">
 
         <ImageButton
-            android:id="@+id/btn_delete_entry"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ic_delete_black_48dp"
-            android:tint="@color/red_700" />
-
-        <ImageButton
             android:id="@+id/btn_add"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:src="@drawable/ic_add_black_48dp"
-            android:tint="@color/grey_800"/>
+            android:tint="@color/grey_800"
+            android:visibility="gone" />
 
         <ImageButton
             android:id="@+id/btn_close"
@@ -104,24 +77,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:src="@drawable/ic_arrow_back_black_48dp"
-            android:tint="@color/grey_800"/>
+            android:tint="@color/grey_800" />
 
     </LinearLayout>
-
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/title">
-
-        <ImageButton
-            android:id="@+id/btn_favorite"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_favorite_outline_black_48dp" />
-
-    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/layout_options"

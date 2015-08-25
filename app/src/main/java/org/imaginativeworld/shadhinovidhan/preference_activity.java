@@ -36,13 +36,4 @@ public class preference_activity extends PreferenceActivity {
 
     }
 
-//    private void finishWithResult() {
-//        Bundle conData = new Bundle();
-//        conData.putBoolean("results", true);
-//        Intent intent = new Intent();
-//        intent.putExtras(conData);
-//        setResult(RESULT_OK, intent);
-//        finish();
-//    }
-
 }

@@ -63,6 +63,7 @@ public class DBManager {
         contentValue.put(DatabaseHelper.SO_POS, _pos);
         contentValue.put(DatabaseHelper.SO_MEANING, _meaning);
 
+        // if error return -1
         return database.insert(DatabaseHelper.TABLE_NAME, null, contentValue);
     }
 
@@ -129,7 +130,7 @@ public class DBManager {
                     _word + "%"
             };
 
-        } else if (type.equals("1")) {
+        } else if (type.equals("2")) {
 
             whereArgs = new String[]{
                     "%" + _word + "%"
@@ -154,6 +155,7 @@ public class DBManager {
 
     }
 
+
     public int update(String _word, String _pos, String _meaning) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseHelper.SO_PRON, _word);
@@ -168,6 +170,48 @@ public class DBManager {
         //Must use double quotation mark for string logic in sql language.
         int i = database.delete(DatabaseHelper.TABLE_NAME,
                 DatabaseHelper._WORD + " = \"" + so_tools.removeSymbolFromText(_word) + "\"", null);
+        return i;
+    }
+
+    //================
+
+    public Cursor getFavorite() {
+
+        String[] tableColumns = new String[]{
+                DatabaseHelper._WORD,
+                DatabaseHelper.SO_FAVORITE
+        };
+        //String whereClause ="*";
+
+        //String[] whereArgs;
+
+//        whereArgs = new String[]{
+//                "%" + _word
+//        };
+
+        //String orderBy = "_id";
+        Cursor cursor = database.query(DatabaseHelper.TABLE_FAVORITE_NAME, tableColumns, null, null,
+                null, null, null);
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        return cursor;
+
+    }
+
+    public long insertIntoFavorite(String _word) {
+        ContentValues contentValue = new ContentValues();
+
+        contentValue.put(DatabaseHelper.SO_FAVORITE, _word);
+
+        return database.insert(DatabaseHelper.TABLE_FAVORITE_NAME, null, contentValue);
+    }
+
+    public int deleteInfoFavorite(String _word) {
+        //Must use double quotation mark for string logic in sql language.
+        int i = database.delete(DatabaseHelper.TABLE_FAVORITE_NAME,
+                DatabaseHelper.SO_FAVORITE + " = \"" + _word + "\"", null);
         return i;
     }
 
