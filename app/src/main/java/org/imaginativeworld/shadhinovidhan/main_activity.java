@@ -1,5 +1,6 @@
 package org.imaginativeworld.shadhinovidhan;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -16,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
@@ -44,8 +46,9 @@ public class main_activity extends ActionBarActivity implements View.OnClickList
     Toolbar toolbar;
 
     EditText editTextSearch;
+    TextView txtView_welcome;
 
-    View searchBar;//, toolBar;
+    View searchBar;
 
     ImageButton btnClearSearch;
 
@@ -85,6 +88,7 @@ public class main_activity extends ActionBarActivity implements View.OnClickList
 
         welcomeLayout = findViewById(R.id.layout_welcome);
         welcomeLayout.setVisibility(View.VISIBLE);
+        welcomeLayout.setOnClickListener(this);
 
         //============================================================
 
@@ -99,6 +103,8 @@ public class main_activity extends ActionBarActivity implements View.OnClickList
         btnClearSearch = (ImageButton) findViewById(R.id.searchClear);
         btnClearSearch.setOnClickListener(this);
 
+        txtView_welcome = (TextView) findViewById(R.id.txt_welcome);
+
         //============================================================
 
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
@@ -107,7 +113,11 @@ public class main_activity extends ActionBarActivity implements View.OnClickList
 
         //============================================================
 
+//        DatabaseHelper.DB_PATH =
+//                getApplicationContext().getFilesDir().getPath() + "/db/";
+
         dbManager = new DBManager(this);
+
         dbManager.open();
 
         //============================================================
@@ -291,6 +301,7 @@ public class main_activity extends ActionBarActivity implements View.OnClickList
 
             case R.id.exit:
 
+                //API >= 16
                 this.finishAffinity();
 
                 break;
@@ -314,6 +325,11 @@ public class main_activity extends ActionBarActivity implements View.OnClickList
                 .setInterpolator(new DecelerateInterpolator())
                 .start();
 
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(editTextSearch, InputMethodManager.SHOW_IMPLICIT);
+
+        txtView_welcome.setText(getString(R.string.main_window_welcome_text_search));
+
     }
 
     void hideSearchBar() {
@@ -328,12 +344,9 @@ public class main_activity extends ActionBarActivity implements View.OnClickList
                 .setInterpolator(new AccelerateInterpolator())
                 .start();
 
-
         editTextSearch.setEnabled(false);
 
-        //editTextSearch.setFocusable(false);
-        //editTextSearch.setClickable(false);
-
+        txtView_welcome.setText(getString(R.string.main_window_welcome_text_hint));
 
     }
 
@@ -345,6 +358,12 @@ public class main_activity extends ActionBarActivity implements View.OnClickList
                     hideSearchBar();
                 else
                     editTextSearch.setText("");
+                break;
+
+            case R.id.layout_welcome:
+
+                showSearchBar();
+
                 break;
 
 

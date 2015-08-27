@@ -33,7 +33,9 @@ public class DBManager {
         } catch (IOException ioe) {
 
             //Unfortunately without activity or service class you can't use resources.. :'(
-            throw new Error("Unable to create database!");
+            //But you can cheat to use resources.. ;)
+            throw new Error(appContextHelper.getAppContext()
+                    .getString(R.string.err_msg_unable_to_create_database));
 
         }
 

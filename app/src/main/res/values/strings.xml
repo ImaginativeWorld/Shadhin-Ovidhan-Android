@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">স্বাধীন অভিধান</string>
-    <string name="app_version">0.1.250815</string>
+    <string name="app_version">0.1.280815</string>
     <string name="organization_name">Imaginative World</string>
     <string name="copyrights">Copyright © 2015 Imaginative World</string>
     <string name="about_description">সম্পূর্ণ স্বাধীন একটি ইংরেজি-বাংলা অভিধান</string>
@@ -8,6 +8,7 @@
     <string name="server_post_url">http://imaginativeworld.org/srv/soa/add.php</string>
     <string name="update_check_url">http://imaginativeworld.org/update/soa/soa_update.xml</string>
 
+    <string name="text_copied_to_clipboard">Text Copied to Clipboard.</string>
 
     <string name="add_entry_title">নতুন অন্তর্ভুক্তি</string>
     <string name="modify_entry_title">অন্তর্ভুক্তি পরিবর্তন</string>
@@ -20,7 +21,9 @@
     <string name="search_hint">এখানে অনুসন্ধান করুন</string>
     <string name="unable_create_database">ডেটাবেজ তৈরি করা যাচ্ছে না!</string>
     <string name="empty_list_text">দেখানোর মত কিছু পাওয়া যায়নি!</string>
-    <string name="main_window_welcome_text">অনুসন্ধান করতে অনুসন্ধান বাক্সে বাংলা অথবা ইংরেজি শব্দটি লিখুন</string>
+    <string name="fav_empty_list_text">আপনার প্রিয় তালিকায় কোনো অন্তর্ভুক্তি নেই!</string>
+    <string name="main_window_welcome_text_search">অনুসন্ধান করতে অনুসন্ধান বাক্সে বাংলা অথবা ইংরেজি শব্দটি লিখুন</string>
+    <string name="main_window_welcome_text_hint">অনুসন্ধান করতে এখানে আলতোভাবে স্পর্শ করুন</string>
 
     <string name="dialog_message_error">ত্রুটি!</string>
     <string name="dialog_message_successful">সফল!</string>
@@ -68,6 +71,42 @@
     <string name="title_cloud">ক্লাউড</string>
     <string name="sub_title_send_to_server">সার্ভারে নতুন/পরিবর্তিত অন্তর্ভুক্তি পাঠানো হবে</string>
     <string name="summary_send_to_server">নতুন অন্তর্ভুক্তি যুক্ত বা পরিবর্তিত বা পরিবর্ধিত করার সময় ইন্টারনেটের সংযোগ পাওয়া গেলে অন্তর্ভুক্তিসমূহ সার্ভারে পাঠানো হবে। যা স্বাধীনের ডেটাবেজকে উন্নত করনে আমাদের সহায়তা করবে।</string>
+
+    <!-- Add Entry -->
+    <string name="ui_txt_edit_word_phrase">শব্দ/শব্দগুচ্ছ</string>
+    <string name="ui_txt_view_word_phrase">এখানে শব্দ/শব্দগুচ্ছ লিখুন</string>
+
+    <string name="ui_txt_edit_pos">পদ প্রকরণ</string>
+    <string name="ui_txt_view_pos">এখানে পদ প্রকরণ লিখুন</string>
+
+    <string name="ui_txt_edit_meaning">অর্থ</string>
+    <string name="ui_txt_view_meaning">এখানে অর্থ লিখুন</string>
+
+    <!-- details view -->
+    <string name="ui_default_txt_view_word">Word</string>
+    <string name="ui_default_txt_view_pos">pos</string>
+
+    <string name="question_remove_meaning_part_title">বাদ দিতে চান?</string>
+    <string name="question_remove_meaning_part_description">আপনি কি আসলেই এই অর্থটি বাদ দিতে চান?</string>
+
+    <string name="yes">হ্যাঁ</string>
+    <string name="no">না</string>
+
+    <string name="question_delete_entry_title">মুছতে চান?</string>
+    <string name="question_delete_entry_description">আপনি কি আসলেই \"%1$s\" অন্তর্ভুক্তিটি মুছতে চান?</string>
+
+    <string name="msg_added_to_favorite_list">Added to Favorite List.</string>
+    <string name="msg_already_in_favorite_list">Already in Favorite List!</string>
+
+    <string name="fav_list_what_do_you_want">আপনি কি করতে চান?</string>
+    <string name="fav_list_btn_delete">মুছুন</string>
+    <string name="fav_list_btn_copy_to_clipboard">ক্লিপবোর্ডে\nঅনুলিপি করুন</string>
+    <string name="fav_list_toast_text_copied_to_clipboard">Text Copied to Clipboard.</string>
+    <string name="fav_list_btn_view_meaning">অর্থ\nদেখুন</string>
+
+    <!-- Error Msgs -->
+    <string name="err_msg_unable_to_create_database">Unable to create database!</string>
+
 
 </resources>
 

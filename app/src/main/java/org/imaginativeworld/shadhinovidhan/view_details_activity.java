@@ -60,7 +60,7 @@ public class view_details_activity extends Activity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setTitle("Details View Record");
+        setTitle(getString(R.string.view_details_title));
 
         setContentView(R.layout.details_view_layout);
 
@@ -111,7 +111,6 @@ public class view_details_activity extends Activity implements OnClickListener {
 
         txtWord = (TextView) findViewById(R.id.txt_word);
         txtpos = (TextView) findViewById(R.id.txt_pos);
-        //txtmeaning = (TextView) findViewById(R.id.txt_meaning);
 
         Intent intent = getIntent();
         sWord = intent.getStringExtra("word");
@@ -120,13 +119,10 @@ public class view_details_activity extends Activity implements OnClickListener {
 
         txtWord.setText(sWord);
         txtpos.setText(sPos);
-        //txtmeaning.setText(sMeaning);
 
         //Set Listener for Buttons
         btnClose = (ImageButton) findViewById(R.id.btn_close);
         btnClose.setOnClickListener(this);
-//        btnEdit = (ImageButton) findViewById(R.id.btn_edit);
-//        btnEdit.setOnClickListener(this);
 
         //================================================================
 
@@ -185,7 +181,7 @@ public class view_details_activity extends Activity implements OnClickListener {
                     ClipData clip = ClipData.newPlainText("SO_Meaning", tEXT);
                     clipboard.setPrimaryClip(clip);
 
-                    Toast t = Toast.makeText(view_details_activity.this, "Text Copied to Clipboard.", Toast.LENGTH_LONG);
+                    Toast t = Toast.makeText(view_details_activity.this, getString(R.string.text_copied_to_clipboard), Toast.LENGTH_LONG);
                     t.show();
                 } else {
                     // NOTE: Same Code: longClickListener
@@ -261,10 +257,10 @@ public class view_details_activity extends Activity implements OnClickListener {
 
             case R.id.btn_delete_meaning_part:
                 AlertDialog.Builder adb = new AlertDialog.Builder(view_details_activity.this);
-                adb.setTitle("Remove?");
-                adb.setMessage("Are you sure you want to remove this meaning part?");
-                adb.setNegativeButton("No", null);
-                adb.setPositiveButton("Yes", new AlertDialog.OnClickListener() {
+                adb.setTitle(getString(R.string.question_remove_meaning_part_title));
+                adb.setMessage(getString(R.string.question_remove_meaning_part_description));
+                adb.setNegativeButton(getString(R.string.no), null);
+                adb.setPositiveButton(getString(R.string.yes), new AlertDialog.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         sMeaningArrList.remove(pOSITION);
                         adapter.notifyDataSetChanged();
@@ -312,10 +308,10 @@ public class view_details_activity extends Activity implements OnClickListener {
 
             case R.id.btn_delete_entry:
                 AlertDialog.Builder adb2 = new AlertDialog.Builder(view_details_activity.this);
-                adb2.setTitle("Delete?");
-                adb2.setMessage("Are you sure you want to delete entry \"" + sWord + "\"?");
-                adb2.setNegativeButton("No", null);
-                adb2.setPositiveButton("Yes", new AlertDialog.OnClickListener() {
+                adb2.setTitle(getString(R.string.question_delete_entry_title));
+                adb2.setMessage(getString(R.string.question_delete_entry_description, sWord));
+                adb2.setNegativeButton(getString(R.string.no), null);
+                adb2.setPositiveButton(getString(R.string.yes), new AlertDialog.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
                         if (dbManager.delete(sWord) != 0)
@@ -331,10 +327,12 @@ public class view_details_activity extends Activity implements OnClickListener {
             case R.id.btn_favorite:
 
                 if (dbManager.insertIntoFavorite(sWord) != -1) {
-                    Toast t = Toast.makeText(view_details_activity.this, "Add to Favorite.", Toast.LENGTH_SHORT);
+                    Toast t = Toast.makeText(view_details_activity.this,
+                            getString(R.string.msg_added_to_favorite_list), Toast.LENGTH_SHORT);
                     t.show();
                 } else {
-                    Toast t = Toast.makeText(view_details_activity.this, "Already in Favorite List!", Toast.LENGTH_LONG);
+                    Toast t = Toast.makeText(view_details_activity.this,
+                            getString(R.string.msg_already_in_favorite_list), Toast.LENGTH_LONG);
                     t.show();
                 }
 

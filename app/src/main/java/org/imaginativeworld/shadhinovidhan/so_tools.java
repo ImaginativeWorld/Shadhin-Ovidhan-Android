@@ -19,7 +19,10 @@ public class so_tools {
                 .replace("!", "")
                 .replace("\\", "")
                 .replace("/", "")
-                .replace("&", "");
+                .replace("&", "")
+                .replace("*", "")
+                .replace("#", "")
+                .replace("%", "");
     }
 
 

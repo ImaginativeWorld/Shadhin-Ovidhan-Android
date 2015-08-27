@@ -67,7 +67,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="@string/main_window_welcome_text"
+                android:text="@string/main_window_welcome_text_hint"
                 android:textSize="@dimen/abc_text_size_large_material" />
 
         </LinearLayout>

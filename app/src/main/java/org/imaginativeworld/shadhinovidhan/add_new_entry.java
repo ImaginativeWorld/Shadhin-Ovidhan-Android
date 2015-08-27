@@ -23,27 +23,22 @@ import java.util.HashMap;
  */
 public class add_new_entry extends Activity implements OnClickListener {
 
+    Boolean IsSendToServer;
+    HashMap<String, String> hashMap;
     private ImageButton btnAdd, btnClose;
-
     private EditText wordEditText;
-    private EditText posEditText;
-    private EditText meaningEditText;
 
     // private CheckBox chkBoxSend;
-
+    private EditText posEditText;
+    private EditText meaningEditText;
     private DBManager dbManager;
-
     private Boolean isDBchanged = false;
-
-    Boolean IsSendToServer;
-
-    HashMap<String, String> hashMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setTitle("Add Entry");
+        setTitle(getString(R.string.add_entry_title));
 
         setContentView(R.layout.add_entry_layout);
 
@@ -76,9 +71,7 @@ public class add_new_entry extends Activity implements OnClickListener {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         IsSendToServer = sharedPref.getBoolean(preference_activity.pref_key_send_to_server, true);
 
-
     }
-
 
     @Override
     public void onClick(View v) {
@@ -181,10 +174,11 @@ public class add_new_entry extends Activity implements OnClickListener {
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
             new sendDataToServer(hashMap, getString(R.string.server_post_url));
-        } else {
+        }
+//        else {
             //Keep Silent :)
             //textview.setText("No network connection available.");
-        }
+//        }
     }
 
     private void finishWithResult() {

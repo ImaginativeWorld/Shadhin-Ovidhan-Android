@@ -35,9 +35,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // database version
     static final int DB_VERSION = 1;
 
-    //The Android's default system path of your application database. //===
-    private static String DB_PATH = "/data/data/org.imaginativeworld.shadhinovidhan/databases/";
+    //The Android's default system path of your application database.
+
+    //public static String DB_PATH;
+    private static String DB_PATH =
+            //"/data/data/org.imaginativeworld.shadhinovidhan/databases/";
+            appContextHelper.getAppContext().getDatabasePath(DB_NAME).getAbsolutePath();
+
     private final Context myContext;
+
     private SQLiteDatabase myDataBase;
 
     /**
@@ -72,7 +78,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             } catch (IOException e) {
 
-                throw new Error("Unable to create database!");
+                throw new Error(e.getMessage());
 
             }
         }
@@ -88,7 +94,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase checkDB = null;
 
         try{
-            String myPath = DB_PATH + DB_NAME;
+            String myPath = DB_PATH; // DB_PATH + DB_NAME;
             checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
 
         }catch(SQLiteException e){
@@ -117,7 +123,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         InputStream myInput = myContext.getAssets().open(DB_NAME);
 
         // Path to the just created empty db
-        String outFileName = DB_PATH + DB_NAME;
+        String outFileName = DB_PATH; // DB_PATH + DB_NAME;
 
         //Open the empty db as the output stream
         OutputStream myOutput = new FileOutputStream(outFileName);
@@ -139,7 +145,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void openDataBase() throws SQLException {
 
         //Open the database
-        String myPath = DB_PATH + DB_NAME;
+        String myPath = DB_PATH; //DB_PATH + DB_NAME;
         myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
 
     }

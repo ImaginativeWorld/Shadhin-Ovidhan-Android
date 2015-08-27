@@ -35,7 +35,7 @@
             android:id="@+id/txt_word"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Word"
+            android:text="@string/ui_default_txt_view_word"
             android:textColor="@color/grey_800"
             android:textSize="@dimen/details_word"
             android:textStyle="bold" />
@@ -44,7 +44,7 @@
             android:id="@+id/txt_pos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="pos"
+            android:text="@string/ui_default_txt_view_pos"
             android:textSize="@dimen/details_pos"
             android:textStyle="italic"/>
 

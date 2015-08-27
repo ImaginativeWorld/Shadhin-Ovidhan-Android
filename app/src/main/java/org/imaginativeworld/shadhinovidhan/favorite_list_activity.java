@@ -28,8 +28,7 @@ public class favorite_list_activity extends Activity implements View.OnClickList
     final int[] to = new int[]{
             android.R.id.text1
     };
-    ImageButton btnClose, btnDelete;
-    int pOSITION;
+    ImageButton btnClose;
     private DBManager dbManager;
     private ListView listView;
     private SimpleCursorAdapter adapter;
@@ -73,13 +72,12 @@ public class favorite_list_activity extends Activity implements View.OnClickList
                 TextView text = (TextView) view.findViewById(android.R.id.text1);
 
                 tEXT = text.getText().toString();
-                //pOSITION = position;
 
                 AlertDialog.Builder adb = new AlertDialog.Builder(favorite_list_activity.this);
-                adb.setTitle("What do you want?");
+                adb.setTitle(getString(R.string.fav_list_what_do_you_want));
                 //adb.setMessage("?");
 
-                adb.setNeutralButton("Delete", new AlertDialog.OnClickListener() {
+                adb.setNeutralButton(getString(R.string.fav_list_btn_delete), new AlertDialog.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -89,7 +87,8 @@ public class favorite_list_activity extends Activity implements View.OnClickList
 
                     }
                 });
-                adb.setNegativeButton("Copy to\nClipboard", new AlertDialog.OnClickListener() {
+                adb.setNegativeButton(getString(R.string.fav_list_btn_copy_to_clipboard),
+                        new AlertDialog.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
                         //Copy to Clip Board (Only support API >=11)
@@ -98,13 +97,13 @@ public class favorite_list_activity extends Activity implements View.OnClickList
                         clipboard.setPrimaryClip(clip);
 
                         Toast t = Toast.makeText(favorite_list_activity.this,
-                                "Text Copied to Clipboard.",
+                                getString(R.string.fav_list_toast_text_copied_to_clipboard),
                                 Toast.LENGTH_LONG);
                         t.show();
 
                     }
                 });
-                adb.setPositiveButton("View\nmeaning", new AlertDialog.OnClickListener() {
+                adb.setPositiveButton(getString(R.string.fav_list_btn_view_meaning), new AlertDialog.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         finishWithResult();
