@@ -21,6 +21,13 @@
             android:textStyle="bold" />
     </LinearLayout>
 
+    <View
+        android:id="@+id/title_box_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/shadow_height"
+        android:layout_below="@id/title"
+        android:background="@drawable/shadow_top_bottom" />
+
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -121,5 +128,13 @@
             android:tint="@color/grey_800" />
 
     </LinearLayout>
+
+
+    <View
+        android:id="@+id/btn_box_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/shadow_height"
+        android:layout_above="@+id/btn_layout"
+        android:background="@drawable/shadow_bottom_top" />
 
 </RelativeLayout>

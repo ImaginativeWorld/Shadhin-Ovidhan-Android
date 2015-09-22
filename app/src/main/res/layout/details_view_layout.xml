@@ -8,17 +8,72 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:orientation="vertical"
-        android:padding="@dimen/dialog_padding">
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dialog_padding"
             android:text="@string/view_details_title"
             android:textColor="@color/light_green_700"
             android:textSize="@dimen/title_text_size"
             android:textStyle="bold"/>
+
+        <LinearLayout
+            android:id="@+id/box_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/grey_300"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txt_word"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dialog_padding"
+                    android:text="@string/ui_default_txt_view_word"
+                    android:textColor="@color/grey_800"
+                    android:textSize="@dimen/details_word"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txt_pos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dialog_padding"
+                    android:text="@string/ui_default_txt_view_pos"
+                    android:textSize="@dimen/details_pos"
+                    android:textStyle="italic" />
+
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/btn_favorite"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_favorite_outline_black_48dp" />
+
+        </LinearLayout>
+
     </LinearLayout>
+
+    <View
+        android:id="@+id/title_box_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/shadow_height"
+        android:layout_below="@id/title"
+        android:background="@drawable/shadow_top_bottom" />
+
 
     <LinearLayout
         android:id="@+id/body_layout"
@@ -27,28 +82,9 @@
         android:layout_above="@+id/btn_layout"
         android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/dialog_padding"
-        android:paddingRight="@dimen/dialog_padding">
-
-        <TextView
-            android:id="@+id/txt_word"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ui_default_txt_view_word"
-            android:textColor="@color/grey_800"
-            android:textSize="@dimen/details_word"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/txt_pos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ui_default_txt_view_pos"
-            android:textSize="@dimen/details_pos"
-            android:textStyle="italic"/>
-
-        <View style="@style/Divider"/>
+        android:layout_marginLeft="@dimen/dialog_padding"
+        android:layout_marginRight="@dimen/dialog_padding"
+        android:orientation="vertical">
 
         <ListView
             android:id="@+id/meaning_list"
@@ -98,6 +134,15 @@
             android:tint="@color/grey_800"/>
 
         <ImageButton
+            android:id="@+id/btn_speak"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_volume_up_black_48dp"
+            android:tint="@color/light_green_800" />
+
+        <ImageButton
             android:id="@+id/btn_close"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
@@ -108,20 +153,27 @@
 
     </LinearLayout>
 
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/title">
+    <View
+        android:id="@+id/btn_box_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/shadow_height"
+        android:layout_above="@+id/btn_layout"
+        android:background="@drawable/shadow_bottom_top" />
 
-        <ImageButton
-            android:id="@+id/btn_favorite"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_favorite_outline_black_48dp" />
+    <!--<FrameLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_alignBottom="@+id/title">-->
 
-    </FrameLayout>
+    <!--<ImageButton-->
+    <!--android:id="@+id/btn_favorite"-->
+    <!--style="?android:attr/borderlessButtonStyle"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:src="@drawable/ic_favorite_outline_black_48dp" />-->
+
+    <!--</FrameLayout>-->
 
     <FrameLayout
         android:id="@+id/layout_options"

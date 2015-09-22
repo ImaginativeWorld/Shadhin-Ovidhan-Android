@@ -154,7 +154,6 @@ public class about_activity extends Activity implements OnClickListener {
             conn.setDoOutput(true);
 
             InputStream in = conn.getInputStream();
-            Toast t;
 
 
             try {

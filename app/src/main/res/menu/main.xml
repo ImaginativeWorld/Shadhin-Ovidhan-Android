@@ -11,31 +11,31 @@
         android:title="Search Here"
         app:showAsAction="always" />
 
-    <item
-        android:id="@+id/add_record"
-        android:icon="@drawable/ic_add_white_48dp"
-        android:title="@string/menu_text_add_entry"
-        app:showAsAction="never"/>
+    <!--<item-->
+    <!--android:id="@+id/add_record"-->
+    <!--android:icon="@drawable/ic_add_white_48dp"-->
+    <!--android:title="@string/menu_text_add_entry"-->
+    <!--app:showAsAction="never"/>-->
 
-    <item
-        android:id="@+id/favorite"
-        android:title="@string/menu_text_favorite_list"
-        app:showAsAction="never" />
+    <!--<item-->
+    <!--android:id="@+id/favorite"-->
+    <!--android:title="@string/menu_text_favorite_list"-->
+    <!--app:showAsAction="never" />-->
 
-    <item
-        android:id="@+id/prefs"
-        android:title="@string/menu_text_options"
-        app:showAsAction="never" />
+    <!--<item-->
+    <!--android:id="@+id/prefs"-->
+    <!--android:title="@string/menu_text_options"-->
+    <!--app:showAsAction="never" />-->
 
-    <item
-        android:id="@+id/about"
-        android:icon="@drawable/ic_info_white_48dp"
-        android:title="@string/menu_text_about"
-        app:showAsAction="never"/>
+    <!--<item-->
+    <!--android:id="@+id/about"-->
+    <!--android:icon="@drawable/ic_info_white_48dp"-->
+    <!--android:title="@string/menu_text_about"-->
+    <!--app:showAsAction="never"/>-->
 
-    <item
-        android:id="@+id/exit"
-        android:title="@string/menu_text_exit"
-        app:showAsAction="never"/>
+    <!--<item-->
+    <!--android:id="@+id/exit"-->
+    <!--android:title="@string/menu_text_exit"-->
+    <!--app:showAsAction="never"/>-->
 
 </menu>

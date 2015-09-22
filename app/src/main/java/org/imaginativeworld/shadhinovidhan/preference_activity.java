@@ -11,7 +11,9 @@ public class preference_activity extends PreferenceActivity {
 
     public static String bnAdvSearchType = "bnAdvSearchType",
             enAdvSearchType = "enAdvSearchType",
-            pref_key_send_to_server = "pref_key_send_to_server";
+            pref_key_send_to_server = "pref_key_send_to_server",
+            pref_key_auto_update_check = "pref_key_auto_update_check";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

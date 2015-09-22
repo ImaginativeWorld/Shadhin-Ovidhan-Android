@@ -15,6 +15,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import java.util.HashMap;
 
@@ -174,7 +175,13 @@ public class add_new_entry extends Activity implements OnClickListener {
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
             new sendDataToServer(hashMap, getString(R.string.server_post_url));
+
+            Toast t = Toast.makeText(add_new_entry.this,
+                    getString(R.string.txt_new_entry_sent_to_server), Toast.LENGTH_SHORT);
+            t.show();
         }
+
+
 //        else {
             //Keep Silent :)
             //textview.setText("No network connection available.");

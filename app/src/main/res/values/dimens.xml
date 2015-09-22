@@ -31,4 +31,9 @@
     <dimen name="details_word">26sp</dimen>
     <dimen name="details_pos">21sp</dimen>
     <dimen name="details_meaning">21sp</dimen>
+
+    <dimen name="shadow_height">5dp</dimen>
+
+    <dimen name="drawer_button_text">26sp</dimen>
+
 </resources>

@@ -1,12 +1,16 @@
 <resources>
     <string name="app_name">স্বাধীন অভিধান</string>
-    <string name="app_version">0.1.280815</string>
+    <string name="app_version">0.2.150915</string>
     <string name="organization_name">Imaginative World</string>
     <string name="copyrights">Copyright © 2015 Imaginative World</string>
     <string name="about_description">সম্পূর্ণ স্বাধীন একটি ইংরেজি-বাংলা অভিধান</string>
+    <string name="website">http://imaginativeworld.org</string>
 
     <string name="server_post_url">http://imaginativeworld.org/srv/soa/add.php</string>
     <string name="update_check_url">http://imaginativeworld.org/update/soa/soa_update.xml</string>
+
+    <!--<string name="server_post_url">http://imaginativeworld.org/srv/soa/add.php</string>-->
+    <!--<string name="update_check_url">http://10.0.2.2/so/soa_update.xml</string>-->
 
     <string name="text_copied_to_clipboard">Text Copied to Clipboard.</string>
 
@@ -14,6 +18,7 @@
     <string name="modify_entry_title">অন্তর্ভুক্তি পরিবর্তন</string>
     <string name="view_details_title">বিস্তারিত</string>
     <string name="favorite_title">প্রিয় সমূহ</string>
+    <string name="history_title">ইতিহাস</string>
 
     <string name="new_item_text">এটি পরিবর্তন করতে এতে টাচ্‌ করুন</string>
     <string name="no_meaning_text">কোন অর্থ পাওয়া যাচ্ছে না!</string>
@@ -56,6 +61,7 @@
     <!-- Menu -->
     <string name="menu_text_add_entry">নতুন অন্তর্ভুক্তি</string>
     <string name="menu_text_favorite_list">প্রিয় তালিকা</string>
+    <string name="menu_text_history">ইতিহাস</string>
     <string name="menu_text_options">বিকল্প</string>
     <string name="menu_text_about">সম্পর্ক</string>
     <string name="menu_text_exit">বন্ধ</string>
@@ -71,6 +77,11 @@
     <string name="title_cloud">ক্লাউড</string>
     <string name="sub_title_send_to_server">সার্ভারে নতুন/পরিবর্তিত অন্তর্ভুক্তি পাঠানো হবে</string>
     <string name="summary_send_to_server">নতুন অন্তর্ভুক্তি যুক্ত বা পরিবর্তিত বা পরিবর্ধিত করার সময় ইন্টারনেটের সংযোগ পাওয়া গেলে অন্তর্ভুক্তিসমূহ সার্ভারে পাঠানো হবে। যা স্বাধীনের ডেটাবেজকে উন্নত করনে আমাদের সহায়তা করবে।</string>
+
+    <string name="title_update">হালনাগাদ</string>
+    <string name="sub_title_auto_check_update">স্বয়ংক্রিয় হালনাগাদ পরীক্ষা</string>
+    <string name="summary_auto_check_update">ইন্টারনেটের সংযোগ পাওয়া গেলে স্বাধীন স্বয়ংক্রিয় হালনাগাদ পরীক্ষা করবে।</string>
+
 
     <!-- Add Entry -->
     <string name="ui_txt_edit_word_phrase">শব্দ/শব্দগুচ্ছ</string>
@@ -96,7 +107,8 @@
     <string name="question_delete_entry_description">আপনি কি আসলেই \"%1$s\" অন্তর্ভুক্তিটি মুছতে চান?</string>
 
     <string name="msg_added_to_favorite_list">Added to Favorite List.</string>
-    <string name="msg_already_in_favorite_list">Already in Favorite List!</string>
+    <string name="msg_removed_from_favorite_list">Removed from Favorite List!</string>
+
 
     <string name="fav_list_what_do_you_want">আপনি কি করতে চান?</string>
     <string name="fav_list_btn_delete">মুছুন</string>
@@ -107,6 +119,19 @@
     <!-- Error Msgs -->
     <string name="err_msg_unable_to_create_database">Unable to create database!</string>
 
+    <string name="drawer_open">Open Drawer</string>
+    <string name="drawer_close">Open Drawer</string>
+
+    <!-- Pref -->
+    <string name="pref_update_db">pref_update_db</string>
+
+    <!-- History -->
+    <string name="txt_no_history">কোনো ইতিহাস নেই</string>
+    <string name="txt_clear_history">ইতিহাস মুছুন</string>
+
+    <!-- send to server -->
+    <string name="txt_new_entry_sent_to_server">New entry sent to server.</string>
+    <string name="txt_modified_entry_sent_to_server">Modified entry sent to server.</string>
 
 </resources>
 

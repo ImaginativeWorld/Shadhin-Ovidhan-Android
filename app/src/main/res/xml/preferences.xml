@@ -32,4 +32,15 @@
             android:title="@string/sub_title_send_to_server" />
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:key="pref_key_update"
+        android:title="@string/title_update">
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="pref_key_auto_update_check"
+            android:summary="@string/sub_title_auto_check_update"
+            android:title="@string/summary_auto_check_update" />
+    </PreferenceCategory>
+
 </PreferenceScreen>

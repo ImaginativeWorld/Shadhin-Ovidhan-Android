@@ -11,6 +11,10 @@
         <item name="android:textColorHint">@color/white</item>
         <!--<item name="android:colorForeground">@color/white</item>-->
         <!--<item name="android:windowBackground">@color/white</item>-->
+        <!--<item name="colorControlNormal">@color/grey_200</item>-->
+        <!--<item name="colorControlActivated">@color/white</item>-->
+        <!--<item name="colorControlHighlight">@color/white</item>-->
+        <item name="android:textCursorDrawable">@null</item>
 
         <item name="colorPrimary">@color/light_green_700</item>
         <item name="colorPrimaryDark">@color/light_green_800</item>
@@ -67,8 +71,8 @@
         <item name="android:layout_height">2dp</item>
         <item name="android:background">@color/light_green_300</item>
 
-        <item name="android:layout_marginTop">10dp</item>
-        <item name="android:layout_marginBottom">0dp</item>
+        <item name="android:layout_marginTop">7dp</item>
+        <item name="android:layout_marginBottom">7dp</item>
         <item name="android:layout_marginLeft">0dp</item>
         <item name="android:layout_marginRight">0dp</item>
 

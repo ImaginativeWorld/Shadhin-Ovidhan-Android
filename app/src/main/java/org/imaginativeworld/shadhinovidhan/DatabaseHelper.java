@@ -1,10 +1,13 @@
 package org.imaginativeworld.shadhinovidhan;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.preference.PreferenceManager;
+import android.util.Log;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -48,13 +51,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /**
      * Constructor
-     * Takes and keeps a reference of the passed context in order to access to the application assets and resources.
+     * Takes and keeps a reference of the passed context in order to access to the application
+     * assets and resources.
      * @param context
      */
     public DatabaseHelper(Context context) {
 
         super(context, DB_NAME, null, DB_VERSION);
         this.myContext = context;
+
     }
 
     /**
@@ -66,6 +71,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if(dbExist){
             //do nothing - database already exist
+
+            SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(myContext);
+            //settings.edit().putBoolean(myContext.getString(R.string.pref_update_db), false).apply();
+
+            if (settings.getBoolean(myContext.getString(R.string.pref_update_db), false)) {
+                this.getReadableDatabase();
+
+                try {
+
+                    copyDataBase();
+
+
+                } catch (IOException e) {
+
+                    throw new Error(e.getMessage());
+
+                }
+            }
+
         }else{
 
             //By calling this method and empty database will be created into the default system path
@@ -103,7 +127,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         }
 
-        if(checkDB != null){
+        if (checkDB != null) {
 
             checkDB.close();
 
@@ -119,26 +143,54 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * */
     private void copyDataBase() throws IOException {
 
-        //Open your local db as the input stream
-        InputStream myInput = myContext.getAssets().open(DB_NAME);
+        try {
 
-        // Path to the just created empty db
-        String outFileName = DB_PATH; // DB_PATH + DB_NAME;
+            //Open your local db as the input stream
+            InputStream myInput = myContext.getAssets().open(DB_NAME);
 
-        //Open the empty db as the output stream
-        OutputStream myOutput = new FileOutputStream(outFileName);
 
-        //transfer bytes from the inputfile to the outputfile
-        byte[] buffer = new byte[1024];
-        int length;
-        while ((length = myInput.read(buffer))>0){
-            myOutput.write(buffer, 0, length);
+            // Path to the just created empty db
+            String outFileName = DB_PATH; // DB_PATH + DB_NAME;
+
+
+            //Open the empty db as the output stream
+            OutputStream myOutput = new FileOutputStream(outFileName);
+
+
+            //transfer bytes from the inputfile to the outputfile
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = myInput.read(buffer)) > 0) {
+                myOutput.write(buffer, 0, length);
+            }
+
+            //Close the streams
+            myOutput.flush();
+            myOutput.close();
+            myInput.close();
+
+        } catch (Exception e) {
+            Log.e("soa", e.getMessage());
         }
 
-        //Close the streams
-        myOutput.flush();
-        myOutput.close();
-        myInput.close();
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(myContext);
+        settings.edit().putBoolean(myContext.getString(R.string.pref_update_db), false).apply();
+
+        //========================================================
+        // NOTE: Below code is for update database
+//        SQLiteDatabase checkdb = null;
+//
+//        try{
+//            //String myPath = DB_PATH + DB_NAME;
+//            checkdb = SQLiteDatabase.openDatabase(DB_PATH, null, SQLiteDatabase.OPEN_READWRITE);
+//
+//            // Once the DB has been copied, set the new version
+//            checkdb.setVersion(DB_VERSION);
+//        }
+//        catch(SQLiteException e)
+//        {
+//            //database does’t exist yet.
+//        }
 
     }
 
@@ -162,31 +214,46 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
-
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-        //By calling this method and empty database will be created into the default system path
-        //of your application so we are gonna be able to overwrite that database with our database.
-//        this.getReadableDatabase();
-//
-//        try {
-//
-//            copyDataBase();
-//
-//        } catch (IOException e) {
-//
-//            throw new Error("Unable to create database!");
-//
-//        }
+        if (oldVersion < newVersion) {
+            SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(myContext);
+            settings.edit().putBoolean(myContext.getString(R.string.pref_update_db), true).apply();
+        }
+
 
     }
 
-    // Add your public helper methods to access and get content from the database.
-    // You could return cursors by doing "return myDataBase.query(....)" so it'd be easy
-    // to you to create adapters for your views.
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

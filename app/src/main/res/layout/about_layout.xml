@@ -2,15 +2,14 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/dialog_padding">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:id="@+id/title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="@dimen/border_margin"
+        android:layout_margin="@dimen/dialog_padding"
         android:orientation="vertical">
 
         <ImageView
@@ -40,11 +39,19 @@
             android:textSize="12sp" />
     </RelativeLayout>
 
+    <View
+        android:id="@+id/title_box_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/shadow_height"
+        android:layout_below="@id/title"
+        android:background="@drawable/shadow_top_bottom" />
+
     <LinearLayout
         android:id="@+id/view_update"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/title"
+        android:layout_margin="@dimen/dialog_padding"
         android:layout_marginBottom="@dimen/border_margin"
         android:background="@color/red_100"
         android:orientation="vertical"
@@ -86,26 +93,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/view_update"
-        android:layout_marginBottom="@dimen/border_margin"
+        android:layout_margin="@dimen/dialog_padding"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/txt_des"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
-            android:layout_marginTop="5dp"
             android:text="@string/about_description"
             android:textSize="16sp" />
 
         <View style="@style/Divider" />
 
         <TextView
-            android:id="@+id/txt_copy_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="10dp"
+            android:text="@string/website"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/copyrights"
             android:textSize="16sp" />
 
@@ -118,7 +125,11 @@
         android:layout_below="@+id/view_body"
         android:layout_marginBottom="@dimen/border_margin"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/button_bar_padding"
+        android:paddingLeft="@dimen/dialog_padding"
+        android:paddingRight="@dimen/dialog_padding"
+        android:paddingTop="@dimen/button_bar_padding">
 
         <Button
             android:id="@+id/btn_update"
@@ -139,6 +150,14 @@
             android:tint="@color/grey_800" />
 
     </LinearLayout>
+
+    <View
+        android:id="@+id/btn_box_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/shadow_height"
+        android:layout_above="@+id/btn_layout"
+        android:background="@drawable/shadow_bottom_top" />
+
 
 </RelativeLayout>
 

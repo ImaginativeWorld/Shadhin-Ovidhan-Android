@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.io.IOException;
 
@@ -49,6 +50,7 @@ public class DBManager {
 
         }
 
+        Log.v("soa", "getWritable");
         database = dbHelper.getWritableDatabase();
         return this;
     }
@@ -183,17 +185,10 @@ public class DBManager {
                 DatabaseHelper._WORD,
                 DatabaseHelper.SO_FAVORITE
         };
-        //String whereClause ="*";
-
-        //String[] whereArgs;
-
-//        whereArgs = new String[]{
-//                "%" + _word
-//        };
 
         //String orderBy = "_id";
         Cursor cursor = database.query(DatabaseHelper.TABLE_FAVORITE_NAME, tableColumns, null, null,
-                null, null, null);
+                null, null, DatabaseHelper.SO_FAVORITE + " ASC");
 
         if (cursor != null) {
             cursor.moveToFirst();
@@ -208,6 +203,41 @@ public class DBManager {
         contentValue.put(DatabaseHelper.SO_FAVORITE, _word);
 
         return database.insert(DatabaseHelper.TABLE_FAVORITE_NAME, null, contentValue);
+    }
+
+    public boolean isInFavorite(String _word) {
+
+        String[] tableColumns = new String[]{
+                DatabaseHelper._WORD
+        };
+
+        String whereClause =
+                DatabaseHelper.SO_FAVORITE + " = ?";
+
+        String[] whereArgs = new String[]{_word};
+
+        //String orderBy = "_id";
+        Cursor cursor = database.query(DatabaseHelper.TABLE_FAVORITE_NAME, tableColumns, whereClause, whereArgs,
+                null, null, null);
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        return false;
+    }
+
+    public int deleteFromFavorite(String _word) {
+
+        //Must use double quotation mark for string logic in sql language.
+        int i = database.delete(DatabaseHelper.TABLE_FAVORITE_NAME,
+                DatabaseHelper.SO_FAVORITE + " = \"" + so_tools.removeSymbolFromText(_word) + "\"", null);
+        //it return the location from where the value was deleted. or return 0.
+        return i;
     }
 
     public int deleteInfoFavorite(String _word) {

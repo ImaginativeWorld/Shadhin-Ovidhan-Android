@@ -10,8 +10,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -28,6 +30,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Locale;
 
 
 /**
@@ -39,13 +42,14 @@ public class view_details_activity extends Activity implements OnClickListener {
     Boolean IsSendToServer;
     ArrayAdapter<String> adapter;
     HashMap<String, String> hashMap;
+    TextToSpeech textToSpeech;
     private TextView txtWord;
     private TextView txtpos;
     private TextView txtViewMeaning;
     private EditText txtEditMeaning;
     private ListView meaningList;
     private ImageButton btnClose;
-    private ImageButton btnDelete, btnEdit, btnCloseOptions, btnMeaningPartDelete, btnDeleteEntry, btnFavorite;
+    private ImageButton btnDelete, btnEdit, btnCloseOptions, btnMeaningPartDelete, btnDeleteEntry, btnFavorite, btnSpeak;
     private View OptionView;
     private String sWord;
     private String sPos;
@@ -55,6 +59,7 @@ public class view_details_activity extends Activity implements OnClickListener {
     private String[] sMeaningArray;
     private ArrayList<String> sMeaningArrList;
     private DBManager dbManager;
+    private boolean isFavorite = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +96,9 @@ public class view_details_activity extends Activity implements OnClickListener {
 
         btnFavorite = (ImageButton) findViewById(R.id.btn_favorite);
         btnFavorite.setOnClickListener(this);
+
+        btnSpeak = (ImageButton) findViewById(R.id.btn_speak);
+        btnSpeak.setOnClickListener(this);
 
         //================================================================
 
@@ -233,6 +241,27 @@ public class view_details_activity extends Activity implements OnClickListener {
             }
         });
 
+        //===================================================
+
+        textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status != TextToSpeech.ERROR) {
+                    textToSpeech.setLanguage(Locale.US);
+                }
+            }
+        });
+
+        //===================================================
+
+        if (dbManager.isInFavorite(sWord)) {
+            btnFavorite.setImageResource(R.drawable.ic_favorite_black_48dp);
+            isFavorite = true;
+        } else {
+            btnFavorite.setImageResource(R.drawable.ic_favorite_outline_black_48dp);
+            isFavorite = false;
+        }
+
     }
 
     @Override
@@ -326,20 +355,52 @@ public class view_details_activity extends Activity implements OnClickListener {
 
             case R.id.btn_favorite:
 
-                if (dbManager.insertIntoFavorite(sWord) != -1) {
-                    Toast t = Toast.makeText(view_details_activity.this,
-                            getString(R.string.msg_added_to_favorite_list), Toast.LENGTH_SHORT);
-                    t.show();
+                if (isFavorite) {
+                    if (dbManager.deleteFromFavorite(sWord) != 0) {
+                        btnFavorite.setImageResource(R.drawable.ic_favorite_outline_black_48dp);
+                        isFavorite = false;
+                        Toast t = Toast.makeText(view_details_activity.this,
+                                getString(R.string.msg_removed_from_favorite_list), Toast.LENGTH_LONG);
+                        t.show();
+                    }
                 } else {
-                    Toast t = Toast.makeText(view_details_activity.this,
-                            getString(R.string.msg_already_in_favorite_list), Toast.LENGTH_LONG);
-                    t.show();
+                    if (dbManager.insertIntoFavorite(sWord) != -1) {
+                        btnFavorite.setImageResource(R.drawable.ic_favorite_black_48dp);
+                        isFavorite = true;
+
+                        Toast t = Toast.makeText(view_details_activity.this,
+                                getString(R.string.msg_added_to_favorite_list), Toast.LENGTH_SHORT);
+                        t.show();
+                    }
                 }
+
+//                if (dbManager.insertIntoFavorite(sWord) != -1) {
+//                    Toast t = Toast.makeText(view_details_activity.this,
+//                            getString(R.string.msg_added_to_favorite_list), Toast.LENGTH_SHORT);
+//                    t.show();
+//                } else {
+//                    Toast t = Toast.makeText(view_details_activity.this,
+//                            getString(R.string.msg_already_in_favorite_list), Toast.LENGTH_LONG);
+//                    t.show();
+//                }
 
                 break;
 
             case R.id.btn_close_options:
                 closeEditView();
+
+                //Reset (if close before save)
+                btnEdit.setImageResource(R.drawable.ic_edit_black_48dp);
+
+                break;
+
+            case R.id.btn_speak:
+
+                if (Build.VERSION.RELEASE.startsWith("5")) {
+                    textToSpeech.speak(txtWord.getText().toString(), TextToSpeech.QUEUE_FLUSH, null, null);
+                } else {
+                    textToSpeech.speak(txtWord.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
+                }
                 break;
         }
     }
@@ -393,10 +454,14 @@ public class view_details_activity extends Activity implements OnClickListener {
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
             new sendDataToServer(hashMap, getString(R.string.server_post_url));
+
+            Toast t = Toast.makeText(view_details_activity.this,
+                    getString(R.string.txt_modified_entry_sent_to_server), Toast.LENGTH_SHORT);
+            t.show();
         }
 //        else {
-            //Keep Silent :)
-            //textview.setText("No network connection available.");
+        //Keep Silent :)
+        //textview.setText("No network connection available.");
 //        }
     }
 
