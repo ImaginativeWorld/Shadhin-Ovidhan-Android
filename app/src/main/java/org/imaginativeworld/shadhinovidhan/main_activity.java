@@ -2,6 +2,7 @@ package org.imaginativeworld.shadhinovidhan;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -67,7 +68,7 @@ public class main_activity extends Activity implements View.OnClickListener {
 
     View searchBar;
 
-    ImageButton btnClearSearch, btnDrawerMenu;
+    ImageButton btnClearSearch, btnDrawerMenu, btn_search_web;
 
     View welcomeLayout;
 
@@ -248,6 +249,9 @@ public class main_activity extends Activity implements View.OnClickListener {
         btnClearSearch = (ImageButton) findViewById(R.id.searchClear);
         btnClearSearch.setOnClickListener(this);
 
+        btn_search_web = (ImageButton) findViewById(R.id.searchWeb);
+        btn_search_web.setOnClickListener(main_activity.this);
+
         txtView_welcome = (TextView) findViewById(R.id.txt_welcome);
 
         btnDrawerMenu = (ImageButton) findViewById(R.id.btnDrawerMenu);
@@ -275,6 +279,7 @@ public class main_activity extends Activity implements View.OnClickListener {
 
         btn_exit = (Button) findViewById(R.id.exit);
         btn_exit.setOnClickListener(main_activity.this);
+
 
         //============================================================
 
@@ -656,6 +661,21 @@ public class main_activity extends Activity implements View.OnClickListener {
                 adapterHistory.notifyDataSetChanged();
 
                 mDrawerLayout.closeDrawer(RightDrawer);
+
+                break;
+
+            case R.id.searchWeb:
+
+                if (!editTextSearch.getText().toString().equals("")) {
+                    Intent iSearch = new Intent(Intent.ACTION_WEB_SEARCH);
+                    String term = "define " + editTextSearch.getText().toString();
+                    iSearch.putExtra(SearchManager.QUERY, term);
+                    startActivity(iSearch);
+                } else {
+                    Toast t = Toast.makeText(main_activity.this,
+                            getString(R.string.enter_any_search_term_first), Toast.LENGTH_LONG);
+                    t.show();
+                }
 
                 break;
 

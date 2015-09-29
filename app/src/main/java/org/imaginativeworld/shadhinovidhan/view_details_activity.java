@@ -49,7 +49,7 @@ public class view_details_activity extends Activity implements OnClickListener {
     private EditText txtEditMeaning;
     private ListView meaningList;
     private ImageButton btnClose;
-    private ImageButton btnDelete, btnEdit, btnCloseOptions, btnMeaningPartDelete, btnDeleteEntry, btnFavorite, btnSpeak;
+    private ImageButton btnDelete, btnEdit, btnCloseOptions, btnMeaningPartDelete, btnDeleteEntry, btnFavorite, btnSpeak, btnSendToCloud;
     private View OptionView;
     private String sWord;
     private String sPos;
@@ -99,6 +99,9 @@ public class view_details_activity extends Activity implements OnClickListener {
 
         btnSpeak = (ImageButton) findViewById(R.id.btn_speak);
         btnSpeak.setOnClickListener(this);
+
+        btnSendToCloud = (ImageButton) findViewById(R.id.btn_send_to_cloud);
+        btnSendToCloud.setOnClickListener(this);
 
         //================================================================
 
@@ -402,6 +405,13 @@ public class view_details_activity extends Activity implements OnClickListener {
                     textToSpeech.speak(txtWord.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
                 }
                 break;
+
+            case R.id.btn_send_to_cloud:
+
+                sendData(getString(R.string.server_txt_sent_by_button), sWord, sPos, sMeaning);
+
+                break;
+
         }
     }
 
@@ -458,6 +468,12 @@ public class view_details_activity extends Activity implements OnClickListener {
             Toast t = Toast.makeText(view_details_activity.this,
                     getString(R.string.txt_modified_entry_sent_to_server), Toast.LENGTH_SHORT);
             t.show();
+        } else {
+            if (info.equals(getResources().getString(R.string.server_txt_sent_by_button))) {
+                Toast t = Toast.makeText(view_details_activity.this,
+                        getString(R.string.internet_not_connected), Toast.LENGTH_LONG);
+                t.show();
+            }
         }
 //        else {
         //Keep Silent :)

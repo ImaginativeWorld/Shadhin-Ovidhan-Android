@@ -2,7 +2,8 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/white">
 
     <RelativeLayout
         android:id="@+id/title"
@@ -39,12 +40,12 @@
             android:textSize="12sp" />
     </RelativeLayout>
 
-    <View
-        android:id="@+id/title_box_shadow"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/shadow_height"
-        android:layout_below="@id/title"
-        android:background="@drawable/shadow_top_bottom" />
+    <!--<View-->
+    <!--android:id="@+id/title_box_shadow"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="@dimen/shadow_height"-->
+    <!--android:layout_below="@id/title"-->
+    <!--android:background="@drawable/shadow_top_bottom" />-->
 
     <LinearLayout
         android:id="@+id/view_update"
@@ -105,9 +106,11 @@
         <View style="@style/Divider" />
 
         <TextView
+            android:id="@+id/dev_url"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/website"
+            android:textColor="@color/light_blue_800"
             android:textSize="16sp" />
 
         <TextView
@@ -122,8 +125,8 @@
         android:id="@+id/btn_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/view_body"
-        android:layout_marginBottom="@dimen/border_margin"
+        android:layout_alignParentBottom="true"
+        android:background="@color/buttons_bar_background"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingBottom="@dimen/button_bar_padding"
@@ -138,6 +141,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/check_update"
+            android:textColor="@color/grey_800"
             android:textSize="@dimen/abc_text_size_medium_material" />
 
         <ImageButton

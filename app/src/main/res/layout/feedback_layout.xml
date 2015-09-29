@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/favorite_title"
+            android:text="@string/feedback_title"
             android:textColor="@color/light_green_700"
             android:textSize="@dimen/title_text_size"
             android:textStyle="bold" />
@@ -29,33 +29,31 @@
         android:layout_below="@id/title"
         android:background="@drawable/shadow_top_bottom" />
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/body_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/btn_layout"
         android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
-        android:paddingLeft="@dimen/dialog_padding"
-        android:paddingRight="@dimen/dialog_padding">
+        android:padding="@dimen/dialog_padding">
 
-        <ListView
-            android:id="@+id/favorite_list"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:choiceMode="singleChoice"
-            android:divider="@color/grey_300"
-            android:dividerHeight="2dp" />
-
-        <TextView
-            android:id="@+id/empty"
-            android:layout_width="wrap_content"
+        <ImageButton
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/fav_empty_list_text"
-            android:textSize="@dimen/abc_text_size_medium_material" />
+            android:layout_weight="1"
+            android:src="@drawable/ic_thumb_up_black_48dp" />
 
-    </RelativeLayout>
+        <ImageButton
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_thumb_down_black_48dp" />
+
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/btn_layout"

@@ -44,6 +44,7 @@ public class about_activity extends Activity implements OnClickListener {
     TextView txtNewVersion, txtReleaseDate;
     Resources res;
     boolean ifUpdateAvailable = false;
+    TextView dev_url;
     private String URL;
 
     @Override
@@ -67,6 +68,9 @@ public class about_activity extends Activity implements OnClickListener {
 
         txtNewVersion = (TextView) findViewById(R.id.txtNewVersion);
         txtReleaseDate = (TextView) findViewById(R.id.txtReleaseDate);
+
+        dev_url = (TextView) findViewById(R.id.dev_url);
+        dev_url.setOnClickListener(about_activity.this);
 
         res = getResources();
 
@@ -111,6 +115,15 @@ public class about_activity extends Activity implements OnClickListener {
                     }
 
                 }
+
+                break;
+
+            case R.id.dev_url:
+
+                //Go to the url
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(getString(R.string.website)));
+                startActivity(browserIntent);
 
                 break;
         }

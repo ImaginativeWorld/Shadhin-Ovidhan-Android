@@ -5,10 +5,11 @@
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
         <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
     -->
-    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme.Base" parent="Theme.AppCompat.NoActionBar">
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:textColorSecondary">@color/white</item>
         <item name="android:textColorHint">@color/white</item>
+
         <!--<item name="android:colorForeground">@color/white</item>-->
         <!--<item name="android:windowBackground">@color/white</item>-->
         <!--<item name="colorControlNormal">@color/grey_200</item>-->
@@ -43,19 +44,26 @@
         <item name="android:textColorHint">@color/grey_700</item>
         <item name="colorAccent">@color/light_green_700</item>
 
+        <item name="android:background">@color/white</item>
+
     </style>
 
 
     <!-- ======================================================================= -->
 
-    <style name="CustomDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+    <style name="CustomDialogTheme" parent="Theme.AppCompat.Dialog">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
         -->
         <!-- customize the color palette -->
+        <item name="android:textColorPrimary">@color/grey_900</item>
+        <item name="android:textColorSecondary">@color/grey_800</item>
+        <item name="android:textColorHint">@color/grey_700</item>
 
+        <item name="android:textColor">@color/grey_800</item>
+        <item name="android:textCursorDrawable">@null</item>
 
     </style>
 

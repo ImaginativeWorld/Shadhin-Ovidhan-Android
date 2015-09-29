@@ -2,7 +2,9 @@
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
     <!-- The main content view -->
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/content_frame"
@@ -43,6 +45,16 @@
 
                 <requestFocus />
             </EditText>
+
+            <ImageButton
+                android:id="@+id/searchWeb"
+                android:layout_width="@dimen/abc_action_bar_default_height_material"
+                android:layout_height="@dimen/abc_action_bar_default_height_material"
+                android:background="?attr/selectableItemBackground"
+                android:padding="16dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_language_white_48dp"
+                android:tint="@color/white" />
 
             <ImageButton
                 android:id="@+id/searchClear"
@@ -291,7 +303,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="?attr/selectableItemBackground"
-            android:text="@string/txt_clear_history" />
+            android:text="@string/txt_clear_history"
+            android:textColor="@color/grey_800" />
 
         <View
             android:layout_width="match_parent"

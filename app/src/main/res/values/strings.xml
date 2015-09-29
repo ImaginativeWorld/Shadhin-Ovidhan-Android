@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">স্বাধীন অভিধান</string>
-    <string name="app_version">0.2.150915</string>
+    <string name="app_version">0.3.150929</string>
     <string name="organization_name">Imaginative World</string>
     <string name="copyrights">Copyright © 2015 Imaginative World</string>
     <string name="about_description">সম্পূর্ণ স্বাধীন একটি ইংরেজি-বাংলা অভিধান</string>
@@ -19,16 +19,19 @@
     <string name="view_details_title">বিস্তারিত</string>
     <string name="favorite_title">প্রিয় সমূহ</string>
     <string name="history_title">ইতিহাস</string>
+    <string name="feedback_title">স্বাধীন অভিধান</string>
 
     <string name="new_item_text">এটি পরিবর্তন করতে এতে টাচ্‌ করুন</string>
     <string name="no_meaning_text">কোন অর্থ পাওয়া যাচ্ছে না!</string>
 
+    <!-- Main Window -->
     <string name="search_hint">এখানে অনুসন্ধান করুন</string>
     <string name="unable_create_database">ডেটাবেজ তৈরি করা যাচ্ছে না!</string>
     <string name="empty_list_text">দেখানোর মত কিছু পাওয়া যায়নি!</string>
     <string name="fav_empty_list_text">আপনার প্রিয় তালিকায় কোনো অন্তর্ভুক্তি নেই!</string>
     <string name="main_window_welcome_text_search">অনুসন্ধান করতে অনুসন্ধান বাক্সে বাংলা অথবা ইংরেজি শব্দটি লিখুন</string>
     <string name="main_window_welcome_text_hint">অনুসন্ধান করতে এখানে আলতোভাবে স্পর্শ করুন</string>
+    <string name="enter_any_search_term_first">ওয়েবে অনুসন্ধান করতে অনুসন্ধান বাক্সে কিছু লিখুন আগে!</string>
 
     <string name="dialog_message_error">ত্রুটি!</string>
     <string name="dialog_message_successful">সফল!</string>
@@ -43,8 +46,11 @@
     <string name="search_type_from_middle">যে কোন যায়গা</string>
     <string name="search_type_from_last">শেষ</string>
 
+    <!-- Update Texts -->
+
     <string name="server_txt_new">NEW</string>
     <string name="server_txt_modified">MODIFIED</string>
+    <string name="server_txt_sent_by_button">SENTbyBUTTON</string>
 
     <string name="update_available">হালনাগাদ পাওয়া যাচ্ছে!</string>
     <string name="check_update">হালনাগাদ\nপরীক্ষা করুন</string>
@@ -131,7 +137,7 @@
 
     <!-- send to server -->
     <string name="txt_new_entry_sent_to_server">New entry sent to server.</string>
-    <string name="txt_modified_entry_sent_to_server">Modified entry sent to server.</string>
+    <string name="txt_modified_entry_sent_to_server">Entry sent to server.</string>
 
 </resources>
 

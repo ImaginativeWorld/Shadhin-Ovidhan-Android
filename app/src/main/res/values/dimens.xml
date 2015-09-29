@@ -20,6 +20,7 @@
     <dimen name="dialog_padding">24dp</dimen>
 
     <dimen name="dialog_button_bar_height">52dp</dimen>
+    <dimen name="dialog_button_bar_button_padding">6dp</dimen>
 
     <!-- details layout dimens -->
     <dimen name="button_bar_padding">12dp</dimen>
