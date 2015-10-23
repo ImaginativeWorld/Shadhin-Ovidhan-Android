@@ -260,13 +260,16 @@ public class about_activity extends Activity implements OnClickListener {
 
                     if (Integer.parseInt(v[0]) < versionmajor) {
                         UpdateFound();
-
-                    } else if (Integer.parseInt(v[1]) < versionminor) {
-                        UpdateFound();
-
-                    } else if (Integer.parseInt(v[2]) < versionrevision) {
-                        UpdateFound();
-
+                    } else if (Integer.parseInt(v[0]) == versionmajor) {
+                        if (Integer.parseInt(v[1]) < versionminor) {
+                            UpdateFound();
+                        } else if (Integer.parseInt(v[1]) == versionminor) {
+                            if (Integer.parseInt(v[2]) < versionrevision) {
+                                UpdateFound();
+                            } else
+                                UpdateNotFound();
+                        } else
+                            UpdateNotFound();
                     } else
                         UpdateNotFound();
 

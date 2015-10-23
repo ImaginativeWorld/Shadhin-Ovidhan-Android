@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">স্বাধীন অভিধান</string>
-    <string name="app_version">0.3.150929</string>
+    <string name="app_version">1.0.151024</string>
     <string name="organization_name">Imaginative World</string>
     <string name="copyrights">Copyright © 2015 Imaginative World</string>
     <string name="about_description">সম্পূর্ণ স্বাধীন একটি ইংরেজি-বাংলা অভিধান</string>
@@ -8,6 +8,9 @@
 
     <string name="server_post_url">http://imaginativeworld.org/srv/soa/add.php</string>
     <string name="update_check_url">http://imaginativeworld.org/update/soa/soa_update.xml</string>
+
+    <string name="url_feedback">http://blog.imaginativeworld.org/feedback/</string>
+    <string name="url_market">market://details?id=org.imaginativeworld.shadhinovidhan</string>
 
     <!--<string name="server_post_url">http://imaginativeworld.org/srv/soa/add.php</string>-->
     <!--<string name="update_check_url">http://10.0.2.2/so/soa_update.xml</string>-->
@@ -60,6 +63,7 @@
 
     <string name="new_update_info">সর্বশেষ সংস্করণ: %1$s.%2$s.%3$s</string>
     <string name="update_release_date">উন্মুক্তের তারিখ: %1$s</string>
+    <string name="do_you_want_to_download_now">আপনি কি এখনি নতুন সংস্করণ ডাউনলোড করতে চান?</string>
 
     <string name="update_error">ত্রুটি!\nআবার চেষ্টা করুন.</string>
     <string name="internet_not_connected">ইন্টারনেট সংযুক্ত নয়!</string>
@@ -138,6 +142,11 @@
     <!-- send to server -->
     <string name="txt_new_entry_sent_to_server">New entry sent to server.</string>
     <string name="txt_modified_entry_sent_to_server">Entry sent to server.</string>
+
+    <!-- Feedback -->
+    <string name="txt_are_you_like_out_app">স্বাধীন অভিধান সম্পর্কে আপনার অভিমত কি?</string>
+    <string name="feedback_give_us_five_star">Give us 5 star in Google Play Store!</string>
+    <string name="feedback_tell_us_what_you_need">Tell us what you need?</string>
 
 </resources>
 

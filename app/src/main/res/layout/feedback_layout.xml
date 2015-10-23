@@ -30,15 +30,32 @@
         android:background="@drawable/shadow_top_bottom" />
 
     <LinearLayout
-        android:id="@+id/body_layout"
+        android:id="@+id/body_layout_text"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_layout"
         android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
         android:padding="@dimen/dialog_padding">
 
+        <TextView
+            android:id="@+id/txtView_like_app"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_are_you_like_out_app"
+            android:textSize="@dimen/abc_text_size_medium_material" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/body_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_layout"
+        android:layout_below="@+id/body_layout_text"
+        android:layout_centerHorizontal="true"
+        android:padding="@dimen/dialog_padding">
+
         <ImageButton
+            android:id="@+id/imgBtn_like"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -46,6 +63,7 @@
             android:src="@drawable/ic_thumb_up_black_48dp" />
 
         <ImageButton
+            android:id="@+id/imgBtn_dislike"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

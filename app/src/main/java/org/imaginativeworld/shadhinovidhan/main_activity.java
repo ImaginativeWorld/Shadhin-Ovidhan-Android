@@ -19,6 +19,7 @@ import android.preference.PreferenceManager;
 import android.speech.RecognizerIntent;
 import android.support.v4.widget.DrawerLayout;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
 import android.util.Xml;
 import android.view.View;
@@ -47,6 +48,12 @@ import java.util.List;
 /**
  * Created by Shohag on 18 Jul 15.
  */
+
+/**
+ * NOTE
+ * + Dl notification: Do you want to download now
+ * + Layout: Search box => single line
+ */
 public class main_activity extends Activity implements View.OnClickListener {
 
     //for DB ovidhan
@@ -74,6 +81,7 @@ public class main_activity extends Activity implements View.OnClickListener {
 
     SharedPreferences sharedPref;
     String BnSearchType, EnSearchType;
+    int pref_feedback_show_counter;
     ListView listView, listViewHistory;
     Button btn_add_record, btn_favorite, btn_history, btn_prefs, btn_about, btn_exit, btn_clr_history;
     /**
@@ -172,7 +180,6 @@ public class main_activity extends Activity implements View.OnClickListener {
         mDrawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
-
             }
 
             @Override
@@ -307,8 +314,21 @@ public class main_activity extends Activity implements View.OnClickListener {
 
         setSettings();
 
-        //============================================================
+        if (pref_feedback_show_counter == 15) {
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putInt(preference_activity.pref_feedback_show_counter, ++pref_feedback_show_counter);
+            editor.apply();
 
+            Intent intt_feedback = new Intent(main_activity.this, feedback_activity.class);
+            startActivity(intt_feedback);
+        } else if (pref_feedback_show_counter < 15) {
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putInt(preference_activity.pref_feedback_show_counter, ++pref_feedback_show_counter);
+            editor.apply();
+
+        }
+
+        //============================================================
 
         dbManager = new DBManager(this);
 
@@ -687,6 +707,8 @@ public class main_activity extends Activity implements View.OnClickListener {
         BnSearchType = sharedPref.getString(preference_activity.bnAdvSearchType, "2");
 
         EnSearchType = sharedPref.getString(preference_activity.enAdvSearchType, "1");
+
+        pref_feedback_show_counter = sharedPref.getInt(preference_activity.pref_feedback_show_counter, 0);
     }
 
     void showKeyboard() {
@@ -779,12 +801,15 @@ public class main_activity extends Activity implements View.OnClickListener {
     void UpdateFound() {
         AlertDialog.Builder adb = new AlertDialog.Builder(main_activity.this);
 
-        adb.setTitle(getString(R.string.update_available));
+        //Html.fromHtml("<font color='#FFFFFF'>" + getString(R.string.update_available) + "</font>")
+        adb.setTitle(
+                Html.fromHtml("<font color='#FFFFFF'>" + getString(R.string.update_available) + "</font>"));
 
         String s =
                 String.format(getString(R.string.new_update_info)
                         , versionmajor, versionminor, versionrevision) + "\n" +
-                        String.format(getString(R.string.update_release_date), releasedate);
+                        String.format(getString(R.string.update_release_date) + "\n\n" +
+                                getString(R.string.do_you_want_to_download_now), releasedate);
 
         adb.setMessage(s);
 
@@ -798,6 +823,7 @@ public class main_activity extends Activity implements View.OnClickListener {
                 alert.cancel();
             }
         });
+
 
         alert = adb.create();
         alert.show();
@@ -838,16 +864,15 @@ public class main_activity extends Activity implements View.OnClickListener {
 
                     if (Integer.parseInt(v[0]) < versionmajor) {
                         UpdateFound();
-
-                    } else if (Integer.parseInt(v[1]) < versionminor) {
-                        UpdateFound();
-
-                    } else if (Integer.parseInt(v[2]) < versionrevision) {
-                        UpdateFound();
-
+                    } else if (Integer.parseInt(v[0]) == versionmajor) {
+                        if (Integer.parseInt(v[1]) < versionminor) {
+                            UpdateFound();
+                        } else if (Integer.parseInt(v[1]) == versionminor) {
+                            if (Integer.parseInt(v[2]) < versionrevision) {
+                                UpdateFound();
+                            }
+                        }
                     }
-//                    else
-//                        UpdateNotFound();
 
                 } catch (NumberFormatException nfe) {
                     //System.out.println("Could not parse " + nfe);
