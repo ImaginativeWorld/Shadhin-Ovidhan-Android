@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string-array name="bnAdvSearchListArray">
         <item>@string/search_type_from_first</item>
         <item>@string/search_type_from_middle</item>
@@ -20,6 +20,15 @@
         <item>1</item>
         <item>2</item>
         <item>3</item>
+    </string-array>
+
+    <string-array name="langList">
+        <item>@string/lang_bn</item>
+        <item>@string/lang_en</item>
+    </string-array>
+    <string-array name="langListValues">
+        <item>bn</item>
+        <item>en</item>
     </string-array>
 
 </resources>

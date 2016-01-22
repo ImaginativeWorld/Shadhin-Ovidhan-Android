@@ -1,152 +1,160 @@
 <resources>
-    <string name="app_name">স্বাধীন অভিধান</string>
-    <string name="app_version">1.0.151024</string>
-    <string name="organization_name">Imaginative World</string>
-    <string name="copyrights">Copyright © 2015 Imaginative World</string>
-    <string name="about_description">সম্পূর্ণ স্বাধীন একটি ইংরেজি-বাংলা অভিধান</string>
-    <string name="website">http://imaginativeworld.org</string>
+    <string name="app_name" translatable="false">স্বাধীন অভিধান</string>
+    <string name="app_version" translatable="false">1.1.160123</string>
+    <string name="organization_name" translatable="false">Imaginative World</string>
+    <string name="about_description">An independent and full featured Bengali-English Dictionary</string>
+    <string name="website" translatable="false">http://imaginativeworld.org</string>
 
-    <string name="server_post_url">http://imaginativeworld.org/srv/soa/add.php</string>
-    <string name="update_check_url">http://imaginativeworld.org/update/soa/soa_update.xml</string>
+    <string name="server_post_url" translatable="false">http://imaginativeworld.org/srv/soa/add.php</string>
+    <string name="update_check_url" translatable="false">http://imaginativeworld.org/update/soa/soa_update.xml</string>
 
-    <string name="url_feedback">http://blog.imaginativeworld.org/feedback/</string>
-    <string name="url_market">market://details?id=org.imaginativeworld.shadhinovidhan</string>
+    <string name="url_feedback" translatable="false">http://blog.imaginativeworld.org/feedback/</string>
+    <string name="url_market" translatable="false">market://details?id=org.imaginativeworld.shadhinovidhan</string>
 
     <!--<string name="server_post_url">http://imaginativeworld.org/srv/soa/add.php</string>-->
     <!--<string name="update_check_url">http://10.0.2.2/so/soa_update.xml</string>-->
 
-    <string name="text_copied_to_clipboard">Text Copied to Clipboard.</string>
+    <string name="text_copied_to_clipboard" translatable="false">Text Copied to Clipboard.</string>
 
-    <string name="add_entry_title">নতুন অন্তর্ভুক্তি</string>
-    <string name="modify_entry_title">অন্তর্ভুক্তি পরিবর্তন</string>
-    <string name="view_details_title">বিস্তারিত</string>
-    <string name="favorite_title">প্রিয় সমূহ</string>
-    <string name="history_title">ইতিহাস</string>
-    <string name="feedback_title">স্বাধীন অভিধান</string>
+    <string name="add_entry_title">Add Entry</string>
+    <string name="modify_entry_title">Modify Entry</string>
+    <string name="view_details_title">Details</string>
+    <string name="favorite_title">Favorites</string>
+    <string name="history_title">History</string>
+    <string name="feedback_title">Shadhin Ovidhan</string>
 
-    <string name="new_item_text">এটি পরিবর্তন করতে এতে টাচ্‌ করুন</string>
-    <string name="no_meaning_text">কোন অর্থ পাওয়া যাচ্ছে না!</string>
+    <string name="new_item_text">Touch here for change it</string>
+    <string name="no_meaning_text">No meaning found!</string>
 
     <!-- Main Window -->
-    <string name="search_hint">এখানে অনুসন্ধান করুন</string>
-    <string name="unable_create_database">ডেটাবেজ তৈরি করা যাচ্ছে না!</string>
-    <string name="empty_list_text">দেখানোর মত কিছু পাওয়া যায়নি!</string>
-    <string name="fav_empty_list_text">আপনার প্রিয় তালিকায় কোনো অন্তর্ভুক্তি নেই!</string>
-    <string name="main_window_welcome_text_search">অনুসন্ধান করতে অনুসন্ধান বাক্সে বাংলা অথবা ইংরেজি শব্দটি লিখুন</string>
-    <string name="main_window_welcome_text_hint">অনুসন্ধান করতে এখানে আলতোভাবে স্পর্শ করুন</string>
-    <string name="enter_any_search_term_first">ওয়েবে অনুসন্ধান করতে অনুসন্ধান বাক্সে কিছু লিখুন আগে!</string>
+    <string name="search_hint">Search here</string>
+    <string name="unable_create_database">Database can’t create!</string>
+    <string name="empty_list_text">Nothing found!</string>
+    <string name="fav_empty_list_text">There is no entry in your favorite list!</string>
+    <string name="main_window_welcome_text_search">Type the Bangla or English word in the Search box for search</string>
+    <string name="main_window_welcome_text_hint">Touch here for Search</string>
+    <string name="enter_any_search_term_first">Before Web-Search write something first in the Search Box!</string>
 
-    <string name="dialog_message_error">ত্রুটি!</string>
-    <string name="dialog_message_successful">সফল!</string>
-    <string name="dialog_message_insert_error">নতুন শব্দ যুক্ত করা যায়নি!\nশব্দটি হয়ত ইতিমধ্যে ডেটাবেজে যুক্ত আছে!</string>
-    <string name="dialog_message_insert_successful">নতুন শব্দ সফলভাবে যুক্ত করা হয়েছে!</string>
-    <string name="dialog_message_fill_all_field">সব তথ্য আগে পূরণ করুন!</string>
-    <string name="dialog_message_ok">ঠিক আছে</string>
-    <string name="dialog_message_close">বন্ধ করুন</string>
-    <string name="dialog_message_add_another_entry">আরেকটি যুক্ত করুন</string>
+    <string name="dialog_message_error">Error!</string>
+    <string name="dialog_message_successful">Successful!</string>
+    <string name="dialog_message_insert_error">No new entry added!\nMaybe the entry already exists in Database! </string>
+    <string name="dialog_message_insert_successful">New entry successfully added!</string>
+    <string name="dialog_message_fill_all_field">Fill all field first!</string>
+    <string name="dialog_message_ok">OK</string>
+    <string name="dialog_message_close">Close</string>
+    <string name="dialog_message_add_another_entry">Add another one</string>
 
-    <string name="search_type_from_first">শুরু</string>
-    <string name="search_type_from_middle">যে কোন যায়গা</string>
-    <string name="search_type_from_last">শেষ</string>
+    <string name="search_type_from_first">start</string>
+    <string name="search_type_from_middle">any where</string>
+    <string name="search_type_from_last">end</string>
 
     <!-- Update Texts -->
 
-    <string name="server_txt_new">NEW</string>
-    <string name="server_txt_modified">MODIFIED</string>
-    <string name="server_txt_sent_by_button">SENTbyBUTTON</string>
+    <string name="server_txt_new" translatable="false">NEW</string>
+    <string name="server_txt_modified" translatable="false">MODIFIED</string>
+    <string name="server_txt_sent_by_button" translatable="false">SENTbyBUTTON</string>
+    <string name="server_txt_sent_by_web_button" translatable="false">WEBsearch</string>
 
-    <string name="update_available">হালনাগাদ পাওয়া যাচ্ছে!</string>
-    <string name="check_update">হালনাগাদ\nপরীক্ষা করুন</string>
-    <string name="update_now">এখনি হালনাগাদ করুন</string>
-    <string name="wait">অপেক্ষা\nকরুন&#8230;</string>
-    <string name="update_not_found">কোনো হালনাগাদ\nনেই!</string>
+    <string name="update_available">Update found!</string>
+    <string name="check_update">Check Update\nNow</string>
+    <string name="update_now">Update Now</string>
+    <string name="wait">Please\nWait…</string>
+    <string name="update_not_found">No update\n found! </string>
 
-    <string name="new_update_info">সর্বশেষ সংস্করণ: %1$s.%2$s.%3$s</string>
-    <string name="update_release_date">উন্মুক্তের তারিখ: %1$s</string>
-    <string name="do_you_want_to_download_now">আপনি কি এখনি নতুন সংস্করণ ডাউনলোড করতে চান?</string>
+    <string name="new_update_info">Latest Version: %1$s.%2$s.%3$s</string>
+    <string name="update_release_date">Release Date: %1$s</string>
+    <string name="do_you_want_to_download_now">Are you sure want to download the new version now?</string>
 
-    <string name="update_error">ত্রুটি!\nআবার চেষ্টা করুন.</string>
-    <string name="internet_not_connected">ইন্টারনেট সংযুক্ত নয়!</string>
+    <string name="update_error">Error!\nTry again.</string>
+    <string name="internet_not_connected">Internet not connected!</string>
 
     <!-- Menu -->
-    <string name="menu_text_add_entry">নতুন অন্তর্ভুক্তি</string>
-    <string name="menu_text_favorite_list">প্রিয় তালিকা</string>
-    <string name="menu_text_history">ইতিহাস</string>
-    <string name="menu_text_options">বিকল্প</string>
-    <string name="menu_text_about">সম্পর্ক</string>
-    <string name="menu_text_exit">বন্ধ</string>
+    <string name="menu_text_add_entry">New Entry</string>
+    <string name="menu_text_favorite_list">Favorites</string>
+    <string name="menu_text_history">History</string>
+    <string name="menu_text_options">Options</string>
+    <string name="menu_text_about">About</string>
+    <string name="menu_text_exit">Exit</string>
 
     <!-- preference -->
 
-    <string name="title_advance_search">উন্নত অনুসন্ধান</string>
-    <string name="sub_title_bn_search">বাংলা অনুসন্ধান</string>
-    <string name="summary_bn_search">অনুসন্ধানে অর্থের %1$s থেকে মিল খোঁজা হবে</string>
-    <string name="sub_title_en_search">ইংরেজি অনুসন্ধান</string>
-    <string name="summary_en_search">অনুসন্ধানে ইংরেজি শব্দ/শব্দাংশের %1$s থেকে মিল খোঁজা হবে</string>
+    <string name="title_advance_search">Advanced Search</string>
+    <string name="sub_title_bn_search">Bangla Search</string>
+    <string name="summary_bn_search">Match from %1$s in the Search</string>
+    <string name="sub_title_en_search">English Search</string>
+    <string name="summary_en_search">Match from %1$s in the Search</string>
 
-    <string name="title_cloud">ক্লাউড</string>
-    <string name="sub_title_send_to_server">সার্ভারে নতুন/পরিবর্তিত অন্তর্ভুক্তি পাঠানো হবে</string>
-    <string name="summary_send_to_server">নতুন অন্তর্ভুক্তি যুক্ত বা পরিবর্তিত বা পরিবর্ধিত করার সময় ইন্টারনেটের সংযোগ পাওয়া গেলে অন্তর্ভুক্তিসমূহ সার্ভারে পাঠানো হবে। যা স্বাধীনের ডেটাবেজকে উন্নত করনে আমাদের সহায়তা করবে।</string>
+    <string name="title_cloud">Cloud</string>
+    <string name="sub_title_send_to_server">New/Modified entry will send to Server</string>
+    <string name="summary_send_to_server">New, Modified or Extended entries will send to the server if internet connection found. Which will help us to improve Shadhin’s Database.</string>
 
-    <string name="title_update">হালনাগাদ</string>
-    <string name="sub_title_auto_check_update">স্বয়ংক্রিয় হালনাগাদ পরীক্ষা</string>
-    <string name="summary_auto_check_update">ইন্টারনেটের সংযোগ পাওয়া গেলে স্বাধীন স্বয়ংক্রিয় হালনাগাদ পরীক্ষা করবে।</string>
+    <string name="title_update">Update</string>
+    <string name="sub_title_auto_check_update">Automatic Update Check</string>
+    <string name="summary_auto_check_update">Shadhin will update automatically if internet connection found.</string>
 
 
     <!-- Add Entry -->
-    <string name="ui_txt_edit_word_phrase">শব্দ/শব্দগুচ্ছ</string>
-    <string name="ui_txt_view_word_phrase">এখানে শব্দ/শব্দগুচ্ছ লিখুন</string>
+    <string name="ui_txt_edit_word_phrase">Word/Phrase</string>
+    <string name="ui_txt_view_word_phrase">Type word/phrase here</string>
 
-    <string name="ui_txt_edit_pos">পদ প্রকরণ</string>
-    <string name="ui_txt_view_pos">এখানে পদ প্রকরণ লিখুন</string>
+    <string name="ui_txt_edit_pos">Parts of Speech</string>
+    <string name="ui_txt_view_pos">Type PoS here</string>
 
-    <string name="ui_txt_edit_meaning">অর্থ</string>
-    <string name="ui_txt_view_meaning">এখানে অর্থ লিখুন</string>
+    <string name="ui_txt_edit_meaning">Meaning</string>
+    <string name="ui_txt_view_meaning">Type meaning here</string>
 
     <!-- details view -->
-    <string name="ui_default_txt_view_word">Word</string>
-    <string name="ui_default_txt_view_pos">pos</string>
+    <string name="ui_default_txt_view_word" translatable="false">Word</string>
+    <string name="ui_default_txt_view_pos" translatable="false">pos</string>
 
-    <string name="question_remove_meaning_part_title">বাদ দিতে চান?</string>
-    <string name="question_remove_meaning_part_description">আপনি কি আসলেই এই অর্থটি বাদ দিতে চান?</string>
+    <string name="question_remove_meaning_part_title">Remove?</string>
+    <string name="question_remove_meaning_part_description">Are you sure want to Remove the meaning?</string>
 
-    <string name="yes">হ্যাঁ</string>
-    <string name="no">না</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
-    <string name="question_delete_entry_title">মুছতে চান?</string>
-    <string name="question_delete_entry_description">আপনি কি আসলেই \"%1$s\" অন্তর্ভুক্তিটি মুছতে চান?</string>
+    <string name="question_delete_entry_title">Delete?</string>
+    <string name="question_delete_entry_description">Are you sure want to Delete the entry \"%1$s\"?</string>
 
-    <string name="msg_added_to_favorite_list">Added to Favorite List.</string>
-    <string name="msg_removed_from_favorite_list">Removed from Favorite List!</string>
+    <string name="msg_added_to_favorite_list" translatable="false">Added to Favorite List.</string>
+    <string name="msg_removed_from_favorite_list" translatable="false">Removed from Favorite List!</string>
 
 
-    <string name="fav_list_what_do_you_want">আপনি কি করতে চান?</string>
-    <string name="fav_list_btn_delete">মুছুন</string>
-    <string name="fav_list_btn_copy_to_clipboard">ক্লিপবোর্ডে\nঅনুলিপি করুন</string>
-    <string name="fav_list_toast_text_copied_to_clipboard">Text Copied to Clipboard.</string>
-    <string name="fav_list_btn_view_meaning">অর্থ\nদেখুন</string>
+    <string name="fav_list_what_do_you_want">What do you want?</string>
+    <string name="fav_list_btn_delete">Delete</string>
+    <string name="fav_list_btn_copy_to_clipboard">Copy to\nClipboard</string>
+    <string name="fav_list_btn_view_meaning">View\nMeaning</string>
 
     <!-- Error Msgs -->
-    <string name="err_msg_unable_to_create_database">Unable to create database!</string>
+    <string name="err_msg_unable_to_create_database" translatable="false">Unable to create database!</string>
 
-    <string name="drawer_open">Open Drawer</string>
-    <string name="drawer_close">Open Drawer</string>
+    <string name="drawer_open" translatable="false">Open Drawer</string>
+    <string name="drawer_close" translatable="false">Open Drawer</string>
 
     <!-- Pref -->
-    <string name="pref_update_db">pref_update_db</string>
+    <string name="pref_update_db" translatable="false">pref_update_db</string>
+    <string name="pref_language">UI Language</string>
+    <string name="sub_title_select_language">Select UI Language</string>
+    <string name="lang_bn">Bangla</string>
+    <string name="lang_en">English</string>
 
     <!-- History -->
-    <string name="txt_no_history">কোনো ইতিহাস নেই</string>
-    <string name="txt_clear_history">ইতিহাস মুছুন</string>
+    <string name="txt_no_history">No history found</string>
+    <string name="txt_clear_history">Clear history</string>
 
     <!-- send to server -->
-    <string name="txt_new_entry_sent_to_server">New entry sent to server.</string>
-    <string name="txt_modified_entry_sent_to_server">Entry sent to server.</string>
+    <string name="txt_new_entry_sent_to_server" translatable="false">New entry sent to server.</string>
+    <string name="txt_modified_entry_sent_to_server" translatable="false">Entry sent to server.</string>
 
     <!-- Feedback -->
-    <string name="txt_are_you_like_out_app">স্বাধীন অভিধান সম্পর্কে আপনার অভিমত কি?</string>
-    <string name="feedback_give_us_five_star">Give us 5 star in Google Play Store!</string>
-    <string name="feedback_tell_us_what_you_need">Tell us what you need?</string>
+    <string name="txt_are_you_like_out_app">What’s your opinion about Shadhin Ovidhan?</string>
+    <string name="feedback_give_us_five_star" translatable="false">Give us 5 star in Google Play Store!</string>
+    <string name="feedback_tell_us_what_you_need" translatable="false">Tell us what you need?</string>
+    <string name="summary_language">%1$s language activated.\nIf the language not automatically activated after changing the Language, then Restart the Application.</string>
+    <string name="desc_web_search">Web Search</string>
+    <string name="desc_speech_to_text">Speech to Text</string>
+    <string name="copyrights" translatable="false">Copyright © 2016 Imaginative World\n\"Shadhin Ovidhan\"- Name, Logo &amp; its Database are the property of Imaginative World. Any kind of modification without the permission of Imaginative World are prohibited.</string>
+
 
 </resources>
 

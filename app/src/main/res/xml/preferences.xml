@@ -22,6 +22,19 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        android:key="pref_key_lang"
+        android:title="@string/pref_language">
+        <ListPreference
+            android:defaultValue="bn"
+            android:entries="@array/langList"
+            android:entryValues="@array/langListValues"
+            android:key="pref_lang"
+            android:summary="@string/summary_language"
+            android:title="@string/sub_title_select_language"></ListPreference>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:key="pref_key_server"
         android:title="@string/title_cloud">
 

@@ -13,8 +13,8 @@ public class preference_activity extends PreferenceActivity {
             enAdvSearchType = "enAdvSearchType",
             pref_key_send_to_server = "pref_key_send_to_server",
             pref_key_auto_update_check = "pref_key_auto_update_check",
-            pref_feedback_show_counter = "pref_feedback_show_counter";
-
+            pref_feedback_show_counter = "pref_feedback_show_counter",
+            pref_language = "pref_lang";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

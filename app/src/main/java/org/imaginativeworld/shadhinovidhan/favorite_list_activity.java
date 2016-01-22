@@ -97,7 +97,7 @@ public class favorite_list_activity extends Activity implements View.OnClickList
                         clipboard.setPrimaryClip(clip);
 
                         Toast t = Toast.makeText(favorite_list_activity.this,
-                                getString(R.string.fav_list_toast_text_copied_to_clipboard),
+                                getString(R.string.text_copied_to_clipboard),
                                 Toast.LENGTH_LONG);
                         t.show();
 

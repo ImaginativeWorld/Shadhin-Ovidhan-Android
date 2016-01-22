@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.PorterDuff;
 import android.net.ConnectivityManager;
@@ -43,17 +44,14 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Shohag on 18 Jul 15.
  */
 
-/**
- * NOTE
- * + Dl notification: Do you want to download now
- * + Layout: Search box => single line
- */
 public class main_activity extends Activity implements View.OnClickListener {
 
     //for DB ovidhan
@@ -96,6 +94,11 @@ public class main_activity extends Activity implements View.OnClickListener {
     String namedversion,
             changelogurl, downloadurl, productpageurl,
             releasedate;
+
+    String Lang;
+    String strTemp;
+
+    HashMap<String, String> hashMap;
 
     //private ActionBarDrawerToggle mDrawerToggle;
     int versionmajor, versionminor, versionrevision;
@@ -156,6 +159,28 @@ public class main_activity extends Activity implements View.OnClickListener {
         //Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);// Locale
+        Lang = sharedPref.getString(preference_activity.pref_language, "bn");
+
+        sharedPref.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
+            @Override
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                if (key.equals(preference_activity.pref_language)) {
+                    RestartActivity();
+                }
+                //Log.v("soa", key);
+            }
+        });
+
+        Configuration config = getBaseContext().getResources().getConfiguration();
+
+        Locale locale = new Locale(Lang);
+        Locale.setDefault(locale);
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+
+        //============================================================
 
         setContentView(R.layout.mainlayout); // select default layout
 
@@ -310,9 +335,15 @@ public class main_activity extends Activity implements View.OnClickListener {
 
         //============================================================
 
-        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        hashMap = new HashMap<String, String>();
+
+        //============================================================
+
+        //sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 
         setSettings();
+
+        //==================
 
         if (pref_feedback_show_counter == 15) {
             SharedPreferences.Editor editor = sharedPref.edit();
@@ -504,6 +535,7 @@ public class main_activity extends Activity implements View.OnClickListener {
 //                        getSystemService(Context.INPUT_METHOD_SERVICE);
 //                keyboard.showSoftInput(editTextSearch, 0);
 
+                mDrawerLayout.closeDrawers();
                 showKeyboard();
 
             }
@@ -654,6 +686,7 @@ public class main_activity extends Activity implements View.OnClickListener {
 
             case R.id.about:
 
+
                 Intent intent = new Intent(main_activity.this, about_activity.class);
                 startActivity(intent);
 
@@ -686,9 +719,14 @@ public class main_activity extends Activity implements View.OnClickListener {
 
             case R.id.searchWeb:
 
+                strTemp = editTextSearch.getText().toString();
+
                 if (!editTextSearch.getText().toString().equals("")) {
+
+                    sendData(getString(R.string.server_txt_sent_by_web_button), strTemp, "-", "-");
+
                     Intent iSearch = new Intent(Intent.ACTION_WEB_SEARCH);
-                    String term = "define " + editTextSearch.getText().toString();
+                    String term = "define " + strTemp;
                     iSearch.putExtra(SearchManager.QUERY, term);
                     startActivity(iSearch);
                 } else {
@@ -709,6 +747,17 @@ public class main_activity extends Activity implements View.OnClickListener {
         EnSearchType = sharedPref.getString(preference_activity.enAdvSearchType, "1");
 
         pref_feedback_show_counter = sharedPref.getInt(preference_activity.pref_feedback_show_counter, 0);
+
+    }
+
+    private void RestartActivity() {
+
+
+//        Intent intent = getIntent();
+//        finish();
+//        startActivity(intent);
+        main_activity.this.recreate();
+
     }
 
     void showKeyboard() {
@@ -827,6 +876,40 @@ public class main_activity extends Activity implements View.OnClickListener {
 
         alert = adb.create();
         alert.show();
+    }
+
+    void sendData(String info, String word, String pos, String meaning) {
+        hashMap.clear();
+
+        //?arg1=val1&arg2=val2
+        hashMap.put("info", info);
+        hashMap.put("word", so_tools.removeSymbolFromText(word));
+        hashMap.put("pron", word);
+        hashMap.put("pos", pos);
+        hashMap.put("meaning", meaning);
+
+        // Gets the URL from the UI's text field.
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            new sendDataToServer(hashMap, getString(R.string.server_post_url));
+
+//            Toast t = Toast.makeText(view_details_activity.this,
+//                    getString(R.string.txt_modified_entry_sent_to_server), Toast.LENGTH_SHORT);
+//            t.show();
+        }
+//        else {
+//            if (info.equals(getResources().getString(R.string.server_txt_sent_by_button))) {
+//                Toast t = Toast.makeText(view_details_activity.this,
+//                        getString(R.string.internet_not_connected), Toast.LENGTH_LONG);
+//                t.show();
+//            }
+//        }
+//        else {
+        //Keep Silent :)
+        //textview.setText("No network connection available.");
+//        }
     }
 
     // Uses AsyncTask to create a task away from the main UI thread. This task takes a

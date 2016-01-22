@@ -86,15 +86,6 @@
         android:paddingRight="@dimen/dialog_padding"
         android:paddingTop="@dimen/button_bar_padding">
 
-        <ImageButton
-            android:id="@+id/btn_add"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ic_add_black_48dp"
-            android:tint="@color/grey_800"
-            android:visibility="gone" />
 
         <ImageButton
             android:id="@+id/btn_close"

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white">
+
 
     <RelativeLayout
         android:id="@+id/title"
@@ -40,86 +40,98 @@
             android:textSize="12sp" />
     </RelativeLayout>
 
-    <!--<View-->
-    <!--android:id="@+id/title_box_shadow"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="@dimen/shadow_height"-->
-    <!--android:layout_below="@id/title"-->
-    <!--android:background="@drawable/shadow_top_bottom" />-->
+    <View
+        android:id="@+id/title_box_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/shadow_height"
+        android:layout_below="@id/title"
+        android:background="@drawable/shadow_top_bottom" />
 
-    <LinearLayout
-        android:id="@+id/view_update"
+    <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_layout"
         android:layout_below="@id/title"
-        android:layout_margin="@dimen/dialog_padding"
-        android:layout_marginBottom="@dimen/border_margin"
-        android:background="@color/red_100"
-        android:orientation="vertical"
-        android:padding="12dp"
-        android:visibility="visible">
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/update_available"
-            android:textColor="@color/black"
-            android:textSize="@dimen/abc_text_size_medium_material" />
+        android:padding="@dimen/dialog_padding">
 
         <LinearLayout
-            android:id="@+id/update_body"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txtNewVersion"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/new_update_info" />
 
-            <TextView
-                android:id="@+id/txtReleaseDate"
+            <LinearLayout
+                android:id="@+id/view_update"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/update_release_date" />
+                android:layout_marginBottom="@dimen/dialog_padding"
+                android:background="@color/red_100"
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/update_available"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/abc_text_size_medium_material" />
+
+                <LinearLayout
+                    android:id="@+id/update_body"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtNewVersion"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/new_update_info" />
+
+                    <TextView
+                        android:id="@+id/txtReleaseDate"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/update_release_date" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/view_body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/about_description"
+                    android:textSize="16sp" />
+
+                <View style="@style/Divider" />
+
+                <TextView
+                    android:id="@+id/dev_url"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/website"
+                    android:textColor="@color/light_blue_800"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/copyrights"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
 
         </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/view_body"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/view_update"
-        android:layout_margin="@dimen/dialog_padding"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/about_description"
-            android:textSize="16sp" />
-
-        <View style="@style/Divider" />
-
-        <TextView
-            android:id="@+id/dev_url"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/website"
-            android:textColor="@color/light_blue_800"
-            android:textSize="16sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/copyrights"
-            android:textSize="16sp" />
-
-    </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:id="@+id/btn_layout"

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import java.io.IOException;
 
@@ -50,7 +49,7 @@ public class DBManager {
 
         }
 
-        Log.v("soa", "getWritable");
+        //Log.v("soa", "getWritable");
         database = dbHelper.getWritableDatabase();
         return this;
     }
@@ -84,24 +83,28 @@ public class DBManager {
 
         String[] whereArgs;
 
-        if (type.equals("1")) {
+        switch (type) {
+            case "1":
 
-            whereArgs = new String[]{
-                    so_tools.removeSymbolFromText(_word) + "%"
-            };
+                whereArgs = new String[]{
+                        so_tools.removeSymbolFromText(_word) + "%"
+                };
 
-        } else if (type.equals("2")) {
+                break;
+            case "2":
 
-            whereArgs = new String[]{
-                    "%" + so_tools.removeSymbolFromText(_word) + "%"
-            };
+                whereArgs = new String[]{
+                        "%" + so_tools.removeSymbolFromText(_word) + "%"
+                };
 
-        } else {
+                break;
+            default:
 
-            whereArgs = new String[]{
-                    "%" + so_tools.removeSymbolFromText(_word)
-            };
+                whereArgs = new String[]{
+                        "%" + so_tools.removeSymbolFromText(_word)
+                };
 
+                break;
         }
 
         //String orderBy = "_id";
@@ -128,24 +131,28 @@ public class DBManager {
 
         String[] whereArgs;
 
-        if (type.equals("1")) {
+        switch (type) {
+            case "1":
 
-            whereArgs = new String[]{
-                    _word + "%"
-            };
+                whereArgs = new String[]{
+                        _word + "%"
+                };
 
-        } else if (type.equals("2")) {
+                break;
+            case "2":
 
-            whereArgs = new String[]{
-                    "%" + _word + "%"
-            };
+                whereArgs = new String[]{
+                        "%" + _word + "%"
+                };
 
-        } else {
+                break;
+            default:
 
-            whereArgs = new String[]{
-                    "%" + _word
-            };
+                whereArgs = new String[]{
+                        "%" + _word
+                };
 
+                break;
         }
 
         //String orderBy = "_id";
@@ -165,16 +172,14 @@ public class DBManager {
         contentValues.put(DatabaseHelper.SO_PRON, _word);
         contentValues.put(DatabaseHelper.SO_POS, _pos);
         contentValues.put(DatabaseHelper.SO_MEANING, _meaning);
-        int i = database.update(DatabaseHelper.TABLE_NAME, contentValues,
+        return database.update(DatabaseHelper.TABLE_NAME, contentValues,
                 DatabaseHelper._WORD + " = \"" + so_tools.removeSymbolFromText(_word) + "\"", null);
-        return i;
     }
 
     public int delete(String _word) {
         //Must use double quotation mark for string logic in sql language.
-        int i = database.delete(DatabaseHelper.TABLE_NAME,
+        return database.delete(DatabaseHelper.TABLE_NAME,
                 DatabaseHelper._WORD + " = \"" + so_tools.removeSymbolFromText(_word) + "\"", null);
-        return i;
     }
 
     //================
@@ -221,11 +226,7 @@ public class DBManager {
                 null, null, null);
 
         if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                return true;
-            } else {
-                return false;
-            }
+            return cursor.moveToFirst();
         }
 
         return false;
@@ -234,17 +235,15 @@ public class DBManager {
     public int deleteFromFavorite(String _word) {
 
         //Must use double quotation mark for string logic in sql language.
-        int i = database.delete(DatabaseHelper.TABLE_FAVORITE_NAME,
-                DatabaseHelper.SO_FAVORITE + " = \"" + so_tools.removeSymbolFromText(_word) + "\"", null);
         //it return the location from where the value was deleted. or return 0.
-        return i;
+        return database.delete(DatabaseHelper.TABLE_FAVORITE_NAME,
+                DatabaseHelper.SO_FAVORITE + " = \"" + so_tools.removeSymbolFromText(_word) + "\"", null);
     }
 
     public int deleteInfoFavorite(String _word) {
         //Must use double quotation mark for string logic in sql language.
-        int i = database.delete(DatabaseHelper.TABLE_FAVORITE_NAME,
+        return database.delete(DatabaseHelper.TABLE_FAVORITE_NAME,
                 DatabaseHelper.SO_FAVORITE + " = \"" + _word + "\"", null);
-        return i;
     }
 
 }

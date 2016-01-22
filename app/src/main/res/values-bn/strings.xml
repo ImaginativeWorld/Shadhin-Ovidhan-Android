@@ -1,0 +1,149 @@
+<resources>
+    <!-- MAX.MIN.YYMMDD -->
+    <string name="about_description">সম্পূর্ণ স্বাধীন এবং সর্বোচ্চ সুবিধাযুক্ত বাংলা-ইংরেজি অভিধান</string>
+
+    <!--<string name="server_post_url">http://imaginativeworld.org/srv/soa/add.php</string>-->
+    <!--<string name="update_check_url">http://10.0.2.2/so/soa_update.xml</string>-->
+
+    <string name="add_entry_title">নতুন অন্তর্ভুক্তি</string>
+    <string name="modify_entry_title">অন্তর্ভুক্তি পরিবর্তন</string>
+    <string name="view_details_title">বিস্তারিত</string>
+    <string name="favorite_title">প্রিয় সমূহ</string>
+    <string name="history_title">ইতিহাস</string>
+    <string name="feedback_title">স্বাধীন অভিধান</string>
+
+    <string name="new_item_text">এটি পরিবর্তন করতে এতে টাচ্‌ করুন</string>
+    <string name="no_meaning_text">কোন অর্থ পাওয়া যাচ্ছে না!</string>
+
+    <!-- Main Window -->
+    <string name="search_hint">এখানে অনুসন্ধান করুন</string>
+    <string name="unable_create_database">ডেটাবেজ তৈরি করা যাচ্ছে না!</string>
+    <string name="empty_list_text">দেখানোর মত কিছু পাওয়া যায়নি!</string>
+    <string name="fav_empty_list_text">আপনার প্রিয় তালিকায় কোনো অন্তর্ভুক্তি নেই!</string>
+    <string name="main_window_welcome_text_search">অনুসন্ধান করতে অনুসন্ধান বাক্সে বাংলা অথবা ইংরেজি শব্দটি লিখুন</string>
+    <string name="main_window_welcome_text_hint">অনুসন্ধান করতে এখানে আলতোভাবে স্পর্শ করুন</string>
+    <string name="enter_any_search_term_first">ওয়েবে অনুসন্ধান করতে অনুসন্ধান বাক্সে কিছু লিখুন আগে!</string>
+
+    <string name="dialog_message_error">ত্রুটি!</string>
+    <string name="dialog_message_successful">সফল!</string>
+    <string name="dialog_message_insert_error">নতুন অন্তর্ভুক্তি যুক্ত করা যায়নি!\n অন্তর্ভুক্তিটি হয়ত ইতিমধ্যে ডেটাবেজে যুক্ত আছে!</string>
+    <string name="dialog_message_insert_successful">নতুন অন্তর্ভুক্তি সফলভাবে যুক্ত করা হয়েছে!</string>
+    <string name="dialog_message_fill_all_field">সব তথ্য আগে পূরণ করুন!</string>
+    <string name="dialog_message_ok">ঠিক আছে</string>
+    <string name="dialog_message_close">বন্ধ করুন</string>
+    <string name="dialog_message_add_another_entry">আরেকটি যুক্ত করুন</string>
+
+    <string name="search_type_from_first">শুরু</string>
+    <string name="search_type_from_middle">যে কোন যায়গা</string>
+    <string name="search_type_from_last">শেষ</string>
+
+    <!-- Update Texts -->
+
+    <string name="update_available">হালনাগাদ পাওয়া যাচ্ছে!</string>
+    <string name="check_update">হালনাগাদ\nপরীক্ষা করুন</string>
+    <string name="update_now">এখনি হালনাগাদ করুন</string>
+    <string name="wait">অপেক্ষা\nকরুন&#8230;</string>
+    <string name="update_not_found">কোনো হালনাগাদ\nনেই!</string>
+
+    <string name="new_update_info">সর্বশেষ সংস্করণ: %1$s.%2$s.%3$s</string>
+    <string name="update_release_date">উন্মুক্তের তারিখ: %1$s</string>
+    <string name="do_you_want_to_download_now">আপনি কি এখনি নতুন সংস্করণ ডাউনলোড করতে চান?</string>
+
+    <string name="update_error">ত্রুটি!\nআবার চেষ্টা করুন.</string>
+    <string name="internet_not_connected">ইন্টারনেট সংযুক্ত নয়!</string>
+
+    <!-- Menu -->
+    <string name="menu_text_add_entry">নতুন অন্তর্ভুক্তি</string>
+    <string name="menu_text_favorite_list">প্রিয় তালিকা</string>
+    <string name="menu_text_history">ইতিহাস</string>
+    <string name="menu_text_options">বিকল্প</string>
+    <string name="menu_text_about">সম্পর্ক</string>
+    <string name="menu_text_exit">বন্ধ</string>
+
+    <!-- preference -->
+
+    <string name="title_advance_search">উন্নত অনুসন্ধান</string>
+    <string name="sub_title_bn_search">বাংলা অনুসন্ধান</string>
+    <string name="summary_bn_search">অনুসন্ধানে অর্থের %1$s থেকে মিল খোঁজা হবে</string>
+    <string name="sub_title_en_search">ইংরেজি অনুসন্ধান</string>
+    <string name="summary_en_search">অনুসন্ধানে ইংরেজি শব্দ/শব্দাংশের %1$s থেকে মিল খোঁজা হবে</string>
+
+    <string name="title_cloud">ক্লাউড</string>
+    <string name="sub_title_send_to_server">সার্ভারে নতুন/পরিবর্তিত অন্তর্ভুক্তি পাঠানো হবে</string>
+    <string name="summary_send_to_server">নতুন অন্তর্ভুক্তি যুক্ত বা পরিবর্তিত বা পরিবর্ধিত করার সময় ইন্টারনেটের সংযোগ পাওয়া গেলে অন্তর্ভুক্তিসমূহ সার্ভারে পাঠানো হবে। যা স্বাধীনের ডেটাবেজকে উন্নত করনে আমাদের সহায়তা করবে।</string>
+
+    <string name="title_update">হালনাগাদ</string>
+    <string name="sub_title_auto_check_update">স্বয়ংক্রিয় হালনাগাদ পরীক্ষা</string>
+    <string name="summary_auto_check_update">ইন্টারনেটের সংযোগ পাওয়া গেলে স্বাধীন স্বয়ংক্রিয় হালনাগাদ পরীক্ষা করবে।</string>
+
+
+    <!-- Add Entry -->
+    <string name="ui_txt_edit_word_phrase">শব্দ/শব্দগুচ্ছ</string>
+    <string name="ui_txt_view_word_phrase">এখানে শব্দ/শব্দগুচ্ছ লিখুন</string>
+
+    <string name="ui_txt_edit_pos">পদ প্রকরণ</string>
+    <string name="ui_txt_view_pos">এখানে পদ প্রকরণ লিখুন</string>
+
+    <string name="ui_txt_edit_meaning">অর্থ</string>
+    <string name="ui_txt_view_meaning">এখানে অর্থ লিখুন</string>
+
+    <!-- details view -->
+
+    <string name="question_remove_meaning_part_title">বাদ দিতে চান?</string>
+    <string name="question_remove_meaning_part_description">আপনি কি আসলেই এই অর্থটি বাদ দিতে চান?</string>
+
+    <string name="yes">হ্যাঁ</string>
+    <string name="no">না</string>
+
+    <string name="question_delete_entry_title">মুছতে চান?</string>
+    <string name="question_delete_entry_description">আপনি কি আসলেই \"%1$s\" অন্তর্ভুক্তিটি মুছতে চান?</string>
+
+
+    <string name="fav_list_what_do_you_want">আপনি কি করতে চান?</string>
+    <string name="fav_list_btn_delete">মুছুন</string>
+    <string name="fav_list_btn_copy_to_clipboard">ক্লিপবোর্ডে\nঅনুলিপি করুন</string>
+    <string name="fav_list_btn_view_meaning">অর্থ\nদেখুন</string>
+
+    <!-- Error Msgs -->
+
+    <!-- Drawer -->
+
+    <!-- Pref -->
+
+    <!-- History -->
+    <string name="txt_no_history">কোনো ইতিহাস নেই</string>
+    <string name="txt_clear_history">ইতিহাস মুছুন</string>
+
+    <!-- send to server -->
+
+    <!-- Feedback -->
+    <string name="txt_are_you_like_out_app">স্বাধীন অভিধান সম্পর্কে আপনার অভিমত কি?</string>
+    <string name="sub_title_select_language">ইউআই ভাষা নির্বাচন করুন</string>
+    <string name="lang_bn">বাংলা</string>
+    <string name="lang_en">ইংরেজি</string>
+    <string name="pref_language">ইউআই ভাষা</string>
+    <string name="summary_language">%1$s ভাষা সক্রিয়।\nভাষা পরিবর্তনের পর ভাষাটি সয়ংক্রিয় সক্রিয় না হলে অ্যাপটি বন্ধ করে পুনরায় চালু করুন।</string>
+    <string name="desc_speech_to_text">কথা থেকে লেখা</string>
+    <string name="desc_web_search">ওয়েব অনুসন্ধান</string>
+
+</resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

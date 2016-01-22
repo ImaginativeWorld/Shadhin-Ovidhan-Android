@@ -317,7 +317,6 @@ public class view_details_activity extends Activity implements OnClickListener {
 
                     btnEdit.setImageResource(R.drawable.ic_save_black_48dp);
 
-
                 } else {
 
                     txtEditMeaning.setVisibility(View.GONE);
