@@ -91,8 +91,9 @@ public class about_activity extends Activity implements OnClickListener {
             case R.id.btn_update:
 
                 if (ifUpdateAvailable) {
+                    String URL_market = getString(R.string.url_market);
                     Intent browserIntent = new Intent(Intent.ACTION_VIEW,
-                            Uri.parse(productpageurl));
+                            Uri.parse(URL_market));
                     startActivity(browserIntent);
                 } else {
 

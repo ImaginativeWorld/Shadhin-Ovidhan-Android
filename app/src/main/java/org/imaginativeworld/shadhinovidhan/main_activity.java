@@ -866,9 +866,12 @@ public class main_activity extends Activity implements View.OnClickListener {
         adb.setPositiveButton(getString(R.string.yes), new AlertDialog.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
 
+                String URL_market = getString(R.string.url_market);
+
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse(productpageurl));
+                        Uri.parse(URL_market));
                 startActivity(browserIntent);
+
                 alert.cancel();
             }
         });
