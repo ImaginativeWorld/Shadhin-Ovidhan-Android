@@ -30,7 +30,26 @@
             android:entryValues="@array/langListValues"
             android:key="pref_lang"
             android:summary="@string/summary_language"
-            android:title="@string/sub_title_select_language"></ListPreference>
+            android:title="@string/sub_title_select_language" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_backup_restore">
+        <Preference
+            android:summary="@string/desc_btn_backup"
+            android:title="@string/pref_btn_backup">
+            <intent
+                android:targetClass="org.imaginativeworld.shadhinovidhan.backup_activity"
+                android:targetPackage="org.imaginativeworld.shadhinovidhan" />
+        </Preference>
+
+        <Preference
+            android:summary="@string/desc_btn_restore"
+            android:title="@string/pref_btn_restore">
+            <intent
+                android:targetClass="org.imaginativeworld.shadhinovidhan.restore_activity"
+                android:targetPackage="org.imaginativeworld.shadhinovidhan" />
+        </Preference>
 
     </PreferenceCategory>
 

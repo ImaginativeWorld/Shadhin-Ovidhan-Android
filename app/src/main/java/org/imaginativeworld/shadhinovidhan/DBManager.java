@@ -39,15 +39,7 @@ public class DBManager {
 
         }
 
-        try {
-
-            dbHelper.openDataBase();
-
-        }catch(SQLException sqle){
-
-            throw sqle;
-
-        }
+        dbHelper.openDataBase();
 
         //Log.v("soa", "getWritable");
         database = dbHelper.getWritableDatabase();
@@ -59,12 +51,15 @@ public class DBManager {
     }
 
     public long insert(String _word, String _pos, String _meaning) {
+
+
         ContentValues contentValue = new ContentValues();
 
         contentValue.put(DatabaseHelper._WORD, so_tools.removeSymbolFromText(_word));
         contentValue.put(DatabaseHelper.SO_PRON, _word);
         contentValue.put(DatabaseHelper.SO_POS, _pos);
         contentValue.put(DatabaseHelper.SO_MEANING, _meaning);
+        contentValue.put(DatabaseHelper.SO_NEW, true);
 
         // if error return -1
         return database.insert(DatabaseHelper.TABLE_NAME, null, contentValue);
@@ -72,7 +67,7 @@ public class DBManager {
 
     public Cursor searchEN(String _word, String type) {
 
-        String[] tableColumns = new String[] {
+        String[] tableColumns = new String[]{
                 DatabaseHelper._WORD, //_id column must needed for cursor adaptor.. O.o
                 DatabaseHelper.SO_PRON,
                 DatabaseHelper.SO_POS,
@@ -110,6 +105,7 @@ public class DBManager {
         //String orderBy = "_id";
         Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, tableColumns, whereClause, whereArgs,
                 null, null, null);
+
 
         if (cursor != null) {
             cursor.moveToFirst();
@@ -167,11 +163,58 @@ public class DBManager {
     }
 
 
+    public Cursor getBackupData() {
+
+        String[] tableColumns = new String[]{
+                DatabaseHelper._WORD, //_id column must needed for cursor adaptor.. O.o
+                DatabaseHelper.SO_PRON,
+                DatabaseHelper.SO_POS,
+                DatabaseHelper.SO_MEANING,
+                DatabaseHelper.SO_SYNONYMS
+        };
+
+        String whereClause =
+                DatabaseHelper.SO_NEW + " =? OR " + DatabaseHelper.SO_MODIFY + " =?";
+
+        String[] whereArgs = new String[]{"1", "1"};
+
+        //String orderBy = "_id";
+        Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, tableColumns, whereClause, whereArgs,
+                null, null, null);
+
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        return cursor;
+
+    }
+
+    public Cursor getFavBackupData() {
+
+        String[] tableColumns = new String[]{
+                DatabaseHelper._WORD, //_id column must needed for cursor adaptor.. O.o
+                DatabaseHelper.SO_FAVORITE
+        };
+
+        Cursor cursor = database.query(DatabaseHelper.TABLE_FAVORITE_NAME, tableColumns, null, null,
+                null, null, null);
+
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        return cursor;
+
+    }
+
     public int update(String _word, String _pos, String _meaning) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseHelper.SO_PRON, _word);
         contentValues.put(DatabaseHelper.SO_POS, _pos);
         contentValues.put(DatabaseHelper.SO_MEANING, _meaning);
+        contentValues.put(DatabaseHelper.SO_MODIFY, true);
+
         return database.update(DatabaseHelper.TABLE_NAME, contentValues,
                 DatabaseHelper._WORD + " = \"" + so_tools.removeSymbolFromText(_word) + "\"", null);
     }
@@ -217,7 +260,7 @@ public class DBManager {
         };
 
         String whereClause =
-                DatabaseHelper.SO_FAVORITE + " = ?";
+                DatabaseHelper.SO_FAVORITE + " =?";
 
         String[] whereArgs = new String[]{_word};
 
@@ -225,11 +268,8 @@ public class DBManager {
         Cursor cursor = database.query(DatabaseHelper.TABLE_FAVORITE_NAME, tableColumns, whereClause, whereArgs,
                 null, null, null);
 
-        if (cursor != null) {
-            return cursor.moveToFirst();
-        }
+        return cursor.moveToFirst();
 
-        return false;
     }
 
     public int deleteFromFavorite(String _word) {

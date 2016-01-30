@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_300"
+    android:orientation="vertical"
+    android:padding="@dimen/dialog_padding">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnOk"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Database"
+                android:textSize="@dimen/abc_text_size_headline_material" />
+
+            <TextView
+                android:id="@+id/txtInfoDb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/abc_control_padding_material"
+                android:text="@string/wait"
+                android:textSize="@dimen/abc_text_size_medium_material" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Favorites"
+                android:textSize="@dimen/abc_text_size_headline_material" />
+
+            <TextView
+                android:id="@+id/txtInfoFav"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/grey_300"
+                android:padding="@dimen/abc_control_padding_material"
+                android:text="@string/wait"
+                android:textSize="@dimen/abc_text_size_medium_material" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btnOk"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/button_bar_padding"
+        android:text="@string/dialog_message_ok"
+        android:textColor="@color/light_green_800"
+        android:textSize="@dimen/abc_text_size_medium_material" />
+
+</RelativeLayout>

@@ -14,6 +14,13 @@ public class preference_fragment extends PreferenceFragment {
 
         addPreferencesFromResource(R.xml.preferences);
 
+//        Preference prefBackup = (Preference)findPreference(getString(R.string.pref_key_backup));
+//        prefBackup.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+//            @Override
+//            public boolean onPreferenceClick(Preference preference) {
+//                return false;
+//            }
+//        });
 
     }
 

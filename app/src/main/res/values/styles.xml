@@ -100,6 +100,12 @@
 
     <!-- ======================================================================= -->
 
+    <style name="standard_title_text">
+        <item name="android:textSize">@dimen/standard_title_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
     <!--<style name="CustomButtonStyle" parent="android:Widget.Button">>-->
     <!--&lt;!&ndash;<item name="android:textSize">19sp</item>&ndash;&gt;-->
     <!--&lt;!&ndash;<item name="android:textStyle">bold</item>&ndash;&gt;-->

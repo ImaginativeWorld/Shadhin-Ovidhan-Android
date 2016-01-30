@@ -125,8 +125,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/copyrights"
+                    android:text="@string/copyrights1"
                     android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/copyrights2"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 

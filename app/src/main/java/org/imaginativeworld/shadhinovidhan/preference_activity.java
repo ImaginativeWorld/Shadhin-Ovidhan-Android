@@ -25,6 +25,7 @@ public class preference_activity extends PreferenceActivity {
                 .replace(android.R.id.content, new preference_fragment())
                 .commit();
 
+
     }
 
     @Override

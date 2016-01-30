@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -26,6 +27,10 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -60,6 +65,11 @@ public class view_details_activity extends Activity implements OnClickListener {
     private ArrayList<String> sMeaningArrList;
     private DBManager dbManager;
     private boolean isFavorite = false;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,7 +126,7 @@ public class view_details_activity extends Activity implements OnClickListener {
         dbManager = new DBManager(this);
         dbManager.open();
 
-        hashMap = new HashMap<String, String>();
+        hashMap = new HashMap<>();
 
         //================================================================
 
@@ -143,18 +153,16 @@ public class view_details_activity extends Activity implements OnClickListener {
          */
 
         int len, i;
-        len=sMeaningArray.length;
+        len = sMeaningArray.length;
         sMeaning = sMeaningArray[0];
-        for(i=1;i<len;i++)
-        {
-            if(sMeaningArray[i].startsWith(" "))
-            {
+        for (i = 1; i < len; i++) {
+            if (sMeaningArray[i].startsWith(" ")) {
                 sMeaningArray[i] = sMeaningArray[i].substring(1);
             }
         }
 
         //String[] changed to ArrayList<> for Entry Modification Support
-        sMeaningArrList = new ArrayList<String>(Arrays.asList(sMeaningArray));
+        sMeaningArrList = new ArrayList<>(Arrays.asList(sMeaningArray));
 
         // Get ListView object from xml
         meaningList = (ListView) findViewById(R.id.meaning_list);
@@ -165,7 +173,7 @@ public class view_details_activity extends Activity implements OnClickListener {
         // Third parameter - ID of the TextView to which the data is written
         // Forth - the Array of data
 
-        adapter = new ArrayAdapter<String>(this,
+        adapter = new ArrayAdapter<>(this,
                 R.layout.meaning_list_layout, R.id.text_view, sMeaningArrList);
 
         // Assign adapter to ListView
@@ -265,6 +273,9 @@ public class view_details_activity extends Activity implements OnClickListener {
             isFavorite = false;
         }
 
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     @Override
@@ -321,7 +332,8 @@ public class view_details_activity extends Activity implements OnClickListener {
 
                     txtEditMeaning.setVisibility(View.GONE);
 
-                    tEXT = txtEditMeaning.getText().toString();
+                    //text.replace("\n", "").replace("\r", "");
+                    tEXT = txtEditMeaning.getText().toString().replace("\n", " ").replace("\r", " ");
 
                     txtViewMeaning.setText(tEXT);
                     txtViewMeaning.setVisibility(View.VISIBLE);
@@ -491,6 +503,45 @@ public class view_details_activity extends Activity implements OnClickListener {
     }
 
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "view_details_activity Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://org.imaginativeworld.shadhinovidhan/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client, viewAction);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "view_details_activity Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://org.imaginativeworld.shadhinovidhan/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client, viewAction);
+        client.disconnect();
+    }
 }
 
 

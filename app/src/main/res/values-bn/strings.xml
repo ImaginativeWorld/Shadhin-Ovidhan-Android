@@ -1,9 +1,6 @@
 <resources>
-    <!-- MAX.MIN.YYMMDD -->
-    <string name="about_description">সম্পূর্ণ স্বাধীন এবং সর্বোচ্চ সুবিধাযুক্ত বাংলা-ইংরেজি অভিধান</string>
 
-    <!--<string name="server_post_url">http://imaginativeworld.org/srv/soa/add.php</string>-->
-    <!--<string name="update_check_url">http://10.0.2.2/so/soa_update.xml</string>-->
+    <string name="about_description">সম্পূর্ণ স্বাধীন এবং সর্বোচ্চ সুবিধাযুক্ত বাংলা-ইংরেজি অভিধান</string>
 
     <string name="add_entry_title">নতুন অন্তর্ভুক্তি</string>
     <string name="modify_entry_title">অন্তর্ভুক্তি পরিবর্তন</string>
@@ -13,9 +10,8 @@
     <string name="feedback_title">স্বাধীন অভিধান</string>
 
     <string name="new_item_text">এটি পরিবর্তন করতে এতে টাচ্‌ করুন</string>
-    <string name="no_meaning_text">কোন অর্থ পাওয়া যাচ্ছে না!</string>
+    <string name="no_meaning_text">কোনো অর্থ এখনো নেই!</string>
 
-    <!-- Main Window -->
     <string name="search_hint">এখানে অনুসন্ধান করুন</string>
     <string name="unable_create_database">ডেটাবেজ তৈরি করা যাচ্ছে না!</string>
     <string name="empty_list_text">দেখানোর মত কিছু পাওয়া যায়নি!</string>
@@ -37,7 +33,6 @@
     <string name="search_type_from_middle">যে কোন যায়গা</string>
     <string name="search_type_from_last">শেষ</string>
 
-    <!-- Update Texts -->
 
     <string name="update_available">হালনাগাদ পাওয়া যাচ্ছে!</string>
     <string name="check_update">হালনাগাদ\nপরীক্ষা করুন</string>
@@ -52,7 +47,6 @@
     <string name="update_error">ত্রুটি!\nআবার চেষ্টা করুন.</string>
     <string name="internet_not_connected">ইন্টারনেট সংযুক্ত নয়!</string>
 
-    <!-- Menu -->
     <string name="menu_text_add_entry">নতুন অন্তর্ভুক্তি</string>
     <string name="menu_text_favorite_list">প্রিয় তালিকা</string>
     <string name="menu_text_history">ইতিহাস</string>
@@ -60,7 +54,6 @@
     <string name="menu_text_about">সম্পর্ক</string>
     <string name="menu_text_exit">বন্ধ</string>
 
-    <!-- preference -->
 
     <string name="title_advance_search">উন্নত অনুসন্ধান</string>
     <string name="sub_title_bn_search">বাংলা অনুসন্ধান</string>
@@ -77,7 +70,6 @@
     <string name="summary_auto_check_update">ইন্টারনেটের সংযোগ পাওয়া গেলে স্বাধীন স্বয়ংক্রিয় হালনাগাদ পরীক্ষা করবে।</string>
 
 
-    <!-- Add Entry -->
     <string name="ui_txt_edit_word_phrase">শব্দ/শব্দগুচ্ছ</string>
     <string name="ui_txt_view_word_phrase">এখানে শব্দ/শব্দগুচ্ছ লিখুন</string>
 
@@ -86,8 +78,6 @@
 
     <string name="ui_txt_edit_meaning">অর্থ</string>
     <string name="ui_txt_view_meaning">এখানে অর্থ লিখুন</string>
-
-    <!-- details view -->
 
     <string name="question_remove_meaning_part_title">বাদ দিতে চান?</string>
     <string name="question_remove_meaning_part_description">আপনি কি আসলেই এই অর্থটি বাদ দিতে চান?</string>
@@ -104,19 +94,9 @@
     <string name="fav_list_btn_copy_to_clipboard">ক্লিপবোর্ডে\nঅনুলিপি করুন</string>
     <string name="fav_list_btn_view_meaning">অর্থ\nদেখুন</string>
 
-    <!-- Error Msgs -->
-
-    <!-- Drawer -->
-
-    <!-- Pref -->
-
-    <!-- History -->
     <string name="txt_no_history">কোনো ইতিহাস নেই</string>
     <string name="txt_clear_history">ইতিহাস মুছুন</string>
 
-    <!-- send to server -->
-
-    <!-- Feedback -->
     <string name="txt_are_you_like_out_app">স্বাধীন অভিধান সম্পর্কে আপনার অভিমত কি?</string>
     <string name="sub_title_select_language">ইউআই ভাষা নির্বাচন করুন</string>
     <string name="lang_bn">বাংলা</string>
@@ -125,6 +105,32 @@
     <string name="summary_language">%1$s ভাষা সক্রিয়।\nভাষা পরিবর্তনের পর ভাষাটি সয়ংক্রিয় সক্রিয় না হলে অ্যাপটি বন্ধ করে পুনরায় চালু করুন।</string>
     <string name="desc_speech_to_text">কথা থেকে লেখা</string>
     <string name="desc_web_search">ওয়েব অনুসন্ধান</string>
+    <string name="menu_text_give_rating">স্বাধীনকে রেটিং দিন</string>
+    <string name="desc_btn_restore">ব্যাকআপ করা অন্তর্ভুক্তিসমূহ ফিরিয়ে আনুন</string>
+    <string name="pref_backup_restore">ব্যাকআপ/ফেরত</string>
+    <string name="pref_btn_backup">ব্যাকআপ</string>
+    <string name="pref_btn_restore">ফেরত</string>
+    <string name="add_meaning">অর্থ যুক্ত করুন</string>
+    <string name="delete_meaning">অর্থ মুছুন</string>
+    <string name="new_meaning">নতুন অর্থ</string>
+    <string name="enter_new_meaning">একটি অর্থ লিখুনঃ</string>
+    <string name="no_fav_entry_found">কোনো প্রিয় অন্তর্ভুক্তি নেই!</string>
+    <string name="total_entry_restored_summery">মোট %1$s টি অন্তর্ভুক্তি ফেরত আনা হয়েছে এবং %2$s টি বাদ দেয়া হয়েছে (ইতিমধ্যে ডেটাবেজে রয়েছে)</string>
+    <string name="no_new_modified_entry_found">কোনো নতুন/পরিবর্তিত অন্তর্ভুক্তি পাওয়া যায়নি!</string>
+    <string name="permission_not_granted">অনুমোদন পাওয়া যায়নি!</string>
+    <string name="no_backup_file_found">কোনো ব্যাকআপ ফাইল পাওয়া যায়নি! ত্রুটি বার্তাঃ %1$s</string>
+    <string name="file_write_failed">ফাইল লিখন ব্যর্থ!\nত্রুটি বার্তাঃ %1$s</string>
+    <string name="file_not_created">ফাইল তৈরি করা যায়নি!</string>
+    <string name="entry_backup_summery">মোট নতুন/পরিবর্তিত অন্তর্ভুক্তিঃ %1$s\nব্যাকআপ তৈরি করা হয়েছে এখানেঃ %2$s/%3$s</string>
+    <string name="entry_fav_backup_summery">মোট অন্তর্ভুক্তিঃ %1$s\nব্যাকআপ তৈরি হয়েছে এখানেঃ %2$s/%3$s</string>
+    <string name="err_msg_unable_to_create_database">ডেটাবেজ তৈরি করা যাচ্ছে না!</string>
+    <string name="external_storage_not_readable">বাইরের স্টোরেজ পড়া যাচ্ছে না!</string>
+    <string name="external_storage_not_writable">বাইরের স্টোরেজে লিখা যাচ্ছে না!</string>
+    <string name="backup_folder_not_found">ব্যাকআপ ফোল্ডার পাওয়া যাচ্ছে না!</string>
+    <string name="allow_parmission_for_retriving_backup">ব্যাকআপ ফেরত আনতে করতে অনুমোদন দিন।</string>
+    <string name="desc_btn_backup">প্রিয় এবং নতুন/পরিবর্তিত অন্তর্ভুক্তিসমূহ ব্যাকআপ করুন</string>
+    <string name="allow_parmission_for_creating_backup">ব্যাকআপ তৈরি করতে অনুমোদন দিন।</string>
+    <string name="total_fav_entry_restored_summery">মোট %1$s টি অন্তর্ভুক্তি ফেরত আনা হয়েছে এবং %2$s টি বাদ দেয়া হয়েছে (ইতিমধ্যে প্রিয়তে রয়েছে)</string>
 
 </resources>
 

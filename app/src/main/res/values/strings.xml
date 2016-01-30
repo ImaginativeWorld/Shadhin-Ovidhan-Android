@@ -1,6 +1,7 @@
 <resources>
+
     <string name="app_name" translatable="false">স্বাধীন অভিধান</string>
-    <string name="app_version" translatable="false">1.1.160123</string>
+    <string name="app_version" translatable="false">1.2.160131</string>
     <string name="organization_name" translatable="false">Imaginative World</string>
     <string name="about_description">An independent and full featured Bengali-English Dictionary</string>
     <string name="website" translatable="false">http://imaginativeworld.org</string>
@@ -10,6 +11,10 @@
 
     <string name="url_feedback" translatable="false">http://blog.imaginativeworld.org/feedback/</string>
     <string name="url_market" translatable="false">market://details?id=org.imaginativeworld.shadhinovidhan</string>
+
+    <string name="backup_file_name" translatable="false">so_db_backup.sodb</string>
+    <string name="backup_fav_file_name" translatable="false">so_fav_backup.txt</string>
+    <string name="backup_directory" translatable="false">ShadhinOvidhan_Backups</string>
 
     <!--<string name="server_post_url">http://imaginativeworld.org/srv/soa/add.php</string>-->
     <!--<string name="update_check_url">http://10.0.2.2/so/soa_update.xml</string>-->
@@ -24,7 +29,7 @@
     <string name="feedback_title">Shadhin Ovidhan</string>
 
     <string name="new_item_text">Touch here for change it</string>
-    <string name="no_meaning_text">No meaning found!</string>
+    <string name="no_meaning_text">No meaning yet!</string>
 
     <!-- Main Window -->
     <string name="search_hint">Search here</string>
@@ -126,7 +131,7 @@
     <string name="fav_list_btn_view_meaning">View\nMeaning</string>
 
     <!-- Error Msgs -->
-    <string name="err_msg_unable_to_create_database" translatable="false">Unable to create database!</string>
+    <string name="err_msg_unable_to_create_database">Unable to create database!</string>
 
     <string name="drawer_open" translatable="false">Open Drawer</string>
     <string name="drawer_close" translatable="false">Open Drawer</string>
@@ -153,7 +158,35 @@
     <string name="summary_language">%1$s language activated.\nIf the language not automatically activated after changing the Language, then Restart the Application.</string>
     <string name="desc_web_search">Web Search</string>
     <string name="desc_speech_to_text">Speech to Text</string>
-    <string name="copyrights" translatable="false">Copyright © 2016 Imaginative World\n\"Shadhin Ovidhan\"- Name, Logo &amp; its Database are the property of Imaginative World. Any kind of modification without the permission of Imaginative World are prohibited.</string>
+    <string name="copyrights1" translatable="false">Copyright © 2016 Imaginative World.</string>
+    <string name="copyrights2" translatable="false">\"Shadhin Ovidhan\"- Name, Logo &amp; its Database are the properties of Imaginative World. Any kind of modification without the permission of Imaginative World is prohibited.</string>
+    <string name="menu_text_give_rating">Rate the Shadhin</string>
+    <string name="pref_backup_restore">Backup/Restore</string>
+    <string name="pref_btn_backup">Backup</string>
+    <string name="pref_btn_restore">Restore</string>
+    <string name="desc_btn_backup">Backup favorites and new/modified entries.</string>
+    <string name="desc_btn_restore">Restore your backup entries.</string>
+    <string name="pref_key_backup" translatable="false">prefKeyBackup</string>
+    <string name="pref_key_restore" translatable="false">prefKeyRestore</string>
+    <string name="new_meaning">New meaning</string>
+    <string name="add_meaning">Add Meaning</string>
+    <string name="delete_meaning">Delete Meaning</string>
+    <string name="permission_not_granted">Permission not Granted!</string>
+    <string name="file_write_failed">File write failed!\nError Message: %1$s</string>
+    <string name="file_not_created">File Not Created!</string>
+    <string name="no_new_modified_entry_found">No New/Modified entry found!</string>
+    <string name="external_storage_not_writable">External Storage Not Writable!</string>
+    <string name="allow_parmission_for_creating_backup">ALLOW the permission for creating Backup.</string>
+    <string name="entry_backup_summery">Total New/Modified entry: %1$s\nBackup created at: %2$s/%3$s</string>
+    <string name="entry_fav_backup_summery">Total entry: %1$s\nBackup created at: %2$s/%3$s</string>
+    <string name="external_storage_not_readable">External Storage Not Readable!</string>
+    <string name="allow_parmission_for_retriving_backup">ALLOW the permission for retriving Backup.</string>
+    <string name="no_backup_file_found">No backup file found!\nError message: %1$s</string>
+    <string name="total_entry_restored_summery">Total %1$s entry restored and %2$s ignored (already in database).</string>
+    <string name="total_fav_entry_restored_summery">Total %1$s entry restored and %2$s ignored (already in favorites).</string>
+    <string name="backup_folder_not_found">Backup Folder Not Found!</string>
+    <string name="enter_new_meaning">Enter a meaning:</string>
+    <string name="no_fav_entry_found">No favorite entry found!</string>
 
 
 </resources>

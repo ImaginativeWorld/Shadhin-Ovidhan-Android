@@ -16,8 +16,11 @@
 
     <!-- Dialog layout dimens -->
     <dimen name="title_text_size">26sp</dimen>
+    <dimen name="standard_title_text_size">18sp</dimen>
     <dimen name="title_bottom_margin">20dp</dimen>
     <dimen name="dialog_padding">24dp</dimen>
+    <dimen name="dialog_vertical_padding">12dp</dimen>
+    <dimen name="dialog_horizontal_padding">24dp</dimen>
 
     <dimen name="dialog_button_bar_height">52dp</dimen>
     <dimen name="dialog_button_bar_button_padding">6dp</dimen>

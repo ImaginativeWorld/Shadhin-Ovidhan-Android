@@ -28,19 +28,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String SO_PRON = "pron";
     public static final String SO_POS = "pos";
     public static final String SO_MEANING = "meaning";
+    public static final String SO_SYNONYMS = "synonyms";
+    public static final String SO_NEW = "new";
+    public static final String SO_MODIFY = "modify";
 
 
     public static final String SO_FAVORITE = "word";
 
-    // Database Information //===
+    // Database Information //
     static final String DB_NAME = "IWSO.DB"; // Must NOT USE UNDERSCORE ("_") in database name
 
-    // database version
-    static final int DB_VERSION = 1;
+    /**
+     * "DB_VERSION": database version
+     * <p/>
+     * History: (DB version: App version)
+     * 1: 1.0 to 1.1
+     * <p/>
+     * 2: 1.2 to -.-
+     */
+    static final int DB_VERSION = 2;
 
     //The Android's default system path of your application database.
-
-    //public static String DB_PATH;
     private static String DB_PATH =
             //"/data/data/org.imaginativeworld.shadhinovidhan/databases/";
             appContextHelper.getAppContext().getDatabasePath(DB_NAME).getAbsolutePath();
@@ -133,7 +141,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         }
 
-        return checkDB != null ? true : false;
+        return checkDB != null;
     }
 
     /**

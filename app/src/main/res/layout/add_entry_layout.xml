@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
@@ -30,74 +29,128 @@
         android:layout_below="@id/title"
         android:background="@drawable/shadow_top_bottom" />
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_layout"
-        android:layout_below="@+id/title">
+    <!--<ScrollView-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_above="@+id/btn_layout"-->
+    <!--android:layout_below="@+id/title">-->
 
-        <LinearLayout
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/btn_layout"
+        android:layout_below="@+id/title"
+        android:layout_margin="@dimen/border_margin">
+
+        <!--<TextView-->
+        <!--android:id="@+id/txtView_word"-->
+        <!--style="@style/standard_title_text"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:text="@string/ui_txt_edit_word_phrase" />-->
+
+        <EditText
+            android:id="@+id/txt_edit_word"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="6dp"
+            android:ems="10"
+            android:hint="@string/ui_txt_view_word_phrase"
+            android:maxLines="1"
+            android:singleLine="true">
 
-            <TextView
-                android:layout_width="fill_parent"
+            <requestFocus />
+        </EditText>
+
+        <!--<TextView-->
+        <!--android:id="@+id/txtView_pos"-->
+        <!--style="@style/standard_title_text"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/txt_edit_word"-->
+        <!--android:text="@string/ui_txt_edit_pos" />-->
+
+        <EditText
+            android:id="@+id/txt_edit_pos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_edit_word"
+            android:layout_marginBottom="6dp"
+            android:ems="10"
+            android:hint="@string/ui_txt_view_pos"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/txtView_meaning"
+            style="@style/standard_title_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_edit_pos"
+            android:text="@string/ui_txt_edit_meaning" />
+
+        <TextView
+            android:id="@+id/txtView_no_meaning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtView_meaning"
+            android:layout_centerInParent="true"
+            android:text="@string/no_meaning_text"
+            android:visibility="gone" />
+
+        <ListView
+            android:id="@+id/listMeaning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/panel_add_del"
+            android:layout_below="@+id/txtView_meaning"
+            android:choiceMode="singleChoice"
+            android:dividerHeight="0dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
+
+        <!--<EditText-->
+        <!--android:id="@+id/txt_edit_meaning"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginBottom="6dp"-->
+        <!--android:ems="10"-->
+        <!--android:hint="@string/ui_txt_view_meaning"-->
+        <!--android:inputType="textMultiLine"-->
+        <!--android:maxLines="5"-->
+        <!--android:minLines="3" />-->
+
+        <LinearLayout
+            android:id="@+id/panel_add_del"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_add_meaning"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/ui_txt_edit_word_phrase"
-                android:textSize="@dimen/title_text_size" />
+                android:layout_weight="1"
+                android:text="@string/add_meaning"
+                android:textColor="@color/naked_button_text_color" />
 
-            <EditText
-                android:id="@+id/txt_edit_word"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/btn_del_meaning"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="6dp"
-                android:ems="10"
-                android:hint="@string/ui_txt_view_word_phrase"
-                android:maxLines="1"
-                android:singleLine="true">
-
-                <requestFocus />
-            </EditText>
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/ui_txt_edit_pos"
-                android:textSize="@dimen/title_text_size" />
-
-            <EditText
-                android:id="@+id/txt_edit_pos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="6dp"
-                android:ems="10"
-                android:hint="@string/ui_txt_view_pos"
-                android:maxLines="1"
-                android:singleLine="true" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/ui_txt_edit_meaning"
-                android:textSize="@dimen/title_text_size" />
-
-            <EditText
-                android:id="@+id/txt_edit_meaning"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="6dp"
-                android:ems="10"
-                android:hint="@string/ui_txt_view_meaning"
-                android:inputType="textMultiLine"
-                android:maxLines="5"
-                android:minLines="3" />
-
+                android:layout_weight="1"
+                android:text="@string/delete_meaning"
+                android:textColor="@color/naked_button_text_color" />
         </LinearLayout>
 
-    </ScrollView>
+    </RelativeLayout>
+
+    <!--</ScrollView>-->
 
     <LinearLayout
         android:id="@+id/btn_layout"

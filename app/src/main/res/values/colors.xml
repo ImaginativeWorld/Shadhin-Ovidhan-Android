@@ -6,6 +6,8 @@
 
     <color name="buttons_bar_background">@color/grey_300</color>
 
+    <color name="naked_button_text_color">@color/light_green_800</color>
+
     <!-- Material Color -->
 
     <!--

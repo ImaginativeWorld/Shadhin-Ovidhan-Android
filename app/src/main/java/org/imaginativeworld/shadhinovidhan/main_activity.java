@@ -69,7 +69,7 @@ public class main_activity extends Activity implements View.OnClickListener {
     //Toolbar toolbar;
 
     EditText editTextSearch;
-    TextView txtView_welcome;
+    TextView txtView_welcome, txtView_result_count;
 
     View searchBar;
 
@@ -80,12 +80,13 @@ public class main_activity extends Activity implements View.OnClickListener {
     SharedPreferences sharedPref;
     String BnSearchType, EnSearchType;
     int pref_feedback_show_counter;
+    //    boolean pref_date_database;
     ListView listView, listViewHistory;
-    Button btn_add_record, btn_favorite, btn_history, btn_prefs, btn_about, btn_exit, btn_clr_history;
+    Button btn_add_record, btn_favorite, btn_history, btn_prefs, btn_about, btn_rate, btn_exit, btn_clr_history;
     /**
      * History
      */
-    ArrayList<String> listItemsHistory = new ArrayList<String>();
+    ArrayList<String> listItemsHistory = new ArrayList<>();
     ArrayAdapter<String> adapterHistory;
     /**
      * Update Info
@@ -285,6 +286,8 @@ public class main_activity extends Activity implements View.OnClickListener {
         btn_search_web.setOnClickListener(main_activity.this);
 
         txtView_welcome = (TextView) findViewById(R.id.txt_welcome);
+        txtView_result_count = (TextView) findViewById(R.id.textView_result_count);
+        txtView_result_count.setVisibility(View.GONE);
 
         btnDrawerMenu = (ImageButton) findViewById(R.id.btnDrawerMenu);
         btnDrawerMenu.setOnClickListener(this);
@@ -309,9 +312,11 @@ public class main_activity extends Activity implements View.OnClickListener {
         btn_about = (Button) findViewById(R.id.about);
         btn_about.setOnClickListener(main_activity.this);
 
+        btn_rate = (Button) findViewById(R.id.giveRating);
+        btn_rate.setOnClickListener(main_activity.this);
+
         btn_exit = (Button) findViewById(R.id.exit);
         btn_exit.setOnClickListener(main_activity.this);
-
 
         //============================================================
 
@@ -335,7 +340,7 @@ public class main_activity extends Activity implements View.OnClickListener {
 
         //============================================================
 
-        hashMap = new HashMap<String, String>();
+        hashMap = new HashMap<>();
 
         //============================================================
 
@@ -356,7 +361,6 @@ public class main_activity extends Activity implements View.OnClickListener {
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putInt(preference_activity.pref_feedback_show_counter, ++pref_feedback_show_counter);
             editor.apply();
-
         }
 
         //============================================================
@@ -364,6 +368,16 @@ public class main_activity extends Activity implements View.OnClickListener {
         dbManager = new DBManager(this);
 
         dbManager.open();
+
+        //============================================================
+
+//        if(pref_date_database)
+//        {
+//            AlertDialog.Builder adb = new AlertDialog.Builder(main_activity.this);
+//            adb.setTitle("Database Update");
+//            adb.setMessage("New database found! Restart the App to update.\nNo internet connection needed.");
+//            adb.show();
+//        }
 
         //============================================================
 
@@ -439,7 +453,7 @@ public class main_activity extends Activity implements View.OnClickListener {
                             if (str.equals(""))
                                 break;
 
-                        } while (cursor.getCount() == 0);
+                        } while (cursor.getCount() == 0); // get the least match result
 
                     } else {
                         do {
@@ -454,14 +468,27 @@ public class main_activity extends Activity implements View.OnClickListener {
                         } while (cursor.getCount() == 0);
                     }
 
-                    if (cursor.getCount() != 0)
+                    int total_count = cursor.getCount();
+
+                    if (total_count != 0) {
                         adapter.changeCursor(cursor);
+                        txtView_result_count.setVisibility(View.VISIBLE);
+                        if (total_count > 1)
+                            if (total_count <= 100)
+                                txtView_result_count.setText(String.format("%d results", total_count));
+                            else
+                                txtView_result_count.setText("100+ results");
+                        else
+                            txtView_result_count.setText("1 result");
+                    }
+
 
                     //Change to Clear Icon
                     btnClearSearch.setImageResource(R.drawable.ic_clear_white_48dp);
 
                 } else {
                     adapter.changeCursor(null);
+                    txtView_result_count.setVisibility(View.GONE);
                     welcomeLayout.setVisibility(View.VISIBLE);
 
                     //Change to Speak Icon
@@ -518,7 +545,7 @@ public class main_activity extends Activity implements View.OnClickListener {
         }
 
         //======================================================
-        adapterHistory = new ArrayAdapter<String>(this,
+        adapterHistory = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1,
                 listItemsHistory);
         listViewHistory.setAdapter(adapterHistory);
@@ -687,7 +714,19 @@ public class main_activity extends Activity implements View.OnClickListener {
             case R.id.about:
 
 
-                Intent intent = new Intent(main_activity.this, about_activity.class);
+                Intent about_intent = new Intent(main_activity.this, about_activity.class);
+                startActivity(about_intent);
+
+
+                mDrawerLayout.closeDrawer(LeftDrawer);
+
+                break;
+
+            case R.id.giveRating:
+
+
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(getResources().getString(R.string.url_market)));
                 startActivity(intent);
 
 
@@ -699,7 +738,6 @@ public class main_activity extends Activity implements View.OnClickListener {
 
                 //API >= 16
                 main_activity.this.finishAffinity();
-
 
                 mDrawerLayout.closeDrawer(LeftDrawer);
 
@@ -747,6 +785,8 @@ public class main_activity extends Activity implements View.OnClickListener {
         EnSearchType = sharedPref.getString(preference_activity.enAdvSearchType, "1");
 
         pref_feedback_show_counter = sharedPref.getInt(preference_activity.pref_feedback_show_counter, 0);
+
+        //pref_date_database = sharedPref.getBoolean(getString(R.string.pref_update_db), false);
 
     }
 
