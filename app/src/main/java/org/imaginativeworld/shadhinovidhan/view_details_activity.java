@@ -257,7 +257,7 @@ public class view_details_activity extends Activity implements OnClickListener {
         textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
-                if (status != TextToSpeech.ERROR) {
+                if (status == TextToSpeech.SUCCESS) {
                     textToSpeech.setLanguage(Locale.US);
                 }
             }
@@ -410,7 +410,7 @@ public class view_details_activity extends Activity implements OnClickListener {
 
             case R.id.btn_speak:
 
-                if (Build.VERSION.RELEASE.startsWith("5")) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     textToSpeech.speak(txtWord.getText().toString(), TextToSpeech.QUEUE_FLUSH, null, null);
                 } else {
                     textToSpeech.speak(txtWord.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);

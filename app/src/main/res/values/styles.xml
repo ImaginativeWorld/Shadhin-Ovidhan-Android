@@ -16,7 +16,7 @@
         <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
 
-        <item name="android:itemTextAppearance">@style/CustomMenuTextApearance</item>
+        <item name="android:itemTextAppearance">@style/CustomMenuTextAppearance</item>
 
 
     </style>
@@ -82,8 +82,8 @@
 
     <style name="OptionDivider">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">3dp</item>
-        <item name="android:background">@color/grey_300</item>
+        <item name="android:layout_height">2dp</item>
+        <item name="android:background">#19000000</item>
 
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:layout_marginBottom">0dp</item>
@@ -94,7 +94,7 @@
 
     <!-- ======================================================================= -->
 
-    <style name="CustomMenuTextApearance" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
+    <style name="CustomMenuTextAppearance" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
         <item name="android:textColor">@color/black</item>
     </style>
 

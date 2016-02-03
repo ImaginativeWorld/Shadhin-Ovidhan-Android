@@ -2,7 +2,7 @@
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="fill_parent"
     android:background="@color/white">
 
     <!-- The main content view -->
@@ -10,10 +10,6 @@
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <!--<include-->
-        <!--android:id="@+id/toolbar"-->
-        <!--layout="@layout/toolbar" />-->
 
         <LinearLayout
             android:id="@+id/search_bar"
@@ -159,12 +155,9 @@
             android:shadowDx="1"
             android:shadowDy="1"
             android:shadowRadius="5"
-            android:text="15 results"
+            android:text="0 result"
             android:textColor="@color/light_green_800"
             android:textStyle="bold|italic" />
-
-
-        <!--android:background="@color/bg_result_count"-->
 
     </RelativeLayout>
 
@@ -179,52 +172,41 @@
         android:divider="@android:color/transparent"
         android:dividerHeight="0dp">
 
-        <ImageView
-            android:id="@+id/title_icon"
+        <!-- android:layout_gravity="start"-->
+        <ScrollView
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:background="@color/grey_100"
-            android:padding="8dp"
-            android:src="@drawable/ic_app_logo" />
-
-        <View
-            android:id="@+id/icon_box_shadow"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/shadow_height"
-            android:layout_above="@+id/drawer_button"
-            android:background="@drawable/shadow_bottom_top" />
-
-        <LinearLayout
-            android:id="@+id/drawer_button"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
-            android:layout_below="@+id/title_icon"
-            android:orientation="vertical">
+            android:layout_alignParentTop="true"
+            android:scrollbars="none">
 
-            <ScrollView
-                android:id="@+id/drawer_button_scroller"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <LinearLayout
+                <ImageView
+                    android:id="@+id/title_icon"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:background="@color/grey_100"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_app_logo" />
+
+                <View
+                    android:id="@+id/icon_box_shadow"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/shadow_height"
+                    android:layout_above="@+id/drawer_button"
+                    android:background="@drawable/shadow_bottom_top" />
+
+                <LinearLayout
+                    android:id="@+id/drawer_button"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/title_icon"
                     android:orientation="vertical">
-
-
-                    <Button
-                        android:id="@+id/add_record"
-                        style="?android:attr/borderlessButtonStyle"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:background="?attr/selectableItemBackground"
-                        android:gravity="center_vertical"
-                        android:paddingLeft="16dp"
-                        android:text="@string/menu_text_add_entry"
-                        android:textColor="@color/light_green_800"
-                        android:textSize="@dimen/drawer_button_text" />
 
                     <Button
                         android:id="@+id/favorite"
@@ -233,7 +215,7 @@
                         android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackground"
                         android:gravity="center_vertical"
-                        android:paddingLeft="16dp"
+                        android:paddingLeft="@dimen/dialog_padding"
                         android:text="@string/menu_text_favorite_list"
                         android:textColor="@color/light_green_800"
                         android:textSize="@dimen/drawer_button_text" />
@@ -245,31 +227,58 @@
                         android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackground"
                         android:gravity="center_vertical"
-                        android:paddingLeft="16dp"
+                        android:paddingLeft="@dimen/dialog_padding"
                         android:text="@string/menu_text_history"
                         android:textColor="@color/light_green_800"
                         android:textSize="@dimen/drawer_button_text" />
 
+                    <View style="@style/OptionDivider" />
+
                     <Button
-                        android:id="@+id/prefs"
+                        android:id="@+id/greek_alp"
                         style="?android:attr/borderlessButtonStyle"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackground"
                         android:gravity="center_vertical"
-                        android:paddingLeft="16dp"
-                        android:text="@string/menu_text_options"
+                        android:paddingLeft="@dimen/dialog_padding"
+                        android:text="@string/menu_text_greek_alp"
                         android:textColor="@color/light_green_800"
                         android:textSize="@dimen/drawer_button_text" />
 
                     <Button
-                        android:id="@+id/about"
+                        android:id="@+id/add_record"
                         style="?android:attr/borderlessButtonStyle"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackground"
                         android:gravity="center_vertical"
-                        android:paddingLeft="16dp"
+                        android:paddingLeft="@dimen/dialog_padding"
+                        android:text="@string/menu_text_add_entry"
+                        android:textColor="@color/light_green_800"
+                        android:textSize="@dimen/drawer_button_text" />
+
+                    <View style="@style/OptionDivider" />
+
+                    <Button
+                        android:id="@+id/prefs"
+                        style="?attr/borderlessButtonStyle"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/dialog_padding"
+                        android:text="@string/menu_text_options"
+                        android:textColor="@color/light_green_800"
+                        android:textSize="@dimen/drawer_button_text" />
+
+
+                    <Button
+                        android:id="@+id/about"
+                        style="?attr/borderlessButtonStyle"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/dialog_padding"
                         android:text="@string/menu_text_about"
                         android:textColor="@color/light_green_800"
                         android:textSize="@dimen/drawer_button_text" />
@@ -281,28 +290,27 @@
                         android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackground"
                         android:gravity="center_vertical"
-                        android:paddingLeft="16dp"
+                        android:paddingLeft="@dimen/dialog_padding"
                         android:text="@string/menu_text_give_rating"
                         android:textColor="@color/light_green_800"
                         android:textSize="@dimen/drawer_button_text" />
 
                     <Button
                         android:id="@+id/exit"
-                        style="?android:attr/borderlessButtonStyle"
+                        style="?attr/borderlessButtonStyle"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:background="?attr/selectableItemBackground"
                         android:gravity="center_vertical"
-                        android:paddingLeft="16dp"
+                        android:paddingLeft="@dimen/dialog_padding"
                         android:text="@string/menu_text_exit"
                         android:textColor="@color/light_green_800"
                         android:textSize="@dimen/drawer_button_text" />
 
+
                 </LinearLayout>
 
-            </ScrollView>
-        </LinearLayout>
-
+            </RelativeLayout>
+        </ScrollView>
     </RelativeLayout>
 
     <RelativeLayout

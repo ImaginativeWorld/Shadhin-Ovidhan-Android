@@ -1,7 +1,7 @@
 <resources>
 
     <string name="app_name" translatable="false">স্বাধীন অভিধান</string>
-    <string name="app_version" translatable="false">1.2.160131</string>
+    <string name="app_version" translatable="false">1.3.160204</string>
     <string name="organization_name" translatable="false">Imaginative World</string>
     <string name="about_description">An independent and full featured Bengali-English Dictionary</string>
     <string name="website" translatable="false">http://imaginativeworld.org</string>
@@ -187,6 +187,11 @@
     <string name="backup_folder_not_found">Backup Folder Not Found!</string>
     <string name="enter_new_meaning">Enter a meaning:</string>
     <string name="no_fav_entry_found">No favorite entry found!</string>
+    <string name="menu_text_greek_alp">Greek Alphabet</string>
+    <string name="title_greek_alphabet">Greek Alphabet</string>
+    <string name="total_result">%1$d results</string>
+    <string name="total_hundred_plus_result">%1$d+ results</string>
+    <string name="total_one_result">%1$d result</string>
 
 
 </resources>

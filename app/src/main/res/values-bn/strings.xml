@@ -10,7 +10,7 @@
     <string name="feedback_title">স্বাধীন অভিধান</string>
 
     <string name="new_item_text">এটি পরিবর্তন করতে এতে টাচ্‌ করুন</string>
-    <string name="no_meaning_text">কোনো অর্থ এখনো নেই!</string>
+    <string name="no_meaning_text">এখনো কোনো অর্থ নেই!</string>
 
     <string name="search_hint">এখানে অনুসন্ধান করুন</string>
     <string name="unable_create_database">ডেটাবেজ তৈরি করা যাচ্ছে না!</string>
@@ -131,6 +131,11 @@
     <string name="desc_btn_backup">প্রিয় এবং নতুন/পরিবর্তিত অন্তর্ভুক্তিসমূহ ব্যাকআপ করুন</string>
     <string name="allow_parmission_for_creating_backup">ব্যাকআপ তৈরি করতে অনুমোদন দিন।</string>
     <string name="total_fav_entry_restored_summery">মোট %1$s টি অন্তর্ভুক্তি ফেরত আনা হয়েছে এবং %2$s টি বাদ দেয়া হয়েছে (ইতিমধ্যে প্রিয়তে রয়েছে)</string>
+    <string name="menu_text_greek_alp">গ্রিক বর্ণমালা</string>
+    <string name="title_greek_alphabet">গ্রিক বর্ণমালা</string>
+    <string name="total_result">%1$d ফলাফল</string>
+    <string name="total_hundred_plus_result">%1$d+ ফলাফল</string>
+    <string name="total_one_result">%1$d ফলাফল</string>
 
 </resources>
 

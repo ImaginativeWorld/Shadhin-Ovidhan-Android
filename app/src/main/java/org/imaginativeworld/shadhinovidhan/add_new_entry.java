@@ -27,7 +27,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
+ *
  * Created by Shohag on 26 Jul 15.
+ *
  */
 public class add_new_entry extends Activity implements OnClickListener {
 
@@ -42,7 +44,6 @@ public class add_new_entry extends Activity implements OnClickListener {
     private EditText wordEditText;
     // private CheckBox chkBoxSend;
     private EditText posEditText;
-    private EditText meaningEditText;
     private DBManager dbManager;
     private Boolean isDBchanged = false;
 

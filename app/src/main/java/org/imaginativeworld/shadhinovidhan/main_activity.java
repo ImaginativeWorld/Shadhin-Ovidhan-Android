@@ -16,6 +16,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.speech.RecognizerIntent;
 import android.support.v4.widget.DrawerLayout;
@@ -82,7 +83,7 @@ public class main_activity extends Activity implements View.OnClickListener {
     int pref_feedback_show_counter;
     //    boolean pref_date_database;
     ListView listView, listViewHistory;
-    Button btn_add_record, btn_favorite, btn_history, btn_prefs, btn_about, btn_rate, btn_exit, btn_clr_history;
+    Button btn_add_record, btn_favorite, btn_history, btn_prefs, btn_about, btn_rate, btn_exit, btn_clr_history, btn_greek_alp;
     /**
      * History
      */
@@ -105,6 +106,7 @@ public class main_activity extends Activity implements View.OnClickListener {
     int versionmajor, versionminor, versionrevision;
     XmlPullParser parser;
     AlertDialog alert;
+    boolean isBackPressed = false;
     //private AutoCompleteTextView SrcTxtView;
     private DBManager dbManager;
     private SimpleCursorAdapter adapter;
@@ -220,7 +222,6 @@ public class main_activity extends Activity implements View.OnClickListener {
 
             @Override
             public void onDrawerStateChanged(int newState) {
-
             }
         });
 
@@ -318,6 +319,9 @@ public class main_activity extends Activity implements View.OnClickListener {
         btn_exit = (Button) findViewById(R.id.exit);
         btn_exit.setOnClickListener(main_activity.this);
 
+        btn_greek_alp = (Button) findViewById(R.id.greek_alp);
+        btn_greek_alp.setOnClickListener(main_activity.this);
+
         //============================================================
 
         listViewHistory = (ListView) findViewById(R.id.list_view_history);
@@ -344,8 +348,6 @@ public class main_activity extends Activity implements View.OnClickListener {
 
         //============================================================
 
-        //sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-
         setSettings();
 
         //==================
@@ -368,16 +370,6 @@ public class main_activity extends Activity implements View.OnClickListener {
         dbManager = new DBManager(this);
 
         dbManager.open();
-
-        //============================================================
-
-//        if(pref_date_database)
-//        {
-//            AlertDialog.Builder adb = new AlertDialog.Builder(main_activity.this);
-//            adb.setTitle("Database Update");
-//            adb.setMessage("New database found! Restart the App to update.\nNo internet connection needed.");
-//            adb.show();
-//        }
 
         //============================================================
 
@@ -475,11 +467,13 @@ public class main_activity extends Activity implements View.OnClickListener {
                         txtView_result_count.setVisibility(View.VISIBLE);
                         if (total_count > 1)
                             if (total_count <= 100)
-                                txtView_result_count.setText(String.format("%d results", total_count));
+                                txtView_result_count.setText(String.format(getString(R.string.total_result), total_count));
                             else
-                                txtView_result_count.setText("100+ results");
+                                txtView_result_count.setText(
+                                        String.format(getString(R.string.total_hundred_plus_result), 100));
                         else
-                            txtView_result_count.setText("1 result");
+                            txtView_result_count.setText(
+                                    String.format(getString(R.string.total_one_result), 1));
                     }
 
 
@@ -517,9 +511,6 @@ public class main_activity extends Activity implements View.OnClickListener {
         editTextSearch.postDelayed(new Runnable() {
             @Override
             public void run() {
-//                InputMethodManager keyboard = (InputMethodManager)
-//                        getSystemService(Context.INPUT_METHOD_SERVICE);
-//                keyboard.showSoftInput(editTextSearch, 0);
 
                 showKeyboard();
 
@@ -549,6 +540,30 @@ public class main_activity extends Activity implements View.OnClickListener {
                 android.R.layout.simple_list_item_1,
                 listItemsHistory);
         listViewHistory.setAdapter(adapterHistory);
+
+        //======================================================
+
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        String type = intent.getType();
+
+        if (Intent.ACTION_SEND.equals(action) && type != null) {
+            if ("text/plain".equals(type)) {
+                handleSendText(intent); // Handle text being sent
+            }
+        }
+
+    }
+
+    void handleSendText(Intent intent) {
+        String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
+        if (sharedText != null && sharedText.length() <= 50) {
+            editTextSearch.setText(sharedText);
+            editTextSearch.setSelection(editTextSearch.getText().length());
+        } else if (sharedText != null) {
+            editTextSearch.setText("invalid!");
+            editTextSearch.setSelection(editTextSearch.getText().length());
+        }
     }
 
     @Override
@@ -558,15 +573,14 @@ public class main_activity extends Activity implements View.OnClickListener {
         editTextSearch.postDelayed(new Runnable() {
             @Override
             public void run() {
-//                InputMethodManager keyboard = (InputMethodManager)
-//                        getSystemService(Context.INPUT_METHOD_SERVICE);
-//                keyboard.showSoftInput(editTextSearch, 0);
 
                 mDrawerLayout.closeDrawers();
                 showKeyboard();
 
             }
         }, 200);
+
+        resetThings();
 
 
     }
@@ -609,9 +623,8 @@ public class main_activity extends Activity implements View.OnClickListener {
                 if (resultCode == RESULT_OK) {
                     Bundle res = data.getExtras();
                     String result = res.getString("results");
-//                    if (!result.equals("")) {
                     editTextSearch.setText(result);
-//                    }
+
                 }
 
                 break;
@@ -689,6 +702,14 @@ public class main_activity extends Activity implements View.OnClickListener {
                 Intent fav_intent = new Intent(main_activity.this, favorite_list_activity.class);
                 startActivityForResult(fav_intent, 400);
 
+                mDrawerLayout.closeDrawer(LeftDrawer);
+
+                break;
+
+            case R.id.greek_alp:
+
+                Intent greek_alp_intent = new Intent(main_activity.this, greek_alphabet_activity.class);
+                startActivity(greek_alp_intent);
 
                 mDrawerLayout.closeDrawer(LeftDrawer);
 
@@ -739,7 +760,7 @@ public class main_activity extends Activity implements View.OnClickListener {
                 //API >= 16
                 main_activity.this.finishAffinity();
 
-                mDrawerLayout.closeDrawer(LeftDrawer);
+                //mDrawerLayout.closeDrawer(LeftDrawer);
 
                 break;
 
@@ -786,16 +807,10 @@ public class main_activity extends Activity implements View.OnClickListener {
 
         pref_feedback_show_counter = sharedPref.getInt(preference_activity.pref_feedback_show_counter, 0);
 
-        //pref_date_database = sharedPref.getBoolean(getString(R.string.pref_update_db), false);
-
     }
 
     private void RestartActivity() {
 
-
-//        Intent intent = getIntent();
-//        finish();
-//        startActivity(intent);
         main_activity.this.recreate();
 
     }
@@ -938,21 +953,35 @@ public class main_activity extends Activity implements View.OnClickListener {
         if (networkInfo != null && networkInfo.isConnected()) {
             new sendDataToServer(hashMap, getString(R.string.server_post_url));
 
-//            Toast t = Toast.makeText(view_details_activity.this,
-//                    getString(R.string.txt_modified_entry_sent_to_server), Toast.LENGTH_SHORT);
-//            t.show();
         }
-//        else {
-//            if (info.equals(getResources().getString(R.string.server_txt_sent_by_button))) {
-//                Toast t = Toast.makeText(view_details_activity.this,
-//                        getString(R.string.internet_not_connected), Toast.LENGTH_LONG);
-//                t.show();
-//            }
-//        }
-//        else {
-        //Keep Silent :)
-        //textview.setText("No network connection available.");
-//        }
+
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if (isBackPressed) {
+            super.onBackPressed();
+            return;
+        }
+
+        isBackPressed = true;
+        Toast.makeText(main_activity.this, "Press once again to exit", Toast.LENGTH_LONG)
+                .show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                isBackPressed = false;
+            }
+
+        }, 2000);
+
+    }
+
+    void resetThings() {
+        isBackPressed = false;
     }
 
     // Uses AsyncTask to create a task away from the main UI thread. This task takes a
@@ -1005,14 +1034,9 @@ public class main_activity extends Activity implements View.OnClickListener {
                 }
 
             }
-//            else {
-//                btnUpdate.setText(getString(R.string.update_error));
-//                btnUpdate.setEnabled(true);
-//            }
 
         }
     }
-
 }
 
 

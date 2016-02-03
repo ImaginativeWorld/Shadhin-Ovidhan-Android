@@ -38,6 +38,6 @@
 
     <dimen name="shadow_height">5dp</dimen>
 
-    <dimen name="drawer_button_text">26sp</dimen>
+    <dimen name="drawer_button_text">21sp</dimen>
 
 </resources>
