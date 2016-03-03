@@ -50,7 +50,9 @@ import java.util.List;
 import java.util.Locale;
 
 /**
+ *
  * Created by Shohag on 18 Jul 15.
+ *
  */
 
 public class main_activity extends Activity implements View.OnClickListener {
@@ -59,12 +61,14 @@ public class main_activity extends Activity implements View.OnClickListener {
     final String[] from = new String[]{
             DatabaseHelper.SO_PRON,
             DatabaseHelper.SO_POS,
-            DatabaseHelper.SO_MEANING
+            DatabaseHelper.SO_MEANING,
+            DatabaseHelper.SO_SYNONYMS
     };
     final int[] to = new int[]{
             R.id.txt_pron,
             R.id.txt_pos,
-            R.id.txt_meaning
+            R.id.txt_meaning,
+            R.id.txt_synonyms
     };
 
     //Toolbar toolbar;
@@ -81,9 +85,16 @@ public class main_activity extends Activity implements View.OnClickListener {
     SharedPreferences sharedPref;
     String BnSearchType, EnSearchType;
     int pref_feedback_show_counter;
-    //    boolean pref_date_database;
     ListView listView, listViewHistory;
-    Button btn_add_record, btn_favorite, btn_history, btn_prefs, btn_about, btn_rate, btn_exit, btn_clr_history, btn_greek_alp;
+    Button btn_add_record;
+    Button btn_favorite;
+    Button btn_history;
+    Button btn_prefs;
+    Button btn_about;
+    Button btn_rate;
+    Button btn_exit;
+    Button btn_clr_history;
+    Button btn_greek_alp;
     /**
      * History
      */
@@ -93,9 +104,11 @@ public class main_activity extends Activity implements View.OnClickListener {
      * Update Info
      */
 
-    String namedversion,
-            changelogurl, downloadurl, productpageurl,
-            releasedate;
+    String namedversion;
+    String changelogurl;
+    String downloadurl;
+    String productpageurl;
+    String releasedate;
 
     String Lang;
     String strTemp;
@@ -103,16 +116,19 @@ public class main_activity extends Activity implements View.OnClickListener {
     HashMap<String, String> hashMap;
 
     //private ActionBarDrawerToggle mDrawerToggle;
-    int versionmajor, versionminor, versionrevision;
+    int versionmajor;
+    int versionminor;
+    int versionrevision;
+
     XmlPullParser parser;
     AlertDialog alert;
+
     boolean isBackPressed = false;
-    //private AutoCompleteTextView SrcTxtView;
     private DBManager dbManager;
     private SimpleCursorAdapter adapter;
-    //String[] mPlanetTitles;
+
     private DrawerLayout mDrawerLayout;
-    //    ListView mDrawerList;
+
     private View LeftDrawer, RightDrawer;
 
 //    void showSearchBar() {
@@ -391,10 +407,12 @@ public class main_activity extends Activity implements View.OnClickListener {
                 TextView idTextView = (TextView) view.findViewById(R.id.txt_pron);
                 TextView titleTextView = (TextView) view.findViewById(R.id.txt_pos);
                 TextView descTextView = (TextView) view.findViewById(R.id.txt_meaning);
+                TextView synoTextView = (TextView) view.findViewById(R.id.txt_synonyms);
 
                 String s_word = idTextView.getText().toString();
                 String s_pos = titleTextView.getText().toString();
                 String s_meaning = descTextView.getText().toString();
+                String s_syno = synoTextView.getText().toString();
 
                 /**
                  * Add in History
@@ -406,6 +424,7 @@ public class main_activity extends Activity implements View.OnClickListener {
                 modify_intent.putExtra("word", s_word);
                 modify_intent.putExtra("pos", s_pos);
                 modify_intent.putExtra("meaning", s_meaning);
+                modify_intent.putExtra("synonyms", s_syno);
 
                 startActivityForResult(modify_intent, 100);
 
@@ -905,7 +924,6 @@ public class main_activity extends Activity implements View.OnClickListener {
     void UpdateFound() {
         AlertDialog.Builder adb = new AlertDialog.Builder(main_activity.this);
 
-        //Html.fromHtml("<font color='#FFFFFF'>" + getString(R.string.update_available) + "</font>")
         adb.setTitle(
                 Html.fromHtml("<font color='#FFFFFF'>" + getString(R.string.update_available) + "</font>"));
 
@@ -1011,10 +1029,6 @@ public class main_activity extends Activity implements View.OnClickListener {
                 String[] v;
                 v = version.split("\\.");
 
-//                Toast tt = Toast.makeText(about_activity.this,
-//                        versionmajor + "." + versionminor+ "." + versionrevision + " " + namedversion,Toast.LENGTH_LONG );
-//                tt.show();
-
                 try {
 
                     if (Integer.parseInt(v[0]) < versionmajor) {
@@ -1039,15 +1053,6 @@ public class main_activity extends Activity implements View.OnClickListener {
     }
 }
 
-
-//    public void showPopup(View v) {
-//
-//        PopupMenu popup = new PopupMenu(this, v);
-//
-//        MenuInflater inflater = popup.getMenuInflater();
-//        inflater.inflate(R.menu.main, popup.getMenu());
-//        popup.show();
-//    }
 
 //Just making a toast u need to write below those 5 line of code.. :'(
 //        Context context = getApplicationContext();

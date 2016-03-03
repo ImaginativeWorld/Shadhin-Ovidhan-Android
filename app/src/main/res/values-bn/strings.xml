@@ -136,6 +136,14 @@
     <string name="total_result">%1$d ফলাফল</string>
     <string name="total_hundred_plus_result">%1$d+ ফলাফল</string>
     <string name="total_one_result">%1$d ফলাফল</string>
+    <string name="add_synonyms">সমার্থক শব্দ যুক্ত করুন</string>
+    <string name="delete_synonyms">সমার্থক শব্দ মুছুন</string>
+    <string name="enter_new_synonyms">নতুন সমার্থক শব্দটি লিখুনঃ</string>
+    <string name="new_synonyms">নতুন সমার্থক শব্দ</string>
+    <string name="no_synonyms_text">কোনো সমার্থক শব্দ পাওয়া যায়নি!</string>
+    <string name="sure_to_back_from_add_entry">আপনি কি আসলেই ফিরে যেতে চান?</string>
+    <string name="ui_default_txt_view_synonyms">সমার্থক শব্দ</string>
+    <string name="ui_txt_edit_synonyms">সমার্থক শব্দ</string>
 
 </resources>
 

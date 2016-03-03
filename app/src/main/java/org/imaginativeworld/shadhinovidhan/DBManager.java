@@ -9,7 +9,9 @@ import android.database.sqlite.SQLiteDatabase;
 import java.io.IOException;
 
 /**
+ *
  * Created by Shohag on 24 Jul 15.
+ *
  */
 public class DBManager {
 
@@ -50,8 +52,12 @@ public class DBManager {
         dbHelper.close();
     }
 
-    public long insert(String _word, String _pos, String _meaning) {
+    public long insert(String _word, String _pos, String _meaning, String _synonyms) {
 
+        if (_pos.equals(""))
+            _pos = null;
+        if (_synonyms.equals(""))
+            _synonyms = null;
 
         ContentValues contentValue = new ContentValues();
 
@@ -59,6 +65,7 @@ public class DBManager {
         contentValue.put(DatabaseHelper.SO_PRON, _word);
         contentValue.put(DatabaseHelper.SO_POS, _pos);
         contentValue.put(DatabaseHelper.SO_MEANING, _meaning);
+        contentValue.put(DatabaseHelper.SO_SYNONYMS, _synonyms);
         contentValue.put(DatabaseHelper.SO_NEW, true);
 
         // if error return -1
@@ -71,7 +78,8 @@ public class DBManager {
                 DatabaseHelper._WORD, //_id column must needed for cursor adaptor.. O.o
                 DatabaseHelper.SO_PRON,
                 DatabaseHelper.SO_POS,
-                DatabaseHelper.SO_MEANING
+                DatabaseHelper.SO_MEANING,
+                DatabaseHelper.SO_SYNONYMS
         };
 
         String whereClause = DatabaseHelper._WORD + " like ?";
@@ -120,7 +128,8 @@ public class DBManager {
                 DatabaseHelper._WORD,
                 DatabaseHelper.SO_PRON,
                 DatabaseHelper.SO_POS,
-                DatabaseHelper.SO_MEANING
+                DatabaseHelper.SO_MEANING,
+                DatabaseHelper.SO_SYNONYMS
         };
         String whereClause =
                 DatabaseHelper.SO_MEANING + " like ?";
@@ -208,11 +217,18 @@ public class DBManager {
 
     }
 
-    public int update(String _word, String _pos, String _meaning) {
+    public int update(String _word, String _pos, String _meaning, String _synonyms) {
+
+        if (_pos.equals(""))
+            _pos = null;
+        if (_synonyms.equals(""))
+            _synonyms = null;
+
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseHelper.SO_PRON, _word);
         contentValues.put(DatabaseHelper.SO_POS, _pos);
         contentValues.put(DatabaseHelper.SO_MEANING, _meaning);
+        contentValues.put(DatabaseHelper.SO_SYNONYMS, _synonyms);
         contentValues.put(DatabaseHelper.SO_MODIFY, true);
 
         return database.update(DatabaseHelper.TABLE_NAME, contentValues,

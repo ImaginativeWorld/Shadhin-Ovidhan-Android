@@ -36,6 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
+                android:maxLength="50"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:textColor="@color/white"
@@ -80,9 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:divider="@color/grey_300"
-                android:dividerHeight="1dp"
-                android:paddingLeft="@dimen/border_margin"
-                android:paddingRight="@dimen/border_margin" />
+                android:dividerHeight="1dp" />
 
 
             <TextView
@@ -262,9 +261,10 @@
 
                     <Button
                         android:id="@+id/prefs"
-                        style="?attr/borderlessButtonStyle"
+                        style="?android:attr/borderlessButtonStyle"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
                         android:gravity="center_vertical"
                         android:paddingLeft="@dimen/dialog_padding"
                         android:text="@string/menu_text_options"
@@ -274,9 +274,10 @@
 
                     <Button
                         android:id="@+id/about"
-                        style="?attr/borderlessButtonStyle"
+                        style="?android:attr/borderlessButtonStyle"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
                         android:gravity="center_vertical"
                         android:paddingLeft="@dimen/dialog_padding"
                         android:text="@string/menu_text_about"
@@ -297,9 +298,10 @@
 
                     <Button
                         android:id="@+id/exit"
-                        style="?attr/borderlessButtonStyle"
+                        style="?android:attr/borderlessButtonStyle"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
                         android:gravity="center_vertical"
                         android:paddingLeft="@dimen/dialog_padding"
                         android:text="@string/menu_text_exit"

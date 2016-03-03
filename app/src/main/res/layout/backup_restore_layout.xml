@@ -55,6 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="?attr/selectableItemBackground"
         android:padding="@dimen/button_bar_padding"
         android:text="@string/dialog_message_ok"
         android:textColor="@color/light_green_800"

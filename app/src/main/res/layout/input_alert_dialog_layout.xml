@@ -9,6 +9,7 @@
     android:paddingTop="@dimen/dialog_vertical_padding">
 
     <TextView
+        android:id="@+id/txtDialogueSubtitle"
         style="@style/standard_title_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

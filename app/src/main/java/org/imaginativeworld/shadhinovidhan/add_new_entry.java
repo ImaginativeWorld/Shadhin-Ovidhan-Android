@@ -2,12 +2,9 @@ package org.imaginativeworld.shadhinovidhan;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
@@ -21,7 +18,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,19 +29,27 @@ import java.util.HashMap;
  */
 public class add_new_entry extends Activity implements OnClickListener {
 
-    public int POSITION;
+    int POSITION;
+    int POSITION_Syno;
     Boolean IsSendToServer;
     HashMap<String, String> hashMap;
     Button btnAddMeaning, btnDelMeaning;
+    Button btnAddSynonyms, btnDelSynonyms;
     ListView listView;
+    ListView listViewSyno;
     ArrayList<String> listItemsMeaning = new ArrayList<>();
+    ArrayList<String> listItemsSynonyms = new ArrayList<>();
     ArrayAdapter<String> adapterMeaning;
-    private ImageButton btnAdd, btnClose;
-    private EditText wordEditText;
-    // private CheckBox chkBoxSend;
-    private EditText posEditText;
-    private DBManager dbManager;
-    private Boolean isDBchanged = false;
+    ArrayAdapter<String> adapterSynonyms;
+    ImageButton btnAdd;
+    ImageButton btnClose;
+    EditText wordEditText;
+    EditText posEditText;
+    DBManager dbManager;
+    Boolean isDBchanged = false;
+
+    View DialogView;
+    TextView subTitleDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +81,12 @@ public class add_new_entry extends Activity implements OnClickListener {
         btnDelMeaning = (Button) findViewById(R.id.btn_del_meaning);
         btnDelMeaning.setOnClickListener(add_new_entry.this);
 
+        btnAddSynonyms = (Button) findViewById(R.id.btn_add_synonyms);
+        btnAddSynonyms.setOnClickListener(add_new_entry.this);
+
+        btnDelSynonyms = (Button) findViewById(R.id.btn_del_synonyms);
+        btnDelSynonyms.setOnClickListener(add_new_entry.this);
+
         //=================================================================
 
         btnAdd = (ImageButton) findViewById(R.id.btn_add);
@@ -86,6 +96,7 @@ public class add_new_entry extends Activity implements OnClickListener {
         btnClose.setOnClickListener(add_new_entry.this);
 
         listView = (ListView) findViewById(R.id.listMeaning);
+        listViewSyno = (ListView) findViewById(R.id.listSynonyms);
 
         //=================================================================
 
@@ -94,14 +105,20 @@ public class add_new_entry extends Activity implements OnClickListener {
 
         //=================================================================
 
+        TextView txtDefaultText = (TextView) findViewById(R.id.txtView_no_meaning);
+
+        listView.setEmptyView(txtDefaultText);
+
+        TextView txtDefaultTextSyno = (TextView) findViewById(R.id.txt_empty_syno);
+
+        listViewSyno.setEmptyView(txtDefaultTextSyno);
+
+        //=================================================================
+
         adapterMeaning = new ArrayAdapter<>(this,
                 R.layout.meaning_list_layout, R.id.text_view,
                 listItemsMeaning);
         listView.setAdapter(adapterMeaning);
-
-        TextView txtDefaultText = (TextView) findViewById(R.id.txtView_no_meaning);
-
-        listView.setEmptyView(txtDefaultText);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -110,10 +127,37 @@ public class add_new_entry extends Activity implements OnClickListener {
             }
         });
 
+        //=================================================================
+
+        adapterSynonyms = new ArrayAdapter<>(this,
+                R.layout.meaning_list_layout, R.id.text_view,
+                listItemsSynonyms);
+        listViewSyno.setAdapter(adapterSynonyms);
+
+        listViewSyno.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                POSITION_Syno = position;
+            }
+        });
+
+        //=================================================================
+
+
+        // Get the layout inflater
+        DialogView = (LayoutInflater.from(add_new_entry.this)).inflate(R.layout.input_alert_dialog_layout, null);
+
+        // Inflate and set the layout for the dialog
+        // Pass null as the parent view because its going in the dialog layout
+        subTitleDialog = (TextView) DialogView.findViewById(R.id.txtDialogueSubtitle);
+        subTitleDialog.setText(getString(R.string.enter_new_synonyms));
+
+
     }
 
     @Override
     public void onClick(View v) {
+
 
         switch (v.getId()) {
             case R.id.btn_add:
@@ -132,13 +176,25 @@ public class add_new_entry extends Activity implements OnClickListener {
                     }
                 } else
                     meaning = "";
+
+                String synonyms;
+                len = listViewSyno.getAdapter().getCount();
+                if (len > 0) {
+                    synonyms = listViewSyno.getItemAtPosition(0).toString();
+                    for (i = 1; i < len; i++) {
+                        if (!listViewSyno.getItemAtPosition(i).toString().equals("") &&
+                                !listViewSyno.getItemAtPosition(i).toString().equals(getString(R.string.new_item_text)))
+                            synonyms += "; " + listViewSyno.getItemAtPosition(i).toString();
+                    }
+                } else
+                    synonyms = "";
                 //====================
 
                 final String word = wordEditText.getText().toString();
                 final String pos = posEditText.getText().toString();
                 //final String meaning = meaningEditText.getText().toString();
 
-                if (word.equals("") || pos.equals("") || meaning.equals("")) {
+                if (word.equals("") || meaning.equals("")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(add_new_entry.this);
 
                     builder.setMessage(R.string.dialog_message_fill_all_field)
@@ -153,14 +209,14 @@ public class add_new_entry extends Activity implements OnClickListener {
 
                 } else {
 
-                    long r = dbManager.insert(word, pos, meaning);
+                    long r = dbManager.insert(word, pos, meaning, synonyms);
 
                     if (r != -1) {
 
                         isDBchanged = true;
 
                         if (IsSendToServer) {
-                            sendData(getString(R.string.server_txt_new), word, pos, meaning);
+                            so_tools.sendData(getString(R.string.server_txt_new), word, pos, meaning, synonyms);
                         }
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(add_new_entry.this);
@@ -175,6 +231,8 @@ public class add_new_entry extends Activity implements OnClickListener {
                                         posEditText.setText("");
                                         listItemsMeaning.clear();
                                         adapterMeaning.notifyDataSetChanged();
+                                        listItemsSynonyms.clear();
+                                        adapterSynonyms.notifyDataSetChanged();
 
                                     }
                                 })
@@ -210,20 +268,22 @@ public class add_new_entry extends Activity implements OnClickListener {
 
             case R.id.btn_add_meaning:
 
+                final EditText userInput = (EditText) DialogView.findViewById(R.id.txtInput);
+                userInput.setText("");
+
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(add_new_entry.this);
                 builder.setTitle(getString(R.string.ui_txt_edit_meaning));
 
-                // Set up the input
-                //final EditText input = new EditText(add_new_entry.this);
-                //input.setInputType(InputType.TYPE_CLASS_TEXT);
-                // Get the layout inflater
-                View view = (LayoutInflater.from(add_new_entry.this)).inflate(R.layout.input_alert_dialog_layout, null);
+                //Multiple parent fix
+                if (DialogView.getParent() != null)
+                    ((ViewGroup) DialogView.getParent()).removeView(DialogView);
 
-                // Inflate and set the layout for the dialog
-                // Pass null as the parent view because its going in the dialog layout
-                builder.setView(view);
-                final EditText userInput = (EditText) view.findViewById(R.id.txtInput);
+                builder.setView(DialogView);
+
+                subTitleDialog.setText(getString(R.string.enter_new_meaning));
+                userInput.setText("");
+                userInput.setHint(R.string.new_meaning);
 
                 builder.setPositiveButton("ADD", new DialogInterface.OnClickListener() {
                     @Override
@@ -245,46 +305,73 @@ public class add_new_entry extends Activity implements OnClickListener {
 
                 break;
 
+            case R.id.btn_add_synonyms:
+
+                final EditText userInput2 = (EditText) DialogView.findViewById(R.id.txtInput);
+                userInput2.setText("");
+
+                AlertDialog.Builder builderSyno = new AlertDialog.Builder(add_new_entry.this);
+                builderSyno.setTitle(getString(R.string.ui_txt_edit_synonyms));
+
+                //Multiple parent fix
+                if (DialogView.getParent() != null)
+                    ((ViewGroup) DialogView.getParent()).removeView(DialogView);
+
+                builderSyno.setView(DialogView);
+
+                subTitleDialog.setText(getString(R.string.enter_new_synonyms));
+                userInput2.setHint(R.string.new_synonyms);
+                userInput2.setText("");
+
+
+                builderSyno.setPositiveButton("ADD", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        if (!userInput2.getText().toString().equals(""))
+                            adapterSynonyms.add(userInput2.getText().toString().replace("\n", " ").replace("\r", " "));
+
+                    }
+                });
+                builderSyno.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                builderSyno.show();
+
+                break;
+
             case R.id.btn_del_meaning:
                 if (!listItemsMeaning.isEmpty() && POSITION >= 0 && POSITION < listItemsMeaning.size()) {
                     listItemsMeaning.remove(POSITION);
                     adapterMeaning.notifyDataSetChanged();
                 }
                 break;
+
+            case R.id.btn_del_synonyms:
+                if (!listItemsSynonyms.isEmpty() && POSITION_Syno >= 0 && POSITION_Syno < listItemsSynonyms.size()) {
+                    listItemsSynonyms.remove(POSITION_Syno);
+                    adapterSynonyms.notifyDataSetChanged();
+                }
+                break;
+
             case R.id.btn_close:
-                finish();
+                AlertDialog.Builder adb = new AlertDialog.Builder(add_new_entry.this);
+                adb.setTitle(getString(R.string.sure_to_back_from_add_entry));
+                adb.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                });
+                adb.setNegativeButton(getString(R.string.no), null);
+                adb.show();
+
                 break;
         }
 
-    }
-
-    void sendData(String info, String word, String pos, String meaning) {
-        hashMap.clear();
-
-        //?arg1=val1&arg2=val2
-        hashMap.put("info", info);
-        hashMap.put("word", so_tools.removeSymbolFromText(word));
-        hashMap.put("pron", word);
-        hashMap.put("pos", pos);
-        hashMap.put("meaning", meaning);
-
-        // Gets the URL from the UI's text field.
-        ConnectivityManager connMgr = (ConnectivityManager)
-                getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnected()) {
-            new sendDataToServer(hashMap, getString(R.string.server_post_url));
-
-            Toast t = Toast.makeText(add_new_entry.this,
-                    getString(R.string.txt_new_entry_sent_to_server), Toast.LENGTH_SHORT);
-            t.show();
-        }
-
-
-//        else {
-        //Keep Silent :)
-        //textview.setText("No network connection available.");
-//        }
     }
 
     private void finishWithResult() {

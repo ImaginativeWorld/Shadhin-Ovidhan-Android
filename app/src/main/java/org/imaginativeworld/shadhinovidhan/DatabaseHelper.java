@@ -40,13 +40,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /**
      * "DB_VERSION": database version
-     * <p/>
+     *
      * History: (DB version: App version)
      * 1: 1.0 to 1.1
-     * <p/>
-     * 2: 1.2 to -.-
+     * 2: 1.2 to 1.3
+     * 3: 1.4 to -.- : New Word added, semi-colonize
      */
-    static final int DB_VERSION = 2;
+    static final int DB_VERSION = 3;
 
     //The Android's default system path of your application database.
     private static String DB_PATH =
@@ -61,6 +61,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * Constructor
      * Takes and keeps a reference of the passed context in order to access to the application
      * assets and resources.
+     *
      * @param context
      */
     public DatabaseHelper(Context context) {
@@ -72,12 +73,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /**
      * Creates a empty database on the system and rewrites it with your own database.
-     * */
-    public void createDataBase() throws IOException{
+     */
+    public void createDataBase() throws IOException {
 
         boolean dbExist = checkDataBase();
 
-        if(dbExist){
+        if (dbExist) {
             //do nothing - database already exist
 
             SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(myContext);
@@ -98,7 +99,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 }
             }
 
-        }else{
+        } else {
 
             //By calling this method and empty database will be created into the default system path
             //of your application so we are gonna be able to overwrite that database with our database.
@@ -119,17 +120,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /**
      * Check if the database already exist to avoid re-copying the file each time you open the application.
+     *
      * @return true if it exists, false if it doesn't
      */
-    private boolean checkDataBase(){
+    private boolean checkDataBase() {
 
         SQLiteDatabase checkDB = null;
 
-        try{
+        try {
             String myPath = DB_PATH; // DB_PATH + DB_NAME;
             checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
 
-        }catch(SQLiteException e){
+        } catch (SQLiteException e) {
 
             //database does't exist yet.
 
@@ -148,7 +150,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * Copies your database from your local assets-folder to the just created empty database in the
      * system folder, from where it can be accessed and handled.
      * This is done by transfering bytestream.
-     * */
+     */
     private void copyDataBase() throws IOException {
 
         try {
@@ -213,7 +215,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public synchronized void close() {
 
-        if(myDataBase != null)
+        if (myDataBase != null)
             myDataBase.close();
 
         super.close();

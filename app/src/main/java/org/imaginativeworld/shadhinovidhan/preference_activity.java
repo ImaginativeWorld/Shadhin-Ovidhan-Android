@@ -5,16 +5,18 @@ import android.os.Bundle;
 import android.preference.PreferenceActivity;
 
 /**
+ *
  * Created by Shohag on 16 Aug 15.
+ *
  */
 public class preference_activity extends PreferenceActivity {
 
-    public static String bnAdvSearchType = "bnAdvSearchType",
-            enAdvSearchType = "enAdvSearchType",
-            pref_key_send_to_server = "pref_key_send_to_server",
-            pref_key_auto_update_check = "pref_key_auto_update_check",
-            pref_feedback_show_counter = "pref_feedback_show_counter",
-            pref_language = "pref_lang";
+    public static String bnAdvSearchType = "bnAdvSearchType";
+    public static String enAdvSearchType = "enAdvSearchType";
+    public static String pref_key_send_to_server = "pref_key_send_to_server";
+    public static String pref_key_auto_update_check = "pref_key_auto_update_check";
+    public static String pref_feedback_show_counter = "pref_feedback_show_counter";
+    public static String pref_language = "pref_lang";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +26,6 @@ public class preference_activity extends PreferenceActivity {
         getFragmentManager().beginTransaction()
                 .replace(android.R.id.content, new preference_fragment())
                 .commit();
-
 
     }
 

@@ -71,8 +71,8 @@
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="pref_key_auto_update_check"
-            android:summary="@string/sub_title_auto_check_update"
-            android:title="@string/summary_auto_check_update" />
+            android:summary="@string/summary_auto_check_update"
+            android:title="@string/sub_title_auto_check_update" />
     </PreferenceCategory>
 
 </PreferenceScreen>
