@@ -10,14 +10,14 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * Created by Shohag on 23 Aug 15.
+ * Created by Shohag on 23 Aug 15
  */
 public class favorite_list_activity extends Activity implements View.OnClickListener {
 
@@ -28,7 +28,7 @@ public class favorite_list_activity extends Activity implements View.OnClickList
     final int[] to = new int[]{
             android.R.id.text1
     };
-    ImageButton btnClose;
+    Button btnClose;
     private DBManager dbManager;
     private ListView listView;
     private SimpleCursorAdapter adapter;
@@ -62,7 +62,7 @@ public class favorite_list_activity extends Activity implements View.OnClickList
 
         //============================================================
 
-        btnClose = (ImageButton) findViewById(R.id.btn_close);
+        btnClose = (Button) findViewById(R.id.btn_close);
         btnClose.setOnClickListener(this);
 
 
@@ -89,20 +89,20 @@ public class favorite_list_activity extends Activity implements View.OnClickList
                 });
                 adb.setNegativeButton(getString(R.string.fav_list_btn_copy_to_clipboard),
                         new AlertDialog.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
+                            public void onClick(DialogInterface dialog, int which) {
 
-                        //Copy to Clip Board (Only support API >=11)
-                        ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                        ClipData clip = ClipData.newPlainText("SO_Meaning", tEXT);
-                        clipboard.setPrimaryClip(clip);
+                                //Copy to Clip Board (Only support API >=11)
+                                ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                                ClipData clip = ClipData.newPlainText("SO_Meaning", tEXT);
+                                clipboard.setPrimaryClip(clip);
 
-                        Toast t = Toast.makeText(favorite_list_activity.this,
-                                getString(R.string.text_copied_to_clipboard),
-                                Toast.LENGTH_LONG);
-                        t.show();
+                                Toast t = Toast.makeText(favorite_list_activity.this,
+                                        getString(R.string.text_copied_to_clipboard),
+                                        Toast.LENGTH_LONG);
+                                t.show();
 
-                    }
-                });
+                            }
+                        });
                 adb.setPositiveButton(getString(R.string.fav_list_btn_view_meaning), new AlertDialog.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

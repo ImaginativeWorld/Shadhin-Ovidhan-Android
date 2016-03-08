@@ -11,7 +11,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
+import android.support.v7.widget.PopupMenu;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -42,6 +45,8 @@ public class view_details_activity extends Activity implements OnClickListener {
     ArrayAdapter<String> synoAdapter;
     HashMap<String, String> hashMap;
     TextToSpeech textToSpeech;
+    View DialogView;
+    TextView subTitleDialog;
     private TextView txtWord;
     private TextView txtpos;
     private TextView txtViewMeaning;
@@ -62,14 +67,13 @@ public class view_details_activity extends Activity implements OnClickListener {
     private String sPos;
     private String sMeaning;
     private String sSynonyms;
-    private String tEXT;
+    private String tEXT, tEXTsyno;
     private int pOSITION;
     private boolean isDBchanged = false;
     private ArrayList<String> sMeaningArrList;
     private ArrayList<String> sSynonymsArrList;
     private DBManager dbManager;
     private boolean isFavorite = false;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -205,12 +209,18 @@ public class view_details_activity extends Activity implements OnClickListener {
         synonymsList.setAdapter(synoAdapter);
 
 
-
         //=============================================================
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         IsSendToServer = sharedPref.getBoolean(preference_activity.pref_key_send_to_server, true);
 
+        //================================================================
+        // Get the layout inflater
+        DialogView = (LayoutInflater.from(view_details_activity.this)).inflate(R.layout.input_alert_dialog_layout, null);
+        // Inflate and set the layout for the dialog
+        // Pass null as the parent view because its going in the dialog layout
+
+        subTitleDialog = (TextView) DialogView.findViewById(R.id.txtDialogueSubtitle);
         //================================================================
 
         meaningList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -281,6 +291,130 @@ public class view_details_activity extends Activity implements OnClickListener {
 
         //===================================================
 
+        synonymsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                TextView text = (TextView) view.findViewById(R.id.text_view);
+
+                tEXTsyno = text.getText().toString();
+
+                if (tEXTsyno.equals(getString(R.string.new_item_text))) {
+
+                    final EditText userInput = (EditText) DialogView.findViewById(R.id.txtInput);
+                    userInput.setText("");
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(view_details_activity.this);
+                    builder.setTitle(getString(R.string.ui_txt_edit_synonyms));
+
+                    //Multiple parent fix
+                    if (DialogView.getParent() != null)
+                        ((ViewGroup) DialogView.getParent()).removeView(DialogView);
+
+                    builder.setView(DialogView);
+
+                    subTitleDialog.setText(getString(R.string.enter_new_synonyms));
+                    //userInput.setText(tEXTsyno);
+                    userInput.setHint(R.string.new_synonyms);
+
+                    builder.setPositiveButton(getString(R.string.str_add), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            if (!userInput.getText().toString().equals("")) {
+                                sSynonymsArrList.set(position, userInput.getText().toString().replace("\n", " ").replace("\r", " "));
+                                synoAdapter.notifyDataSetChanged();
+
+                                updateDB();
+                            }
+
+                        }
+                    });
+                    builder.setNegativeButton(getString(R.string.str_cancel), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    builder.show();
+
+
+                } else {
+
+
+                    AlertDialog.Builder adb = new AlertDialog.Builder(view_details_activity.this);
+                    adb.setTitle(getString(R.string.what_do_you_want));
+                    //adb.setMessage("?");
+
+                    adb.setNeutralButton(getString(R.string.str_delete), new AlertDialog.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            //dbManager.deleteInfoFavorite(tEXT);
+                            sSynonymsArrList.remove(position);
+                            synoAdapter.notifyDataSetChanged();
+
+                            updateDB();
+
+                        }
+                    });
+                    adb.setNegativeButton(getString(R.string.str_edit),
+                            new AlertDialog.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                    final EditText userInput = (EditText) DialogView.findViewById(R.id.txtInput);
+                                    //userInput.setText("");
+
+
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(view_details_activity.this);
+                                    builder.setTitle(getString(R.string.ui_txt_edit_synonyms));
+
+                                    //Multiple parent fix
+                                    if (DialogView.getParent() != null)
+                                        ((ViewGroup) DialogView.getParent()).removeView(DialogView);
+
+                                    builder.setView(DialogView);
+
+                                    subTitleDialog.setText(getString(R.string.enter_change_synonyms));
+                                    userInput.setText(tEXTsyno);
+                                    userInput.setHint(R.string.edited_synonyms);
+
+                                    builder.setPositiveButton(getString(R.string.str_add), new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                            if (!userInput.getText().toString().equals("")) {
+                                                sSynonymsArrList.set(position, userInput.getText().toString().replace("\n", " ").replace("\r", " "));
+                                                synoAdapter.notifyDataSetChanged();
+
+                                                updateDB();
+                                            }
+
+                                        }
+                                    });
+                                    builder.setNegativeButton(getString(R.string.str_cancel), new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                        }
+                                    });
+                                    builder.show();
+
+                                }
+                            });
+                    adb.setPositiveButton(getString(R.string.str_view_meaning), new AlertDialog.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            finishWithResult(true);
+                        }
+                    });
+                    adb.show();
+                }
+            }
+        });
+
+        //===================================================
+
         textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
@@ -313,13 +447,44 @@ public class view_details_activity extends Activity implements OnClickListener {
                     }
                 }
 
-                finishWithResult();
+                finishWithResult(false);
 
                 break;
 
             case R.id.btn_add:
-                sMeaningArrList.add(getString(R.string.new_item_text));
-                adapter.notifyDataSetChanged();
+
+                //Creating the instance of PopupMenu
+                PopupMenu popup = new PopupMenu(view_details_activity.this, findViewById(R.id.btn_add));
+                //Inflating the Popup using xml file
+                popup.getMenuInflater()
+                        .inflate(R.menu.popup_menu_add, popup.getMenu());
+
+                //registering popup with OnMenuItemClickListener
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    public boolean onMenuItemClick(MenuItem item) {
+
+                        switch (item.getItemId()) {
+                            case R.id.item_add_meaning:
+
+                                sMeaningArrList.add(getString(R.string.new_item_text));
+                                adapter.notifyDataSetChanged();
+
+                                break;
+
+                            case R.id.item_add_synonym:
+
+                                sSynonymsArrList.add(getString(R.string.new_item_text));
+                                synoAdapter.notifyDataSetChanged();
+
+                                break;
+                        }
+
+                        return true;
+                    }
+                });
+
+                popup.show(); //showing popup menu
+
                 break;
 
             case R.id.btn_delete_meaning_part:
@@ -384,7 +549,7 @@ public class view_details_activity extends Activity implements OnClickListener {
                         if (dbManager.delete(sWord) != 0)
                             isDBchanged = true;
 
-                        finishWithResult();
+                        finishWithResult(false);
                     }
                 });
                 adb2.show();
@@ -488,9 +653,13 @@ public class view_details_activity extends Activity implements OnClickListener {
         OptionView.setVisibility(View.GONE);
     }
 
-    private void finishWithResult() {
+    private void finishWithResult(boolean isViewSynonymMeaning) {
         Bundle conData = new Bundle();
         conData.putBoolean("results", isDBchanged);
+        if (isViewSynonymMeaning)
+            conData.putString("synonym", tEXTsyno);
+        else
+            conData.putString("synonym", null);
         Intent intent = new Intent();
         intent.putExtras(conData);
         setResult(RESULT_OK, intent);

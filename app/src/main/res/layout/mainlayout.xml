@@ -36,6 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
+                android:hint="@string/search_hint"
                 android:maxLength="50"
                 android:maxLines="1"
                 android:singleLine="true"
@@ -154,7 +155,7 @@
             android:shadowDx="1"
             android:shadowDy="1"
             android:shadowRadius="5"
-            android:text="0 result"
+            android:text="@string/total_result"
             android:textColor="@color/light_green_800"
             android:textStyle="bold|italic" />
 
@@ -271,6 +272,18 @@
                         android:textColor="@color/light_green_800"
                         android:textSize="@dimen/drawer_button_text" />
 
+                    <Button
+                        android:id="@+id/tutorial"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/dialog_padding"
+                        android:text="@string/menu_text_tutorial"
+                        android:textColor="@color/light_green_800"
+                        android:textSize="@dimen/drawer_button_text" />
+
 
                     <Button
                         android:id="@+id/about"
@@ -320,7 +333,7 @@
         android:layout_width="260dp"
         android:layout_height="match_parent"
         android:layout_gravity="end"
-        android:background="@color/grey_300"
+        android:background="@color/buttons_bar_background"
         android:choiceMode="singleChoice"
         android:clickable="true"
         android:divider="@android:color/transparent"
@@ -340,7 +353,7 @@
             android:id="@+id/list_view_history"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/btn_clr_history"
+            android:layout_above="@+id/btn_layout"
             android:layout_below="@+id/history_title"
             android:background="@color/white"
             android:divider="@android:color/transparent"
@@ -356,15 +369,25 @@
             android:text="@string/txt_no_history"
             android:textSize="@dimen/abc_text_size_medium_material" />
 
-        <Button
-            android:id="@+id/btn_clr_history"
-            style="?android:attr/borderlessButtonStyle"
+        <LinearLayout
+            android:id="@+id/btn_layout"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/dialog_button_bar_height"
             android:layout_alignParentBottom="true"
-            android:background="?attr/selectableItemBackground"
-            android:text="@string/txt_clear_history"
-            android:textColor="@color/grey_800" />
+            android:background="@color/buttons_bar_background"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_clr_history"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:text="@string/txt_clear_history"
+                android:textColor="@color/grey_800" />
+
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"
@@ -375,10 +398,11 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/shadow_height"
-            android:layout_above="@+id/btn_clr_history"
+            android:layout_above="@+id/btn_layout"
             android:background="@drawable/shadow_bottom_top" />
 
     </RelativeLayout>
+
 
 </android.support.v4.widget.DrawerLayout>
 

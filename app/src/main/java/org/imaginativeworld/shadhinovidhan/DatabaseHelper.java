@@ -15,7 +15,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
+ *
  * Created by Shohag on 24 Jul 15.
+ *
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -36,7 +38,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String SO_FAVORITE = "word";
 
     // Database Information //
-    static final String DB_NAME = "IWSO.DB"; // Must NOT USE UNDERSCORE ("_") in database name
+    static final String DB_NAME = "IWSO.DB"; // DON'T USE UNDERSCORE ("_") in database name.. :3
 
     /**
      * "DB_VERSION": database version
@@ -44,9 +46,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * History: (DB version: App version)
      * 1: 1.0 to 1.1
      * 2: 1.2 to 1.3
-     * 3: 1.4 to -.- : New Word added, semi-colonize
+     * 3: 1.4 : New Word added, semi-colonize
+     * 4: 1.5 to -.- : (IWSO_2.3) Remove [favorite] table and make Favourite independent.. :)
      */
-    static final int DB_VERSION = 3;
+
+    static final int DB_VERSION = 4;
 
     //The Android's default system path of your application database.
     private static String DB_PATH =
@@ -63,6 +67,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * assets and resources.
      *
      * @param context
+     * app context
      */
     public DatabaseHelper(Context context) {
 
@@ -71,9 +76,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    /**
-     * Creates a empty database on the system and rewrites it with your own database.
-     */
+
     public void createDataBase() throws IOException {
 
         boolean dbExist = checkDataBase();
@@ -82,9 +85,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             //do nothing - database already exist
 
             SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(myContext);
-            //settings.edit().putBoolean(myContext.getString(R.string.pref_update_db), false).apply();
 
             if (settings.getBoolean(myContext.getString(R.string.pref_update_db), false)) {
+
                 this.getReadableDatabase();
 
                 try {
@@ -101,8 +104,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         } else {
 
-            //By calling this method and empty database will be created into the default system path
-            //of your application so we are gonna be able to overwrite that database with our database.
             this.getReadableDatabase();
 
             try {
@@ -186,22 +187,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(myContext);
         settings.edit().putBoolean(myContext.getString(R.string.pref_update_db), false).apply();
 
-        //========================================================
-        // NOTE: Below code is for update database
-//        SQLiteDatabase checkdb = null;
-//
-//        try{
-//            //String myPath = DB_PATH + DB_NAME;
-//            checkdb = SQLiteDatabase.openDatabase(DB_PATH, null, SQLiteDatabase.OPEN_READWRITE);
-//
-//            // Once the DB has been copied, set the new version
-//            checkdb.setVersion(DB_VERSION);
-//        }
-//        catch(SQLiteException e)
-//        {
-//            //database does’t exist yet.
-//        }
-
     }
 
     public void openDataBase() throws SQLException {
@@ -232,6 +217,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (oldVersion < newVersion) {
             SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(myContext);
             settings.edit().putBoolean(myContext.getString(R.string.pref_update_db), true).apply();
+            //settings.edit().putBoolean(myContext.getString(R.string.pref_is_fav_clear_notify_read), false).apply();
         }
 
 

@@ -20,8 +20,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Database"
-                android:textSize="@dimen/abc_text_size_headline_material" />
+                android:text="@string/str_database"
+                android:textSize="@dimen/abc_text_size_headline_material"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtInfoDb"
@@ -34,8 +35,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Favorites"
-                android:textSize="@dimen/abc_text_size_headline_material" />
+                android:text="@string/str_favorites"
+                android:textSize="@dimen/abc_text_size_headline_material"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtInfoFav"

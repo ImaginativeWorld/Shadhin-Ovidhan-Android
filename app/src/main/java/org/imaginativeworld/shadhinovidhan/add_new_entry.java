@@ -23,9 +23,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- *
- * Created by Shohag on 26 Jul 15.
- *
+ * Created by Shohag on 26 Jul 15
  */
 public class add_new_entry extends Activity implements OnClickListener {
 
@@ -146,11 +144,11 @@ public class add_new_entry extends Activity implements OnClickListener {
 
         // Get the layout inflater
         DialogView = (LayoutInflater.from(add_new_entry.this)).inflate(R.layout.input_alert_dialog_layout, null);
-
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
+
         subTitleDialog = (TextView) DialogView.findViewById(R.id.txtDialogueSubtitle);
-        subTitleDialog.setText(getString(R.string.enter_new_synonyms));
+        //subTitleDialog.setText(getString(R.string.enter_new_synonyms));
 
 
     }
@@ -269,7 +267,7 @@ public class add_new_entry extends Activity implements OnClickListener {
             case R.id.btn_add_meaning:
 
                 final EditText userInput = (EditText) DialogView.findViewById(R.id.txtInput);
-                userInput.setText("");
+                //userInput.setText("");
 
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(add_new_entry.this);
@@ -285,7 +283,7 @@ public class add_new_entry extends Activity implements OnClickListener {
                 userInput.setText("");
                 userInput.setHint(R.string.new_meaning);
 
-                builder.setPositiveButton("ADD", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(getString(R.string.str_add), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -294,7 +292,7 @@ public class add_new_entry extends Activity implements OnClickListener {
 
                     }
                 });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(getString(R.string.str_cancel), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -308,7 +306,7 @@ public class add_new_entry extends Activity implements OnClickListener {
             case R.id.btn_add_synonyms:
 
                 final EditText userInput2 = (EditText) DialogView.findViewById(R.id.txtInput);
-                userInput2.setText("");
+                //userInput2.setText("");
 
                 AlertDialog.Builder builderSyno = new AlertDialog.Builder(add_new_entry.this);
                 builderSyno.setTitle(getString(R.string.ui_txt_edit_synonyms));
@@ -324,7 +322,7 @@ public class add_new_entry extends Activity implements OnClickListener {
                 userInput2.setText("");
 
 
-                builderSyno.setPositiveButton("ADD", new DialogInterface.OnClickListener() {
+                builderSyno.setPositiveButton(getString(R.string.str_add), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -333,7 +331,7 @@ public class add_new_entry extends Activity implements OnClickListener {
 
                     }
                 });
-                builderSyno.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                builderSyno.setNegativeButton(getString(R.string.str_cancel), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 

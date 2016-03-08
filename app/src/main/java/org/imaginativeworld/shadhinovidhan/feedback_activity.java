@@ -7,11 +7,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 /**
+ *
  * Created by Shohag on 23 Oct 15.
+ *
  */
 public class feedback_activity extends Activity implements View.OnClickListener {
 
@@ -34,7 +37,7 @@ public class feedback_activity extends Activity implements View.OnClickListener 
         ImageButton imgBtn_dislike = (ImageButton) findViewById(R.id.imgBtn_dislike);
         imgBtn_dislike.setOnClickListener(feedback_activity.this);
 
-        ImageButton imgBtn_close = (ImageButton) findViewById(R.id.btn_close);
+        Button imgBtn_close = (Button) findViewById(R.id.btn_close);
         imgBtn_close.setOnClickListener(feedback_activity.this);
 
         //==================================================

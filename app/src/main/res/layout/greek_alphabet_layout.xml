@@ -22,21 +22,20 @@
             android:textStyle="bold" />
     </LinearLayout>
 
+    <ListView
+        android:id="@+id/list_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_layout"
+        android:layout_below="@+id/title" />
+
+
     <View
         android:id="@+id/title_box_shadow"
         android:layout_width="match_parent"
         android:layout_height="@dimen/shadow_height"
         android:layout_below="@id/title"
         android:background="@drawable/shadow_top_bottom" />
-
-    <ListView
-        android:id="@+id/list_main"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_layout"
-        android:layout_below="@+id/title"
-        android:layout_marginLeft="@dimen/border_margin"
-        android:layout_marginRight="@dimen/border_margin" />
 
     <LinearLayout
         android:id="@+id/btn_layout"
@@ -47,7 +46,7 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <ImageButton
+        <Button
             android:id="@+id/btn_close"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
@@ -55,6 +54,7 @@
             android:layout_weight="1"
             android:background="?attr/selectableItemBackground"
             android:src="@drawable/ic_arrow_back_black_48dp"
+            android:text="@string/dialog_message_close"
             android:tint="@color/grey_800" />
 
     </LinearLayout>

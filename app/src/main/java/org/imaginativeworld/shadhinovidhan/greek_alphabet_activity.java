@@ -7,7 +7,7 @@ import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -17,14 +17,14 @@ import java.util.HashMap;
 import java.util.Locale;
 
 /**
- * Created by Shohag on 02 Feb 16.
+ * Created by Shohag on 02 Feb 16
  */
 public class greek_alphabet_activity extends Activity implements View.OnClickListener {
 
 
     // Views
     ListView mainList;
-    ImageButton btnClose;
+    Button btnClose;
     TextToSpeech textToSpeech;
 
     @Override
@@ -37,7 +37,7 @@ public class greek_alphabet_activity extends Activity implements View.OnClickLis
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         //initialize the items
-        btnClose = (ImageButton) findViewById(R.id.btn_close);
+        btnClose = (Button) findViewById(R.id.btn_close);
         btnClose.setOnClickListener(greek_alphabet_activity.this);
 
         textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {

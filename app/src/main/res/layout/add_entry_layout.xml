@@ -12,13 +12,6 @@
         android:background="@color/light_green_700"
         android:orientation="vertical">
 
-        <!--<TextView-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/add_entry_title"-->
-        <!--android:textColor="@color/light_green_700"-->
-        <!--android:textSize="@dimen/title_text_size"-->
-        <!--android:textStyle="bold" />-->
     </LinearLayout>
 
     <View

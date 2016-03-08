@@ -12,7 +12,7 @@
     <string name="new_item_text">এটি পরিবর্তন করতে এতে টাচ্‌ করুন</string>
     <string name="no_meaning_text">এখনো কোনো অর্থ নেই!</string>
 
-    <string name="search_hint">এখানে অনুসন্ধান করুন</string>
+    <string name="search_hint">অনুসন্ধান করুন</string>
     <string name="unable_create_database">ডেটাবেজ তৈরি করা যাচ্ছে না!</string>
     <string name="empty_list_text">দেখানোর মত কিছু পাওয়া যায়নি!</string>
     <string name="fav_empty_list_text">আপনার প্রিয় তালিকায় কোনো অন্তর্ভুক্তি নেই!</string>
@@ -144,6 +144,22 @@
     <string name="sure_to_back_from_add_entry">আপনি কি আসলেই ফিরে যেতে চান?</string>
     <string name="ui_default_txt_view_synonyms">সমার্থক শব্দ</string>
     <string name="ui_txt_edit_synonyms">সমার্থক শব্দ</string>
+    <string name="add_new_meaning">নতুন অর্থ</string>
+    <string name="add_new_synonym">নতুন সমার্থক শব্দ</string>
+    <string name="edited_synonyms">পরিবর্তিত সমার্থক শব্দ</string>
+    <string name="enter_change_synonyms">সমার্থক শব্দটি এখানে পরিবর্তন করুনঃ</string>
+    <string name="str_add">যুক্ত করুন</string>
+    <string name="str_cancel">বাতিল</string>
+    <string name="str_delete">মুছুন</string>
+    <string name="str_copy_to_clipboard">ক্লিপবোর্ডে অনুলিপি করুন</string>
+    <string name="str_edit">পরিবর্তন করুন</string>
+    <string name="str_view_meaning">অর্থ দেখুন</string>
+    <string name="what_do_you_want">আপনি কি করতে চান?</string>
+    <string name="menu_text_tutorial">সাহায্য</string>
+    <string name="title_tutorial">সাহায্য</string>
+    <string name="str_database">ডেটাবেজ</string>
+    <string name="str_favorites">প্রিয় সমূহ</string>
+    <string name="str_later">পরে</string>
 
 </resources>
 

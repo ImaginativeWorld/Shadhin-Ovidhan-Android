@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,9 +28,7 @@ import java.util.List;
 
 
 /**
- *
- * Created by Shohag on 02 Aug 15.
- *
+ * Created by Shohag on 02 Aug 15
  */
 public class about_activity extends Activity implements OnClickListener {
 
@@ -40,7 +37,7 @@ public class about_activity extends Activity implements OnClickListener {
             releasedate;
     int versionmajor, versionminor, versionrevision;
     XmlPullParser parser;
-    ImageButton btnClose;
+    Button btnClose;
     Button btnUpdate;
     View updateInfoView;
     TextView txtNewVersion, txtReleaseDate;
@@ -59,7 +56,7 @@ public class about_activity extends Activity implements OnClickListener {
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         //=========================================================
-        btnClose = (ImageButton) findViewById(R.id.btn_close);
+        btnClose = (Button) findViewById(R.id.btn_close);
         btnClose.setOnClickListener(about_activity.this);
 
         btnUpdate = (Button) findViewById(R.id.btn_update);

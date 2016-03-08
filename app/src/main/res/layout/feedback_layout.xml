@@ -7,19 +7,11 @@
     <LinearLayout
         android:id="@+id/title"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="5dp"
         android:layout_alignParentTop="true"
-        android:background="@color/buttons_bar_background"
-        android:orientation="vertical"
-        android:padding="@dimen/dialog_padding">
+        android:background="@color/light_green_700"
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/feedback_title"
-            android:textColor="@color/light_green_700"
-            android:textSize="@dimen/title_text_size"
-            android:textStyle="bold" />
     </LinearLayout>
 
     <View
@@ -58,7 +50,7 @@
             android:id="@+id/imgBtn_like"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
             android:src="@drawable/ic_thumb_up_black_48dp"
             android:tint="@color/light_green_800" />
@@ -67,7 +59,7 @@
             android:id="@+id/imgBtn_dislike"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
             android:src="@drawable/ic_thumb_down_black_48dp"
             android:tint="@color/red_700" />
@@ -75,120 +67,27 @@
 
     </LinearLayout>
 
+
     <LinearLayout
         android:id="@+id/btn_layout"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dialog_button_bar_height"
         android:layout_alignParentBottom="true"
         android:background="@color/buttons_bar_background"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingBottom="@dimen/button_bar_padding"
-        android:paddingLeft="@dimen/dialog_padding"
-        android:paddingRight="@dimen/dialog_padding"
-        android:paddingTop="@dimen/button_bar_padding">
+        android:orientation="horizontal">
 
 
-        <ImageButton
+        <Button
             android:id="@+id/btn_close"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/ic_arrow_back_black_48dp"
-            android:tint="@color/grey_800" />
+            android:background="?attr/selectableItemBackground"
+            android:text="@string/str_later" />
 
     </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/layout_options"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:clickable="true"
-        android:visibility="gone">
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:background="#99000000">
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/option_view"
-                android:layout_marginBottom="5dp"
-                android:background="@color/white"
-                android:orientation="vertical"
-                android:paddingBottom="@dimen/button_bar_padding"
-                android:paddingLeft="@dimen/dialog_padding"
-                android:paddingRight="@dimen/dialog_padding"
-                android:paddingTop="@dimen/button_bar_padding">
-
-                <EditText
-                    android:id="@+id/txtEdit_meaning"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:minLines="5"
-                    android:textSize="@dimen/details_meaning"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/txtView_meaning"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:minLines="5"
-                    android:textSize="@dimen/details_meaning"
-                    android:visibility="visible" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/option_view"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:background="@color/white"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingBottom="@dimen/button_bar_padding"
-                android:paddingLeft="@dimen/dialog_padding"
-                android:paddingRight="@dimen/dialog_padding"
-                android:paddingTop="@dimen/button_bar_padding">
-
-                <ImageButton
-                    android:id="@+id/btn_delete_meaning_part"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_delete_black_48dp"
-                    android:tint="@color/red_700" />
-
-                <ImageButton
-                    android:id="@+id/btn_edit"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_edit_black_48dp"
-                    android:tint="@color/grey_800" />
-
-                <ImageButton
-                    android:id="@+id/btn_close_options"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_arrow_back_black_48dp"
-                    android:tint="@color/grey_800" />
-
-            </LinearLayout>
-
-
-        </RelativeLayout>
-
-
-    </FrameLayout>
 
 
     <View

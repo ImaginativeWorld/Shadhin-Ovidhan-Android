@@ -95,6 +95,7 @@ public class main_activity extends Activity implements View.OnClickListener {
     Button btn_exit;
     Button btn_clr_history;
     Button btn_greek_alp;
+    Button btn_tutorial;
     /**
      * History
      */
@@ -289,7 +290,6 @@ public class main_activity extends Activity implements View.OnClickListener {
 
 
         editTextSearch = (EditText) findViewById(R.id.editTextSearch);
-        editTextSearch.setHint(R.string.search_hint);
         editTextSearch.getBackground().setColorFilter(getResources()
                 .getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
 
@@ -337,6 +337,9 @@ public class main_activity extends Activity implements View.OnClickListener {
 
         btn_greek_alp = (Button) findViewById(R.id.greek_alp);
         btn_greek_alp.setOnClickListener(main_activity.this);
+
+        btn_tutorial = (Button) findViewById(R.id.tutorial);
+        btn_tutorial.setOnClickListener(main_activity.this);
 
         //============================================================
 
@@ -386,6 +389,31 @@ public class main_activity extends Activity implements View.OnClickListener {
         dbManager = new DBManager(this);
 
         dbManager.open();
+
+//        if(isDbUpdateAvailable)
+//        {
+//
+//            Snackbar snackbar = Snackbar.make(findViewById(R.id.content_frame),
+//                    getString(R.string.info_favorite_list_backed_up),
+//                    Snackbar.LENGTH_INDEFINITE);
+//            snackbar.setAction(getString(R.string.str_why), new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//                    sharedPref.edit().putBoolean(getString(R.string.pref_is_fav_clear_notify_read), true).apply();
+//
+//                    Intent tutorial_intent = new Intent(main_activity.this, tutorial_activity.class);
+//                    tutorial_intent.putExtra("goWhere", "backupNow");
+//                    startActivity(tutorial_intent);
+//                }
+//            });
+//            View snackBarView = snackbar.getView();
+//            snackBarView.setBackgroundColor(ContextCompat.getColor(main_activity.this,R.color.red_700));
+//            TextView tv = (TextView) snackBarView.findViewById(android.support.design.R.id.snackbar_text);
+//            tv.setTextColor(Color.WHITE);
+//            snackbar.show();
+//
+//        }
 
         //============================================================
 
@@ -580,7 +608,7 @@ public class main_activity extends Activity implements View.OnClickListener {
             editTextSearch.setText(sharedText);
             editTextSearch.setSelection(editTextSearch.getText().length());
         } else if (sharedText != null) {
-            editTextSearch.setText("invalid!");
+            editTextSearch.setText(getString(R.string.invalid));
             editTextSearch.setSelection(editTextSearch.getText().length());
         }
     }
@@ -620,8 +648,19 @@ public class main_activity extends Activity implements View.OnClickListener {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
-            case 100:
-            case 200:
+            case 100: // View details
+                if (resultCode == RESULT_OK) {
+                    Bundle res = data.getExtras();
+                    Boolean result = res.getBoolean("results");
+                    String str = res.getString("synonym");
+                    if (str != null) {
+                        editTextSearch.setText(str);
+                    } else if (result) {
+                        editTextSearch.setText("");
+                    }
+                }
+                break;
+            case 200: // Add new Record
                 if (resultCode == RESULT_OK) {
                     Bundle res = data.getExtras();
                     Boolean result = res.getBoolean("results");
@@ -812,6 +851,15 @@ public class main_activity extends Activity implements View.OnClickListener {
                             getString(R.string.enter_any_search_term_first), Toast.LENGTH_LONG);
                     t.show();
                 }
+
+                break;
+
+            case R.id.tutorial:
+
+                Intent tutorial_intent = new Intent(main_activity.this, tutorial_activity.class);
+                startActivity(tutorial_intent);
+
+                mDrawerLayout.closeDrawer(LeftDrawer);
 
                 break;
 
@@ -1052,14 +1100,6 @@ public class main_activity extends Activity implements View.OnClickListener {
         }
     }
 }
-
-
-//Just making a toast u need to write below those 5 line of code.. :'(
-//        Context context = getApplicationContext();
-//        Toast toast = Toast.makeText(context, "Hello toast!",  Toast.LENGTH_LONG);
-//        toast.show();
-
-
 
 
 

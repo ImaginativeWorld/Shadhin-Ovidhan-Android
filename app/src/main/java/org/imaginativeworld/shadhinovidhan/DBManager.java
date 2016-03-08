@@ -15,22 +15,25 @@ import java.io.IOException;
  */
 public class DBManager {
 
+    DbHelperFavorites favDbHelper;
     private DatabaseHelper dbHelper;
-
     private Context context;
-
     private SQLiteDatabase database;
+    private SQLiteDatabase databaseFav;
 
     public DBManager(Context c) {
         context = c;
     }
 
     public DBManager open() throws SQLException {
+
         dbHelper = new DatabaseHelper(context);
+        favDbHelper = new DbHelperFavorites(context);
 
         try {
 
             dbHelper.createDataBase();
+            favDbHelper.createDataBase();
 
         } catch (IOException ioe) {
 
@@ -42,14 +45,17 @@ public class DBManager {
         }
 
         dbHelper.openDataBase();
+        favDbHelper.openDataBase();
 
         //Log.v("soa", "getWritable");
         database = dbHelper.getWritableDatabase();
+        databaseFav = favDbHelper.getWritableDatabase();
         return this;
     }
 
     public void close() {
         dbHelper.close();
+        favDbHelper.close();
     }
 
     public long insert(String _word, String _pos, String _meaning, String _synonyms) {
@@ -206,7 +212,7 @@ public class DBManager {
                 DatabaseHelper.SO_FAVORITE
         };
 
-        Cursor cursor = database.query(DatabaseHelper.TABLE_FAVORITE_NAME, tableColumns, null, null,
+        Cursor cursor = databaseFav.query(DatabaseHelper.TABLE_FAVORITE_NAME, tableColumns, null, null,
                 null, null, null);
 
 
@@ -251,7 +257,7 @@ public class DBManager {
         };
 
         //String orderBy = "_id";
-        Cursor cursor = database.query(DatabaseHelper.TABLE_FAVORITE_NAME, tableColumns, null, null,
+        Cursor cursor = databaseFav.query(DatabaseHelper.TABLE_FAVORITE_NAME, tableColumns, null, null,
                 null, null, DatabaseHelper.SO_FAVORITE + " ASC");
 
         if (cursor != null) {
@@ -266,7 +272,7 @@ public class DBManager {
 
         contentValue.put(DatabaseHelper.SO_FAVORITE, _word);
 
-        return database.insert(DatabaseHelper.TABLE_FAVORITE_NAME, null, contentValue);
+        return databaseFav.insert(DatabaseHelper.TABLE_FAVORITE_NAME, null, contentValue);
     }
 
     public boolean isInFavorite(String _word) {
@@ -281,7 +287,7 @@ public class DBManager {
         String[] whereArgs = new String[]{_word};
 
         //String orderBy = "_id";
-        Cursor cursor = database.query(DatabaseHelper.TABLE_FAVORITE_NAME, tableColumns, whereClause, whereArgs,
+        Cursor cursor = databaseFav.query(DatabaseHelper.TABLE_FAVORITE_NAME, tableColumns, whereClause, whereArgs,
                 null, null, null);
 
         return cursor.moveToFirst();
@@ -292,13 +298,13 @@ public class DBManager {
 
         //Must use double quotation mark for string logic in sql language.
         //it return the location from where the value was deleted. or return 0.
-        return database.delete(DatabaseHelper.TABLE_FAVORITE_NAME,
+        return databaseFav.delete(DatabaseHelper.TABLE_FAVORITE_NAME,
                 DatabaseHelper.SO_FAVORITE + " = \"" + so_tools.removeSymbolFromText(_word) + "\"", null);
     }
 
     public int deleteInfoFavorite(String _word) {
         //Must use double quotation mark for string logic in sql language.
-        return database.delete(DatabaseHelper.TABLE_FAVORITE_NAME,
+        return databaseFav.delete(DatabaseHelper.TABLE_FAVORITE_NAME,
                 DatabaseHelper.SO_FAVORITE + " = \"" + _word + "\"", null);
     }
 

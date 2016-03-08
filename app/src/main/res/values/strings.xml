@@ -2,7 +2,7 @@
 
     <string name="app_name" translatable="false">স্বাধীন অভিধান</string>
 
-    <string name="app_version" translatable="false">1.4.160303</string>
+    <string name="app_version" translatable="false">1.5.160309</string>
 
     <string name="organization_name" translatable="false">Imaginative World</string>
     <string name="about_description">An independent and full featured Bengali-English Dictionary</string>
@@ -31,13 +31,12 @@
     <string name="view_details_title">Details</string>
     <string name="favorite_title">Favorites</string>
     <string name="history_title">History</string>
-    <string name="feedback_title">Shadhin Ovidhan</string>
+    <string name="feedback_title">স্বাধীন অভিধান</string>
 
     <string name="new_item_text">Touch here for change it</string>
     <string name="no_meaning_text">No meaning yet!</string>
 
     <!-- Main Window -->
-    <string name="search_hint">Search here</string>
     <string name="unable_create_database">Database can’t create!</string>
     <string name="empty_list_text">Nothing found!</string>
     <string name="fav_empty_list_text">There is no entry in your favorite list!</string>
@@ -163,7 +162,7 @@
     <string name="desc_web_search">Web Search</string>
     <string name="desc_speech_to_text">Speech to Text</string>
     <string name="copyrights1" translatable="false">Copyright © 2016 Imaginative World.</string>
-    <string name="copyrights2" translatable="false">\"Shadhin Ovidhan\"- Name, Logo &amp; its Database are the properties of Imaginative World. Any kind of modification without the permission of Imaginative World is prohibited.</string>
+    <string name="copyrights2" translatable="false">\"Shadhin Ovidhan\"- Name, Logo &amp; its Database are the properties of Imaginative World. It\'s Database is maintained and copyrighted by Imaginative World. Any kind of USE and/or MODIFICATION without the PERMISSION of Imaginative World is PROHIBITED.</string>
     <string name="menu_text_give_rating">Rate the Shadhin</string>
     <string name="pref_backup_restore">Backup/Restore</string>
     <string name="pref_btn_backup">Backup</string>
@@ -204,6 +203,24 @@
     <string name="new_synonyms">New synonym</string>
     <string name="ui_txt_edit_synonyms">Synonyms</string>
     <string name="sure_to_back_from_add_entry">Are you sure want to go back?</string>
+    <string name="what_do_you_want">What do you want?</string>
+    <string name="str_delete">Delete</string>
+    <string name="str_copy_to_clipboard">Copy to Clipboard</string>
+    <string name="str_view_meaning">View Meaning</string>
+    <string name="invalid" translatable="false">invalid!</string>
+    <string name="str_edit">Edit</string>
+    <string name="enter_change_synonyms">Change the synonym here:</string>
+    <string name="edited_synonyms">Edited synonym</string>
+    <string name="str_add">Add</string>
+    <string name="str_cancel">Cancel</string>
+    <string name="add_new_meaning">Add New Meaning</string>
+    <string name="add_new_synonym">Add New Synonym</string>
+    <string name="title_tutorial">Help</string>
+    <string name="menu_text_tutorial">Help</string>
+    <string name="search_hint">Search Now</string>
+    <string name="str_later">Later</string>
+    <string name="str_database">Database</string>
+    <string name="str_favorites">Favorites</string>
 
 
 </resources>
