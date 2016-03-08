@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/item_add_meaning"
+        android:title="@string/add_new_meaning"/>
+
+    <item
+        android:id="@+id/item_add_synonym"
+        android:title="@string/add_new_synonym"/>
+
+</menu> 
