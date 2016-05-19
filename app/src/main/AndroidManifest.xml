@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.imaginativeworld.shadhinovidhan"
-    android:versionCode="6"
+    android:versionCode="7"
     android:versionName="@string/app_version">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -98,6 +98,13 @@
 
         <activity
             android:name="org.imaginativeworld.shadhinovidhan.tutorial_activity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/DialogTheme" />
+
+        <activity
+            android:name="org.imaginativeworld.shadhinovidhan.bn_calendar_activity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="portrait"

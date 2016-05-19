@@ -18,6 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="14dp"
+            android:contentDescription="Shadhin Ovidhan Logo"
             android:src="@drawable/so_icon" />
 
         <TextView
@@ -132,7 +133,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/copyrights2"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
@@ -152,7 +153,7 @@
             android:id="@+id/btn_update"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="?attr/selectableItemBackground"
             android:text="@string/check_update"
@@ -162,10 +163,9 @@
             android:id="@+id/btn_close"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="?attr/selectableItemBackground"
-            android:src="@drawable/ic_arrow_back_black_48dp"
             android:text="@string/dialog_message_ok"
             android:tint="@color/grey_800" />
 

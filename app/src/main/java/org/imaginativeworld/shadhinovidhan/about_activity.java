@@ -1,3 +1,9 @@
+/**
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
 package org.imaginativeworld.shadhinovidhan;
 
 import android.app.Activity;
@@ -26,10 +32,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-
-/**
- * Created by Shohag on 02 Aug 15
- */
 public class about_activity extends Activity implements OnClickListener {
 
     String namedversion,

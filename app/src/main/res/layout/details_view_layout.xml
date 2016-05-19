@@ -137,16 +137,11 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <!--android:paddingBottom="@dimen/button_bar_padding"-->
-        <!--android:paddingLeft="@dimen/dialog_padding"-->
-        <!--android:paddingRight="@dimen/dialog_padding"-->
-        <!--android:paddingTop="@dimen/button_bar_padding"-->
-
         <ImageButton
             android:id="@+id/btn_delete_entry"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="?attr/selectableItemBackground"
             android:padding="@dimen/dialog_button_bar_button_padding"
@@ -157,7 +152,7 @@
             android:id="@+id/btn_add"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="?attr/selectableItemBackground"
             android:padding="@dimen/dialog_button_bar_button_padding"
@@ -168,7 +163,7 @@
             android:id="@+id/btn_send_to_cloud"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="?attr/selectableItemBackground"
             android:padding="@dimen/dialog_button_bar_button_padding"
@@ -179,7 +174,7 @@
             android:id="@+id/btn_speak"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="?attr/selectableItemBackground"
             android:padding="@dimen/dialog_button_bar_button_padding"
@@ -190,7 +185,7 @@
             android:id="@+id/btn_close"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="?attr/selectableItemBackground"
             android:padding="@dimen/dialog_button_bar_button_padding"

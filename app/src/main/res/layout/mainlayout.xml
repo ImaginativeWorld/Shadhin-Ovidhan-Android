@@ -37,6 +37,8 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:hint="@string/search_hint"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
                 android:maxLength="50"
                 android:maxLines="1"
                 android:singleLine="true"
@@ -119,7 +121,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp"
+                    android:layout_marginBottom="12dp"
                     android:src="@drawable/ic_search_white_48dp"
                     android:tint="@color/grey_500" />
 
@@ -207,6 +209,17 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/title_icon"
                     android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textBanglaCalendar"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/light_green_700"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/dialog_padding"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/drawer_button_text" />
 
                     <Button
                         android:id="@+id/favorite"
@@ -382,7 +395,7 @@
                 android:id="@+id/btn_clr_history"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="fill_parent"
                 android:background="?attr/selectableItemBackground"
                 android:text="@string/txt_clear_history"
                 android:textColor="@color/grey_800" />

@@ -1,3 +1,9 @@
+/**
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
 package org.imaginativeworld.shadhinovidhan;
 
 import android.os.AsyncTask;
@@ -17,11 +23,6 @@ import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
-/**
- *
- * Created by Shohag on 15 Aug 15.
- *
- */
 public class sendDataToServer {
 
     private HashMap<String, String> hashMap;

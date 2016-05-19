@@ -1,3 +1,9 @@
+/**
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
 package org.imaginativeworld.shadhinovidhan;
 
 import android.app.Activity;
@@ -22,9 +28,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by Shohag on 26 Jul 15
- */
 public class add_new_entry extends Activity implements OnClickListener {
 
     int POSITION;

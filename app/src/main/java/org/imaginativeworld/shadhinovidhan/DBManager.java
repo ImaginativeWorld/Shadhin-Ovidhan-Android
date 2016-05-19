@@ -1,3 +1,9 @@
+/**
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
 package org.imaginativeworld.shadhinovidhan;
 
 import android.content.ContentValues;
@@ -8,11 +14,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.io.IOException;
 
-/**
- *
- * Created by Shohag on 24 Jul 15.
- *
- */
 public class DBManager {
 
     DbHelperFavorites favDbHelper;

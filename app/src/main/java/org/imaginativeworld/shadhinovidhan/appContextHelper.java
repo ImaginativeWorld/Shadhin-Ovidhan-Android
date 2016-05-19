@@ -1,11 +1,13 @@
+/**
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
 package org.imaginativeworld.shadhinovidhan;
 
 import android.app.Application;
 import android.content.Context;
-
-/**
- * Created by Shohag on 27 Aug 15.
- */
 
 /**
  * Cheating to get "Context" everywhere.. :D

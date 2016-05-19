@@ -35,6 +35,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/border_margin"
                 android:text="@string/str_favorites"
                 android:textSize="@dimen/abc_text_size_headline_material"
                 android:textStyle="bold" />

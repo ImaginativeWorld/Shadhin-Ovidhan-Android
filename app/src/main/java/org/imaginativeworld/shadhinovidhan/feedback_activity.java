@@ -1,3 +1,9 @@
+/**
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
 package org.imaginativeworld.shadhinovidhan;
 
 import android.app.Activity;
@@ -11,11 +17,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-/**
- *
- * Created by Shohag on 23 Oct 15.
- *
- */
 public class feedback_activity extends Activity implements View.OnClickListener {
 
     Resources res;

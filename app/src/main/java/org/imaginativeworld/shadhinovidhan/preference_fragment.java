@@ -1,13 +1,14 @@
+/**
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
 package org.imaginativeworld.shadhinovidhan;
 
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 
-/**
- *
- * Created by Shohag on 16 Aug 15.
- *
- */
 public class preference_fragment extends PreferenceFragment {
 
     @Override

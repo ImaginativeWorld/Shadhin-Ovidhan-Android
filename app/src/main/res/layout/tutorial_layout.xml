@@ -47,21 +47,21 @@
 
         <Button
             android:id="@+id/btn_index"
-            android:text="Index"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:background="?attr/selectableItemBackground" />
+            android:background="?attr/selectableItemBackground"
+            android:text="Index" />
 
         <Button
-            android:text="@string/dialog_message_close"
             android:id="@+id/btn_close"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:background="?attr/selectableItemBackground"/>
+            android:background="?attr/selectableItemBackground"
+            android:text="@string/dialog_message_close" />
 
     </LinearLayout>
 

@@ -1,3 +1,9 @@
+/**
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
 package org.imaginativeworld.shadhinovidhan;
 
 import android.app.Activity;
@@ -45,15 +51,10 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-
-/**
- *
- * Created by Shohag on 18 Jul 15.
- *
- */
 
 public class main_activity extends Activity implements View.OnClickListener {
 
@@ -70,8 +71,6 @@ public class main_activity extends Activity implements View.OnClickListener {
             R.id.txt_meaning,
             R.id.txt_synonyms
     };
-
-    //Toolbar toolbar;
 
     EditText editTextSearch;
     TextView txtView_welcome, txtView_result_count;
@@ -96,6 +95,7 @@ public class main_activity extends Activity implements View.OnClickListener {
     Button btn_clr_history;
     Button btn_greek_alp;
     Button btn_tutorial;
+    TextView textBanglaCalendar;
     /**
      * History
      */
@@ -116,7 +116,7 @@ public class main_activity extends Activity implements View.OnClickListener {
 
     HashMap<String, String> hashMap;
 
-    //private ActionBarDrawerToggle mDrawerToggle;
+
     int versionmajor;
     int versionminor;
     int versionrevision;
@@ -132,45 +132,6 @@ public class main_activity extends Activity implements View.OnClickListener {
 
     private View LeftDrawer, RightDrawer;
 
-//    void showSearchBar() {
-//
-//        editTextSearch.setEnabled(true);
-//        editTextSearch.requestFocus();
-//
-////        toolbar.animate()
-////                .translationY(-toolbar.getBottom())
-////                .setInterpolator(new AccelerateInterpolator())
-////                .start();
-//
-//        searchBar.animate()
-//                .translationY(0)
-//                .setInterpolator(new DecelerateInterpolator())
-//                .start();
-//
-//        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//        imm.showSoftInput(editTextSearch, InputMethodManager.SHOW_IMPLICIT);
-//
-//        //txtView_welcome.setText(getString(R.string.main_window_welcome_text_search));
-//
-//    }
-
-//    void hideSearchBar() {
-//
-//        toolbar.animate()
-//                .translationY(0)
-//                .setInterpolator(new DecelerateInterpolator())
-//                .start();
-//
-//        searchBar.animate()
-//                .translationY(-searchBar.getBottom())
-//                .setInterpolator(new AccelerateInterpolator())
-//                .start();
-//
-//        editTextSearch.setEnabled(false);
-//
-//        //txtView_welcome.setText(getString(R.string.main_window_welcome_text_hint));
-//
-//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -204,21 +165,11 @@ public class main_activity extends Activity implements View.OnClickListener {
 
         setContentView(R.layout.mainlayout); // select default layout
 
-        //============================================================
-
-//        toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-
-//        toolbar.setVisibility(View.VISIBLE);
-
-
         //===========================================================
 
         // All About Drawer init.
 
-        //mPlanetTitles = getResources().getStringArray(R.array.drawer_array);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        mDrawerList = (ListView) findViewById(R.id.drawer_list_view);
         LeftDrawer = findViewById(R.id.left_drawer);
         RightDrawer = findViewById(R.id.right_drawer);
 
@@ -241,35 +192,6 @@ public class main_activity extends Activity implements View.OnClickListener {
             public void onDrawerStateChanged(int newState) {
             }
         });
-
-//        mDrawerToggle = new ActionBarDrawerToggle(main_activity.this, mDrawerLayout,
-//                R.string.drawer_open, R.string.drawer_close) {
-//
-//            /** Called when a drawer has settled in a completely closed state. */
-//            public void onDrawerClosed(View view) {
-//                super.onDrawerClosed(view);
-//                //Show Keyboard
-//                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//                imm.showSoftInput(editTextSearch, InputMethodManager.SHOW_IMPLICIT);
-//
-//                Toast t = Toast.makeText(main_activity.this, "a", Toast.LENGTH_LONG);
-//                t.show();
-//            }
-//
-//
-//            /** Called when a drawer has settled in a completely open state. */
-//            public void onDrawerOpened(View drawerView) {
-//                super.onDrawerOpened(drawerView);
-//                //hide keyboard
-//                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//                imm.hideSoftInputFromWindow(editTextSearch.getWindowToken(), 0);
-//
-//                Toast t = Toast.makeText(main_activity.this, "b", Toast.LENGTH_LONG);
-//                t.show();
-//            }
-//
-//        };
-
 
         //============================================================
 
@@ -341,6 +263,10 @@ public class main_activity extends Activity implements View.OnClickListener {
         btn_tutorial = (Button) findViewById(R.id.tutorial);
         btn_tutorial.setOnClickListener(main_activity.this);
 
+        textBanglaCalendar = (TextView) findViewById(R.id.textBanglaCalendar);
+        textBanglaCalendar.setOnClickListener(main_activity.this);
+
+
         //============================================================
 
         listViewHistory = (ListView) findViewById(R.id.list_view_history);
@@ -389,31 +315,6 @@ public class main_activity extends Activity implements View.OnClickListener {
         dbManager = new DBManager(this);
 
         dbManager.open();
-
-//        if(isDbUpdateAvailable)
-//        {
-//
-//            Snackbar snackbar = Snackbar.make(findViewById(R.id.content_frame),
-//                    getString(R.string.info_favorite_list_backed_up),
-//                    Snackbar.LENGTH_INDEFINITE);
-//            snackbar.setAction(getString(R.string.str_why), new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//
-//                    sharedPref.edit().putBoolean(getString(R.string.pref_is_fav_clear_notify_read), true).apply();
-//
-//                    Intent tutorial_intent = new Intent(main_activity.this, tutorial_activity.class);
-//                    tutorial_intent.putExtra("goWhere", "backupNow");
-//                    startActivity(tutorial_intent);
-//                }
-//            });
-//            View snackBarView = snackbar.getView();
-//            snackBarView.setBackgroundColor(ContextCompat.getColor(main_activity.this,R.color.red_700));
-//            TextView tv = (TextView) snackBarView.findViewById(android.support.design.R.id.snackbar_text);
-//            tv.setTextColor(Color.WHITE);
-//            snackbar.show();
-//
-//        }
 
         //============================================================
 
@@ -600,6 +501,14 @@ public class main_activity extends Activity implements View.OnClickListener {
             }
         }
 
+        iw_bangla_calendar bnCalendar =
+                new iw_bangla_calendar((GregorianCalendar) GregorianCalendar.getInstance());
+
+        String str = bnCalendar.getFullDate();
+
+        textBanglaCalendar.setText(str);
+
+
     }
 
     void handleSendText(Intent intent) {
@@ -631,11 +540,6 @@ public class main_activity extends Activity implements View.OnClickListener {
 
 
     }
-
-//    private int getPixels(int dipValue) {
-//        Resources r = getResources();
-//        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dipValue, r.getDisplayMetrics());
-//    }
 
     @Override
     protected void onStart() {
@@ -743,7 +647,6 @@ public class main_activity extends Activity implements View.OnClickListener {
 
                 break;
 
-            //===================================
 
             case R.id.add_record:
 
@@ -843,7 +746,12 @@ public class main_activity extends Activity implements View.OnClickListener {
                     sendData(getString(R.string.server_txt_sent_by_web_button), strTemp, "-", "-");
 
                     Intent iSearch = new Intent(Intent.ACTION_WEB_SEARCH);
-                    String term = "define " + strTemp;
+                    String term;
+                    if (strTemp.charAt(0) < 128) {
+                        term = "define " + strTemp;
+                    } else {
+                        term = "translate " + strTemp;
+                    }
                     iSearch.putExtra(SearchManager.QUERY, term);
                     startActivity(iSearch);
                 } else {
@@ -858,6 +766,20 @@ public class main_activity extends Activity implements View.OnClickListener {
 
                 Intent tutorial_intent = new Intent(main_activity.this, tutorial_activity.class);
                 startActivity(tutorial_intent);
+
+                mDrawerLayout.closeDrawer(LeftDrawer);
+
+                break;
+
+            case R.id.textBanglaCalendar:
+
+                Toast
+                        .makeText(main_activity.this,
+                                "Bangla Calendar - Bangladesh version", Toast.LENGTH_LONG)
+                        .show();
+
+                Intent bnCalendar_intent = new Intent(main_activity.this, bn_calendar_activity.class);
+                startActivity(bnCalendar_intent);
 
                 mDrawerLayout.closeDrawer(LeftDrawer);
 
@@ -1047,6 +969,14 @@ public class main_activity extends Activity implements View.OnClickListener {
     }
 
     void resetThings() {
+
+        iw_bangla_calendar bnCalendar =
+                new iw_bangla_calendar((GregorianCalendar) GregorianCalendar.getInstance());
+
+        String str = bnCalendar.getFullDate();
+
+        textBanglaCalendar.setText(str);
+
         isBackPressed = false;
     }
 
@@ -1101,6 +1031,90 @@ public class main_activity extends Activity implements View.OnClickListener {
     }
 }
 
+
+/**
+ * Trash Codes :)
+ * <p/>
+ * =======================================================
+ * //    void showSearchBar() {
+ * //
+ * //        editTextSearch.setEnabled(true);
+ * //        editTextSearch.requestFocus();
+ * //
+ * ////        toolbar.animate()
+ * ////                .translationY(-toolbar.getBottom())
+ * ////                .setInterpolator(new AccelerateInterpolator())
+ * ////                .start();
+ * //
+ * //        searchBar.animate()
+ * //                .translationY(0)
+ * //                .setInterpolator(new DecelerateInterpolator())
+ * //                .start();
+ * //
+ * //        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+ * //        imm.showSoftInput(editTextSearch, InputMethodManager.SHOW_IMPLICIT);
+ * //
+ * //        //txtView_welcome.setText(getString(R.string.main_window_welcome_text_search));
+ * //
+ * //    }
+ * <p/>
+ * //    void hideSearchBar() {
+ * //
+ * //        toolbar.animate()
+ * //                .translationY(0)
+ * //                .setInterpolator(new DecelerateInterpolator())
+ * //                .start();
+ * //
+ * //        searchBar.animate()
+ * //                .translationY(-searchBar.getBottom())
+ * //                .setInterpolator(new AccelerateInterpolator())
+ * //                .start();
+ * //
+ * //        editTextSearch.setEnabled(false);
+ * //
+ * //        //txtView_welcome.setText(getString(R.string.main_window_welcome_text_hint));
+ * //
+ * //    }
+ * <p/>
+ * <p/>
+ * <p/>
+ * //        if(isDbUpdateAvailable)
+ * //        {
+ * //
+ * //            Snackbar snackbar = Snackbar.make(findViewById(R.id.content_frame),
+ * //                    getString(R.string.info_favorite_list_backed_up),
+ * //                    Snackbar.LENGTH_INDEFINITE);
+ * //            snackbar.setAction(getString(R.string.str_why), new View.OnClickListener() {
+ * //                @Override
+ * //                public void onClick(View v) {
+ * //
+ * //                    sharedPref.edit().putBoolean(getString(R.string.pref_is_fav_clear_notify_read), true).apply();
+ * //
+ * //                    Intent tutorial_intent = new Intent(main_activity.this, tutorial_activity.class);
+ * //                    tutorial_intent.putExtra("goWhere", "backupNow");
+ * //                    startActivity(tutorial_intent);
+ * //                }
+ * //            });
+ * //            View snackBarView = snackbar.getView();
+ * //            snackBarView.setBackgroundColor(ContextCompat.getColor(main_activity.this,R.color.red_700));
+ * //            TextView tv = (TextView) snackBarView.findViewById(android.support.design.R.id.snackbar_text);
+ * //            tv.setTextColor(Color.WHITE);
+ * //            snackbar.show();
+ * //
+ * //        }
+ * <p/>
+ * //        textBanglaCalendar.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+ * //            @Override
+ * //            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+ * //                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+ * //                    // Query code here..
+ * //                    // sorry no query code ;)
+ * //                    return true;
+ * //                }
+ * //                return false;
+ * //            }
+ * //        });
+ */
 
 
 

@@ -1,3 +1,9 @@
+/**
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
 package org.imaginativeworld.shadhinovidhan;
 
 import android.Manifest;
@@ -17,11 +23,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-/**
- *
- * Created by Shohag on 26 Jan 16.
- *
- */
 public class backup_activity extends Activity implements View.OnClickListener {
 
     final int MY_PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE = 510;
@@ -62,7 +63,7 @@ public class backup_activity extends Activity implements View.OnClickListener {
                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                     MY_PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE);
 
-            txtViewDbInfo.setText(getString(R.string.allow_parmission_for_creating_backup));
+            txtViewDbInfo.setText(getString(R.string.allow_permission_for_creating_backup));
 
         } else {
 

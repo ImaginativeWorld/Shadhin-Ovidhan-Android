@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="5dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/light_green_700"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/title_box_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/shadow_height"
+        android:layout_below="@id/title"
+        android:background="@drawable/shadow_top_bottom" />
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_layout"
+        android:layout_below="@+id/title"
+        android:orientation="vertical"
+        android:padding="@dimen/border_margin">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/bn_month"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Month"
+                android:textColor="@color/light_green_800"
+                android:textSize="@dimen/details_word" />
+
+            <TextView
+                android:id="@+id/bn_year"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:text="Year"
+                android:textColor="@color/light_green_800"
+                android:textSize="@dimen/details_word" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/cal_week_01"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:textColor="@color/grey_500"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_week_02"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:textColor="@color/grey_500"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_week_03"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:textColor="@color/grey_500"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_week_04"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:textColor="@color/grey_500"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_week_05"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:textColor="@color/grey_500"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_week_06"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:textColor="@color/grey_500"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_week_07"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:textColor="@color/grey_500"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/cal_day_01"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="১"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_02"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="২"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_03"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="৩"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_04"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="৪"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_05"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="৫"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_06"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="৬"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_07"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="৭"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/cal_day_08"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="৮"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_09"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="৯"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_10"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="১০"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_11"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="১১"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_12"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="১২"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_13"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="১৩"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="১৪"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/cal_day_15"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="১৫"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_16"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="১৬"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_17"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="১৭"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_18"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="১৮"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_19"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="১৯"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_20"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="২০"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_21"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="২১"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/cal_day_22"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="২২"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_23"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="২৩"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_24"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="২৪"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_25"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="২৫"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_26"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="২৬"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_27"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="২৭"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_28"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="২৮"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/cal_day_29"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="২৯"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_30"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="৩০"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_31"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:text="৩১"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/btn_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/dialog_button_bar_height"
+        android:layout_alignParentBottom="true"
+        android:background="@color/buttons_bar_background"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_close"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:text="@string/dialog_message_ok" />
+
+    </LinearLayout>
+
+
+    <View
+        android:id="@+id/btn_box_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/shadow_height"
+        android:layout_above="@+id/btn_layout"
+        android:background="@drawable/shadow_bottom_top" />
+
+</RelativeLayout>

@@ -1,3 +1,9 @@
+/**
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
 package org.imaginativeworld.shadhinovidhan;
 
 import android.content.Context;
@@ -14,11 +20,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-/**
- *
- * Created by Shohag on 24 Jul 15.
- *
- */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Table Name
@@ -41,16 +42,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     static final String DB_NAME = "IWSO.DB"; // DON'T USE UNDERSCORE ("_") in database name.. :3
 
     /**
-     * "DB_VERSION": database version
-     *
+     * @DB_VERSION : database version
      * History: (DB version: App version)
      * 1: 1.0 to 1.1
      * 2: 1.2 to 1.3
      * 3: 1.4 : New Word added, semi-colonize
-     * 4: 1.5 to -.- : (IWSO_2.3) Remove [favorite] table and make Favourite independent.. :)
+     * 4: 1.5 : (IWSO_2.3) Remove [favorite] table and make Favourite independent.. :)
+     * 5: 1.6 to -.- : (IWSO_2.4) New entry added and old entry corrected
      */
-
-    static final int DB_VERSION = 4;
+    static final int DB_VERSION = 5;
 
     //The Android's default system path of your application database.
     private static String DB_PATH =
@@ -66,8 +66,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * Takes and keeps a reference of the passed context in order to access to the application
      * assets and resources.
      *
-     * @param context
-     * app context
+     * @param context app context
      */
     public DatabaseHelper(Context context) {
 

@@ -2,10 +2,10 @@
 
     <string name="app_name" translatable="false">স্বাধীন অভিধান</string>
 
-    <string name="app_version" translatable="false">1.5.160309</string>
+    <string name="app_version" translatable="false">1.6.160520</string>
 
     <string name="organization_name" translatable="false">Imaginative World</string>
-    <string name="about_description">An independent and full featured Bengali-English Dictionary</string>
+    <string name="about_description">An Open-source, independent and full featured Bengali-English Dictionary</string>
     <string name="website" translatable="false">http://imaginativeworld.org</string>
 
     <!--<string name="server_post_url" translatable="false">http://imaginativeworld.org/srv/soa/add.php</string>-->
@@ -161,7 +161,7 @@
     <string name="summary_language">%1$s language activated.\nIf the language not automatically activated after changing the Language, then Restart the Application.</string>
     <string name="desc_web_search">Web Search</string>
     <string name="desc_speech_to_text">Speech to Text</string>
-    <string name="copyrights1" translatable="false">Copyright © 2016 Imaginative World.</string>
+    <string name="copyrights1" translatable="false">Copyright © 2016 Imaginative World.\nThis product is licensed under MPL 2.0.</string>
     <string name="copyrights2" translatable="false">\"Shadhin Ovidhan\"- Name, Logo &amp; its Database are the properties of Imaginative World. It\'s Database is maintained and copyrighted by Imaginative World. Any kind of USE and/or MODIFICATION without the PERMISSION of Imaginative World is PROHIBITED.</string>
     <string name="menu_text_give_rating">Rate the Shadhin</string>
     <string name="pref_backup_restore">Backup/Restore</string>
@@ -179,11 +179,11 @@
     <string name="file_not_created">File Not Created!</string>
     <string name="no_new_modified_entry_found">No New/Modified entry found!</string>
     <string name="external_storage_not_writable">External Storage Not Writable!</string>
-    <string name="allow_parmission_for_creating_backup">ALLOW the permission for creating Backup.</string>
+    <string name="allow_permission_for_creating_backup">ALLOW the permission for creating Backup.</string>
     <string name="entry_backup_summery">Total New/Modified entry: %1$s\nBackup created at: %2$s/%3$s</string>
     <string name="entry_fav_backup_summery">Total entry: %1$s\nBackup created at: %2$s/%3$s</string>
     <string name="external_storage_not_readable">External Storage Not Readable!</string>
-    <string name="allow_parmission_for_retriving_backup">ALLOW the permission for retriving Backup.</string>
+    <string name="allow_permission_to_retrieving_backup">ALLOW the permission to retrieving Backup.</string>
     <string name="no_backup_file_found">No backup file found!\nError message: %1$s</string>
     <string name="total_entry_restored_summery">Total %1$s entry restored and %2$s ignored (already in database).</string>
     <string name="total_fav_entry_restored_summery">Total %1$s entry restored and %2$s ignored (already in favorites).</string>

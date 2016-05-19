@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="about_description">সম্পূর্ণ স্বাধীন এবং সর্বোচ্চ সুবিধাযুক্ত বাংলা-ইংরেজি অভিধান</string>
+    <string name="about_description">একটি ওপেন-সোর্স, সম্পূর্ণ স্বাধীন এবং সর্বোচ্চ সুবিধাযুক্ত বাংলা-ইংরেজি অভিধান</string>
 
     <string name="add_entry_title">নতুন অন্তর্ভুক্তি</string>
     <string name="modify_entry_title">অন্তর্ভুক্তি পরিবর্তন</string>
@@ -127,9 +127,9 @@
     <string name="external_storage_not_readable">বাইরের স্টোরেজ পড়া যাচ্ছে না!</string>
     <string name="external_storage_not_writable">বাইরের স্টোরেজে লিখা যাচ্ছে না!</string>
     <string name="backup_folder_not_found">ব্যাকআপ ফোল্ডার পাওয়া যাচ্ছে না!</string>
-    <string name="allow_parmission_for_retriving_backup">ব্যাকআপ ফেরত আনতে করতে অনুমোদন দিন।</string>
+    <string name="allow_permission_to_retrieving_backup">ব্যাকআপ ফেরত আনতে অনুমোদন দিন।</string>
     <string name="desc_btn_backup">প্রিয় এবং নতুন/পরিবর্তিত অন্তর্ভুক্তিসমূহ ব্যাকআপ করুন</string>
-    <string name="allow_parmission_for_creating_backup">ব্যাকআপ তৈরি করতে অনুমোদন দিন।</string>
+    <string name="allow_permission_for_creating_backup">ব্যাকআপ তৈরি করতে অনুমোদন দিন।</string>
     <string name="total_fav_entry_restored_summery">মোট %1$s টি অন্তর্ভুক্তি ফেরত আনা হয়েছে এবং %2$s টি বাদ দেয়া হয়েছে (ইতিমধ্যে প্রিয়তে রয়েছে)</string>
     <string name="menu_text_greek_alp">গ্রিক বর্ণমালা</string>
     <string name="title_greek_alphabet">গ্রিক বর্ণমালা</string>
