@@ -8,6 +8,8 @@
 
     <color name="naked_button_text_color">@color/light_green_800</color>
 
+    <color name="bright_foreground_disabled_material_dark">#80ffffff</color>
+
     <!-- Material Color -->
 
     <!--

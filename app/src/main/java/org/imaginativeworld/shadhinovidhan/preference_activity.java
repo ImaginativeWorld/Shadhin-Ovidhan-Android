@@ -18,6 +18,7 @@ public class preference_activity extends PreferenceActivity {
     public static String pref_key_auto_update_check = "pref_key_auto_update_check";
     public static String pref_feedback_show_counter = "pref_feedback_show_counter";
     public static String pref_language = "pref_lang";
+    public static String pref_ui_theme = "pref_ui_theme";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

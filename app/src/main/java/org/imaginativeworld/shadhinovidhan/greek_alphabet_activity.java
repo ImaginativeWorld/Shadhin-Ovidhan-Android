@@ -6,10 +6,10 @@
 
 package org.imaginativeworld.shadhinovidhan;
 
-import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 
-public class greek_alphabet_activity extends Activity implements View.OnClickListener {
+public class greek_alphabet_activity extends AppCompatActivity implements View.OnClickListener {
 
 
     // Views

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group>
+
+        <item
+            android:id="@+id/textBanglaCalendar"
+            android:icon="@drawable/ic_date_range_black_24dp"
+            android:title="Bangla Date"/>
+
+        <item
+            android:id="@+id/favorite"
+            android:icon="@drawable/ic_favorite_black_24dp"
+            android:title="@string/menu_text_favorite_list"/>
+
+        <item
+            android:id="@+id/history"
+            android:icon="@drawable/ic_history_black_24dp"
+            android:title="@string/menu_text_history"/>
+
+        <item
+            android:id="@+id/greek_alp"
+            android:icon="@drawable/ic_functions_black_24dp"
+            android:title="@string/menu_text_greek_alp"/>
+
+    </group>
+
+    <item android:title="অভিধান">
+        <menu>
+            <item
+                android:id="@+id/add_record"
+                android:icon="@drawable/ic_add_circle_black_24dp"
+                android:title="@string/menu_text_add_entry"/>
+        </menu>
+    </item>
+
+    <item android:title="পরিবর্তন">
+        <menu>
+            <item
+                android:id="@+id/prefs"
+                android:icon="@drawable/ic_settings_black_24dp"
+                android:title="@string/menu_text_options"/>
+
+            <item
+                android:id="@+id/change_theme_color"
+                android:icon="@drawable/ic_color_lens_black_24dp"
+                android:title="@string/menu_text_theme_color"/>
+        </menu>
+    </item>
+
+    <item android:title="অন্যান্য">
+        <menu>
+            <item
+                android:id="@+id/tutorial"
+                android:icon="@drawable/ic_help_black_24dp"
+                android:title="@string/menu_text_tutorial"/>
+
+
+            <item
+                android:id="@+id/about"
+                android:icon="@drawable/ic_lightbulb_outline_black_24dp"
+                android:title="@string/menu_text_about"/>
+
+            <item
+                android:id="@+id/giveRating"
+                android:icon="@drawable/ic_star_black_24dp"
+                android:title="@string/menu_text_give_rating"/>
+
+            <item
+                android:id="@+id/exit"
+                android:icon="@drawable/ic_exit_to_app_black_24dp"
+                android:title="@string/menu_text_exit"/>
+        </menu>
+    </item>
+
+</menu>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

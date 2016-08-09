@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white">
-
+    android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/activity_vertical_margin"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginTop="@dimen/activity_vertical_margin">
 
     <RelativeLayout
         android:id="@+id/title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_margin="@dimen/dialog_padding"
         android:orientation="vertical">
 
         <ImageView
@@ -41,19 +42,17 @@
             android:textSize="12sp" />
     </RelativeLayout>
 
+
     <View
-        android:id="@+id/title_box_shadow"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/shadow_height"
-        android:layout_below="@id/title"
-        android:background="@drawable/shadow_top_bottom" />
+        android:id="@+id/divider_one"
+        style="@style/Divider"
+        android:layout_below="@id/title" />
 
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_layout"
-        android:layout_below="@id/title"
-        android:padding="@dimen/dialog_padding">
+        android:layout_above="@+id/divider_two"
+        android:layout_below="@id/divider_one">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -142,41 +141,28 @@
 
     <LinearLayout
         android:id="@+id/btn_layout"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/dialog_button_bar_height"
         android:layout_alignParentBottom="true"
-        android:background="@color/buttons_bar_background"
-        android:gravity="center"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:gravity="right"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_update"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackground"
-            android:text="@string/check_update"
-            android:textColor="@color/grey_800" />
+            android:text="@string/check_update" />
 
         <Button
             android:id="@+id/btn_close"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackground"
-            android:text="@string/dialog_message_ok"
-            android:tint="@color/grey_800" />
+            android:text="@string/dialog_message_ok"/>
 
     </LinearLayout>
-
-    <View
-        android:id="@+id/btn_box_shadow"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/shadow_height"
-        android:layout_above="@+id/btn_layout"
-        android:background="@drawable/shadow_bottom_top" />
 
 
 </RelativeLayout>

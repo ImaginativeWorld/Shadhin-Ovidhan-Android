@@ -1,13 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.imaginativeworld.shadhinovidhan"
-    android:versionCode="7"
+    android:versionCode="8"
     android:versionName="@string/app_version">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".appContextHelper"
@@ -15,122 +15,95 @@
         android:icon="@drawable/so_icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-
         <activity
-            android:name="org.imaginativeworld.shadhinovidhan.main_activity"
+            android:name=".main_activity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="org.imaginativeworld.shadhinovidhan.add_new_entry"
+            android:name=".add_new_entry"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/DialogTheme" />
-
         <activity
-            android:name="org.imaginativeworld.shadhinovidhan.view_details_activity"
+            android:name=".view_details_activity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/app_name"
+            android:label="@string/view_details_title"
+            android:screenOrientation="portrait"
+            android:theme="@style/DialogTheme.DetailsView" />
+        <activity
+            android:name=".about_activity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/DialogTheme" />
-
         <activity
-            android:name="org.imaginativeworld.shadhinovidhan.about_activity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/DialogTheme" />
-
-        <activity
-            android:name="org.imaginativeworld.shadhinovidhan.preference_activity"
+            android:name=".preference_activity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppOptionsTheme" />
-
         <activity
-            android:name="org.imaginativeworld.shadhinovidhan.favorite_list_activity"
+            android:name=".favorite_list_activity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/favorite_title"
+            android:screenOrientation="portrait"
+            android:theme="@style/DialogTheme" />
+        <activity
+            android:name=".feedback_activity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/DialogTheme.DetailsView" />
+        <activity
+            android:name=".backup_activity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/DialogTheme" />
-
         <activity
-            android:name="org.imaginativeworld.shadhinovidhan.feedback_activity"
+            android:name=".restore_activity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/DialogTheme" />
-
         <activity
-            android:name="org.imaginativeworld.shadhinovidhan.backup_activity"
+            android:name=".greek_alphabet_activity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_greek_alphabet"
+            android:screenOrientation="portrait"
+            android:theme="@style/DialogTheme" />
+        <activity
+            android:name=".tutorial_activity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_tutorial"
+            android:screenOrientation="portrait"
+            android:theme="@style/DialogTheme" />
+        <activity
+            android:name=".bn_calendar_activity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/bn_calendar_title"
+            android:screenOrientation="portrait"
+            android:theme="@style/DialogTheme" />
+
+        <activity android:name=".ColorPickerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/DialogTheme" />
-
-        <activity
-            android:name="org.imaginativeworld.shadhinovidhan.restore_activity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/DialogTheme" />
-
-        <activity
-            android:name="org.imaginativeworld.shadhinovidhan.greek_alphabet_activity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/DialogTheme" />
-
-        <activity
-            android:name="org.imaginativeworld.shadhinovidhan.tutorial_activity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/DialogTheme" />
-
-        <activity
-            android:name="org.imaginativeworld.shadhinovidhan.bn_calendar_activity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/DialogTheme" />
-
-
     </application>
 
 </manifest>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

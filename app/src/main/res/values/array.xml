@@ -31,4 +31,30 @@
         <item>en</item>
     </string-array>
 
+    <string-array name="themeList">
+        <item>Light Green</item>
+        <item>Teal</item>
+        <item>Light Green</item>
+        <item>Teal</item>
+        <item>Teal</item>
+        <item>Teal</item>
+        <item>Teal</item>
+        <item>Teal</item>
+        <item>Teal</item>
+        <item>Teal</item>
+        <item>Teal</item>
+        <item>Teal</item>
+        <item>Teal</item>
+        <item>Teal</item>
+        <item>Teal</item>
+        <item>Teal</item>
+        <item>Teal</item>
+        <item>Teal</item>
+        <item>Teal</item>
+    </string-array>
+    <string-array name="themeListValues">
+        <item>light_green</item>
+        <item>teal</item>
+    </string-array>
+
 </resources>

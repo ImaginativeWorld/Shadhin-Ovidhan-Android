@@ -48,9 +48,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * 2: 1.2 to 1.3
      * 3: 1.4 : New Word added, semi-colonize
      * 4: 1.5 : (IWSO_2.3) Remove [favorite] table and make Favourite independent.. :)
-     * 5: 1.6 to -.- : (IWSO_2.4) New entry added and old entry corrected
+     * 5: 1.6 : (IWSO_2.4) New entry added and old entry corrected
+     * 6: 1.7 to -.- : (IWSO_3.0) New Database rule (Not completed yet)
      */
-    static final int DB_VERSION = 5;
+    static final int DB_VERSION = 6;
 
     //The Android's default system path of your application database.
     private static String DB_PATH =

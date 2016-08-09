@@ -114,7 +114,7 @@ public class sendDataToServer {
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(String result) {
-            //tv.setText(result);
+            //Log.d("shadhinovidhan", result);
         }
     }
 }

@@ -2,18 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
-
-    <LinearLayout
-        android:id="@+id/title"
-        android:layout_width="fill_parent"
-        android:layout_height="5dp"
-        android:layout_alignParentTop="true"
-        android:background="@color/light_green_700"
-        android:orientation="vertical">
-
-
-    </LinearLayout>
+    android:layout_marginBottom="@dimen/activity_vertical_margin"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginTop="@dimen/activity_vertical_margin">
 
     <LinearLayout
         android:id="@+id/box_info"
@@ -21,8 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/title"
         android:orientation="horizontal"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp">
+        android:paddingBottom="@dimen/dialog_vertical_padding">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -35,7 +26,6 @@
                 android:id="@+id/txt_word"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dialog_padding"
                 android:text="@string/ui_default_txt_view_word"
                 android:textColor="@color/grey_800"
                 android:textSize="@dimen/details_word"
@@ -45,7 +35,6 @@
                 android:id="@+id/txt_pos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dialog_padding"
                 android:text="@string/ui_default_txt_view_pos"
                 android:textSize="@dimen/details_pos"
                 android:textStyle="italic" />
@@ -57,6 +46,8 @@
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/transparent"
             android:src="@drawable/ic_favorite_outline_black_48dp"
             android:tint="@color/grey_800" />
 
@@ -69,8 +60,6 @@
         android:layout_above="@+id/box_info_synonyms"
         android:layout_below="@+id/box_info"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="@dimen/dialog_padding"
-        android:layout_marginRight="@dimen/dialog_padding"
         android:orientation="vertical">
 
         <ListView
@@ -79,7 +68,9 @@
             android:layout_height="fill_parent"
             android:choiceMode="singleChoice"
             android:divider="@color/grey_300"
-            android:dividerHeight="1dp" />
+            android:dividerHeight="1dp"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin" />
 
         <TextView
             android:id="@+id/txt_empty"
@@ -93,19 +84,17 @@
     <LinearLayout
         android:id="@+id/box_info_synonyms"
         android:layout_width="match_parent"
-        android:layout_height="156dp"
+        android:layout_height="160dp"
         android:layout_above="@+id/btn_layout"
-        android:layout_marginLeft="@dimen/dialog_padding"
-        android:layout_marginRight="@dimen/dialog_padding"
-        android:orientation="vertical"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp">
+        android:orientation="vertical">
 
 
         <TextView
             style="@style/standard_title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/dialog_vertical_padding"
+            android:paddingTop="@dimen/dialog_vertical_padding"
             android:text="@string/ui_default_txt_view_synonyms" />
 
 
@@ -115,7 +104,9 @@
             android:layout_height="fill_parent"
             android:choiceMode="singleChoice"
             android:divider="@color/grey_300"
-            android:dividerHeight="1dp" />
+            android:dividerHeight="1dp"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin" />
 
         <TextView
             android:id="@+id/txt_empty_syno"
@@ -133,8 +124,6 @@
         android:layout_width="fill_parent"
         android:layout_height="@dimen/dialog_button_bar_height"
         android:layout_alignParentBottom="true"
-        android:background="@color/buttons_bar_background"
-        android:gravity="center"
         android:orientation="horizontal">
 
         <ImageButton
@@ -156,7 +145,7 @@
             android:layout_weight="1"
             android:background="?attr/selectableItemBackground"
             android:padding="@dimen/dialog_button_bar_button_padding"
-            android:src="@drawable/ic_add_black_48dp"
+            android:src="@drawable/ic_playlist_add_black_48dp"
             android:tint="@color/grey_800" />
 
         <ImageButton
@@ -194,19 +183,19 @@
 
     </LinearLayout>
 
-    <View
-        android:id="@+id/title_box_shadow"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/shadow_height"
-        android:layout_below="@id/title"
-        android:background="@drawable/shadow_top_bottom" />
+    <!--<View-->
+    <!--android:id="@+id/title_box_shadow"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="@dimen/shadow_height"-->
+    <!--android:layout_below="@id/title"-->
+    <!--android:background="@drawable/shadow_top_bottom" />-->
 
-    <View
-        android:id="@+id/btn_box_shadow"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/shadow_height"
-        android:layout_above="@+id/btn_layout"
-        android:background="@drawable/shadow_bottom_top" />
+    <!--<View-->
+    <!--android:id="@+id/btn_box_shadow"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="@dimen/shadow_height"-->
+    <!--android:layout_above="@+id/btn_layout"-->
+    <!--android:background="@drawable/shadow_bottom_top" />-->
 
     <FrameLayout
         android:id="@+id/layout_options"
@@ -227,10 +216,10 @@
                 android:layout_marginBottom="5dp"
                 android:background="@color/white"
                 android:orientation="vertical"
-                android:paddingBottom="@dimen/button_bar_padding"
-                android:paddingLeft="@dimen/dialog_padding"
-                android:paddingRight="@dimen/dialog_padding"
-                android:paddingTop="@dimen/button_bar_padding">
+                android:paddingBottom="@dimen/dialog_vertical_padding"
+                android:paddingLeft="@dimen/dialog_horizontal_padding"
+                android:paddingRight="@dimen/dialog_horizontal_padding"
+                android:paddingTop="@dimen/dialog_vertical_padding">
 
                 <EditText
                     android:id="@+id/txtEdit_meaning"
@@ -258,10 +247,10 @@
                 android:background="@color/white"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingBottom="@dimen/button_bar_padding"
-                android:paddingLeft="@dimen/dialog_padding"
-                android:paddingRight="@dimen/dialog_padding"
-                android:paddingTop="@dimen/button_bar_padding">
+                android:paddingBottom="@dimen/dialog_vertical_padding"
+                android:paddingLeft="@dimen/dialog_horizontal_padding"
+                android:paddingRight="@dimen/dialog_horizontal_padding"
+                android:paddingTop="@dimen/dialog_vertical_padding">
 
                 <ImageButton
                     android:id="@+id/btn_delete_meaning_part"

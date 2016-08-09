@@ -5,8 +5,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingBottom="10dp"
-    android:paddingLeft="@dimen/border_margin"
-    android:paddingRight="@dimen/border_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="10dp">
 
     <TextView
@@ -30,10 +30,12 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:ellipsize="end"
-        android:maxLines="2"
+
         android:paddingTop="3dp"
         android:textSize="@dimen/list_meaning_text"
         android:visibility="visible" />
+
+    <!--android:maxLines="2"-->
 
     <TextView
         android:id="@+id/txt_synonyms"

@@ -3,6 +3,10 @@ Shadhin Ovidhan Android - An Open-source, independent and full featured Bengali-
 
 Visit: [http://imaginativeworld.org/products/shadhin-ovidhan-android/](http://imaginativeworld.org/products/shadhin-ovidhan-android/ "Imaginative World") for latest version.
 
+## Download ##
+[Google Play](https://play.google.com/store/apps/details?id=org.imaginativeworld.shadhinovidhan)
+
+
 
 ## Build Software ##
 

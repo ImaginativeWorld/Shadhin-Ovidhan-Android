@@ -6,18 +6,18 @@
 
 package org.imaginativeworld.shadhinovidhan;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-public class feedback_activity extends Activity implements View.OnClickListener {
+public class feedback_activity extends AppCompatActivity implements View.OnClickListener {
 
     Resources res;
     private String URL_market, URL_feedback;

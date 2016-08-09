@@ -6,7 +6,6 @@
 
 package org.imaginativeworld.shadhinovidhan;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -17,6 +16,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -39,7 +39,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
 
-public class view_details_activity extends Activity implements OnClickListener {
+public class view_details_activity extends AppCompatActivity implements OnClickListener {
 
     TextView clickedTxtView;
     Boolean IsSendToServer;
@@ -69,7 +69,7 @@ public class view_details_activity extends Activity implements OnClickListener {
     private String sPos;
     private String sMeaning;
     private String sSynonyms;
-    private String tEXT, tEXTsyno;
+    private String tEXT, tEXTsyno, tEXTmeaning;
     private int pOSITION;
     private boolean isDBchanged = false;
     private ArrayList<String> sMeaningArrList;
@@ -80,8 +80,6 @@ public class view_details_activity extends Activity implements OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setTitle(getString(R.string.view_details_title));
 
         setContentView(R.layout.details_view_layout);
 
@@ -267,25 +265,119 @@ public class view_details_activity extends Activity implements OnClickListener {
 
         meaningList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
 
-                clickedTxtView = (TextView) view.findViewById(R.id.text_view);
+//                clickedTxtView = (TextView) view.findViewById(R.id.text_view);
+//
+//                // NOTE: Same Code: longClickListener
+//                tEXT = clickedTxtView.getText().toString();
+//                pOSITION = position;
+//
+//                txtEditMeaning.setVisibility(View.GONE);
+//                txtViewMeaning.setText(tEXT);
+//                txtViewMeaning.setVisibility(View.VISIBLE);
+//
+//                OptionView.setVisibility(View.VISIBLE);
+//
+//                final Animation animationFade =
+//                        AnimationUtils.loadAnimation(view_details_activity.this, android.R.anim.fade_in);
+//
+//                OptionView.clearAnimation();
+//                OptionView.startAnimation(animationFade);
 
-                // NOTE: Same Code: longClickListener
-                tEXT = clickedTxtView.getText().toString();
-                pOSITION = position;
+                //====================================================
 
-                txtEditMeaning.setVisibility(View.GONE);
-                txtViewMeaning.setText(tEXT);
-                txtViewMeaning.setVisibility(View.VISIBLE);
+                /// TODO: editing this [Completed]
 
-                OptionView.setVisibility(View.VISIBLE);
+                TextView text = (TextView) view.findViewById(R.id.text_view);
 
-                final Animation animationFade =
-                        AnimationUtils.loadAnimation(view_details_activity.this, android.R.anim.fade_in);
+                tEXTmeaning = text.getText().toString();
 
-                OptionView.clearAnimation();
-                OptionView.startAnimation(animationFade);
+                AlertDialog.Builder adb = new AlertDialog.Builder(view_details_activity.this);
+                adb.setTitle(getString(R.string.what_do_you_want));
+                //adb.setMessage("?");
+
+                adb.setPositiveButton(getString(R.string.str_delete), new AlertDialog.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+
+                        AlertDialog.Builder adb = new AlertDialog.Builder(view_details_activity.this);
+                        adb.setTitle(getString(R.string.question_remove_meaning_part_title));
+                        adb.setMessage(getString(R.string.question_remove_meaning_part_description));
+                        adb.setNegativeButton(getString(R.string.no), null);
+                        adb.setPositiveButton(getString(R.string.yes), new AlertDialog.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                /// TODO: completed
+                                sMeaningArrList.remove(position); //pOSITION
+                                adapter.notifyDataSetChanged();
+
+                                updateDB();
+                                closeEditView();
+
+                            }
+                        });
+                        adb.show();
+
+                    }
+                });
+                adb.setNeutralButton(getString(R.string.str_edit),
+                        new AlertDialog.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                final EditText userInput = (EditText) DialogView.findViewById(R.id.txtInput);
+                                //userInput.setText("");
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder(view_details_activity.this);
+                                builder.setTitle(getString(R.string.ui_txt_edit_meaning));
+
+                                //Multiple parent fix
+                                if (DialogView.getParent() != null)
+                                    ((ViewGroup) DialogView.getParent()).removeView(DialogView);
+
+                                builder.setView(DialogView);
+
+                                subTitleDialog.setText(getString(R.string.enter_change_meanings));
+                                userInput.setText(tEXTmeaning);
+                                userInput.setHint(R.string.edited_meanings);
+
+                                builder.setPositiveButton(getString(R.string.str_add), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                        /// TODO: completed
+                                        if (!userInput.getText().toString().equals("")) {
+
+                                            sMeaningArrList.set(position, userInput.getText().toString().replace("\n", " ").replace("\r", " "));
+
+                                            adapter.notifyDataSetChanged();
+
+                                            updateDB();
+                                        }
+
+                                    }
+                                });
+                                builder.setNegativeButton(getString(R.string.str_cancel), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                });
+                                builder.show();
+
+                            }
+                        });
+
+                adb.setNegativeButton(getString(R.string.str_view_cancel), new AlertDialog.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        /// TODO: completed
+                        //finishWithResult(true);
+                    }
+                });
+
+                adb.show();
 
                 return true;
             }
@@ -384,9 +476,26 @@ public class view_details_activity extends Activity implements OnClickListener {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
 
+                                            /// TODO: No change needed
                                             if (!userInput.getText().toString().equals("")) {
                                                 sSynonymsArrList.set(position, userInput.getText().toString().replace("\n", " ").replace("\r", " "));
                                                 synoAdapter.notifyDataSetChanged();
+
+                                                updateDB();
+
+                                                //========
+                                                txtEditMeaning.setVisibility(View.GONE);
+
+                                                //text.replace("\n", "").replace("\r", "");
+                                                tEXT = txtEditMeaning.getText().toString().replace("\n", " ").replace("\r", " ");
+
+                                                txtViewMeaning.setText(tEXT);
+                                                txtViewMeaning.setVisibility(View.VISIBLE);
+
+                                                btnEdit.setImageResource(R.drawable.ic_edit_black_48dp);
+
+                                                sMeaningArrList.set(pOSITION, tEXT);
+                                                adapter.notifyDataSetChanged();
 
                                                 updateDB();
                                             }

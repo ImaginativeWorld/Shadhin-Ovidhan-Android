@@ -9,7 +9,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btnOk"
+        android:layout_above="@+id/btn_layout"
         android:layout_alignParentTop="true">
 
         <LinearLayout
@@ -52,16 +52,23 @@
         </LinearLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/btnOk"
-        style="?android:attr/borderlessButtonStyle"
+    <LinearLayout
+        android:id="@+id/btn_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dialog_button_bar_height"
         android:layout_alignParentBottom="true"
-        android:background="?attr/selectableItemBackground"
-        android:padding="@dimen/button_bar_padding"
-        android:text="@string/dialog_message_ok"
-        android:textColor="@color/light_green_800"
-        android:textSize="@dimen/abc_text_size_medium_material" />
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnOk"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="@string/dialog_message_ok"/>
+
+    </LinearLayout>
+
 
 </RelativeLayout>

@@ -6,13 +6,13 @@
 
 package org.imaginativeworld.shadhinovidhan;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
 
-public class tutorial_activity extends Activity implements View.OnClickListener {
+public class tutorial_activity extends AppCompatActivity implements View.OnClickListener {
 
     WebView webView;
     Button btnClose, btnIndex;

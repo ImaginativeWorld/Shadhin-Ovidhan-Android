@@ -35,7 +35,7 @@
 
 
     <string name="update_available">হালনাগাদ পাওয়া যাচ্ছে!</string>
-    <string name="check_update">হালনাগাদ\nপরীক্ষা করুন</string>
+    <string name="check_update">হালনাগাদ পরীক্ষা করুন</string>
     <string name="update_now">এখনি হালনাগাদ করুন</string>
     <string name="wait">অপেক্ষা\nকরুন&#8230;</string>
     <string name="update_not_found">কোনো হালনাগাদ\nনেই!</string>

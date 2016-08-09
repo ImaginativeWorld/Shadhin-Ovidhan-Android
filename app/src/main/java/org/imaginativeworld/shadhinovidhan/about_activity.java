@@ -6,7 +6,6 @@
 
 package org.imaginativeworld.shadhinovidhan;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -15,6 +14,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Xml;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -32,7 +32,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class about_activity extends Activity implements OnClickListener {
+public class about_activity extends AppCompatActivity implements OnClickListener {
 
     String namedversion,
             changelogurl, downloadurl, productpageurl,

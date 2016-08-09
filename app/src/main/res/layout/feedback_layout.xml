@@ -2,30 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:layout_marginBottom="@dimen/activity_vertical_margin"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginTop="@dimen/activity_vertical_margin">
 
-    <LinearLayout
-        android:id="@+id/title"
-        android:layout_width="fill_parent"
-        android:layout_height="5dp"
-        android:layout_alignParentTop="true"
-        android:background="@color/light_green_700"
-        android:orientation="vertical">
-
-    </LinearLayout>
-
-    <View
-        android:id="@+id/title_box_shadow"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/shadow_height"
-        android:layout_below="@id/title"
-        android:background="@drawable/shadow_top_bottom" />
 
     <LinearLayout
         android:id="@+id/body_layout_text"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/title"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:padding="@dimen/dialog_padding">
 
@@ -34,7 +21,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/txt_are_you_like_out_app"
-            android:textSize="@dimen/abc_text_size_large_material" />
+            android:textSize="@dimen/big_font_size" />
     </LinearLayout>
 
     <LinearLayout
@@ -52,6 +39,7 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
+            android:background="@android:color/transparent"
             android:src="@drawable/ic_thumb_up_black_48dp"
             android:tint="@color/light_green_800" />
 
@@ -61,9 +49,9 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
+            android:background="@android:color/transparent"
             android:src="@drawable/ic_thumb_down_black_48dp"
             android:tint="@color/red_700" />
-
 
     </LinearLayout>
 
@@ -73,28 +61,19 @@
         android:layout_width="fill_parent"
         android:layout_height="@dimen/dialog_button_bar_height"
         android:layout_alignParentBottom="true"
-        android:background="@color/buttons_bar_background"
-        android:gravity="center"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:gravity="end"
         android:orientation="horizontal">
 
-
         <Button
+
             android:id="@+id/btn_close"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackground"
             android:text="@string/str_later" />
 
     </LinearLayout>
 
-
-    <View
-        android:id="@+id/btn_box_shadow"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/shadow_height"
-        android:layout_above="@+id/btn_layout"
-        android:background="@drawable/shadow_bottom_top" />
 
 </RelativeLayout>

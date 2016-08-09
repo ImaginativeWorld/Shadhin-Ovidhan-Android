@@ -25,13 +25,16 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.speech.RecognizerIntent;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
 import android.util.Xml;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -56,7 +59,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-public class main_activity extends Activity implements View.OnClickListener {
+public class main_activity extends Activity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 
     //for DB ovidhan
     final String[] from = new String[]{
@@ -85,17 +88,9 @@ public class main_activity extends Activity implements View.OnClickListener {
     String BnSearchType, EnSearchType;
     int pref_feedback_show_counter;
     ListView listView, listViewHistory;
-    Button btn_add_record;
-    Button btn_favorite;
-    Button btn_history;
-    Button btn_prefs;
-    Button btn_about;
-    Button btn_rate;
-    Button btn_exit;
     Button btn_clr_history;
-    Button btn_greek_alp;
-    Button btn_tutorial;
-    TextView textBanglaCalendar;
+    //    TextView textBanglaCalendar;
+    MenuItem nav_bn_calendar;
     /**
      * History
      */
@@ -111,7 +106,7 @@ public class main_activity extends Activity implements View.OnClickListener {
     String productpageurl;
     String releasedate;
 
-    String Lang;
+    String Lang, UI_theme;
     String strTemp;
 
     HashMap<String, String> hashMap;
@@ -130,7 +125,7 @@ public class main_activity extends Activity implements View.OnClickListener {
 
     private DrawerLayout mDrawerLayout;
 
-    private View LeftDrawer, RightDrawer;
+    private View RightDrawer;
 
 
     @Override
@@ -138,10 +133,12 @@ public class main_activity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
 
         //Remove title bar
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);// Locale
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         Lang = sharedPref.getString(preference_activity.pref_language, "bn");
+        UI_theme = sharedPref.getString(preference_activity.pref_ui_theme, "light_green");
+
 
         sharedPref.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
             @Override
@@ -149,9 +146,9 @@ public class main_activity extends Activity implements View.OnClickListener {
                 if (key.equals(preference_activity.pref_language)) {
                     RestartActivity();
                 }
-                //Log.v("soa", key);
             }
         });
+
 
         Configuration config = getBaseContext().getResources().getConfiguration();
 
@@ -160,6 +157,10 @@ public class main_activity extends Activity implements View.OnClickListener {
         config.locale = locale;
         getBaseContext().getResources().updateConfiguration(config,
                 getBaseContext().getResources().getDisplayMetrics());
+
+
+        setUItheme(UI_theme);
+
 
         //============================================================
 
@@ -170,7 +171,16 @@ public class main_activity extends Activity implements View.OnClickListener {
         // All About Drawer init.
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        LeftDrawer = findViewById(R.id.left_drawer);
+
+        NavigationView navigationViewLeft = (NavigationView) findViewById(R.id.nav_view_left);
+        navigationViewLeft.setNavigationItemSelectedListener(this);
+
+        // get menu from navigationView
+        Menu menu = navigationViewLeft.getMenu();
+
+        // find MenuItem you want to change
+        nav_bn_calendar = menu.findItem(R.id.textBanglaCalendar);
+
         RightDrawer = findViewById(R.id.right_drawer);
 
         mDrawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
@@ -208,8 +218,6 @@ public class main_activity extends Activity implements View.OnClickListener {
         //============================================================
 
         searchBar = findViewById(R.id.search_bar);
-        //searchBar.setY(-getPixels(56));
-
 
         editTextSearch = (EditText) findViewById(R.id.editTextSearch);
         editTextSearch.getBackground().setColorFilter(getResources()
@@ -236,39 +244,6 @@ public class main_activity extends Activity implements View.OnClickListener {
 
         //============================================================
 
-        btn_add_record = (Button) findViewById(R.id.add_record);
-        btn_add_record.setOnClickListener(main_activity.this);
-
-        btn_favorite = (Button) findViewById(R.id.favorite);
-        btn_favorite.setOnClickListener(main_activity.this);
-
-        btn_history = (Button) findViewById(R.id.history);
-        btn_history.setOnClickListener(main_activity.this);
-
-        btn_prefs = (Button) findViewById(R.id.prefs);
-        btn_prefs.setOnClickListener(main_activity.this);
-
-        btn_about = (Button) findViewById(R.id.about);
-        btn_about.setOnClickListener(main_activity.this);
-
-        btn_rate = (Button) findViewById(R.id.giveRating);
-        btn_rate.setOnClickListener(main_activity.this);
-
-        btn_exit = (Button) findViewById(R.id.exit);
-        btn_exit.setOnClickListener(main_activity.this);
-
-        btn_greek_alp = (Button) findViewById(R.id.greek_alp);
-        btn_greek_alp.setOnClickListener(main_activity.this);
-
-        btn_tutorial = (Button) findViewById(R.id.tutorial);
-        btn_tutorial.setOnClickListener(main_activity.this);
-
-        textBanglaCalendar = (TextView) findViewById(R.id.textBanglaCalendar);
-        textBanglaCalendar.setOnClickListener(main_activity.this);
-
-
-        //============================================================
-
         listViewHistory = (ListView) findViewById(R.id.list_view_history);
 
         listViewHistory.setEmptyView(findViewById(R.id.emptyHistory)); // for empty view
@@ -282,7 +257,6 @@ public class main_activity extends Activity implements View.OnClickListener {
                 editTextSearch.setText(text.getText());
 
                 mDrawerLayout.closeDrawer(RightDrawer);
-
 
             }
         });
@@ -506,7 +480,11 @@ public class main_activity extends Activity implements View.OnClickListener {
 
         String str = bnCalendar.getFullDate();
 
-        textBanglaCalendar.setText(str);
+        // set new title to the MenuItem
+        nav_bn_calendar.setTitle(str);
+
+//        textBanglaCalendar.setText(str);
+//        textBanglaCalendar.setTitle(str);
 
 
     }
@@ -602,6 +580,28 @@ public class main_activity extends Activity implements View.OnClickListener {
                 }
 
                 break;
+
+            case 600: // Color Picker
+
+                if (resultCode == RESULT_OK) {
+                    Bundle res = data.getExtras();
+                    String colorName = res.getString("ColorName");
+
+                    //Log.d("aaa", colorName);
+
+                    // Save the theme name into the preference
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putString(preference_activity.pref_ui_theme, colorName);
+                    editor.apply();
+
+                    // restart activity to apply the theme
+                    finish();
+                    startActivity(getIntent());
+
+                }
+
+
+                break;
         }
     }
 
@@ -643,87 +643,13 @@ public class main_activity extends Activity implements View.OnClickListener {
 
             case R.id.btnDrawerMenu:
 
-                mDrawerLayout.openDrawer(LeftDrawer);
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                drawer.openDrawer(GravityCompat.START);
+
+//                mDrawerLayout.openDrawer(drawer);
 
                 break;
 
-
-            case R.id.add_record:
-
-                Intent add_entry_intent = new Intent(main_activity.this, add_new_entry.class);
-                startActivityForResult(add_entry_intent, 200);
-
-
-                mDrawerLayout.closeDrawer(LeftDrawer);
-
-                break;
-
-            case R.id.favorite:
-
-                Intent fav_intent = new Intent(main_activity.this, favorite_list_activity.class);
-                startActivityForResult(fav_intent, 400);
-
-                mDrawerLayout.closeDrawer(LeftDrawer);
-
-                break;
-
-            case R.id.greek_alp:
-
-                Intent greek_alp_intent = new Intent(main_activity.this, greek_alphabet_activity.class);
-                startActivity(greek_alp_intent);
-
-                mDrawerLayout.closeDrawer(LeftDrawer);
-
-                break;
-
-            case R.id.history:
-
-                mDrawerLayout.closeDrawer(LeftDrawer);
-                mDrawerLayout.openDrawer(RightDrawer);
-
-                break;
-
-            case R.id.prefs:
-
-                Intent prefs_intent = new Intent(main_activity.this, preference_activity.class);
-                startActivityForResult(prefs_intent, 300);
-
-
-                mDrawerLayout.closeDrawer(LeftDrawer);
-
-                break;
-
-            case R.id.about:
-
-
-                Intent about_intent = new Intent(main_activity.this, about_activity.class);
-                startActivity(about_intent);
-
-
-                mDrawerLayout.closeDrawer(LeftDrawer);
-
-                break;
-
-            case R.id.giveRating:
-
-
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(getResources().getString(R.string.url_market)));
-                startActivity(intent);
-
-
-                mDrawerLayout.closeDrawer(LeftDrawer);
-
-                break;
-
-            case R.id.exit:
-
-                //API >= 16
-                main_activity.this.finishAffinity();
-
-                //mDrawerLayout.closeDrawer(LeftDrawer);
-
-                break;
 
             case R.id.btn_clr_history:
 
@@ -761,30 +687,6 @@ public class main_activity extends Activity implements View.OnClickListener {
                 }
 
                 break;
-
-            case R.id.tutorial:
-
-                Intent tutorial_intent = new Intent(main_activity.this, tutorial_activity.class);
-                startActivity(tutorial_intent);
-
-                mDrawerLayout.closeDrawer(LeftDrawer);
-
-                break;
-
-            case R.id.textBanglaCalendar:
-
-                Toast
-                        .makeText(main_activity.this,
-                                "Bangla Calendar - Bangladesh version", Toast.LENGTH_LONG)
-                        .show();
-
-                Intent bnCalendar_intent = new Intent(main_activity.this, bn_calendar_activity.class);
-                startActivity(bnCalendar_intent);
-
-                mDrawerLayout.closeDrawer(LeftDrawer);
-
-                break;
-
 
         }
     }
@@ -975,9 +877,179 @@ public class main_activity extends Activity implements View.OnClickListener {
 
         String str = bnCalendar.getFullDate();
 
-        textBanglaCalendar.setText(str);
+        nav_bn_calendar.setTitle(str);
+
+//        textBanglaCalendar.setText(str);
+//        textBanglaCalendar.setTitle(str);
 
         isBackPressed = false;
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.textBanglaCalendar) {
+
+            Toast
+                    .makeText(main_activity.this,
+                            "Bangla Calendar - Bangladesh version", Toast.LENGTH_LONG)
+                    .show();
+
+            Intent bnCalendar_intent = new Intent(main_activity.this, bn_calendar_activity.class);
+            startActivity(bnCalendar_intent);
+
+        } else if (id == R.id.favorite) {
+
+            Intent fav_intent = new Intent(main_activity.this, favorite_list_activity.class);
+            startActivityForResult(fav_intent, 400);
+
+            //mDrawerLayout.closeDrawer(LeftDrawer);
+
+        } else if (id == R.id.history) {
+
+            //                mDrawerLayout.closeDrawer(LeftDrawer);
+            mDrawerLayout.openDrawer(RightDrawer);
+
+        } else if (id == R.id.greek_alp) {
+
+            Intent greek_alp_intent = new Intent(main_activity.this, greek_alphabet_activity.class);
+            startActivity(greek_alp_intent);
+
+        } else if (id == R.id.add_record) {
+
+            Intent add_entry_intent = new Intent(main_activity.this, add_new_entry.class);
+            startActivityForResult(add_entry_intent, 200);
+
+            //mDrawerLayout.closeDrawer(LeftDrawer);
+
+        } else if (id == R.id.prefs) {
+
+            Intent prefs_intent = new Intent(main_activity.this, preference_activity.class);
+            startActivityForResult(prefs_intent, 300);
+
+        } else if (id == R.id.tutorial) {
+
+            Intent tutorial_intent = new Intent(main_activity.this, tutorial_activity.class);
+            startActivity(tutorial_intent);
+
+        } else if (id == R.id.about) {
+
+            Intent about_intent = new Intent(main_activity.this, about_activity.class);
+            startActivity(about_intent);
+
+        } else if (id == R.id.giveRating) {
+
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(getResources().getString(R.string.url_market)));
+            startActivity(intent);
+
+        } else if (id == R.id.exit) {
+
+            //API >= 16
+            main_activity.this.finishAffinity();
+
+        } else if (id == R.id.change_theme_color) {
+
+            Intent color_intent = new Intent(main_activity.this, ColorPickerActivity.class);
+            color_intent.putExtra(getString(R.string.ColorName), UI_theme);
+            startActivityForResult(color_intent, 600);
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    public void setUItheme(String themeName)
+    {
+        switch (themeName) {
+            case "red":
+                setTheme(R.style.AppTheme_red);
+                break;
+
+            case "pink":
+                setTheme(R.style.AppTheme_pink);
+                break;
+
+            case "purple":
+                setTheme(R.style.AppTheme_purple);
+                break;
+
+            case "deep_purple":
+                setTheme(R.style.AppTheme_deep_purple);
+                break;
+
+            case "indigo":
+                setTheme(R.style.AppTheme_indigo);
+                break;
+
+            case "blue":
+                setTheme(R.style.AppTheme_blue);
+                break;
+
+            case "light_blue":
+                setTheme(R.style.AppTheme_light_blue);
+                break;
+
+            case "cyan":
+                setTheme(R.style.AppTheme_cyan);
+                break;
+
+            case "teal":
+                setTheme(R.style.AppTheme_teal);
+                break;
+
+            case "green":
+                setTheme(R.style.AppTheme_green);
+                break;
+
+            case "light_green":
+                setTheme(R.style.AppTheme_light_green);
+                break;
+
+            case "lime":
+                setTheme(R.style.AppTheme_lime);
+                break;
+
+            case "yellow":
+                setTheme(R.style.AppTheme_yellow);
+                break;
+
+            case "amber":
+                setTheme(R.style.AppTheme_amber);
+                break;
+
+            case "orange":
+                setTheme(R.style.AppTheme_orange);
+                break;
+
+            case "deep_orange":
+                setTheme(R.style.AppTheme_deep_orange);
+                break;
+
+            case "brown":
+                setTheme(R.style.AppTheme_brown);
+                break;
+
+            case "grey":
+                setTheme(R.style.AppTheme_grey);
+                break;
+
+            case "blue_grey":
+                setTheme(R.style.AppTheme_blue_grey);
+                break;
+
+            case "black":
+                setTheme(R.style.AppTheme_black);
+                break;
+
+            default:
+                setTheme(R.style.AppTheme_light_green); //light_green
+                break;
+        }
+
     }
 
     // Uses AsyncTask to create a task away from the main UI thread. This task takes a
@@ -1028,6 +1100,7 @@ public class main_activity extends Activity implements View.OnClickListener {
             }
 
         }
+
     }
 }
 

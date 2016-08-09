@@ -6,15 +6,15 @@
 
 package org.imaginativeworld.shadhinovidhan;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.GregorianCalendar;
 
-public class bn_calendar_activity extends Activity implements View.OnClickListener {
+public class bn_calendar_activity extends AppCompatActivity implements View.OnClickListener {
 
     TextView bnMonth, bnYear;
 
@@ -115,11 +115,14 @@ public class bn_calendar_activity extends Activity implements View.OnClickListen
         int dayOfWeek = bnCalendar.getDayOfTheWeek();
 
         int startLoop = bnCalendar.getDateInt();
-        if (startLoop > 7)
+
+        if (startLoop >= 7)
             startLoop %= 7;
+        if(startLoop==0)
+            startLoop=7;
 
         for (int i = 0; i < 7; i++) {
-            week[startLoop - 1].setText(strWeek[dayOfWeek - 1]);
+            week[startLoop-1].setText(strWeek[dayOfWeek - 1]);  // ~ - 1
             startLoop++;
             dayOfWeek++;
             if (startLoop > 7)

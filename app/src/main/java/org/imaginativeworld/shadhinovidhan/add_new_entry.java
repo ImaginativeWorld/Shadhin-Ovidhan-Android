@@ -6,13 +6,13 @@
 
 package org.imaginativeworld.shadhinovidhan;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,14 +21,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class add_new_entry extends Activity implements OnClickListener {
+public class add_new_entry extends AppCompatActivity implements OnClickListener {
 
     int POSITION;
     int POSITION_Syno;
@@ -42,8 +41,8 @@ public class add_new_entry extends Activity implements OnClickListener {
     ArrayList<String> listItemsSynonyms = new ArrayList<>();
     ArrayAdapter<String> adapterMeaning;
     ArrayAdapter<String> adapterSynonyms;
-    ImageButton btnAdd;
-    ImageButton btnClose;
+    Button btnAdd;
+    Button btnClose;
     EditText wordEditText;
     EditText posEditText;
     DBManager dbManager;
@@ -90,10 +89,10 @@ public class add_new_entry extends Activity implements OnClickListener {
 
         //=================================================================
 
-        btnAdd = (ImageButton) findViewById(R.id.btn_add);
+        btnAdd = (Button) findViewById(R.id.btn_add);
         btnAdd.setOnClickListener(add_new_entry.this);
 
-        btnClose = (ImageButton) findViewById(R.id.btn_close);
+        btnClose = (Button) findViewById(R.id.btn_close);
         btnClose.setOnClickListener(add_new_entry.this);
 
         listView = (ListView) findViewById(R.id.listMeaning);

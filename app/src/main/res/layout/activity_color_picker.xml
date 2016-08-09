@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="org.imaginativeworld.shadhinovidhan.ColorPickerActivity">
+
+    <LinearLayout
+        android:id="@+id/llColorPreview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/colorPreview"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pickerButtonWeight"
+            android:layout_margin="5dp"
+            android:text="@string/picked_color"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/big_font_size" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_layout"
+        android:layout_below="@+id/llColorPreview">
+
+        <LinearLayout
+            android:id="@+id/layoutMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/color1"
+                    android:layout_width="@dimen/pickerButtonWeight"
+                    android:layout_height="@dimen/pickerButtonWeight"
+                    android:layout_margin="5dp"
+                    android:background="#f44336" />
+
+                <Button
+                    android:id="@+id/color2"
+                    android:layout_width="@dimen/pickerButtonWeight"
+                    android:layout_height="@dimen/pickerButtonWeight"
+                    android:layout_margin="5dp"
+                    android:background="#e91e63" />
+
+                <Button
+                    android:id="@+id/color3"
+                    android:layout_width="@dimen/pickerButtonWeight"
+                    android:layout_height="@dimen/pickerButtonWeight"
+                    android:layout_margin="5dp"
+                    android:background="#9c27b0" />
+
+                <Button
+                    android:id="@+id/color4"
+                    android:layout_width="@dimen/pickerButtonWeight"
+                    android:layout_height="@dimen/pickerButtonWeight"
+                    android:layout_margin="5dp"
+                    android:background="#673ab7" />
+
+                <Button
+                    android:id="@+id/color5"
+                    android:layout_width="@dimen/pickerButtonWeight"
+                    android:layout_height="@dimen/pickerButtonWeight"
+                    android:layout_margin="5dp"
+                    android:background="#3f51b5" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/color6"
+                    android:layout_width="@dimen/pickerButtonWeight"
+                    android:layout_height="@dimen/pickerButtonWeight"
+                    android:layout_margin="@dimen/pickerButtonMargin"
+                    android:background="#2196f3" />
+
+                <Button
+                    android:id="@+id/color7"
+                    android:layout_width="@dimen/pickerButtonWeight"
+                    android:layout_height="@dimen/pickerButtonWeight"
+                    android:layout_margin="@dimen/pickerButtonMargin"
+                    android:background="#03a9f4" />
+
+                <Button
+                    android:id="@+id/color8"
+                    android:layout_width="@dimen/pickerButtonWeight"
+                    android:layout_height="@dimen/pickerButtonWeight"
+                    android:layout_margin="@dimen/pickerButtonMargin"
+                    android:background="#00bcd4" />
+
+                <Button
+                    android:id="@+id/color9"
+                    android:layout_width="@dimen/pickerButtonWeight"
+                    android:layout_height="@dimen/pickerButtonWeight"
+                    android:layout_margin="@dimen/pickerButtonMargin"
+                    android:background="#009688" />
+
+                <Button
+                    android:id="@+id/color10"
+                    android:layout_width="@dimen/pickerButtonWeight"
+                    android:layout_height="@dimen/pickerButtonWeight"
+                    android:layout_margin="@dimen/pickerButtonMargin"
+                    android:background="#4caf50" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <Button
+                    android:id="@+id/color11"
+                    android:layout_width="@dimen/pickerButtonWeight"
+                    android:layout_height="@dimen/pickerButtonWeight"
+                    android:layout_margin="@dimen/pickerButtonMargin"
+                    android:background="#8bc34a" />
+
+                <Button
+                    android:id="@+id/color12"
+                    android:layout_width="@dimen/pickerButtonWeight"
+                    android:layout_height="@dimen/pickerButtonWeight"
+                    android:layout_margin="@dimen/pickerButtonMargin"
+                    android:background="#cddc39" />
+
+                <Button
+                    android:id="@+id/color13"
+                    android:layout_width="@dimen/pickerButtonWeight"
+                    android:layout_height="@dimen/pickerButtonWeight"
+                    android:layout_margin="@dimen/pickerButtonMargin"
+                    android:background="#ffeb3b" />
+
+                <Button
+                    android:id="@+id/color14"
+                    android:layout_width="@dimen/pickerButtonWeight"
+                    android:layout_height="@dimen/pickerButtonWeight"
+                    android:layout_margin="@dimen/pickerButtonMargin"
+                    android:background="#ffc107" />
+
+                <Button
+                    android:id="@+id/color15"
+                    android:layout_width="@dimen/pickerButtonWeight"
+                    android:layout_height="@dimen/pickerButtonWeight"
+                    android:layout_margin="@dimen/pickerButtonMargin"
+                    android:background="#ff9800" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <Button
+                    android:id="@+id/color16"
+                    android:layout_width="@dimen/pickerButtonWeight"
+                    android:layout_height="@dimen/pickerButtonWeight"
+                    android:layout_margin="@dimen/pickerButtonMargin"
+                    android:background="#ff5722" />
+
+                <Button
+                    android:id="@+id/color17"
+                    android:layout_width="@dimen/pickerButtonWeight"
+                    android:layout_height="@dimen/pickerButtonWeight"
+                    android:layout_margin="@dimen/pickerButtonMargin"
+                    android:background="#795548" />
+
+                <Button
+                    android:id="@+id/color18"
+                    android:layout_width="@dimen/pickerButtonWeight"
+                    android:layout_height="@dimen/pickerButtonWeight"
+                    android:layout_margin="@dimen/pickerButtonMargin"
+                    android:background="#9e9e9e" />
+
+                <Button
+                    android:id="@+id/color19"
+                    android:layout_width="@dimen/pickerButtonWeight"
+                    android:layout_height="@dimen/pickerButtonWeight"
+                    android:layout_margin="@dimen/pickerButtonMargin"
+                    android:background="#607d8b" />
+
+                <Button
+                    android:id="@+id/color20"
+                    android:layout_width="@dimen/pickerButtonWeight"
+                    android:layout_height="@dimen/pickerButtonWeight"
+                    android:layout_margin="@dimen/pickerButtonMargin"
+                    android:background="#000" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/btn_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/dialog_button_bar_height"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <Button
+
+            android:id="@+id/btnOk"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="@string/dialog_message_ok" />
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
