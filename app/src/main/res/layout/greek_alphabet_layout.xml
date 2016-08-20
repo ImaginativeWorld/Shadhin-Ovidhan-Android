@@ -2,34 +2,29 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="@dimen/activity_vertical_margin"
-    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-    android:layout_marginRight="@dimen/activity_horizontal_margin"
-    android:layout_marginTop="@dimen/activity_vertical_margin">
+    android:layout_marginBottom="@dimen/dialog_button_bar_button_margin"
+    android:layout_marginTop="@dimen/dialog_padding">
 
 
     <ListView
         android:id="@+id/list_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_layout"
-        android:layout_below="@+id/title" />
+        android:layout_above="@+id/btn_layout" />
 
 
     <LinearLayout
         android:id="@+id/btn_layout"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/dialog_button_bar_height"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:gravity="right"
+        android:layout_marginTop="@dimen/dialog_button_bar_button_margin"
+        android:gravity="end|center_vertical"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_close"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            style="@style/dialog_button"
             android:text="@string/dialog_message_close" />
 
     </LinearLayout>

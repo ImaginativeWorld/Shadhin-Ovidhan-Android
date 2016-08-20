@@ -6,34 +6,61 @@
 
 package org.imaginativeworld.shadhinovidhan;
 
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class bn_calendar_activity extends AppCompatActivity implements View.OnClickListener {
 
+    final int TOTAL_DAY_TEXT = 42;
+
     TextView bnMonth, bnYear;
 
-    TextView[] day = new TextView[31];
+    TextView[] day = new TextView[TOTAL_DAY_TEXT];
     TextView[] week = new TextView[7];
 
     Button btnExit;
 
-    String[] strWeek = {  //Sunday: 1st day of week
-            "র", "সো", "ম", "বু", "বৃ", "শু", "শ"
+    /**
+     * SUN = 1 (1)
+     * MON = 2 (2)
+     * TUE = 3 (3)
+     * WED = 4 (4)
+     * THU = 5 (5)
+     * FRI = 6 (6)
+     * SAT = 7 (0)
+     */
+    String[] strWeek = {
+            "শ", "র", "সো", "ম", "বু", "বৃ", "শু"
     };
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
+        /**
+         * Set Dialog Theme
+         */
+        String UI_theme = sharedPref.getString(preference_activity.pref_ui_theme, "light_green");
+        so_tools.setDialogUItheme(UI_theme, bn_calendar_activity.this);
+
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.bn_calendar_layout);
 
-        //============
+
         bnMonth = (TextView) findViewById(R.id.bn_month);
         bnYear = (TextView) findViewById(R.id.bn_year);
 
@@ -71,12 +98,17 @@ public class bn_calendar_activity extends AppCompatActivity implements View.OnCl
         day[28] = (TextView) findViewById(R.id.cal_day_29);
         day[29] = (TextView) findViewById(R.id.cal_day_30);
         day[30] = (TextView) findViewById(R.id.cal_day_31);
-
-
-//        for(int i=0;i<31;i++)
-//        {
-//            day[i].setOnClickListener(bn_calendar_activity.this);
-//        }
+        day[31] = (TextView) findViewById(R.id.cal_day_32);
+        day[32] = (TextView) findViewById(R.id.cal_day_33);
+        day[33] = (TextView) findViewById(R.id.cal_day_34);
+        day[34] = (TextView) findViewById(R.id.cal_day_35);
+        day[35] = (TextView) findViewById(R.id.cal_day_36);
+        day[36] = (TextView) findViewById(R.id.cal_day_37);
+        day[37] = (TextView) findViewById(R.id.cal_day_38);
+        day[38] = (TextView) findViewById(R.id.cal_day_39);
+        day[39] = (TextView) findViewById(R.id.cal_day_40);
+        day[40] = (TextView) findViewById(R.id.cal_day_41);
+        day[41] = (TextView) findViewById(R.id.cal_day_42);
 
         week[0] = (TextView) findViewById(R.id.cal_week_01);
         week[1] = (TextView) findViewById(R.id.cal_week_02);
@@ -85,7 +117,6 @@ public class bn_calendar_activity extends AppCompatActivity implements View.OnCl
         week[4] = (TextView) findViewById(R.id.cal_week_05);
         week[5] = (TextView) findViewById(R.id.cal_week_06);
         week[6] = (TextView) findViewById(R.id.cal_week_07);
-
 
         generateBnCalendar();
 
@@ -100,38 +131,73 @@ public class bn_calendar_activity extends AppCompatActivity implements View.OnCl
         bnYear.setText(bnCalendar.getYear());
 
         int intMonth = bnCalendar.getMonthNumber();
+        int total_day = 31;
 
-        //Boishkh to Vadro: 31 Days
-        //Ashin to Choitro: 30 Days
-        //Falgun: 31 Days if Gregorian Calendar has leap year
+        /**
+         * Boishkh to Vadro: 31 Days
+         * Ashin to Choitro: 30 Days
+         * Falgun: 31 Days if Gregorian Calendar has leap year
+         */
         if (intMonth >= 6 && intMonth <= 12) {
             if (!(bnCalendar.isLeapYear() && intMonth == 11)) {
-                day[30].setVisibility(View.INVISIBLE);
+                total_day = 30;
             }
         }
 
-        day[bnCalendar.getDateInt() - 1].setTextColor(getResources().getColor(R.color.red_700));
+        /**
+         * Get primaryColor attribute
+         */
+        TypedValue typedValue = new TypedValue();
+        getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
+        int color = typedValue.data;
 
+        /**
+         * Set week
+         */
+        int i, j, BnDate;
+        for (i = 0; i < 7; i++) {
+            week[i].setText(strWeek[i]);
+        }
+
+        /**
+         * SUN = 1 (1)
+         * MON = 2 (2)
+         * TUE = 3 (3)
+         * WED = 4 (4)
+         * THU = 5 (5)
+         * FRI = 6 (6)
+         * SAT = 7 (0)
+         */
         int dayOfWeek = bnCalendar.getDayOfTheWeek();
+        if (dayOfWeek == Calendar.SATURDAY)
+            dayOfWeek = 0;
 
-        int startLoop = bnCalendar.getDateInt();
+        int startLoop = bnCalendar.getDateInt()-1;
 
         if (startLoop >= 7)
             startLoop %= 7;
-        if(startLoop==0)
-            startLoop=7;
 
-        for (int i = 0; i < 7; i++) {
-            week[startLoop-1].setText(strWeek[dayOfWeek - 1]);  // ~ - 1
-            startLoop++;
-            dayOfWeek++;
-            if (startLoop > 7)
-                startLoop = 1;
-            if (dayOfWeek > 7)
-                dayOfWeek = 1;
+        int startDayInWeek = dayOfWeek;
+        while(startLoop!=0)
+        {
+            startDayInWeek--;
+            startLoop--;
+            if(startDayInWeek<0)
+                startDayInWeek=6;
+        }
+
+        BnDate = bnCalendar.getDateInt();
+
+        for (i = startDayInWeek, j = 1; j <= total_day; i++, j++) {
+            day[i].setText(bnCalendar.convertToBanglaNumeric(String.valueOf(j)));
+            if (j == BnDate) {
+                day[i].setTextColor(color);
+                day[i].setTypeface(null, Typeface.BOLD);
+            }
         }
 
     }
+
 
     @Override
     public void onClick(View v) {

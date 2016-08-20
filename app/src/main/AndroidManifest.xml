@@ -14,13 +14,13 @@
         android:allowBackup="true"
         android:icon="@drawable/so_icon"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.Base">
         <activity
             android:name=".main_activity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme.Base">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,6 +35,12 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".preference_activity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppOptionsTheme" />
+        <activity
             android:name=".add_new_entry"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
@@ -45,18 +51,12 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/view_details_title"
             android:screenOrientation="portrait"
-            android:theme="@style/DialogTheme.DetailsView" />
+            android:theme="@style/DialogTheme" />
         <activity
             android:name=".about_activity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/DialogTheme" />
-        <activity
-            android:name=".preference_activity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppOptionsTheme" />
         <activity
             android:name=".favorite_list_activity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -67,7 +67,7 @@
             android:name=".feedback_activity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@style/DialogTheme.DetailsView" />
+            android:theme="@style/DialogTheme" />
         <activity
             android:name=".backup_activity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -98,10 +98,16 @@
             android:label="@string/bn_calendar_title"
             android:screenOrientation="portrait"
             android:theme="@style/DialogTheme" />
-
-        <activity android:name=".ColorPickerActivity"
+        <activity
+            android:name=".ColorPickerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/app_name"
+            android:label="@string/title_color_picker"
+            android:screenOrientation="portrait"
+            android:theme="@style/DialogTheme" />
+        <activity
+            android:name=".SuggestionActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_suggestion"
             android:screenOrientation="portrait"
             android:theme="@style/DialogTheme" />
     </application>

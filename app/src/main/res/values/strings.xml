@@ -2,9 +2,8 @@
 
     <string name="app_name" translatable="false">স্বাধীন অভিধান</string>
 
-    <string name="app_version" translatable="false">1.7.160000</string>
+    <string name="app_version" translatable="false">2.0.160823</string>
 
-    <string name="organization_name" translatable="false">Imaginative World</string>
     <string name="about_description">An Open-source, independent and full featured Bengali-English Dictionary</string>
     <string name="website" translatable="false">http://imaginativeworld.org</string>
 
@@ -25,32 +24,22 @@
 
     <string name="text_copied_to_clipboard" translatable="false">Text Copied to Clipboard.</string>
 
-    <string name="add_entry_title">Add Entry</string>
-    <string name="modify_entry_title">Modify Entry</string>
     <string name="view_details_title">Details</string>
     <string name="favorite_title">Favorites</string>
     <string name="history_title">History</string>
-    <string name="feedback_title">স্বাধীন অভিধান</string>
 
     <string name="new_item_text">Touch here for change it</string>
     <string name="no_meaning_text">No meaning yet!</string>
 
     <!-- Main Window -->
-    <string name="unable_create_database">Database can’t create!</string>
     <string name="empty_list_text">Nothing found!</string>
     <string name="fav_empty_list_text">There is no entry in your favorite list!</string>
     <string name="main_window_welcome_text_search">Type the Bangla or English word in the Search box for search</string>
-    <string name="main_window_welcome_text_hint">Touch here for Search</string>
     <string name="enter_any_search_term_first">Before Web-Search write something first in the Search Box!</string>
 
     <string name="dialog_message_error">Error!</string>
-    <string name="dialog_message_successful">Successful!</string>
-    <string name="dialog_message_insert_error">No new entry added!\nMaybe the entry already exists in Database! </string>
-    <string name="dialog_message_insert_successful">New entry successfully added!</string>
-    <string name="dialog_message_fill_all_field">Fill all field first!</string>
     <string name="dialog_message_ok">OK</string>
     <string name="dialog_message_close">Close</string>
-    <string name="dialog_message_add_another_entry">Add another one</string>
 
     <string name="search_type_from_first">start</string>
     <string name="search_type_from_middle">any where</string>
@@ -58,26 +47,25 @@
 
     <!-- Update Texts -->
 
-    <string name="server_txt_new" translatable="false">NEW</string>
     <string name="server_txt_modified" translatable="false">MODIFIED</string>
-    <string name="server_txt_sent_by_button" translatable="false">SENTbyBUTTON</string>
-    <string name="server_txt_sent_by_web_button" translatable="false">WEBsearch</string>
+    <string name="server_txt_sent_by_button_report" translatable="false">REPORTED</string>
+    <string name="server_txt_sent_by_web_button_en" translatable="false">WEBsearchEN</string>
+    <string name="server_txt_sent_by_web_button_bn" translatable="false">WEBsearchBN</string>
 
     <string name="update_available">Update found!</string>
     <string name="check_update">Check Update Now</string>
     <string name="update_now">Update Now</string>
-    <string name="wait">Please\nWait…</string>
-    <string name="update_not_found">No update\n found! </string>
+    <string name="wait">Please Wait...</string>
+    <string name="update_not_found">No update found!</string>
 
     <string name="new_update_info">Latest Version: %1$s.%2$s.%3$s</string>
     <string name="update_release_date">Release Date: %1$s</string>
     <string name="do_you_want_to_download_now">Are you sure want to download the new version now?</string>
 
-    <string name="update_error">Error!\nTry again.</string>
+    <string name="update_error">Error! Try again.</string>
     <string name="internet_not_connected">Internet not connected!</string>
 
     <!-- Menu -->
-    <string name="menu_text_add_entry">New Entry</string>
     <string name="menu_text_favorite_list">Favorites</string>
     <string name="menu_text_history">History</string>
     <string name="menu_text_options">Options</string>
@@ -102,18 +90,10 @@
 
 
     <!-- Add Entry -->
-    <string name="ui_txt_edit_word_phrase">Word/Phrase</string>
-    <string name="ui_txt_view_word_phrase">Type word/phrase here</string>
-
-    <string name="ui_txt_edit_pos">Parts of Speech</string>
-    <string name="ui_txt_view_pos">Type PoS here</string>
 
     <string name="ui_txt_edit_meaning">Meaning</string>
-    <string name="ui_txt_view_meaning">Type meaning here</string>
 
     <!-- details view -->
-    <string name="ui_default_txt_view_word" translatable="false">Word</string>
-    <string name="ui_default_txt_view_pos" translatable="false">pos</string>
 
     <string name="question_remove_meaning_part_title">Remove?</string>
     <string name="question_remove_meaning_part_description">Are you sure want to Remove the meaning?</string>
@@ -136,17 +116,12 @@
     <!-- Error Msgs -->
     <string name="err_msg_unable_to_create_database">Unable to create database!</string>
 
-    <string name="drawer_open" translatable="false">Open Drawer</string>
-    <string name="drawer_close" translatable="false">Open Drawer</string>
-
     <!-- Pref -->
     <string name="pref_update_db" translatable="false">pref_update_db</string>
     <string name="pref_language">UI Language</string>
     <string name="sub_title_select_language">Select UI Language</string>
     <string name="lang_bn">Bangla</string>
     <string name="lang_en">English</string>
-    <string name="pref_ui_theme">UI Theme</string>
-    <string name="sub_title_select_ui_theme">Select UI Theme</string>
 
 
     <!-- History -->
@@ -154,7 +129,6 @@
     <string name="txt_clear_history">Clear history</string>
 
     <!-- send to server -->
-    <string name="txt_entry_sent_to_server" translatable="false">Entry sent to server.</string>
 
     <!-- Feedback -->
     <string name="txt_are_you_like_out_app">What’s your opinion about Shadhin Ovidhan?</string>
@@ -171,11 +145,7 @@
     <string name="pref_btn_restore">Restore</string>
     <string name="desc_btn_backup">Backup favorites and new/modified entries.</string>
     <string name="desc_btn_restore">Restore your backup entries.</string>
-    <string name="pref_key_backup" translatable="false">prefKeyBackup</string>
-    <string name="pref_key_restore" translatable="false">prefKeyRestore</string>
     <string name="new_meaning">New meaning</string>
-    <string name="add_meaning">Add Meaning</string>
-    <string name="delete_meaning">Delete Meaning</string>
     <string name="permission_not_granted">Permission not Granted!</string>
     <string name="file_write_failed">File write failed!\nError Message: %1$s</string>
     <string name="file_not_created">File Not Created!</string>
@@ -190,7 +160,6 @@
     <string name="total_entry_restored_summery">Total %1$s entry restored and %2$s ignored (already in database).</string>
     <string name="total_fav_entry_restored_summery">Total %1$s entry restored and %2$s ignored (already in favorites).</string>
     <string name="backup_folder_not_found">Backup Folder Not Found!</string>
-    <string name="enter_new_meaning">Enter a meaning:</string>
     <string name="no_fav_entry_found">No favorite entry found!</string>
     <string name="menu_text_greek_alp">Greek Alphabet</string>
     <string name="title_greek_alphabet">Greek Alphabet</string>
@@ -199,19 +168,13 @@
     <string name="total_one_result">%1$d result</string>
     <string name="ui_default_txt_view_synonyms">Synonyms</string>
     <string name="no_synonyms_text">No synonym found!</string>
-    <string name="add_synonyms">Add Synonym</string>
-    <string name="delete_synonyms">Delete Synonym</string>
-    <string name="enter_new_synonyms">Enter new Synonym:</string>
     <string name="new_synonyms">New synonym</string>
     <string name="ui_txt_edit_synonyms">Synonyms</string>
-    <string name="sure_to_back_from_add_entry">Are you sure want to go back?</string>
     <string name="what_do_you_want">What do you want?</string>
     <string name="str_delete">Delete</string>
-    <string name="str_copy_to_clipboard">Copy to Clipboard</string>
     <string name="str_view_meaning">View Meaning</string>
     <string name="invalid" translatable="false">invalid!</string>
     <string name="str_edit">Edit</string>
-    <string name="enter_change_synonyms">Change the synonym here:</string>
     <string name="edited_synonyms">Edited synonym</string>
     <string name="str_add">Add</string>
     <string name="str_cancel">Cancel</string>
@@ -219,20 +182,39 @@
     <string name="add_new_synonym">Add New Synonym</string>
     <string name="title_tutorial">Help</string>
     <string name="menu_text_tutorial">Help</string>
-    <string name="search_hint">Search Now</string>
+    <string name="search_hint">Search...</string>
     <string name="str_later">Later</string>
     <string name="str_database">Database</string>
     <string name="str_favorites">Favorites</string>
     <string name="picked_color">Picked Color</string>
-    <string name="Color" translatable="false">Color</string>
     <string name="menu_text_theme_color">Change Theme Color</string>
     <string name="ColorName" translatable="false">ColorName</string>
     <string name="bn_calendar_title">Bangla Calendar</string>
     <string name="dialog_message_index">Index</string>
-    <string name="dialog_message_add">Add</string>
-    <string name="enter_change_meanings">Enter change meanings</string>
-    <string name="edited_meanings">Edited meaning</string>
+    <string name="edited_meaning">Edited meaning</string>
     <string name="str_view_cancel">Cancel</string>
+    <string name="delete_entry">Delete entry</string>
+    <string name="btn_report">Report</string>
+    <string name="select_a_pos">Select a Parts of Speech</string>
+    <string name="desc_clear_search">Clear Search</string>
+    <string name="dialog_message_max_pos_reached">Maximum number of Parts of Speech was added! Please delete any Parts of Speech OR add into already added Parts of Speech.</string>
+    <string name="desc_favorite">Add or Remove form Favorite list</string>
+    <string name="desc_speak">Listen pronunciation</string>
+    <string name="desc_back">Go back</string>
+    <string name="question_report_title">Report?</string>
+    <string name="question_report_description">Are you sure want to Report the entry \"%1$s\"?</string>
+    <string name="title_suggestion">Suggestion</string>
+    <string name="heading_suggestion">Tell us about our app.\nWhat you like, what you hate, what you want, what you think, and/or what your suggestion?</string>
+    <string name="hint_email">Your email (Optional)</string>
+    <string name="hint_suggestion">Your suggestions</string>
+    <string name="dialog_message_send">Send</string>
+    <string name="menu_text_suggestion">Suggest Us</string>
+    <string name="server_txt_suggestion" translatable="false">SUGGESTION</string>
+    <string name="err_enter_suggestion">Enter suggestions first!</string>
+    <string name="msg_suggestion_send_success">Suggestion sent successfully! :)</string>
+    <string name="const_unknown" translatable="false">UNKNOWN</string>
+    <string name="TAG" translatable="false">so_debug</string>
+    <string name="title_color_picker">Theme picker</string>
 
 
 </resources>

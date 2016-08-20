@@ -128,10 +128,10 @@
 
     <style name="AppOptionsTheme" parent="Theme.AppCompat.Light">
 
-        <item name="android:textColorPrimary">@color/black</item>
-        <item name="android:textColorSecondary">@color/grey_900</item>
-        <item name="android:textColorHint">@color/grey_700</item>
-        <item name="colorAccent">@color/light_green_700</item>
+        <!--<item name="android:textColorPrimary">@color/black</item>-->
+        <!--<item name="android:textColorSecondary">@color/grey_900</item>-->
+        <!--<item name="android:textColorHint">@color/grey_800</item>-->
+        <!--<item name="colorAccent">@color/grey_900</item>-->
 
         <!--<item name="android:background">@color/white</item>-->
 
@@ -145,46 +145,132 @@
         <item name="android:textColor">@android:color/transparent</item>
     </style>
 
-    <!-- Application theme. -->
-    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
-
-        <!--<item name="android:windowTitleStyle">@style/Custom.DialogWindowTitle.AppCompat</item>-->
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog.MinWidth">
 
         <item name="colorPrimary">@color/light_green_700</item>
         <item name="colorPrimaryDark">@color/light_green_800</item>
-        <item name="colorAccent">@color/white</item>
+        <item name="colorAccent">@color/grey_800</item>
+
+        <item name="android:textColor">@color/black</item>
 
     </style>
 
-    <style name="DialogTheme.DetailsView" parent="DialogTheme">
+    <!-- Application dialog themes -->
 
-        <item name="android:windowTitleStyle">@style/Custom.DialogWindowTitle.AppCompat</item>
+    <style name="AppThemeDialog_red" parent="DialogTheme">
+        <item name="colorPrimary">@color/red_500</item>
+        <item name="colorPrimaryDark">@color/red_700</item>
+    </style>
+
+    <style name="AppThemeDialog_pink" parent="DialogTheme">
+        <item name="colorPrimary">@color/pink_500</item>
+        <item name="colorPrimaryDark">@color/pink_700</item>
+    </style>
+
+    <style name="AppThemeDialog_purple" parent="DialogTheme">
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryDark">@color/purple_700</item>
+    </style>
+
+    <style name="AppThemeDialog_deep_purple" parent="DialogTheme">
+        <item name="colorPrimary">@color/deep_purple_500</item>
+        <item name="colorPrimaryDark">@color/deep_purple_700</item>
+    </style>
+
+    <style name="AppThemeDialog_indigo" parent="DialogTheme">
+        <item name="colorPrimary">@color/indigo_500</item>
+        <item name="colorPrimaryDark">@color/indigo_700</item>
+    </style>
+
+    <style name="AppThemeDialog_blue" parent="DialogTheme">
+        <item name="colorPrimary">@color/blue_500</item>
+        <item name="colorPrimaryDark">@color/blue_700</item>
+    </style>
+
+    <style name="AppThemeDialog_light_blue" parent="DialogTheme">
+        <item name="colorPrimary">@color/light_blue_500</item>
+        <item name="colorPrimaryDark">@color/light_blue_700</item>
+    </style>
+
+    <style name="AppThemeDialog_cyan" parent="DialogTheme">
+        <item name="colorPrimary">@color/cyan_500</item>
+        <item name="colorPrimaryDark">@color/cyan_700</item>
+    </style>
+
+    <style name="AppThemeDialog_teal" parent="DialogTheme">
+        <item name="colorPrimary">@color/teal_500</item>
+        <item name="colorPrimaryDark">@color/teal_700</item>
+    </style>
+
+    <style name="AppThemeDialog_green" parent="DialogTheme">
+        <item name="colorPrimary">@color/green_500</item>
+        <item name="colorPrimaryDark">@color/green_700</item>
+    </style>
+
+    <style name="AppThemeDialog_light_green" parent="DialogTheme">
 
     </style>
+
+    <style name="AppThemeDialog_lime" parent="DialogTheme">
+        <item name="colorPrimary">@color/lime_500</item>
+        <item name="colorPrimaryDark">@color/lime_700</item>
+    </style>
+
+    <style name="AppThemeDialog_yellow" parent="DialogTheme">
+        <item name="colorPrimary">@color/yellow_500</item>
+        <item name="colorPrimaryDark">@color/yellow_700</item>
+    </style>
+
+    <style name="AppThemeDialog_amber" parent="DialogTheme">
+        <item name="colorPrimary">@color/amber_500</item>
+        <item name="colorPrimaryDark">@color/amber_700</item>
+    </style>
+
+    <style name="AppThemeDialog_orange" parent="DialogTheme">
+        <item name="colorPrimary">@color/orange_500</item>
+        <item name="colorPrimaryDark">@color/orange_700</item>
+    </style>
+
+    <style name="AppThemeDialog_deep_orange" parent="DialogTheme">
+        <item name="colorPrimary">@color/deep_orange_500</item>
+        <item name="colorPrimaryDark">@color/deep_orange_700</item>
+    </style>
+
+    <style name="AppThemeDialog_brown" parent="DialogTheme">
+        <item name="colorPrimary">@color/brown_500</item>
+        <item name="colorPrimaryDark">@color/brown_700</item>
+    </style>
+
+    <style name="AppThemeDialog_grey" parent="DialogTheme">
+        <item name="colorPrimary">@color/grey_500</item>
+        <item name="colorPrimaryDark">@color/grey_700</item>
+    </style>
+
+    <style name="AppThemeDialog_blue_grey" parent="DialogTheme">
+        <item name="colorPrimary">@color/blue_grey_500</item>
+        <item name="colorPrimaryDark">@color/blue_grey_700</item>
+    </style>
+
+    <style name="AppThemeDialog_black" parent="DialogTheme">
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryDark">@color/black</item>
+    </style>
+
+    <!--<style name="DialogTheme.DetailsView" parent="DialogTheme">-->
+
+        <!--<item name="android:windowTitleStyle">@style/Custom.DialogWindowTitle.AppCompat</item>-->
+
+    <!--</style>-->
 
     <!-- ======================================================================= -->
 
     <style name="Divider">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">2dp</item>
-        <item name="android:background">@color/light_green_300</item>
+        <item name="android:background">?attr/colorPrimary</item>
 
         <item name="android:layout_marginTop">7dp</item>
         <item name="android:layout_marginBottom">7dp</item>
-        <item name="android:layout_marginLeft">0dp</item>
-        <item name="android:layout_marginRight">0dp</item>
-
-    </style>
-
-    <!-- ======================================================================= -->
-
-    <style name="OptionDivider">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">2dp</item>
-        <item name="android:background">#19000000</item>
-
-        <item name="android:layout_marginTop">5dp</item>
-        <item name="android:layout_marginBottom">5dp</item>
         <item name="android:layout_marginLeft">0dp</item>
         <item name="android:layout_marginRight">0dp</item>
 
@@ -204,18 +290,22 @@
         <item name="android:textColor">@color/grey_600</item>
     </style>
 
+    <style name="detail_view_pos_name">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textColor">@color/grey_700</item>
+    </style>
+
+    <style name="dialog_button" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_marginRight">@dimen/dialog_button_bar_button_horizontal_padding</item>
+    </style>
+
     <!-- ======================================================================= -->
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <!--<style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />-->
+    <!--<style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />-->
 
-    <!--<style name="CustomButtonStyle" parent="android:Widget.Button">>-->
-    <!--&lt;!&ndash;<item name="android:textSize">19sp</item>&ndash;&gt;-->
-    <!--&lt;!&ndash;<item name="android:textStyle">bold</item>&ndash;&gt;-->
-    <!--<item name="android:layout_margin">8dp</item>-->
-    <!--&lt;!&ndash;<item name="android:textAllCaps">true</item>&ndash;&gt;-->
-    <!--<item name="android:layout_gravity">center_vertical</item>-->
-    <!--<item name="android:borderlessButtonStyle"/>-->
-    <!--</style>-->
 
 </resources>

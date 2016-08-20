@@ -2,289 +2,432 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="@dimen/activity_vertical_margin"
-    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-    android:layout_marginRight="@dimen/activity_horizontal_margin"
-    android:layout_marginTop="@dimen/activity_vertical_margin">
+    android:layout_marginBottom="@dimen/dialog_button_bar_button_margin"
+    android:paddingTop="@dimen/dialog_padding">
 
-    <LinearLayout
-        android:id="@+id/box_info"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/title"
-        android:orientation="horizontal"
-        android:paddingBottom="@dimen/dialog_vertical_padding">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_layout"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/dialog_button_bar_button_margin"
+        android:paddingLeft="@dimen/dialog_padding"
+        android:paddingRight="@dimen/dialog_padding">
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txt_word"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/meaning_layout_0"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/ui_default_txt_view_word"
-                android:textColor="@color/grey_800"
-                android:textSize="@dimen/details_word"
-                android:textStyle="bold" />
+                android:layout_marginBottom="@dimen/pos_bottom_margin"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/meaning_pos_0"
+                    style="@style/detail_view_pos_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/space_between_element"
+                    android:paddingTop="@dimen/space_between_element"/>
+
+                <org.imaginativeworld.shadhinovidhan.CustomListView
+                    android:id="@+id/meaning_list_0"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:choiceMode="singleChoice"
+                    android:divider="@color/grey_300"
+                    android:dividerHeight="1dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/meaning_layout_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/pos_bottom_margin"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/meaning_pos_1"
+                    style="@style/detail_view_pos_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/space_between_element"
+                    android:paddingTop="@dimen/space_between_element" />
+
+                <org.imaginativeworld.shadhinovidhan.CustomListView
+                    android:id="@+id/meaning_list_1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:choiceMode="singleChoice"
+                    android:divider="@color/grey_300"
+                    android:dividerHeight="1dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/meaning_layout_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/pos_bottom_margin"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/meaning_pos_2"
+                    style="@style/detail_view_pos_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/space_between_element"
+                    android:paddingTop="@dimen/space_between_element"/>
+
+                <org.imaginativeworld.shadhinovidhan.CustomListView
+                    android:id="@+id/meaning_list_2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:choiceMode="singleChoice"
+                    android:divider="@color/grey_300"
+                    android:dividerHeight="1dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/meaning_layout_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/pos_bottom_margin"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/meaning_pos_3"
+                    style="@style/detail_view_pos_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/space_between_element"
+                    android:paddingTop="@dimen/space_between_element"/>
+
+                <org.imaginativeworld.shadhinovidhan.CustomListView
+                    android:id="@+id/meaning_list_3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:choiceMode="singleChoice"
+                    android:divider="@color/grey_300"
+                    android:dividerHeight="1dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/meaning_layout_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/pos_bottom_margin"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/meaning_pos_4"
+                    style="@style/detail_view_pos_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/space_between_element"
+                    android:paddingTop="@dimen/space_between_element"/>
+
+                <org.imaginativeworld.shadhinovidhan.CustomListView
+                    android:id="@+id/meaning_list_4"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:choiceMode="singleChoice"
+                    android:divider="@color/grey_300"
+                    android:dividerHeight="1dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/meaning_layout_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/pos_bottom_margin"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/meaning_pos_5"
+                    style="@style/detail_view_pos_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/space_between_element"
+                    android:paddingTop="@dimen/space_between_element"/>
+
+                <org.imaginativeworld.shadhinovidhan.CustomListView
+                    android:id="@+id/meaning_list_5"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:choiceMode="singleChoice"
+                    android:divider="@color/grey_300"
+                    android:dividerHeight="1dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/meaning_layout_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/pos_bottom_margin"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/meaning_pos_6"
+                    style="@style/detail_view_pos_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/space_between_element"
+                    android:paddingTop="@dimen/space_between_element"/>
+
+                <org.imaginativeworld.shadhinovidhan.CustomListView
+                    android:id="@+id/meaning_list_6"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:choiceMode="singleChoice"
+                    android:divider="@color/grey_300"
+                    android:dividerHeight="1dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/meaning_layout_7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/pos_bottom_margin"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/meaning_pos_7"
+                    style="@style/detail_view_pos_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/space_between_element"
+                    android:paddingTop="@dimen/space_between_element" />
+
+                <org.imaginativeworld.shadhinovidhan.CustomListView
+                    android:id="@+id/meaning_list_7"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:choiceMode="singleChoice"
+                    android:divider="@color/grey_300"
+                    android:dividerHeight="1dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/meaning_layout_8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/pos_bottom_margin"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/meaning_pos_8"
+                    style="@style/detail_view_pos_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/space_between_element"
+                    android:paddingTop="@dimen/space_between_element"/>
+
+                <org.imaginativeworld.shadhinovidhan.CustomListView
+                    android:id="@+id/meaning_list_8"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:choiceMode="singleChoice"
+                    android:divider="@color/grey_300"
+                    android:dividerHeight="1dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/meaning_layout_9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/pos_bottom_margin"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/meaning_pos_9"
+                    style="@style/detail_view_pos_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/space_between_element"
+                    android:paddingTop="@dimen/space_between_element"/>
+
+                <org.imaginativeworld.shadhinovidhan.CustomListView
+                    android:id="@+id/meaning_list_9"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:choiceMode="singleChoice"
+                    android:divider="@color/grey_300"
+                    android:dividerHeight="1dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/meaning_layout_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/pos_bottom_margin"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/meaning_pos_10"
+                    style="@style/detail_view_pos_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/space_between_element"
+                    android:paddingTop="@dimen/space_between_element" />
+
+                <org.imaginativeworld.shadhinovidhan.CustomListView
+                    android:id="@+id/meaning_list_10"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:choiceMode="singleChoice"
+                    android:divider="@color/grey_300"
+                    android:dividerHeight="1dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/meaning_layout_11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/pos_bottom_margin"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/meaning_pos_11"
+                    style="@style/detail_view_pos_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/space_between_element"
+                    android:paddingTop="@dimen/space_between_element" />
+
+                <org.imaginativeworld.shadhinovidhan.CustomListView
+                    android:id="@+id/meaning_list_11"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:choiceMode="singleChoice"
+                    android:divider="@color/grey_300"
+                    android:dividerHeight="1dp" />
+
+            </LinearLayout>
+
+            <!-- End of Meanings -->
 
             <TextView
-                android:id="@+id/txt_pos"
+                android:id="@+id/txt_empty"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/no_meaning_text"
+                android:textSize="@dimen/list_meaning_text" />
+
+
+            <TextView
+                style="@style/standard_title_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/ui_default_txt_view_pos"
-                android:textSize="@dimen/details_pos"
-                android:textStyle="italic" />
+                android:paddingBottom="@dimen/space_between_element"
+                android:paddingTop="@dimen/space_between_element"
+                android:text="@string/ui_default_txt_view_synonyms"
+                android:textColor="?attr/colorPrimaryDark" />
+
+
+            <org.imaginativeworld.shadhinovidhan.CustomListView
+                android:id="@+id/synonyms_list"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:choiceMode="singleChoice"
+                android:divider="@color/grey_300"
+                android:dividerHeight="1dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/txt_empty_syno"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/no_synonyms_text"
+                android:textSize="@dimen/list_meaning_text" />
+
 
         </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/btn_favorite"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_favorite_outline_black_48dp"
-            android:tint="@color/grey_800" />
+    </ScrollView>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/body_layout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/box_info_synonyms"
-        android:layout_below="@+id/box_info"
-        android:layout_centerHorizontal="true"
-        android:orientation="vertical">
-
-        <ListView
-            android:id="@+id/meaning_list"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:choiceMode="singleChoice"
-            android:divider="@color/grey_300"
-            android:dividerHeight="1dp"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin" />
-
-        <TextView
-            android:id="@+id/txt_empty"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:text="@string/no_meaning_text"
-            android:textSize="@dimen/list_meaning_text" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/box_info_synonyms"
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:layout_above="@+id/btn_layout"
-        android:orientation="vertical">
-
-
-        <TextView
-            style="@style/standard_title_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/dialog_vertical_padding"
-            android:paddingTop="@dimen/dialog_vertical_padding"
-            android:text="@string/ui_default_txt_view_synonyms" />
-
-
-        <ListView
-            android:id="@+id/synonyms_list"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:choiceMode="singleChoice"
-            android:divider="@color/grey_300"
-            android:dividerHeight="1dp"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin" />
-
-        <TextView
-            android:id="@+id/txt_empty_syno"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:text="@string/no_synonyms_text"
-            android:textSize="@dimen/list_meaning_text" />
-
-
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/btn_layout"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/dialog_button_bar_height"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
+        android:gravity="end|center_horizontal"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dialog_button_bar_button_margin"
+        android:paddingRight="@dimen/dialog_button_bar_button_margin">
 
         <ImageButton
-            android:id="@+id/btn_delete_entry"
+            android:id="@+id/btn_options"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
+            android:layout_width="@dimen/action_button_height"
+            android:layout_height="@dimen/action_button_width"
             android:background="?attr/selectableItemBackground"
-            android:padding="@dimen/dialog_button_bar_button_padding"
-            android:src="@drawable/ic_delete_black_48dp"
-            android:tint="@color/red_700" />
+            android:padding="12dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_more_vert_black_24dp"
+            android:tint="?attr/colorAccent" />
 
         <ImageButton
-            android:id="@+id/btn_add"
+            android:id="@+id/btn_favorite"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
+            android:layout_width="@dimen/action_button_height"
+            android:layout_height="@dimen/action_button_width"
             android:background="?attr/selectableItemBackground"
-            android:padding="@dimen/dialog_button_bar_button_padding"
-            android:src="@drawable/ic_playlist_add_black_48dp"
-            android:tint="@color/grey_800" />
-
-        <ImageButton
-            android:id="@+id/btn_send_to_cloud"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackground"
-            android:padding="@dimen/dialog_button_bar_button_padding"
-            android:src="@drawable/ic_report_black_48dp"
-            android:tint="@color/red_700" />
+            android:padding="12dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_favorite_border_black_24dp"
+            android:tint="?attr/colorAccent" />
 
         <ImageButton
             android:id="@+id/btn_speak"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
+            android:layout_width="@dimen/action_button_height"
+            android:layout_height="@dimen/action_button_width"
             android:background="?attr/selectableItemBackground"
-            android:padding="@dimen/dialog_button_bar_button_padding"
-            android:src="@drawable/ic_volume_up_black_48dp"
-            android:tint="@color/grey_800" />
+            android:padding="12dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_volume_up_black_24dp"
+            android:tint="?attr/colorAccent" />
 
         <ImageButton
             android:id="@+id/btn_close"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
+            android:layout_width="@dimen/action_button_height"
+            android:layout_height="@dimen/action_button_width"
             android:background="?attr/selectableItemBackground"
-            android:padding="@dimen/dialog_button_bar_button_padding"
-            android:src="@drawable/ic_arrow_back_black_48dp"
-            android:tint="@color/grey_800" />
+            android:padding="12dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_arrow_back_black_24dp"
+            android:tint="?attr/colorAccent" />
 
     </LinearLayout>
-
-    <!--<View-->
-    <!--android:id="@+id/title_box_shadow"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="@dimen/shadow_height"-->
-    <!--android:layout_below="@id/title"-->
-    <!--android:background="@drawable/shadow_top_bottom" />-->
-
-    <!--<View-->
-    <!--android:id="@+id/btn_box_shadow"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="@dimen/shadow_height"-->
-    <!--android:layout_above="@+id/btn_layout"-->
-    <!--android:background="@drawable/shadow_bottom_top" />-->
-
-    <FrameLayout
-        android:id="@+id/layout_options"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:clickable="true"
-        android:visibility="gone">
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:background="#99000000">
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/option_view"
-                android:layout_marginBottom="5dp"
-                android:background="@color/white"
-                android:orientation="vertical"
-                android:paddingBottom="@dimen/dialog_vertical_padding"
-                android:paddingLeft="@dimen/dialog_horizontal_padding"
-                android:paddingRight="@dimen/dialog_horizontal_padding"
-                android:paddingTop="@dimen/dialog_vertical_padding">
-
-                <EditText
-                    android:id="@+id/txtEdit_meaning"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:minLines="5"
-                    android:textSize="@dimen/details_meaning"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/txtView_meaning"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:minLines="5"
-                    android:textSize="@dimen/details_meaning"
-                    android:visibility="visible" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/option_view"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:background="@color/white"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingBottom="@dimen/dialog_vertical_padding"
-                android:paddingLeft="@dimen/dialog_horizontal_padding"
-                android:paddingRight="@dimen/dialog_horizontal_padding"
-                android:paddingTop="@dimen/dialog_vertical_padding">
-
-                <ImageButton
-                    android:id="@+id/btn_delete_meaning_part"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_delete_black_48dp"
-                    android:tint="@color/red_700" />
-
-                <ImageButton
-                    android:id="@+id/btn_edit"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_edit_black_48dp"
-                    android:tint="@color/grey_800" />
-
-                <ImageButton
-                    android:id="@+id/btn_close_options"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_arrow_back_black_48dp"
-                    android:tint="@color/grey_800" />
-
-            </LinearLayout>
-
-
-        </RelativeLayout>
-
-
-    </FrameLayout>
 
 </RelativeLayout>

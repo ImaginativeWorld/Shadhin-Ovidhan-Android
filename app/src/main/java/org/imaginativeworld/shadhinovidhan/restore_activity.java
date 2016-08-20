@@ -127,7 +127,7 @@ public class restore_activity extends AppCompatActivity implements View.OnClickL
                 }
 
                 //Log.v("soa", data[0] + " " +data[1] + " "+data[2] + " "+data[3]);
-                result = dbManager.insert(data[0], data[1], data[2], data[3]);
+                result = dbManager.insert(data[0], data[2], data[3]);
                 if (result == -1) {
                     not_count++;
                 } else

@@ -16,6 +16,8 @@ import java.io.IOException;
 
 public class DBManager {
 
+    final String __LIMIT = "105";
+
     DbHelperFavorites favDbHelper;
     private DatabaseHelper dbHelper;
     private Context context;
@@ -59,10 +61,8 @@ public class DBManager {
         favDbHelper.close();
     }
 
-    public long insert(String _word, String _pos, String _meaning, String _synonyms) {
+    public long insert(String _word, String _meaning, String _synonyms) {
 
-        if (_pos.equals(""))
-            _pos = null;
         if (_synonyms.equals(""))
             _synonyms = null;
 
@@ -70,7 +70,6 @@ public class DBManager {
 
         contentValue.put(DatabaseHelper._WORD, so_tools.removeSymbolFromText(_word));
         contentValue.put(DatabaseHelper.SO_PRON, _word);
-        contentValue.put(DatabaseHelper.SO_POS, _pos);
         contentValue.put(DatabaseHelper.SO_MEANING, _meaning);
         contentValue.put(DatabaseHelper.SO_SYNONYMS, _synonyms);
         contentValue.put(DatabaseHelper.SO_NEW, true);
@@ -84,7 +83,6 @@ public class DBManager {
         String[] tableColumns = new String[]{
                 DatabaseHelper._WORD, //_id column must needed for cursor adaptor.. O.o
                 DatabaseHelper.SO_PRON,
-                DatabaseHelper.SO_POS,
                 DatabaseHelper.SO_MEANING,
                 DatabaseHelper.SO_SYNONYMS
         };
@@ -117,13 +115,18 @@ public class DBManager {
                 break;
         }
 
-        //String orderBy = "_id";
+
         Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, tableColumns, whereClause, whereArgs,
-                null, null, null);
+                null, null, DatabaseHelper.SO_PRON, __LIMIT);
 
 
         if (cursor != null) {
-            cursor.moveToFirst();
+            try {
+
+                cursor.moveToFirst();
+
+            } catch (Exception ignored) {
+            }
         }
         return cursor;
 
@@ -134,7 +137,6 @@ public class DBManager {
         String[] tableColumns = new String[]{
                 DatabaseHelper._WORD,
                 DatabaseHelper.SO_PRON,
-                DatabaseHelper.SO_POS,
                 DatabaseHelper.SO_MEANING,
                 DatabaseHelper.SO_SYNONYMS
         };
@@ -167,9 +169,9 @@ public class DBManager {
                 break;
         }
 
-        //String orderBy = "_id";
+//        String orderBy = "_id";
         Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, tableColumns, whereClause, whereArgs,
-                null, null, null);
+                null, null, DatabaseHelper.SO_PRON, __LIMIT);
 
         if (cursor != null) {
             cursor.moveToFirst();
@@ -184,7 +186,6 @@ public class DBManager {
         String[] tableColumns = new String[]{
                 DatabaseHelper._WORD, //_id column must needed for cursor adaptor.. O.o
                 DatabaseHelper.SO_PRON,
-                DatabaseHelper.SO_POS,
                 DatabaseHelper.SO_MEANING,
                 DatabaseHelper.SO_SYNONYMS
         };
@@ -224,16 +225,13 @@ public class DBManager {
 
     }
 
-    public int update(String _word, String _pos, String _meaning, String _synonyms) {
+    public int update(String _word, String _meaning, String _synonyms) {
 
-        if (_pos.equals(""))
-            _pos = null;
         if (_synonyms.equals(""))
             _synonyms = null;
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseHelper.SO_PRON, _word);
-        contentValues.put(DatabaseHelper.SO_POS, _pos);
         contentValues.put(DatabaseHelper.SO_MEANING, _meaning);
         contentValues.put(DatabaseHelper.SO_SYNONYMS, _synonyms);
         contentValues.put(DatabaseHelper.SO_MODIFY, true);

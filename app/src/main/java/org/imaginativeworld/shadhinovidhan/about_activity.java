@@ -8,17 +8,20 @@ package org.imaginativeworld.shadhinovidhan;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Xml;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,6 +55,15 @@ public class about_activity extends AppCompatActivity implements OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
+        /**
+         * Set Dialog Theme
+         */
+        String UI_theme = sharedPref.getString(preference_activity.pref_ui_theme, "light_green");
+        so_tools.setDialogUItheme(UI_theme, about_activity.this);
+
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.about_layout);
 
         //Make window fill full width

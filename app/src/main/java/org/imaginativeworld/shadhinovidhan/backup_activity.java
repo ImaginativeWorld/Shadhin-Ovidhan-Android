@@ -107,7 +107,7 @@ public class backup_activity extends AppCompatActivity implements View.OnClickLi
 
             do {
                 String tempStr = cursor.getString(cursor.getColumnIndex(DatabaseHelper.SO_PRON)) + "|" +
-                        cursor.getString(cursor.getColumnIndex(DatabaseHelper.SO_POS)) + "|" +
+                        //cursor.getString(cursor.getColumnIndex(DatabaseHelper.SO_POS)) + "|" +
                         cursor.getString(cursor.getColumnIndex(DatabaseHelper.SO_MEANING)) + "|" +
                         cursor.getString(cursor.getColumnIndex(DatabaseHelper.SO_SYNONYMS));
 

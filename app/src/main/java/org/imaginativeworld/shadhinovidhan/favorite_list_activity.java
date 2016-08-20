@@ -29,7 +29,7 @@ public class favorite_list_activity extends AppCompatActivity implements View.On
             DatabaseHelper.SO_FAVORITE
     };
     final int[] to = new int[]{
-            android.R.id.text1
+            R.id.textView
     };
     Button btnClose;
     private DBManager dbManager;
@@ -56,7 +56,7 @@ public class favorite_list_activity extends AppCompatActivity implements View.On
 
         listView.setEmptyView(findViewById(R.id.empty)); // for empty view
 
-        adapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1, cursor, from, to, 0);
+        adapter = new SimpleCursorAdapter(this, R.layout.simple_list_item, cursor, from, to, 0);
         adapter.notifyDataSetChanged();
 
         listView.setAdapter(adapter);
@@ -72,7 +72,7 @@ public class favorite_list_activity extends AppCompatActivity implements View.On
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-                TextView text = (TextView) view.findViewById(android.R.id.text1);
+                TextView text = (TextView) view.findViewById(R.id.textView);
 
                 tEXT = text.getText().toString();
 

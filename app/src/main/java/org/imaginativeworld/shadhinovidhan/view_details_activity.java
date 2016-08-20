@@ -17,62 +17,71 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.menu.MenuPopupHelper;
 import android.support.v7.widget.PopupMenu;
-import android.util.Log;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
 
-public class view_details_activity extends AppCompatActivity implements OnClickListener {
+public class view_details_activity
+        extends AppCompatActivity
+        implements OnClickListener, CustomListView.OnItemClickListener, CustomListView.OnItemLongClickListener,
+        View.OnLongClickListener {
 
-    TextView clickedTxtView;
+    /**
+     * @final MAX_POS
+     * Maximum number of Layout for meaning.
+     * After changing it please add new views in the following functions:
+     * - OnItemClick()
+     * - onItemLongClick()
+     */
+    final int MAX_POS = 12;
+
+    /**
+     * @variable totalPost
+     * It maintain the total number of POS created.
+     */
+    int _totalPos;
+
     Boolean IsSendToServer;
-    ArrayAdapter<String> adapter;
+    ArrayAdapter<String>[] adapter = new ArrayAdapter[MAX_POS];
     ArrayAdapter<String> synoAdapter;
-    HashMap<String, String> hashMap;
+    HashMap<String, Integer> mapPos = new HashMap<>();
+
     TextToSpeech textToSpeech;
     View DialogView;
-    TextView subTitleDialog;
-    private TextView txtWord;
-    private TextView txtpos;
-    private TextView txtViewMeaning;
-    private EditText txtEditMeaning;
-    private ListView meaningList;
+
+    LinearLayout[] meaningListLayout = new LinearLayout[MAX_POS];
+    TextView[] txtViewPos = new TextView[MAX_POS];
+    CustomListView[] meaning_list = new CustomListView[MAX_POS];
+
+
     private ListView synonymsList;
-    private ImageButton btnClose;
-    private ImageButton btnDelete;
-    private ImageButton btnEdit;
-    private ImageButton btnCloseOptions;
-    private ImageButton btnMeaningPartDelete;
-    private ImageButton btnDeleteEntry;
     private ImageButton btnFavorite;
-    private ImageButton btnSpeak;
-    private ImageButton btnSendToCloud;
-    private View OptionView;
     private String sWord;
-    private String sPos;
+
     private String sMeaning;
     private String sSynonyms;
-    private String tEXT, tEXTsyno, tEXTmeaning;
-    private int pOSITION;
+    private String tEXTsyno, tEXT;
     private boolean isDBchanged = false;
-    private ArrayList<String> sMeaningArrList;
+    private ArrayList<String>[] sMeaningArrList = new ArrayList[MAX_POS];
     private ArrayList<String> sSynonymsArrList;
     private DBManager dbManager;
     private boolean isFavorite = false;
@@ -81,6 +90,14 @@ public class view_details_activity extends AppCompatActivity implements OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
+        /**
+         * Set Dialog Theme
+         */
+        String UI_theme = sharedPref.getString(preference_activity.pref_ui_theme, "light_green");
+        so_tools.setDialogUItheme(UI_theme, view_details_activity.this);
+
         setContentView(R.layout.details_view_layout);
 
         //Make window fill full width
@@ -88,130 +105,181 @@ public class view_details_activity extends AppCompatActivity implements OnClickL
 
         //================================================================
 
-        OptionView = findViewById(R.id.layout_options);
-        OptionView.setVisibility(View.GONE);
-
-        //================================================================
-
-        btnMeaningPartDelete = (ImageButton) findViewById(R.id.btn_delete_meaning_part);
-        btnMeaningPartDelete.setOnClickListener(this);
-
-        btnEdit = (ImageButton) findViewById(R.id.btn_edit);
-        btnEdit.setOnClickListener(this);
-
-        btnCloseOptions = (ImageButton) findViewById(R.id.btn_close_options);
-        btnCloseOptions.setOnClickListener(this);
-
-        btnDelete = (ImageButton) findViewById(R.id.btn_add);
-        btnDelete.setOnClickListener(this);
-
-        btnDeleteEntry = (ImageButton) findViewById(R.id.btn_delete_entry);
-        btnDeleteEntry.setOnClickListener(this);
-
+        /**
+         * Set Listener for Buttons
+         */
         btnFavorite = (ImageButton) findViewById(R.id.btn_favorite);
         btnFavorite.setOnClickListener(this);
+        btnFavorite.setOnLongClickListener(this);
 
-        btnSpeak = (ImageButton) findViewById(R.id.btn_speak);
+        ImageButton btnSpeak = (ImageButton) findViewById(R.id.btn_speak);
         btnSpeak.setOnClickListener(this);
+        btnSpeak.setOnLongClickListener(this);
 
-        btnSendToCloud = (ImageButton) findViewById(R.id.btn_send_to_cloud);
-        btnSendToCloud.setOnClickListener(this);
+        ImageButton btnClose = (ImageButton) findViewById(R.id.btn_close);
+        btnClose.setOnClickListener(this);
+        btnClose.setOnLongClickListener(this);
 
-        //================================================================
+        ImageButton btnOptions = (ImageButton) findViewById(R.id.btn_options);
+        btnOptions.setOnClickListener(this);
 
-        txtViewMeaning = (TextView) findViewById(R.id.txtView_meaning);
+        Class cls = R.id.class;
 
-        //================================================================
+        for (int i = 0; i < MAX_POS; i++) {
+            meaningListLayout[i] =
+                    (LinearLayout) findViewById(so_tools.getResId("meaning_layout_" + String.valueOf(i), cls));
+        }
 
-        txtEditMeaning = (EditText) findViewById(R.id.txtEdit_meaning);
+        for (int i = 0; i < MAX_POS; i++) {
+            txtViewPos[i] =
+                    (TextView) findViewById(so_tools.getResId("meaning_pos_" + String.valueOf(i), cls));
+        }
+
+        for (int i = 0; i < MAX_POS; i++) {
+            meaning_list[i] =
+                    (CustomListView) findViewById(so_tools.getResId("meaning_list_" + String.valueOf(i), cls));
+            meaning_list[i].setEmptyView(findViewById(R.id.txt_empty));
+            meaning_list[i].setOnItemClickListener(view_details_activity.this);
+            meaning_list[i].setOnItemLongClickListener(view_details_activity.this);
+        }
 
         //================================================================
 
         dbManager = new DBManager(this);
         dbManager.open();
 
-        hashMap = new HashMap<>();
-
         //================================================================
-
-        txtWord = (TextView) findViewById(R.id.txt_word);
-        txtpos = (TextView) findViewById(R.id.txt_pos);
 
         Intent intent = getIntent();
         sWord = intent.getStringExtra("word");
-        sPos = intent.getStringExtra("pos");
         sMeaning = intent.getStringExtra("meaning");
         sSynonyms = intent.getStringExtra("synonyms");
 
-        txtWord.setText(sWord);
-        txtpos.setText(sPos);
+        setTitle(sWord);
 
-        //Set Listener for Buttons
-        btnClose = (ImageButton) findViewById(R.id.btn_close);
-        btnClose.setOnClickListener(this);
-
-        //================================================================
-
-        String[] sMeaningArray = sMeaning.split(";");
-        String[] sSynonymsArray = sSynonyms.split(";");
-        /*
-        Delete extra space from meaning lists
+        /**
+         * ***********************************
+         *             MEANING PART
+         * ***********************************
+         */
+        /**
+         * Steps:
+         * - break "meaning by POS" using '|'
+         * - get the POS
+         * - break meanings using ';'
          */
 
-        int len, i;
-        len = sMeaningArray.length;
-        //sMeaning = sMeaningArray[0];
-        for (i = 1; i < len; i++) {
-            if (sMeaningArray[i].startsWith(" ")) {
-                sMeaningArray[i] = sMeaningArray[i].substring(1);
+        String[] meaningByPos = sMeaning.split("\\|");
+        _totalPos = meaningByPos.length;
+        int loc;
+        String _POS, strTemp;
+
+        /**
+         * Loop for every PoS
+         */
+        for (int i = 0; i < _totalPos; i++) {
+            /**
+             * Split the PoS part from "Main Meaning String"
+             */
+            loc = meaningByPos[i].indexOf("]");
+            if (loc > 0) {
+                _POS = meaningByPos[i].substring(1, loc);
+                txtViewPos[i].setText(_POS);
+                mapPos.put(_POS, i);
+            } else {
+                txtViewPos[i].setText("");
+                txtViewPos[i].setVisibility(View.GONE);
             }
+
+            /**
+             * Split the meaning part from "Main Meaning String"
+             */
+            meaningByPos[i] = meaningByPos[i].substring(loc + 1);
+
+            meaningListLayout[i].setVisibility(View.VISIBLE);
+
+            /**
+             * Split the meanings using semi-colon
+             */
+            String[] sMeaningArray = meaningByPos[i].split(";");
+
+            /**
+             * Delete extra space from meaning lists
+             */
+            int len, j;
+            len = sMeaningArray.length;
+            for (j = 1; j < len; j++) {
+                if (sMeaningArray[j].startsWith(" ")) {
+                    sMeaningArray[j] = sMeaningArray[j].substring(1);
+                }
+            }
+
+            /**
+             * Using ArrayList<> for add, edit, and remove feature
+             */
+            sMeaningArrList[i] = new ArrayList<>(Arrays.asList(sMeaningArray));
+
+            adapter[i] = new ArrayAdapter<>(this,
+                    R.layout.meaning_list_layout, R.id.text_view, sMeaningArrList[i]);
+
+            meaning_list[i].setAdapter(adapter[i]);
+
         }
 
+
+        /**
+         * ***********************************
+         *             SYNONYM PART
+         * ***********************************
+         */
+
+        String[] sSynonymsArray = sSynonyms.split(";");
+
+        /**
+         * Delete extra space from meaning lists
+         */
+        int len, i;
+
         len = sSynonymsArray.length;
-        //sSynonyms = sSynonymsArray[0];
         for (i = 1; i < len; i++) {
             if (sSynonymsArray[i].startsWith(" ")) {
                 sSynonymsArray[i] = sSynonymsArray[i].substring(1);
             }
         }
 
-        //String[] changed to ArrayList<> for Entry Modification Support
-        sMeaningArrList = new ArrayList<>(Arrays.asList(sMeaningArray));
+        /**
+         * String[] changed to ArrayList<> for Entry Modification Support
+         *
+         */
+
         sSynonymsArrList = new ArrayList<>(Arrays.asList(sSynonymsArray));
 
-        // Get ListView object from xml
-        meaningList = (ListView) findViewById(R.id.meaning_list);
-        meaningList.setEmptyView(findViewById(R.id.txt_empty));
-
+        /**
+         * Get ListView object from xml
+         */
+//
         synonymsList = (ListView) findViewById(R.id.synonyms_list);
         synonymsList.setEmptyView(findViewById(R.id.txt_empty_syno));
 
-        // Define a new Adapter
-        // First parameter - Context
-        // Second parameter - Layout for the row
-        // Third parameter - ID of the TextView to which the data is written
-        // Forth - the Array of data
-
-        adapter = new ArrayAdapter<>(this,
-                R.layout.meaning_list_layout, R.id.text_view, sMeaningArrList);
-
-        // Assign adapter to ListView
-        meaningList.setAdapter(adapter);
+        /**
+         * Define a new Adapter
+         * First parameter - Context
+         * Second parameter - Layout for the row
+         * Third parameter - ID of the TextView to which the data is written
+         * Forth - the Array of data
+         */
 
         synoAdapter = new ArrayAdapter<>(this,
                 R.layout.meaning_list_layout, R.id.text_view, sSynonymsArrList);
 
-        Log.v("soa", "=" + sSynonymsArray.length + "=");
         if (sSynonymsArray.length == 1 && sSynonymsArray[0].equals(""))
             synoAdapter.clear();
 
         // Assign adapter to ListView
         synonymsList.setAdapter(synoAdapter);
 
-
         //=============================================================
 
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         IsSendToServer = sharedPref.getBoolean(preference_activity.pref_key_send_to_server, true);
 
         //================================================================
@@ -220,170 +288,8 @@ public class view_details_activity extends AppCompatActivity implements OnClickL
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
 
-        subTitleDialog = (TextView) DialogView.findViewById(R.id.txtDialogueSubtitle);
+        //subTitleDialog = (TextView) DialogView.findViewById(R.id.txtDialogueSubtitle);
         //================================================================
-
-        meaningList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                TextView text = (TextView) view.findViewById(R.id.text_view);
-
-                tEXT = text.getText().toString();
-
-                if (!tEXT.equals(getString(R.string.no_meaning_text)) &&
-                        !tEXT.equals(getString(R.string.new_item_text))) {
-                    //Copy to Clip Board (Only support API >=11)
-                    ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                    ClipData clip = ClipData.newPlainText("SO_Meaning", tEXT);
-                    clipboard.setPrimaryClip(clip);
-
-                    Toast t = Toast.makeText(view_details_activity.this, getString(R.string.text_copied_to_clipboard), Toast.LENGTH_LONG);
-                    t.show();
-                } else {
-                    // NOTE: Same Code: longClickListener
-
-                    pOSITION = position;
-
-                    txtEditMeaning.setVisibility(View.GONE);
-                    txtViewMeaning.setText(tEXT);
-                    txtViewMeaning.setVisibility(View.VISIBLE);
-
-                    OptionView.setVisibility(View.VISIBLE);
-
-                    final Animation animationFade =
-                            AnimationUtils.loadAnimation(view_details_activity.this, android.R.anim.fade_in);
-
-                    OptionView.clearAnimation();
-                    OptionView.startAnimation(animationFade);
-                }
-
-
-                //====================================================
-
-            }
-        });
-
-        meaningList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
-
-//                clickedTxtView = (TextView) view.findViewById(R.id.text_view);
-//
-//                // NOTE: Same Code: longClickListener
-//                tEXT = clickedTxtView.getText().toString();
-//                pOSITION = position;
-//
-//                txtEditMeaning.setVisibility(View.GONE);
-//                txtViewMeaning.setText(tEXT);
-//                txtViewMeaning.setVisibility(View.VISIBLE);
-//
-//                OptionView.setVisibility(View.VISIBLE);
-//
-//                final Animation animationFade =
-//                        AnimationUtils.loadAnimation(view_details_activity.this, android.R.anim.fade_in);
-//
-//                OptionView.clearAnimation();
-//                OptionView.startAnimation(animationFade);
-
-                //====================================================
-
-                /// TODO: editing this [Completed]
-
-                TextView text = (TextView) view.findViewById(R.id.text_view);
-
-                tEXTmeaning = text.getText().toString();
-
-                AlertDialog.Builder adb = new AlertDialog.Builder(view_details_activity.this);
-                adb.setTitle(getString(R.string.what_do_you_want));
-                //adb.setMessage("?");
-
-                adb.setPositiveButton(getString(R.string.str_delete), new AlertDialog.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-
-                        AlertDialog.Builder adb = new AlertDialog.Builder(view_details_activity.this);
-                        adb.setTitle(getString(R.string.question_remove_meaning_part_title));
-                        adb.setMessage(getString(R.string.question_remove_meaning_part_description));
-                        adb.setNegativeButton(getString(R.string.no), null);
-                        adb.setPositiveButton(getString(R.string.yes), new AlertDialog.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                /// TODO: completed
-                                sMeaningArrList.remove(position); //pOSITION
-                                adapter.notifyDataSetChanged();
-
-                                updateDB();
-                                closeEditView();
-
-                            }
-                        });
-                        adb.show();
-
-                    }
-                });
-                adb.setNeutralButton(getString(R.string.str_edit),
-                        new AlertDialog.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-
-                                final EditText userInput = (EditText) DialogView.findViewById(R.id.txtInput);
-                                //userInput.setText("");
-
-                                AlertDialog.Builder builder = new AlertDialog.Builder(view_details_activity.this);
-                                builder.setTitle(getString(R.string.ui_txt_edit_meaning));
-
-                                //Multiple parent fix
-                                if (DialogView.getParent() != null)
-                                    ((ViewGroup) DialogView.getParent()).removeView(DialogView);
-
-                                builder.setView(DialogView);
-
-                                subTitleDialog.setText(getString(R.string.enter_change_meanings));
-                                userInput.setText(tEXTmeaning);
-                                userInput.setHint(R.string.edited_meanings);
-
-                                builder.setPositiveButton(getString(R.string.str_add), new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-
-                                        /// TODO: completed
-                                        if (!userInput.getText().toString().equals("")) {
-
-                                            sMeaningArrList.set(position, userInput.getText().toString().replace("\n", " ").replace("\r", " "));
-
-                                            adapter.notifyDataSetChanged();
-
-                                            updateDB();
-                                        }
-
-                                    }
-                                });
-                                builder.setNegativeButton(getString(R.string.str_cancel), new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-
-                                    }
-                                });
-                                builder.show();
-
-                            }
-                        });
-
-                adb.setNegativeButton(getString(R.string.str_view_cancel), new AlertDialog.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        /// TODO: completed
-                        //finishWithResult(true);
-                    }
-                });
-
-                adb.show();
-
-                return true;
-            }
-        });
-
-        //===================================================
 
         synonymsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -406,8 +312,6 @@ public class view_details_activity extends AppCompatActivity implements OnClickL
 
                     builder.setView(DialogView);
 
-                    subTitleDialog.setText(getString(R.string.enter_new_synonyms));
-                    //userInput.setText(tEXTsyno);
                     userInput.setHint(R.string.new_synonyms);
 
                     builder.setPositiveButton(getString(R.string.str_add), new DialogInterface.OnClickListener() {
@@ -437,7 +341,6 @@ public class view_details_activity extends AppCompatActivity implements OnClickL
 
                     AlertDialog.Builder adb = new AlertDialog.Builder(view_details_activity.this);
                     adb.setTitle(getString(R.string.what_do_you_want));
-                    //adb.setMessage("?");
 
                     adb.setNeutralButton(getString(R.string.str_delete), new AlertDialog.OnClickListener() {
                         @Override
@@ -468,7 +371,6 @@ public class view_details_activity extends AppCompatActivity implements OnClickL
 
                                     builder.setView(DialogView);
 
-                                    subTitleDialog.setText(getString(R.string.enter_change_synonyms));
                                     userInput.setText(tEXTsyno);
                                     userInput.setHint(R.string.edited_synonyms);
 
@@ -476,28 +378,12 @@ public class view_details_activity extends AppCompatActivity implements OnClickL
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
 
-                                            /// TODO: No change needed
                                             if (!userInput.getText().toString().equals("")) {
                                                 sSynonymsArrList.set(position, userInput.getText().toString().replace("\n", " ").replace("\r", " "));
                                                 synoAdapter.notifyDataSetChanged();
 
                                                 updateDB();
 
-                                                //========
-                                                txtEditMeaning.setVisibility(View.GONE);
-
-                                                //text.replace("\n", "").replace("\r", "");
-                                                tEXT = txtEditMeaning.getText().toString().replace("\n", " ").replace("\r", " ");
-
-                                                txtViewMeaning.setText(tEXT);
-                                                txtViewMeaning.setVisibility(View.VISIBLE);
-
-                                                btnEdit.setImageResource(R.drawable.ic_edit_black_48dp);
-
-                                                sMeaningArrList.set(pOSITION, tEXT);
-                                                adapter.notifyDataSetChanged();
-
-                                                updateDB();
                                             }
 
                                         }
@@ -538,10 +424,10 @@ public class view_details_activity extends AppCompatActivity implements OnClickL
         //===================================================
 
         if (dbManager.isInFavorite(sWord)) {
-            btnFavorite.setImageResource(R.drawable.ic_favorite_black_48dp);
+            btnFavorite.setImageResource(R.drawable.ic_favorite_black_24dp);
             isFavorite = true;
         } else {
-            btnFavorite.setImageResource(R.drawable.ic_favorite_outline_black_48dp);
+            btnFavorite.setImageResource(R.drawable.ic_favorite_border_black_24dp);
             isFavorite = false;
         }
 
@@ -554,7 +440,7 @@ public class view_details_activity extends AppCompatActivity implements OnClickL
 
                 if (isDBchanged) {
                     if (IsSendToServer) {
-                        so_tools.sendData(getString(R.string.server_txt_modified), sWord, sPos, sMeaning, sSynonyms);
+                        so_tools.sendData(getString(R.string.server_txt_modified), sWord, sMeaning, sSynonyms);
                     }
                 }
 
@@ -562,23 +448,80 @@ public class view_details_activity extends AppCompatActivity implements OnClickL
 
                 break;
 
-            case R.id.btn_add:
-
+            case R.id.btn_options:
                 //Creating the instance of PopupMenu
-                PopupMenu popup = new PopupMenu(view_details_activity.this, findViewById(R.id.btn_add));
+                PopupMenu popupOpts = new PopupMenu(view_details_activity.this, findViewById(R.id.btn_options));
                 //Inflating the Popup using xml file
-                popup.getMenuInflater()
-                        .inflate(R.menu.popup_menu_add, popup.getMenu());
+                popupOpts.getMenuInflater()
+                        .inflate(R.menu.popup_menu_details_view, popupOpts.getMenu());
 
                 //registering popup with OnMenuItemClickListener
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                popupOpts.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     public boolean onMenuItemClick(MenuItem item) {
 
                         switch (item.getItemId()) {
                             case R.id.item_add_meaning:
 
-                                sMeaningArrList.add(getString(R.string.new_item_text));
-                                adapter.notifyDataSetChanged();
+                                final String[] items = {
+                                        "noun",
+                                        "pronoun",
+                                        "verb",
+                                        "adverb",
+                                        "adjective",
+                                        "preposition",
+                                        "conjunction",
+                                        "interjection",
+                                        "phrase",
+                                        "idiom",
+                                        "article"
+                                };
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder(view_details_activity.this);
+                                builder.setTitle(getString(R.string.select_a_pos));
+                                builder.setItems(items, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int item) {
+                                        // Do something with the selection
+                                        //mDoneButton.setText(items[item]);
+                                        if (mapPos.get(items[item]) == null) {
+
+                                            if (_totalPos == MAX_POS) {
+
+                                                AlertDialog.Builder msgDlg = new AlertDialog.Builder(view_details_activity.this);
+                                                msgDlg.setTitle(getString(R.string.dialog_message_error));
+                                                msgDlg.setMessage(getString(R.string.dialog_message_max_pos_reached));
+                                                msgDlg.setPositiveButton(getString(R.string.dialog_message_ok), null);
+                                                AlertDialog alertDialog = msgDlg.create();
+                                                alertDialog.show();
+
+                                            } else {
+
+                                                String[] sMeaningArray = new String[]{getString(R.string.new_item_text)};
+
+                                                sMeaningArrList[_totalPos] = new ArrayList<>(Arrays.asList(sMeaningArray));
+
+                                                adapter[_totalPos] = new ArrayAdapter<>(view_details_activity.this,
+                                                        R.layout.meaning_list_layout, R.id.text_view, sMeaningArrList[_totalPos]);
+
+                                                // Assign adapter to ListView
+                                                meaning_list[_totalPos].setAdapter(adapter[_totalPos]);
+
+                                                txtViewPos[_totalPos].setText(items[item]);
+                                                mapPos.put(items[item], _totalPos);
+
+                                                meaningListLayout[_totalPos].setVisibility(View.VISIBLE);
+
+                                                _totalPos++;
+
+                                            }
+
+                                        } else {
+                                            sMeaningArrList[mapPos.get(items[item])].add(getString(R.string.new_item_text));
+                                            adapter[mapPos.get(items[item])].notifyDataSetChanged();
+                                        }
+                                    }
+                                });
+                                AlertDialog alert = builder.create();
+                                alert.show();
 
                                 break;
 
@@ -588,90 +531,68 @@ public class view_details_activity extends AppCompatActivity implements OnClickL
                                 synoAdapter.notifyDataSetChanged();
 
                                 break;
+
+                            case R.id.btn_delete_entry:
+                                AlertDialog.Builder adb2 = new AlertDialog.Builder(view_details_activity.this);
+                                adb2.setTitle(getString(R.string.question_delete_entry_title));
+                                adb2.setMessage(getString(R.string.question_delete_entry_description, sWord));
+                                adb2.setNegativeButton(getString(R.string.no), null);
+                                adb2.setPositiveButton(getString(R.string.yes), new AlertDialog.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                        if (dbManager.delete(sWord) != 0)
+                                            isDBchanged = true;
+
+                                        finishWithResult(false);
+                                    }
+                                });
+                                adb2.show();
+
+                                break;
+
+                            case R.id.btn_send_to_cloud:
+
+                                AlertDialog.Builder adb3 = new AlertDialog.Builder(view_details_activity.this);
+                                adb3.setTitle(getString(R.string.question_report_title));
+                                adb3.setMessage(getString(R.string.question_report_description, sWord));
+                                adb3.setNegativeButton(getString(R.string.no), null);
+                                adb3.setPositiveButton(getString(R.string.yes), new AlertDialog.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                        so_tools.sendData(getString(R.string.server_txt_sent_by_button_report), sWord, sMeaning, sSynonyms);
+
+                                    }
+                                });
+                                adb3.show();
+
+                                break;
+
                         }
 
                         return true;
                     }
                 });
 
-                popup.show(); //showing popup menu
-
-                break;
-
-            case R.id.btn_delete_meaning_part:
-                AlertDialog.Builder adb = new AlertDialog.Builder(view_details_activity.this);
-                adb.setTitle(getString(R.string.question_remove_meaning_part_title));
-                adb.setMessage(getString(R.string.question_remove_meaning_part_description));
-                adb.setNegativeButton(getString(R.string.no), null);
-                adb.setPositiveButton(getString(R.string.yes), new AlertDialog.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        sMeaningArrList.remove(pOSITION);
-                        adapter.notifyDataSetChanged();
-
-                        updateDB();
-                        closeEditView();
-
-                    }
-                });
-                adb.show();
-
-                break;
-
-            case R.id.btn_edit:
-
-                if (txtViewMeaning.getVisibility() == View.VISIBLE) {
-
-                    txtViewMeaning.setVisibility(View.GONE);
-
-                    txtEditMeaning.setText(tEXT);
-                    txtEditMeaning.setVisibility(View.VISIBLE);
-
-                    btnEdit.setImageResource(R.drawable.ic_save_black_48dp);
-
-                } else {
-
-                    txtEditMeaning.setVisibility(View.GONE);
-
-                    //text.replace("\n", "").replace("\r", "");
-                    tEXT = txtEditMeaning.getText().toString().replace("\n", " ").replace("\r", " ");
-
-                    txtViewMeaning.setText(tEXT);
-                    txtViewMeaning.setVisibility(View.VISIBLE);
-
-                    btnEdit.setImageResource(R.drawable.ic_edit_black_48dp);
-
-                    sMeaningArrList.set(pOSITION, tEXT);
-                    adapter.notifyDataSetChanged();
-
-                    updateDB();
-
+                // Enable icon in popup menu
+                try {
+                    Field mFieldPopup = popupOpts.getClass().getDeclaredField("mPopup");
+                    mFieldPopup.setAccessible(true);
+                    MenuPopupHelper mPopup = (MenuPopupHelper) mFieldPopup.get(popupOpts);
+                    mPopup.setForceShowIcon(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
 
-                break;
-
-            case R.id.btn_delete_entry:
-                AlertDialog.Builder adb2 = new AlertDialog.Builder(view_details_activity.this);
-                adb2.setTitle(getString(R.string.question_delete_entry_title));
-                adb2.setMessage(getString(R.string.question_delete_entry_description, sWord));
-                adb2.setNegativeButton(getString(R.string.no), null);
-                adb2.setPositiveButton(getString(R.string.yes), new AlertDialog.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        if (dbManager.delete(sWord) != 0)
-                            isDBchanged = true;
-
-                        finishWithResult(false);
-                    }
-                });
-                adb2.show();
+                popupOpts.show(); //showing popup menu
 
                 break;
+
 
             case R.id.btn_favorite:
 
                 if (isFavorite) {
                     if (dbManager.deleteFromFavorite(sWord) != 0) {
-                        btnFavorite.setImageResource(R.drawable.ic_favorite_outline_black_48dp);
+                        btnFavorite.setImageResource(R.drawable.ic_favorite_border_black_24dp);
                         isFavorite = false;
                         Toast t = Toast.makeText(view_details_activity.this,
                                 getString(R.string.msg_removed_from_favorite_list), Toast.LENGTH_LONG);
@@ -679,7 +600,7 @@ public class view_details_activity extends AppCompatActivity implements OnClickL
                     }
                 } else {
                     if (dbManager.insertIntoFavorite(sWord) != -1) {
-                        btnFavorite.setImageResource(R.drawable.ic_favorite_black_48dp);
+                        btnFavorite.setImageResource(R.drawable.ic_favorite_black_24dp);
                         isFavorite = true;
 
                         Toast t = Toast.makeText(view_details_activity.this,
@@ -690,51 +611,91 @@ public class view_details_activity extends AppCompatActivity implements OnClickL
 
                 break;
 
-            case R.id.btn_close_options:
-                closeEditView();
-
-                //Reset (if close before save)
-                btnEdit.setImageResource(R.drawable.ic_edit_black_48dp);
-
-                break;
-
             case R.id.btn_speak:
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    textToSpeech.speak(txtWord.getText().toString(), TextToSpeech.QUEUE_FLUSH, null, null);
+                    textToSpeech.speak(getTitle().toString(), TextToSpeech.QUEUE_FLUSH, null, null);
                 } else {
-                    textToSpeech.speak(txtWord.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
+                    textToSpeech.speak(getTitle().toString(), TextToSpeech.QUEUE_FLUSH, null);
                 }
                 break;
 
-            case R.id.btn_send_to_cloud:
-
-                so_tools.sendData(getString(R.string.server_txt_sent_by_button), sWord, sPos, sMeaning, sSynonyms);
-
-                break;
 
         }
     }
 
     void updateDB() {
 
-        String meaning;
-        int len, i;
+        /**
+         * ***********************************
+         *      Generating the meanings
+         * ***********************************
+         */
+        /**
+         * Meaning pattern:
+         * ----------------
+         * meaning1; meaning2; meaning3|[PoS1]meaning1; meaning2; meaning3|[PoS2]meaning4; meaning5; meaning6
+         */
+        String meaning = "", strTemp;
+        int len, i, j;
+        boolean addSemiColon = false, addVline = false;
 
-        len = meaningList.getAdapter().getCount();
-        if (len > 0) {
-            meaning = meaningList.getItemAtPosition(0).toString();
-            for (i = 1; i < len; i++) {
-                if (!meaningList.getItemAtPosition(i).toString().equals("") &&
-                        !meaningList.getItemAtPosition(i).toString().equals(getString(R.string.new_item_text)))
-                    meaning += "; " + meaningList.getItemAtPosition(i).toString();
+        for (i = 0; i < _totalPos; i++) {
+            /**
+             * Get total meaning count
+             */
+            len = meaning_list[i].getAdapter().getCount();
+
+            /**
+             * If there is no meaning found then nothing will happen
+             */
+            if (len > 0) {
+
+                /**
+                 * Checking PoS
+                 */
+                if (txtViewPos[i].getText() != "") {
+
+                    if (addVline)
+                        meaning += "|";
+
+
+                    meaning += "[" + txtViewPos[i].getText() + "]";
+                    addSemiColon = false;
+                    addVline = true;
+                }
+
+                /**
+                 * Collecting meaning
+                 */
+                for (j = 0; j < len; j++) {
+
+                    strTemp = meaning_list[i].getItemAtPosition(j).toString();
+
+                    /**
+                     * Checking the string, is it blank or "default new text"?
+                     */
+                    if (!strTemp.equals("") && !strTemp.equals(getString(R.string.new_item_text))) {
+                        if (addSemiColon)
+                            meaning += "; ";
+                    }
+                    meaning += strTemp;
+                    addSemiColon = true;
+                    addVline = true;
+                }
             }
-        } else
-            meaning = "";
+        }
 
-        sMeaning = meaning;
+        if (TextUtils.isEmpty(meaning))
+            sMeaning = getString(R.string.new_item_text);
+        else
+            sMeaning = meaning;
 
-        //============================
+        /**
+         * ***********************************
+         *      Generating the synonyms
+         * ***********************************
+         */
         len = synonymsList.getAdapter().getCount();
         if (len > 0) {
             meaning = synonymsList.getItemAtPosition(0).toString();
@@ -748,20 +709,13 @@ public class view_details_activity extends AppCompatActivity implements OnClickL
 
         sSynonyms = meaning;
 
-        //==================================
-
-        if (dbManager.update(sWord, sPos, sMeaning, sSynonyms) != 0) {
+        /**
+         * Update database
+         */
+        if (dbManager.update(sWord, sMeaning, sSynonyms) != 0) {
             isDBchanged = true;
         }
 
-    }
-
-    void closeEditView() {
-        final Animation animationFade =
-                AnimationUtils.loadAnimation(view_details_activity.this, android.R.anim.fade_out);
-        OptionView.clearAnimation();
-        OptionView.startAnimation(animationFade);
-        OptionView.setVisibility(View.GONE);
     }
 
     private void finishWithResult(boolean isViewSynonymMeaning) {
@@ -778,6 +732,261 @@ public class view_details_activity extends AppCompatActivity implements OnClickL
     }
 
 
+    @Override
+    public void onItemClick(final AdapterView<?> parent, final View view, final int position, long id) {
+
+        switch (parent.getId()) {
+            case R.id.meaning_list_0:
+            case R.id.meaning_list_1:
+            case R.id.meaning_list_2:
+            case R.id.meaning_list_3:
+            case R.id.meaning_list_4:
+            case R.id.meaning_list_5:
+            case R.id.meaning_list_6:
+            case R.id.meaning_list_7:
+            case R.id.meaning_list_8:
+            case R.id.meaning_list_9:
+            case R.id.meaning_list_10:
+            case R.id.meaning_list_11:
+                TextView text = (TextView) view.findViewById(R.id.text_view);
+
+                tEXT = text.getText().toString();
+
+                if (!tEXT.equals(getString(R.string.no_meaning_text)) &&
+                        !tEXT.equals(getString(R.string.new_item_text))) {
+                    //Copy to Clip Board (Only support API >=11)
+                    ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                    ClipData clip = ClipData.newPlainText("SO_Meaning", tEXT);
+                    clipboard.setPrimaryClip(clip);
+
+                    Toast t = Toast.makeText(view_details_activity.this, getString(R.string.text_copied_to_clipboard), Toast.LENGTH_LONG);
+                    t.show();
+                } else {
+                    // NOTE: Same Code: setOnItemLongClickListener: edit section
+
+                    final EditText userInput = (EditText) DialogView.findViewById(R.id.txtInput);
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(view_details_activity.this);
+                    builder.setTitle(getString(R.string.ui_txt_edit_meaning));
+
+                    //Multiple parent fix
+                    if (DialogView.getParent() != null)
+                        ((ViewGroup) DialogView.getParent()).removeView(DialogView);
+
+                    builder.setView(DialogView);
+
+                    //subTitleDialog.setText(getString(R.string.enter_change_meanings));
+                    userInput.setText(tEXT);
+                    userInput.setHint(R.string.new_meaning);
+
+                    builder.setPositiveButton(getString(R.string.str_add), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            /**
+                             * Get the id
+                             */
+                            String _resName = getResources().getResourceName(parent.getId());
+                            _resName = _resName.substring(_resName.length() - 1, _resName.length());
+                            int _resId = Integer.parseInt(_resName);
+
+                            if (!userInput.getText().toString().equals("") &&
+                                    !userInput.getText().toString().equals(getString(R.string.new_item_text))) {
+
+                                sMeaningArrList[_resId].set(position, userInput.getText().toString().replace("\n", " ").replace("\r", " "));
+
+                                adapter[_resId].notifyDataSetChanged();
+
+                                updateDB();
+                            }
+
+                        }
+                    });
+                    builder.setNegativeButton(getString(R.string.str_cancel), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    builder.show();
+
+
+                }
+                break;
+        }
+
+    }
+
+    @Override
+    public boolean onItemLongClick(final AdapterView<?> parent, final View view, final int position, long id) {
+
+        switch (parent.getId()) {
+            case R.id.meaning_list_0:
+            case R.id.meaning_list_1:
+            case R.id.meaning_list_2:
+            case R.id.meaning_list_3:
+            case R.id.meaning_list_4:
+            case R.id.meaning_list_5:
+            case R.id.meaning_list_6:
+            case R.id.meaning_list_7:
+            case R.id.meaning_list_8:
+            case R.id.meaning_list_9:
+            case R.id.meaning_list_10:
+            case R.id.meaning_list_11:
+
+                TextView text = (TextView) view.findViewById(R.id.text_view);
+
+                tEXT = text.getText().toString();
+
+                AlertDialog.Builder adb = new AlertDialog.Builder(view_details_activity.this);
+                adb.setTitle(getString(R.string.what_do_you_want));
+
+                adb.setPositiveButton(getString(R.string.str_delete), new AlertDialog.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+
+                        AlertDialog.Builder adb = new AlertDialog.Builder(view_details_activity.this);
+                        adb.setTitle(getString(R.string.question_remove_meaning_part_title));
+                        adb.setMessage(getString(R.string.question_remove_meaning_part_description));
+                        adb.setNegativeButton(getString(R.string.no), null);
+                        adb.setPositiveButton(getString(R.string.yes), new AlertDialog.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                /**
+                                 * Get the id
+                                 */
+                                String _resName = getResources().getResourceName(parent.getId());
+                                _resName = _resName.substring(_resName.length() - 1, _resName.length());
+                                int _resId = Integer.parseInt(_resName);
+
+                                sMeaningArrList[_resId].remove(position);
+                                adapter[_resId].notifyDataSetChanged();
+
+                                updateDB();
+
+                            }
+                        });
+                        adb.show();
+
+                    }
+                });
+                adb.setNeutralButton(getString(R.string.str_edit),
+                        new AlertDialog.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                final EditText userInput = (EditText) DialogView.findViewById(R.id.txtInput);
+                                //userInput.setText("");
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder(view_details_activity.this);
+                                builder.setTitle(getString(R.string.ui_txt_edit_meaning));
+
+                                //Multiple parent fix
+                                if (DialogView.getParent() != null)
+                                    ((ViewGroup) DialogView.getParent()).removeView(DialogView);
+
+                                builder.setView(DialogView);
+
+                                //subTitleDialog.setText(getString(R.string.enter_change_meanings));
+                                userInput.setText(tEXT);
+                                userInput.setHint(R.string.edited_meaning);
+
+                                builder.setPositiveButton(getString(R.string.str_add), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                        if (!userInput.getText().toString().equals("") &&
+                                                !userInput.getText().toString().equals(getString(R.string.new_item_text))) {
+
+                                            /**
+                                             * Get the id
+                                             */
+                                            String _resName = getResources().getResourceName(parent.getId());
+                                            _resName = _resName.substring(_resName.length() - 1, _resName.length());
+                                            int _resId = Integer.parseInt(_resName);
+
+                                            sMeaningArrList[_resId].set(position, userInput.getText().toString().replace("\n", " ").replace("\r", " "));
+
+                                            adapter[_resId].notifyDataSetChanged();
+
+                                            updateDB();
+                                        }
+
+                                    }
+                                });
+                                builder.setNegativeButton(getString(R.string.str_cancel), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                });
+                                builder.show();
+
+                            }
+                        });
+
+                adb.setNegativeButton(getString(R.string.str_view_cancel), new AlertDialog.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+                adb.show();
+
+                break;
+
+        }
+
+        /**
+         * return true to indicate that you have handled the event and it should stop here;
+         * return false if you have not handled it and/or the event should continue to any
+         * other on-click listeners.
+         */
+        return true;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        if (isDBchanged) {
+            if (IsSendToServer) {
+                so_tools.sendData(getString(R.string.server_txt_modified), sWord, sMeaning, sSynonyms);
+            }
+        }
+
+        finishWithResult(false);
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+
+        switch (v.getId()) {
+            case R.id.btn_favorite:
+
+                Toast.makeText(view_details_activity.this,
+                        getString(R.string.desc_favorite), Toast.LENGTH_LONG).show();
+
+                break;
+
+            case R.id.btn_speak:
+
+                Toast.makeText(view_details_activity.this,
+                        getString(R.string.desc_speak), Toast.LENGTH_LONG).show();
+
+                break;
+
+            case R.id.btn_close:
+
+                Toast.makeText(view_details_activity.this,
+                        getString(R.string.desc_back), Toast.LENGTH_LONG).show();
+
+                break;
+        }
+
+        return true;
+    }
 }
 
 

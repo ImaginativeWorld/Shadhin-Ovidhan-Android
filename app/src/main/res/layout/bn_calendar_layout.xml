@@ -2,10 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="@dimen/activity_vertical_margin"
-    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-    android:layout_marginRight="@dimen/activity_horizontal_margin"
-    android:layout_marginTop="@dimen/activity_vertical_margin">
+    android:layout_marginBottom="@dimen/dialog_button_bar_button_margin"
+    android:layout_marginTop="@dimen/dialog_padding">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -17,7 +15,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:background="?attr/colorPrimary"
+            android:orientation="horizontal"
+            android:padding="@dimen/dialog_padding">
 
             <TextView
                 android:id="@+id/bn_month"
@@ -25,6 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Month"
+                android:textColor="@color/white"
                 android:textSize="@dimen/txt_calendar_h1"
                 android:textStyle="bold" />
 
@@ -35,6 +36,7 @@
                 android:layout_weight="1"
                 android:gravity="end"
                 android:text="Year"
+                android:textColor="@color/white"
                 android:textSize="@dimen/txt_calendar_h1"
                 android:textStyle="bold" />
 
@@ -44,6 +46,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dialog_padding"
+            android:layout_marginRight="@dimen/dialog_padding"
             android:orientation="horizontal">
 
             <TextView
@@ -136,6 +140,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dialog_padding"
+            android:layout_marginRight="@dimen/dialog_padding"
             android:orientation="horizontal">
 
             <TextView
@@ -146,7 +152,6 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="১"
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -157,7 +162,6 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="২"
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -168,7 +172,6 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="৩"
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -179,7 +182,6 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="৪"
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -190,7 +192,6 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="৫"
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -201,7 +202,6 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="৬"
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -212,7 +212,6 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="৭"
                 android:textSize="@dimen/cal_grid_text_size" />
 
         </LinearLayout>
@@ -220,6 +219,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dialog_padding"
+            android:layout_marginRight="@dimen/dialog_padding"
             android:orientation="horizontal">
 
             <TextView
@@ -230,7 +231,7 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="৮"
+
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -241,7 +242,7 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="৯"
+
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -252,7 +253,7 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="১০"
+
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -263,7 +264,7 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="১১"
+
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -274,7 +275,7 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="১২"
+
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -285,7 +286,7 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="১৩"
+
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -296,7 +297,7 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="১৪"
+
                 android:textSize="@dimen/cal_grid_text_size" />
 
         </LinearLayout>
@@ -304,6 +305,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dialog_padding"
+            android:layout_marginRight="@dimen/dialog_padding"
             android:orientation="horizontal">
 
             <TextView
@@ -314,7 +317,7 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="১৫"
+
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -325,7 +328,7 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="১৬"
+
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -336,7 +339,7 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="১৭"
+
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -347,7 +350,7 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="১৮"
+
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -358,7 +361,7 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="১৯"
+
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -369,7 +372,7 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="২০"
+
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -380,7 +383,7 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="২১"
+
                 android:textSize="@dimen/cal_grid_text_size" />
 
         </LinearLayout>
@@ -388,6 +391,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dialog_padding"
+            android:layout_marginRight="@dimen/dialog_padding"
             android:orientation="horizontal">
 
             <TextView
@@ -398,7 +403,7 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="২২"
+
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -409,7 +414,7 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="২৩"
+
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -420,7 +425,7 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="২৪"
+
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -431,7 +436,7 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="২৫"
+
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -442,7 +447,7 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="২৬"
+
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -453,7 +458,7 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="২৭"
+
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -464,7 +469,7 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="২৮"
+
                 android:textSize="@dimen/cal_grid_text_size" />
 
         </LinearLayout>
@@ -472,6 +477,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dialog_padding"
+            android:layout_marginRight="@dimen/dialog_padding"
             android:orientation="horizontal">
 
             <TextView
@@ -482,7 +489,6 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="২৯"
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -493,7 +499,6 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="৩০"
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -504,10 +509,10 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
-                android:text="৩১"
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
+                android:id="@+id/cal_day_32"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -517,6 +522,7 @@
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
+                android:id="@+id/cal_day_33"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -526,6 +532,7 @@
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
+                android:id="@+id/cal_day_34"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -535,6 +542,86 @@
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
+                android:id="@+id/cal_day_35"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dialog_padding"
+            android:layout_marginRight="@dimen/dialog_padding"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/cal_day_36"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_37"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_38"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_39"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_40"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_41"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
+                android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:textSize="@dimen/cal_grid_text_size" />
+
+            <TextView
+                android:id="@+id/cal_day_42"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -551,18 +638,16 @@
 
     <LinearLayout
         android:id="@+id/btn_layout"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/dialog_button_bar_height"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:gravity="end"
+        android:layout_marginTop="@dimen/dialog_button_bar_button_margin"
+        android:gravity="end|center_vertical"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_close"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            style="@style/dialog_button"
             android:text="@string/dialog_message_ok" />
 
     </LinearLayout>

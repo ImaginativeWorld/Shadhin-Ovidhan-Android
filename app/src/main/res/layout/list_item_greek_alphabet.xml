@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/abc_dialog_list_padding_vertical_material"
-    android:paddingLeft="@dimen/abc_list_item_padding_horizontal_material"
-    android:paddingRight="@dimen/abc_list_item_padding_horizontal_material"
-    android:paddingTop="@dimen/abc_dialog_list_padding_vertical_material">
+    android:paddingBottom="@dimen/list_padding_vertical"
+    android:paddingLeft="@dimen/list_padding_horizontal"
+    android:paddingRight="@dimen/list_padding_horizontal"
+    android:paddingTop="@dimen/list_padding_vertical">
 
     <TextView
         android:id="@+id/capital_letter"

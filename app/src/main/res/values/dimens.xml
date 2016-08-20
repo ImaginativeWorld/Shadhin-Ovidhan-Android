@@ -3,59 +3,59 @@
     <!-- Material Metrics & Keylines -->
 
 
-    <dimen name="action_bar_height">56dp</dimen>
     <dimen name="border_margin">16dp</dimen>
 
-    <dimen name="app_bar_icon_size">48dp</dimen>
-    <dimen name="app_bar_icon_padding">12dp</dimen>
-
-    <dimen name="button_bar_height">48dp</dimen>
-    <dimen name="button_height">36dp</dimen>
-    <dimen name="button_bar_top_bottom_padding">6dp</dimen>
-
     <!-- Dialog layout dimens -->
-    <dimen name="title_text_size">26sp</dimen>
-    <dimen name="text_size_title_material">20sp</dimen>
-    <dimen name="standard_title_text_size">18sp</dimen>
-    <dimen name="title_bottom_margin">20dp</dimen>
-    <dimen name="dialog_padding">16dp</dimen>
-    <dimen name="dialog_vertical_padding">12dp</dimen>
-    <dimen name="dialog_horizontal_padding">24dp</dimen>
+    <dimen name="title_text_size">21sp</dimen>
 
-    <dimen name="dialog_button_bar_height">48dp</dimen>
-    <dimen name="dialog_button_bar_button_padding">6dp</dimen>
+    <!-- https://material.google.com/components/dialogs.html#dialogs-specs -->
+    <dimen name="dialog_padding">24dp</dimen>
+
+    <dimen name="dialog_title_size">20sp</dimen>
+    <dimen name="dialog_title_bottom_padding">20dp</dimen>
+
+    <dimen name="dialog_button_bar_height">52dp</dimen>
+    <dimen name="dialog_button_bar_button_horizontal_padding">8dp</dimen>
+    <dimen name="dialog_button_bar_button_margin">8dp</dimen>
+
+    <dimen name="space_between_element">4dp</dimen>
 
     <!-- details layout dimens -->
     <!--<dimen name="button_bar_padding">12dp</dimen>-->
     <dimen name="list_word_text">18sp</dimen>
-    <dimen name="list_pos_text">14sp</dimen>
     <dimen name="list_meaning_text">16sp</dimen>
     <dimen name="list_synonyms_text">14sp</dimen>
 
     <!-- details layout dimens -->
-    <dimen name="details_word">26sp</dimen>
-    <dimen name="details_pos">21sp</dimen>
     <dimen name="details_meaning">16sp</dimen>
 
     <dimen name="shadow_height">5dp</dimen>
 
-    <dimen name="drawer_button_text">21sp</dimen>
-
     <!-- Color Picker -->
     <dimen name="pickerButtonMargin">5dp</dimen>
-    <dimen name="pickerButtonHeight">48dp</dimen>
     <dimen name="pickerButtonWeight">48dp</dimen>
 
-    <dimen name="default_font_size">18sp</dimen>
     <dimen name="big_font_size">21sp</dimen>
 
     <!-- Calendar -->
-    <dimen name="cal_grid_text_size">21sp</dimen>
+    <dimen name="cal_grid_text_size">18sp</dimen>
     <dimen name="cal_grid_vertical_padding">7dp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="txt_calendar_h1">28sp</dimen>
+    <dimen name="list_padding_vertical">8dp</dimen>
+    <dimen name="action_button_height">48dp</dimen>
+    <dimen name="action_button_width">48dp</dimen>
+    <dimen name="actionBarSize">56dp</dimen>
+    <dimen name="action_bar_button_height">48dp</dimen>
+    <dimen name="action_bar_button_width">48dp</dimen>
+    <dimen name="action_bar_button_padding">12dp</dimen>
+    <dimen name="action_bar_button_margin">4dp</dimen>
+    <dimen name="text_size_title_material_toolbar">20sp</dimen>
+    <dimen name="list_padding_horizontal">20dp</dimen>
+    <dimen name="simple_list_text_size">16sp</dimen>
+    <dimen name="pos_bottom_margin">8dp</dimen>
 
 </resources>
 

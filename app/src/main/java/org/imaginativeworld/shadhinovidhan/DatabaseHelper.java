@@ -29,12 +29,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Table columns
     public static final String _WORD = "_id"; // It must be "_id", or many error happened.. :(
     public static final String SO_PRON = "pron";
-    public static final String SO_POS = "pos";
     public static final String SO_MEANING = "meaning";
     public static final String SO_SYNONYMS = "synonyms";
     public static final String SO_NEW = "new";
     public static final String SO_MODIFY = "modify";
-
 
     public static final String SO_FAVORITE = "word";
 
@@ -43,13 +41,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /**
      * @DB_VERSION : database version
-     * History: (DB version: App version)
+     *
+     *********[ HISTORY ]*********
+     *
+     * DB_version: App_version : [Total DB entry] (file_name) Comments
+     * --------------------------------------------------------------------------
      * 1: 1.0 to 1.1
      * 2: 1.2 to 1.3
      * 3: 1.4 : New Word added, semi-colonize
      * 4: 1.5 : (IWSO_2.3) Remove [favorite] table and make Favourite independent.. :)
-     * 5: 1.6 : (IWSO_2.4) New entry added and old entry corrected
-     * 6: 1.7 to -.- : (IWSO_3.0) New Database rule (Not completed yet)
+     * 5: 1.6 : [19539] (IWSO_2.4) New entry added and old entry corrected
+     * 6: 2.0 to -.- : [25799] (IWSO_3.0) New Database rule, 6686 (6267 unique) new entry (from GT)
      */
     static final int DB_VERSION = 6;
 

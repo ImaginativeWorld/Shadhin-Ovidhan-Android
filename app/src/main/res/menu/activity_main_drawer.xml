@@ -28,9 +28,9 @@
     <item android:title="অভিধান">
         <menu>
             <item
-                android:id="@+id/add_record"
-                android:icon="@drawable/ic_add_circle_black_24dp"
-                android:title="@string/menu_text_add_entry"/>
+                android:id="@+id/menu_suggestion"
+                android:icon="@drawable/ic_lightbulb_outline_black_24dp"
+                android:title="@string/menu_text_suggestion"/>
         </menu>
     </item>
 
@@ -58,7 +58,7 @@
 
             <item
                 android:id="@+id/about"
-                android:icon="@drawable/ic_lightbulb_outline_black_24dp"
+                android:icon="@drawable/ic_info_black_24dp"
                 android:title="@string/menu_text_about"/>
 
             <item

@@ -9,7 +9,6 @@
     >
 
     <ImageView
-        android:id="@+id/title_icon"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"

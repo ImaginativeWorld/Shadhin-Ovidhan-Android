@@ -4,34 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingBottom="10dp"
+    android:paddingBottom="@dimen/list_padding_vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="10dp">
+    android:paddingTop="@dimen/list_padding_vertical">
 
     <TextView
         android:id="@+id/txt_pron"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:textColor="?attr/colorPrimaryDark"
         android:textSize="@dimen/list_word_text"
         android:textStyle="bold"
         android:visibility="visible" />
 
     <TextView
-        android:id="@+id/txt_pos"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:textSize="@dimen/list_pos_text"
-        android:textStyle="italic"/>
-
-    <TextView
         android:id="@+id/txt_meaning"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:ellipsize="end"
-
         android:paddingTop="3dp"
+        android:textColor="@color/black"
         android:textSize="@dimen/list_meaning_text"
         android:visibility="visible" />
 
@@ -41,8 +33,6 @@
         android:id="@+id/txt_synonyms"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:maxLines="2"
         android:paddingTop="3dp"
         android:textSize="@dimen/list_synonyms_text"
         android:visibility="gone" />

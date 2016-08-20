@@ -72,12 +72,6 @@ public class iw_bangla_calendar {
 
         dayOfTheYear = calendar.get(Calendar.DAY_OF_YEAR);
 
-//        Log.d("shadhinovidhan", String.valueOf(calendar.get(Calendar.DATE)));
-//        Log.d("shadhinovidhan", String.valueOf(calendar.get(Calendar.MONTH)));
-//        Log.d("shadhinovidhan", String.valueOf(calendar.get(Calendar.YEAR)));
-//        Log.d("shadhinovidhan", String.valueOf(calendar.get(Calendar.DAY_OF_YEAR)));
-//        Log.d("shadhinovidhan", String.valueOf(calendar.isLeapYear(Calendar.YEAR)));
-
         /**
          * Processing the Month
          */

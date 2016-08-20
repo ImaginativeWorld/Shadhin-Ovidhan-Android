@@ -3,11 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dialog_button_bar_button_margin"
+    android:layout_marginTop="@dimen/dialog_padding"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="org.imaginativeworld.shadhinovidhan.ColorPickerActivity">
 
     <LinearLayout
@@ -22,7 +20,10 @@
             android:id="@+id/colorPreview"
             android:layout_width="match_parent"
             android:layout_height="@dimen/pickerButtonWeight"
-            android:layout_margin="5dp"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:text="@string/picked_color"
             android:textColor="#ffffff"
             android:textSize="@dimen/big_font_size" />
@@ -218,19 +219,17 @@
 
     <LinearLayout
         android:id="@+id/btn_layout"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/dialog_button_bar_height"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:gravity="end"
+        android:layout_marginTop="@dimen/dialog_button_bar_button_margin"
+        android:gravity="end|center_vertical"
         android:orientation="horizontal">
 
         <Button
 
             android:id="@+id/btnOk"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            style="@style/dialog_button"
             android:text="@string/dialog_message_ok" />
 
     </LinearLayout>

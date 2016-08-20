@@ -2,17 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="@dimen/activity_vertical_margin"
-    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-    android:layout_marginRight="@dimen/activity_horizontal_margin"
-    android:layout_marginTop="@dimen/activity_vertical_margin">
+    android:layout_marginBottom="@dimen/dialog_button_bar_button_margin"
+    android:layout_marginTop="@dimen/dialog_padding">
 
     <RelativeLayout
-        android:id="@+id/body_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/btn_layout"
-        android:layout_below="@+id/title"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true">
 
         <ListView
@@ -21,7 +18,7 @@
             android:layout_height="fill_parent"
             android:choiceMode="singleChoice"
             android:divider="@color/grey_300"
-            android:dividerHeight="2dp" />
+            android:dividerHeight="1dp" />
 
         <TextView
             android:id="@+id/empty"
@@ -38,18 +35,16 @@
 
     <LinearLayout
         android:id="@+id/btn_layout"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/dialog_button_bar_height"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:gravity="end"
+        android:layout_marginTop="@dimen/dialog_button_bar_button_margin"
+        android:gravity="end|center_vertical"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_close"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            style="@style/dialog_button"
             android:text="@string/dialog_message_close" />
 
     </LinearLayout>

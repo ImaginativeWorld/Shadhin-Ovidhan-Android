@@ -32,9 +32,11 @@ import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
 import android.util.Xml;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -43,7 +45,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,21 +60,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-public class main_activity extends Activity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
+public class main_activity extends Activity
+        implements View.OnClickListener, View.OnLongClickListener, NavigationView.OnNavigationItemSelectedListener {
 
     //for DB ovidhan
     final String[] from = new String[]{
             DatabaseHelper.SO_PRON,
-            DatabaseHelper.SO_POS,
             DatabaseHelper.SO_MEANING,
             DatabaseHelper.SO_SYNONYMS
     };
     final int[] to = new int[]{
             R.id.txt_pron,
-            R.id.txt_pos,
             R.id.txt_meaning,
             R.id.txt_synonyms
     };
+
+    String _searchTerm = "";
 
     EditText editTextSearch;
     TextView txtView_welcome, txtView_result_count;
@@ -89,7 +91,6 @@ public class main_activity extends Activity implements View.OnClickListener, Nav
     int pref_feedback_show_counter;
     ListView listView, listViewHistory;
     Button btn_clr_history;
-    //    TextView textBanglaCalendar;
     MenuItem nav_bn_calendar;
     /**
      * History
@@ -121,7 +122,7 @@ public class main_activity extends Activity implements View.OnClickListener, Nav
 
     boolean isBackPressed = false;
     private DBManager dbManager;
-    private SimpleCursorAdapter adapter;
+    private CustomSimpleCursorAdapter adapter;
 
     private DrawerLayout mDrawerLayout;
 
@@ -137,7 +138,11 @@ public class main_activity extends Activity implements View.OnClickListener, Nav
 
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         Lang = sharedPref.getString(preference_activity.pref_language, "bn");
+
+
         UI_theme = sharedPref.getString(preference_activity.pref_ui_theme, "light_green");
+
+        so_tools.setUItheme(UI_theme, main_activity.this);
 
 
         sharedPref.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
@@ -157,10 +162,6 @@ public class main_activity extends Activity implements View.OnClickListener, Nav
         config.locale = locale;
         getBaseContext().getResources().updateConfiguration(config,
                 getBaseContext().getResources().getDisplayMetrics());
-
-
-        setUItheme(UI_theme);
-
 
         //============================================================
 
@@ -228,9 +229,11 @@ public class main_activity extends Activity implements View.OnClickListener, Nav
 
         btnClearSearch = (ImageButton) findViewById(R.id.searchClear);
         btnClearSearch.setOnClickListener(this);
+        btnClearSearch.setOnLongClickListener(this);
 
         btn_search_web = (ImageButton) findViewById(R.id.searchWeb);
         btn_search_web.setOnClickListener(main_activity.this);
+        btn_search_web.setOnLongClickListener(this);
 
         txtView_welcome = (TextView) findViewById(R.id.txt_welcome);
         txtView_result_count = (TextView) findViewById(R.id.textView_result_count);
@@ -298,7 +301,7 @@ public class main_activity extends Activity implements View.OnClickListener, Nav
 
         listView.setEmptyView(findViewById(R.id.empty)); // for empty view
 
-        adapter = new SimpleCursorAdapter(this, R.layout.result_list_layout, cursor, from, to, 0);
+        adapter = new CustomSimpleCursorAdapter(this, R.layout.result_list_layout, cursor, from, to, 0);
         adapter.notifyDataSetChanged();
 
         listView.setAdapter(adapter);
@@ -308,13 +311,16 @@ public class main_activity extends Activity implements View.OnClickListener, Nav
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 TextView idTextView = (TextView) view.findViewById(R.id.txt_pron);
-                TextView titleTextView = (TextView) view.findViewById(R.id.txt_pos);
                 TextView descTextView = (TextView) view.findViewById(R.id.txt_meaning);
                 TextView synoTextView = (TextView) view.findViewById(R.id.txt_synonyms);
 
                 String s_word = idTextView.getText().toString();
-                String s_pos = titleTextView.getText().toString();
-                String s_meaning = descTextView.getText().toString();
+
+                /**
+                 * The text of the TextView is compiled in html
+                 * so we save the string in TAG properties.. :)
+                 */
+                String s_meaning = descTextView.getTag().toString();
                 String s_syno = synoTextView.getText().toString();
 
                 /**
@@ -325,8 +331,7 @@ public class main_activity extends Activity implements View.OnClickListener, Nav
 
                 Intent modify_intent = new Intent(getApplicationContext(), view_details_activity.class);
                 modify_intent.putExtra("word", s_word);
-                modify_intent.putExtra("pos", s_pos);
-                modify_intent.putExtra("meaning", s_meaning);
+                modify_intent.putExtra("meaning", so_tools.meaning_htmlfy_revert(s_meaning));
                 modify_intent.putExtra("synonyms", s_syno);
 
                 startActivityForResult(modify_intent, 100);
@@ -348,69 +353,26 @@ public class main_activity extends Activity implements View.OnClickListener, Nav
             @Override
             public void afterTextChanged(Editable s) {
 
-                if (!s.toString().equals("")) {
+                searchNow(s.toString());
 
-                    welcomeLayout.setVisibility(View.GONE);
+            }
+        });
 
-                    Cursor cursor;
-                    String str = s.toString();
+        editTextSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
 
+                    /**
+                     * Resetting @_searchTerm will force the searchNow() function to Query
+                     */
+                    _searchTerm = "";
 
-                    //Just change the adapter cursor to change the data view.. :)
-                    if (s.toString().charAt(0) < 128) {
-                        do {
-                            cursor = dbManager.searchEN(str, EnSearchType);
+                    searchNow(v.getText().toString());
 
-                            if (str.length() >= 2)
-                                str = str.substring(0, str.length() - 1);
-
-                            if (str.equals(""))
-                                break;
-
-                        } while (cursor.getCount() == 0); // get the least match result
-
-                    } else {
-                        do {
-                            cursor = dbManager.searchBN(str, BnSearchType);
-
-                            if (str.length() >= 2)
-                                str = str.substring(0, str.length() - 1);
-
-                            if (str.equals(""))
-                                break;
-
-                        } while (cursor.getCount() == 0);
-                    }
-
-                    int total_count = cursor.getCount();
-
-                    if (total_count != 0) {
-                        adapter.changeCursor(cursor);
-                        txtView_result_count.setVisibility(View.VISIBLE);
-                        if (total_count > 1)
-                            if (total_count <= 100)
-                                txtView_result_count.setText(String.format(getString(R.string.total_result), total_count));
-                            else
-                                txtView_result_count.setText(
-                                        String.format(getString(R.string.total_hundred_plus_result), 100));
-                        else
-                            txtView_result_count.setText(
-                                    String.format(getString(R.string.total_one_result), 1));
-                    }
-
-
-                    //Change to Clear Icon
-                    btnClearSearch.setImageResource(R.drawable.ic_clear_white_48dp);
-
-                } else {
-                    adapter.changeCursor(null);
-                    txtView_result_count.setVisibility(View.GONE);
-                    welcomeLayout.setVisibility(View.VISIBLE);
-
-                    //Change to Speak Icon
-                    btnClearSearch.setImageResource(android.R.drawable.ic_btn_speak_now);
+                    return true;
                 }
-
+                return false;
             }
         });
 
@@ -459,7 +421,7 @@ public class main_activity extends Activity implements View.OnClickListener, Nav
 
         //======================================================
         adapterHistory = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1,
+                R.layout.simple_list_item,
                 listItemsHistory);
         listViewHistory.setAdapter(adapterHistory);
 
@@ -483,10 +445,82 @@ public class main_activity extends Activity implements View.OnClickListener, Nav
         // set new title to the MenuItem
         nav_bn_calendar.setTitle(str);
 
-//        textBanglaCalendar.setText(str);
-//        textBanglaCalendar.setTitle(str);
+    }
+
+    void searchNow(String queryString) {
+        if (!queryString.equals("")) {
+
+            welcomeLayout.setVisibility(View.GONE);
+
+            /**
+             * If long text are delete using BackSpace
+             * then a Cursor Exception occurred.
+             * So, every time text changed, text saved into @_searchTerm variable.
+             * Here we check the text length.
+             * - If length decreased means text being deleted. so nothing will happened.
+             */
+            if (queryString.length() > _searchTerm.length()) {
+                Cursor cursor;
+                //Just change the adapter cursor to change the data view.. :)
+                if (queryString.charAt(0) < 128) {
+                    do {
+                        cursor = dbManager.searchEN(queryString, EnSearchType);
+
+                        if (queryString.length() >= 2)
+                            queryString = queryString.substring(0, queryString.length() - 1);
+
+                        if (queryString.equals(""))
+                            break;
+
+                    } while (cursor.getCount() == 0); // get the least match result
+
+                } else {
+                    do {
+                        cursor = dbManager.searchBN(queryString, BnSearchType);
+
+                        if (queryString.length() >= 2)
+                            queryString = queryString.substring(0, queryString.length() - 1);
+
+                        if (queryString.equals(""))
+                            break;
+
+                    } while (cursor.getCount() == 0);
+                }
+
+                int total_count = cursor.getCount();
+
+                if (total_count != 0) {
+                    adapter.changeCursor(cursor);
+                    txtView_result_count.setVisibility(View.VISIBLE);
+                    if (total_count > 1)
+                        if (total_count <= 100)
+                            txtView_result_count.setText(String.format(getString(R.string.total_result), total_count));
+                        else
+                            txtView_result_count.setText(
+                                    String.format(getString(R.string.total_hundred_plus_result), 100));
+                    else
+                        txtView_result_count.setText(
+                                String.format(getString(R.string.total_one_result), 1));
+                }
+
+                //Change to Clear Icon
+                btnClearSearch.setImageResource(R.drawable.ic_close_black_24dp);
+
+            }
+
+            _searchTerm = queryString;
 
 
+        } else {
+            adapter.changeCursor(null);
+            txtView_result_count.setVisibility(View.GONE);
+            welcomeLayout.setVisibility(View.VISIBLE);
+
+            //Change to Speak Icon
+            btnClearSearch.setImageResource(R.drawable.ic_mic_black_24dp);
+
+            _searchTerm = "";
+        }
     }
 
     void handleSendText(Intent intent) {
@@ -515,13 +549,6 @@ public class main_activity extends Activity implements View.OnClickListener, Nav
         }, 200);
 
         resetThings();
-
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
 
 
     }
@@ -587,8 +614,6 @@ public class main_activity extends Activity implements View.OnClickListener, Nav
                     Bundle res = data.getExtras();
                     String colorName = res.getString("ColorName");
 
-                    //Log.d("aaa", colorName);
-
                     // Save the theme name into the preference
                     SharedPreferences.Editor editor = sharedPref.edit();
                     editor.putString(preference_activity.pref_ui_theme, colorName);
@@ -630,7 +655,9 @@ public class main_activity extends Activity implements View.OnClickListener, Nav
 
                 } else {
                     editTextSearch.setText("");
-                    btnClearSearch.setImageResource(android.R.drawable.ic_btn_speak_now);
+                    editTextSearch.requestFocus();
+                    btnClearSearch.setImageResource(R.drawable.ic_mic_black_24dp);
+                    showKeyboard();
 
                 }
                 break;
@@ -645,8 +672,6 @@ public class main_activity extends Activity implements View.OnClickListener, Nav
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.openDrawer(GravityCompat.START);
-
-//                mDrawerLayout.openDrawer(drawer);
 
                 break;
 
@@ -669,26 +694,69 @@ public class main_activity extends Activity implements View.OnClickListener, Nav
 
                 if (!editTextSearch.getText().toString().equals("")) {
 
-                    sendData(getString(R.string.server_txt_sent_by_web_button), strTemp, "-", "-");
-
                     Intent iSearch = new Intent(Intent.ACTION_WEB_SEARCH);
                     String term;
+                    Boolean isEn;
                     if (strTemp.charAt(0) < 128) {
                         term = "define " + strTemp;
+                        isEn = true;
                     } else {
                         term = "translate " + strTemp;
+                        isEn = false;
                     }
+
+                    if(isEn)
+                    {
+                        sendData(getString(R.string.server_txt_sent_by_web_button_en), strTemp, "-");
+
+                    }else{
+
+                        sendData(getString(R.string.server_txt_sent_by_web_button_bn), strTemp, "-");
+                    }
+
+
+
                     iSearch.putExtra(SearchManager.QUERY, term);
                     startActivity(iSearch);
                 } else {
-                    Toast t = Toast.makeText(main_activity.this,
-                            getString(R.string.enter_any_search_term_first), Toast.LENGTH_LONG);
-                    t.show();
+                    Toast.makeText(main_activity.this,
+                            getString(R.string.enter_any_search_term_first), Toast.LENGTH_LONG).show();
                 }
 
                 break;
 
         }
+    }
+
+
+    @Override
+    public boolean onLongClick(View v) {
+
+        switch (v.getId()) {
+            case R.id.searchWeb:
+
+                Toast.makeText(main_activity.this,
+                        getString(R.string.desc_web_search), Toast.LENGTH_LONG).show();
+
+                break;
+
+            case R.id.searchClear:
+
+                if (editTextSearch.getText().toString().equals("")) {
+
+                    Toast.makeText(main_activity.this,
+                            getString(R.string.desc_speech_to_text), Toast.LENGTH_LONG).show();
+
+                } else {
+
+                    Toast.makeText(main_activity.this,
+                            getString(R.string.desc_clear_search), Toast.LENGTH_LONG).show();
+                }
+
+                break;
+        }
+
+        return true;
     }
 
     private void setSettings() {
@@ -826,14 +894,13 @@ public class main_activity extends Activity implements View.OnClickListener, Nav
         alert.show();
     }
 
-    void sendData(String info, String word, String pos, String meaning) {
+    void sendData(String info, String word, String meaning) {
         hashMap.clear();
 
         //?arg1=val1&arg2=val2
         hashMap.put("info", info);
         hashMap.put("word", so_tools.removeSymbolFromText(word));
         hashMap.put("pron", word);
-        hashMap.put("pos", pos);
         hashMap.put("meaning", meaning);
 
         // Gets the URL from the UI's text field.
@@ -879,9 +946,6 @@ public class main_activity extends Activity implements View.OnClickListener, Nav
 
         nav_bn_calendar.setTitle(str);
 
-//        textBanglaCalendar.setText(str);
-//        textBanglaCalendar.setTitle(str);
-
         isBackPressed = false;
     }
 
@@ -905,11 +969,9 @@ public class main_activity extends Activity implements View.OnClickListener, Nav
             Intent fav_intent = new Intent(main_activity.this, favorite_list_activity.class);
             startActivityForResult(fav_intent, 400);
 
-            //mDrawerLayout.closeDrawer(LeftDrawer);
 
         } else if (id == R.id.history) {
 
-            //                mDrawerLayout.closeDrawer(LeftDrawer);
             mDrawerLayout.openDrawer(RightDrawer);
 
         } else if (id == R.id.greek_alp) {
@@ -917,12 +979,21 @@ public class main_activity extends Activity implements View.OnClickListener, Nav
             Intent greek_alp_intent = new Intent(main_activity.this, greek_alphabet_activity.class);
             startActivity(greek_alp_intent);
 
-        } else if (id == R.id.add_record) {
+            /**
+             * Almost no one use this feature.
+             */
 
-            Intent add_entry_intent = new Intent(main_activity.this, add_new_entry.class);
-            startActivityForResult(add_entry_intent, 200);
+//        } else if (id == R.id.add_record) {
 
-            //mDrawerLayout.closeDrawer(LeftDrawer);
+//            Intent add_entry_intent = new Intent(main_activity.this, add_new_entry.class);
+//            startActivityForResult(add_entry_intent, 200);
+
+//            Toast.makeText(main_activity.this, "Under construction. Coming soon...", Toast.LENGTH_LONG).show();
+
+        } else if (id == R.id.menu_suggestion) {
+
+            Intent suggestion_intent = new Intent(main_activity.this, SuggestionActivity.class);
+            startActivity(suggestion_intent);
 
         } else if (id == R.id.prefs) {
 
@@ -962,95 +1033,6 @@ public class main_activity extends Activity implements View.OnClickListener, Nav
         return true;
     }
 
-    public void setUItheme(String themeName)
-    {
-        switch (themeName) {
-            case "red":
-                setTheme(R.style.AppTheme_red);
-                break;
-
-            case "pink":
-                setTheme(R.style.AppTheme_pink);
-                break;
-
-            case "purple":
-                setTheme(R.style.AppTheme_purple);
-                break;
-
-            case "deep_purple":
-                setTheme(R.style.AppTheme_deep_purple);
-                break;
-
-            case "indigo":
-                setTheme(R.style.AppTheme_indigo);
-                break;
-
-            case "blue":
-                setTheme(R.style.AppTheme_blue);
-                break;
-
-            case "light_blue":
-                setTheme(R.style.AppTheme_light_blue);
-                break;
-
-            case "cyan":
-                setTheme(R.style.AppTheme_cyan);
-                break;
-
-            case "teal":
-                setTheme(R.style.AppTheme_teal);
-                break;
-
-            case "green":
-                setTheme(R.style.AppTheme_green);
-                break;
-
-            case "light_green":
-                setTheme(R.style.AppTheme_light_green);
-                break;
-
-            case "lime":
-                setTheme(R.style.AppTheme_lime);
-                break;
-
-            case "yellow":
-                setTheme(R.style.AppTheme_yellow);
-                break;
-
-            case "amber":
-                setTheme(R.style.AppTheme_amber);
-                break;
-
-            case "orange":
-                setTheme(R.style.AppTheme_orange);
-                break;
-
-            case "deep_orange":
-                setTheme(R.style.AppTheme_deep_orange);
-                break;
-
-            case "brown":
-                setTheme(R.style.AppTheme_brown);
-                break;
-
-            case "grey":
-                setTheme(R.style.AppTheme_grey);
-                break;
-
-            case "blue_grey":
-                setTheme(R.style.AppTheme_blue_grey);
-                break;
-
-            case "black":
-                setTheme(R.style.AppTheme_black);
-                break;
-
-            default:
-                setTheme(R.style.AppTheme_light_green); //light_green
-                break;
-        }
-
-    }
 
     // Uses AsyncTask to create a task away from the main UI thread. This task takes a
     // URL string and uses it to create an HttpUrlConnection. Once the connection
@@ -1103,102 +1085,6 @@ public class main_activity extends Activity implements View.OnClickListener, Nav
 
     }
 }
-
-
-/**
- * Trash Codes :)
- * <p/>
- * =======================================================
- * //    void showSearchBar() {
- * //
- * //        editTextSearch.setEnabled(true);
- * //        editTextSearch.requestFocus();
- * //
- * ////        toolbar.animate()
- * ////                .translationY(-toolbar.getBottom())
- * ////                .setInterpolator(new AccelerateInterpolator())
- * ////                .start();
- * //
- * //        searchBar.animate()
- * //                .translationY(0)
- * //                .setInterpolator(new DecelerateInterpolator())
- * //                .start();
- * //
- * //        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
- * //        imm.showSoftInput(editTextSearch, InputMethodManager.SHOW_IMPLICIT);
- * //
- * //        //txtView_welcome.setText(getString(R.string.main_window_welcome_text_search));
- * //
- * //    }
- * <p/>
- * //    void hideSearchBar() {
- * //
- * //        toolbar.animate()
- * //                .translationY(0)
- * //                .setInterpolator(new DecelerateInterpolator())
- * //                .start();
- * //
- * //        searchBar.animate()
- * //                .translationY(-searchBar.getBottom())
- * //                .setInterpolator(new AccelerateInterpolator())
- * //                .start();
- * //
- * //        editTextSearch.setEnabled(false);
- * //
- * //        //txtView_welcome.setText(getString(R.string.main_window_welcome_text_hint));
- * //
- * //    }
- * <p/>
- * <p/>
- * <p/>
- * //        if(isDbUpdateAvailable)
- * //        {
- * //
- * //            Snackbar snackbar = Snackbar.make(findViewById(R.id.content_frame),
- * //                    getString(R.string.info_favorite_list_backed_up),
- * //                    Snackbar.LENGTH_INDEFINITE);
- * //            snackbar.setAction(getString(R.string.str_why), new View.OnClickListener() {
- * //                @Override
- * //                public void onClick(View v) {
- * //
- * //                    sharedPref.edit().putBoolean(getString(R.string.pref_is_fav_clear_notify_read), true).apply();
- * //
- * //                    Intent tutorial_intent = new Intent(main_activity.this, tutorial_activity.class);
- * //                    tutorial_intent.putExtra("goWhere", "backupNow");
- * //                    startActivity(tutorial_intent);
- * //                }
- * //            });
- * //            View snackBarView = snackbar.getView();
- * //            snackBarView.setBackgroundColor(ContextCompat.getColor(main_activity.this,R.color.red_700));
- * //            TextView tv = (TextView) snackBarView.findViewById(android.support.design.R.id.snackbar_text);
- * //            tv.setTextColor(Color.WHITE);
- * //            snackbar.show();
- * //
- * //        }
- * <p/>
- * //        textBanglaCalendar.setOnEditorActionListener(new TextView.OnEditorActionListener() {
- * //            @Override
- * //            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
- * //                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
- * //                    // Query code here..
- * //                    // sorry no query code ;)
- * //                    return true;
- * //                }
- * //                return false;
- * //            }
- * //        });
- */
-
-
-
-
-
-
-
-
-
-
-
 
 
 

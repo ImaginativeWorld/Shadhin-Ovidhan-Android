@@ -2,164 +2,167 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="@dimen/activity_vertical_margin"
-    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-    android:layout_marginRight="@dimen/activity_horizontal_margin"
-    android:layout_marginTop="@dimen/activity_vertical_margin">
+    android:layout_marginBottom="@dimen/dialog_button_bar_button_margin">
 
     <RelativeLayout
-        android:id="@+id/title"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_layout"
         android:layout_alignParentTop="true"
-        android:orientation="vertical">
+        android:paddingLeft="@dimen/dialog_padding"
+        android:paddingRight="@dimen/dialog_padding"
+        android:paddingTop="@dimen/dialog_padding">
 
-        <ImageView
-            android:id="@+id/img_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="14dp"
-            android:contentDescription="Shadhin Ovidhan Logo"
-            android:src="@drawable/so_icon" />
-
-        <TextView
-            android:id="@+id/title_text"
+        <RelativeLayout
+            android:id="@+id/title"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/img_logo"
-            android:text="@string/app_name"
-            android:textColor="@color/light_green_700"
-            android:textSize="@dimen/title_text_size"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title_text"
-            android:layout_marginTop="3dp"
-            android:layout_toRightOf="@+id/img_logo"
-            android:text="@string/app_version"
-            android:textSize="12sp" />
-    </RelativeLayout>
-
-
-    <View
-        android:id="@+id/divider_one"
-        style="@style/Divider"
-        android:layout_below="@id/title" />
-
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/divider_two"
-        android:layout_below="@id/divider_one">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:orientation="vertical">
 
+            <ImageView
+                android:id="@+id/img_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="14dp"
+                android:contentDescription="Shadhin Ovidhan Logo"
+                android:src="@drawable/so_icon" />
 
-            <LinearLayout
-                android:id="@+id/view_update"
+            <TextView
+                android:id="@+id/title_text"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dialog_padding"
-                android:background="@color/red_100"
-                android:orientation="vertical"
-                android:padding="12dp"
-                android:visibility="visible">
+                android:layout_toRightOf="@+id/img_logo"
+                android:text="@string/app_name"
+                android:textColor="@color/light_green_700"
+                android:textSize="@dimen/title_text_size"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/update_available"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/abc_text_size_medium_material" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title_text"
+                android:layout_marginTop="3dp"
+                android:layout_toRightOf="@+id/img_logo"
+                android:text="@string/app_version"
+                android:textSize="12sp" />
+        </RelativeLayout>
 
-                <LinearLayout
-                    android:id="@+id/update_body"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/txtNewVersion"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/new_update_info" />
+        <View
+            android:id="@+id/divider_one"
+            style="@style/Divider"
+            android:layout_below="@id/title" />
 
-                    <TextView
-                        android:id="@+id/txtReleaseDate"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/update_release_date" />
-
-                </LinearLayout>
-
-            </LinearLayout>
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/divider_one">
 
             <LinearLayout
-                android:id="@+id/view_body"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/about_description"
-                    android:textSize="16sp" />
 
-                <View style="@style/Divider" />
-
-                <TextView
-                    android:id="@+id/dev_url"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/view_update"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/website"
-                    android:textColor="@color/light_blue_800"
-                    android:textSize="16sp" />
+                    android:layout_marginBottom="@dimen/dialog_padding"
+                    android:background="@color/red_100"
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    android:visibility="visible">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/copyrights1"
-                    android:textSize="16sp" />
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/update_available"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/abc_text_size_medium_material" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtNewVersion"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/new_update_info" />
+
+                        <TextView
+                            android:id="@+id/txtReleaseDate"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/update_release_date" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/copyrights2"
-                    android:textSize="12sp" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/about_description"
+                        android:textSize="16sp" />
+
+                    <View style="@style/Divider" />
+
+                    <TextView
+                        android:id="@+id/dev_url"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/website"
+                        android:textColor="@color/light_blue_800"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/copyrights1"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/copyrights2"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
 
             </LinearLayout>
+        </ScrollView>
 
-        </LinearLayout>
-    </ScrollView>
+    </RelativeLayout>
+
 
     <LinearLayout
         android:id="@+id/btn_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dialog_button_bar_height"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:gravity="right"
+        android:layout_marginTop="@dimen/dialog_button_bar_button_margin"
+        android:gravity="end|center_vertical"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_update"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:text="@string/check_update" />
+            style="@style/dialog_button"
+            android:text="@string/check_update"/>
 
         <Button
             android:id="@+id/btn_close"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            style="@style/dialog_button"
             android:text="@string/dialog_message_ok"/>
 
     </LinearLayout>

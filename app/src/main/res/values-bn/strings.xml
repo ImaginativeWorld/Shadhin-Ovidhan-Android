@@ -2,32 +2,23 @@
 
     <string name="about_description">একটি ওপেন-সোর্স, সম্পূর্ণ স্বাধীন এবং সর্বোচ্চ সুবিধাযুক্ত বাংলা-ইংরেজি অভিধান</string>
 
-    <string name="add_entry_title">নতুন অন্তর্ভুক্তি</string>
-    <string name="modify_entry_title">অন্তর্ভুক্তি পরিবর্তন</string>
     <string name="view_details_title">বিস্তারিত</string>
     <string name="favorite_title">প্রিয় সমূহ</string>
     <string name="history_title">ইতিহাস</string>
-    <string name="feedback_title">স্বাধীন অভিধান</string>
 
     <string name="new_item_text">এটি পরিবর্তন করতে এতে টাচ্‌ করুন</string>
     <string name="no_meaning_text">এখনো কোনো অর্থ নেই!</string>
 
-    <string name="search_hint">অনুসন্ধান করুন</string>
-    <string name="unable_create_database">ডেটাবেজ তৈরি করা যাচ্ছে না!</string>
+    <string name="search_hint">অনুসন্ধান...</string>
     <string name="empty_list_text">দেখানোর মত কিছু পাওয়া যায়নি!</string>
     <string name="fav_empty_list_text">আপনার প্রিয় তালিকায় কোনো অন্তর্ভুক্তি নেই!</string>
     <string name="main_window_welcome_text_search">অনুসন্ধান করতে অনুসন্ধান বাক্সে বাংলা অথবা ইংরেজি শব্দটি লিখুন</string>
-    <string name="main_window_welcome_text_hint">অনুসন্ধান করতে এখানে আলতোভাবে স্পর্শ করুন</string>
     <string name="enter_any_search_term_first">ওয়েবে অনুসন্ধান করতে অনুসন্ধান বাক্সে কিছু লিখুন আগে!</string>
 
     <string name="dialog_message_error">ত্রুটি!</string>
-    <string name="dialog_message_successful">সফল!</string>
-    <string name="dialog_message_insert_error">নতুন অন্তর্ভুক্তি যুক্ত করা যায়নি!\n অন্তর্ভুক্তিটি হয়ত ইতিমধ্যে ডেটাবেজে যুক্ত আছে!</string>
-    <string name="dialog_message_insert_successful">নতুন অন্তর্ভুক্তি সফলভাবে যুক্ত করা হয়েছে!</string>
-    <string name="dialog_message_fill_all_field">সব তথ্য আগে পূরণ করুন!</string>
+
     <string name="dialog_message_ok">ঠিক আছে</string>
     <string name="dialog_message_close">বন্ধ করুন</string>
-    <string name="dialog_message_add_another_entry">আরেকটি যুক্ত করুন</string>
 
     <string name="search_type_from_first">শুরু</string>
     <string name="search_type_from_middle">যে কোন যায়গা</string>
@@ -37,17 +28,16 @@
     <string name="update_available">হালনাগাদ পাওয়া যাচ্ছে!</string>
     <string name="check_update">হালনাগাদ পরীক্ষা করুন</string>
     <string name="update_now">এখনি হালনাগাদ করুন</string>
-    <string name="wait">অপেক্ষা\nকরুন&#8230;</string>
-    <string name="update_not_found">কোনো হালনাগাদ\nনেই!</string>
+    <string name="wait">অপেক্ষা করুন...</string>
+    <string name="update_not_found">কোনো হালনাগাদ নেই!</string>
 
     <string name="new_update_info">সর্বশেষ সংস্করণ: %1$s.%2$s.%3$s</string>
     <string name="update_release_date">উন্মুক্তের তারিখ: %1$s</string>
     <string name="do_you_want_to_download_now">আপনি কি এখনি নতুন সংস্করণ ডাউনলোড করতে চান?</string>
 
-    <string name="update_error">ত্রুটি!\nআবার চেষ্টা করুন.</string>
+    <string name="update_error">ত্রুটি! আবার চেষ্টা করুন.</string>
     <string name="internet_not_connected">ইন্টারনেট সংযুক্ত নয়!</string>
 
-    <string name="menu_text_add_entry">নতুন অন্তর্ভুক্তি</string>
     <string name="menu_text_favorite_list">প্রিয় তালিকা</string>
     <string name="menu_text_history">ইতিহাস</string>
     <string name="menu_text_options">বিকল্প</string>
@@ -70,14 +60,7 @@
     <string name="summary_auto_check_update">ইন্টারনেটের সংযোগ পাওয়া গেলে স্বাধীন স্বয়ংক্রিয় হালনাগাদ পরীক্ষা করবে।</string>
 
 
-    <string name="ui_txt_edit_word_phrase">শব্দ/শব্দগুচ্ছ</string>
-    <string name="ui_txt_view_word_phrase">এখানে শব্দ/শব্দগুচ্ছ লিখুন</string>
-
-    <string name="ui_txt_edit_pos">পদ প্রকরণ</string>
-    <string name="ui_txt_view_pos">এখানে পদ প্রকরণ লিখুন</string>
-
     <string name="ui_txt_edit_meaning">অর্থ</string>
-    <string name="ui_txt_view_meaning">এখানে অর্থ লিখুন</string>
 
     <string name="question_remove_meaning_part_title">বাদ দিতে চান?</string>
     <string name="question_remove_meaning_part_description">আপনি কি আসলেই এই অর্থটি বাদ দিতে চান?</string>
@@ -110,10 +93,7 @@
     <string name="pref_backup_restore">ব্যাকআপ/ফেরত</string>
     <string name="pref_btn_backup">ব্যাকআপ</string>
     <string name="pref_btn_restore">ফেরত</string>
-    <string name="add_meaning">অর্থ যুক্ত করুন</string>
-    <string name="delete_meaning">অর্থ মুছুন</string>
     <string name="new_meaning">নতুন অর্থ</string>
-    <string name="enter_new_meaning">একটি অর্থ লিখুনঃ</string>
     <string name="no_fav_entry_found">কোনো প্রিয় অন্তর্ভুক্তি নেই!</string>
     <string name="total_entry_restored_summery">মোট %1$s টি অন্তর্ভুক্তি ফেরত আনা হয়েছে এবং %2$s টি বাদ দেয়া হয়েছে (ইতিমধ্যে ডেটাবেজে রয়েছে)</string>
     <string name="no_new_modified_entry_found">কোনো নতুন/পরিবর্তিত অন্তর্ভুক্তি পাওয়া যায়নি!</string>
@@ -136,22 +116,16 @@
     <string name="total_result">%1$d ফলাফল</string>
     <string name="total_hundred_plus_result">%1$d+ ফলাফল</string>
     <string name="total_one_result">%1$d ফলাফল</string>
-    <string name="add_synonyms">সমার্থক শব্দ যুক্ত করুন</string>
-    <string name="delete_synonyms">সমার্থক শব্দ মুছুন</string>
-    <string name="enter_new_synonyms">নতুন সমার্থক শব্দটি লিখুনঃ</string>
     <string name="new_synonyms">নতুন সমার্থক শব্দ</string>
     <string name="no_synonyms_text">কোনো সমার্থক শব্দ পাওয়া যায়নি!</string>
-    <string name="sure_to_back_from_add_entry">আপনি কি আসলেই ফিরে যেতে চান?</string>
     <string name="ui_default_txt_view_synonyms">সমার্থক শব্দ</string>
     <string name="ui_txt_edit_synonyms">সমার্থক শব্দ</string>
     <string name="add_new_meaning">নতুন অর্থ</string>
     <string name="add_new_synonym">নতুন সমার্থক শব্দ</string>
-    <string name="edited_synonyms">পরিবর্তিত সমার্থক শব্দ</string>
-    <string name="enter_change_synonyms">সমার্থক শব্দটি এখানে পরিবর্তন করুনঃ</string>
+    <string name="edited_synonyms">পরিবর্তন করা সমার্থক শব্দ</string>
     <string name="str_add">যুক্ত করুন</string>
     <string name="str_cancel">বাতিল</string>
     <string name="str_delete">মুছুন</string>
-    <string name="str_copy_to_clipboard">ক্লিপবোর্ডে অনুলিপি করুন</string>
     <string name="str_edit">পরিবর্তন করুন</string>
     <string name="str_view_meaning">অর্থ দেখুন</string>
     <string name="what_do_you_want">আপনি কি করতে চান?</string>
@@ -160,6 +134,31 @@
     <string name="str_database">ডেটাবেজ</string>
     <string name="str_favorites">প্রিয় সমূহ</string>
     <string name="str_later">পরে</string>
+    <string name="bn_calendar_title">বাংলা দিনপঞ্জি</string>
+    <string name="str_view_cancel">বাতিল</string>
+    <string name="select_a_pos">পদ নির্বাচন করুন</string>
+    <string name="picked_color">নির্বাচিত রং</string>
+    <string name="menu_text_theme_color">থিম রং নির্বাচন করুন</string>
+    <string name="btn_report">প্রতিবেদন</string>
+    <string name="delete_entry">অন্তর্ভুক্তি মুছুন</string>
+    <string name="desc_clear_search">অনুসন্ধান মুছুন</string>
+    <string name="dialog_message_index">সূচীপত্র</string>
+    <string name="edited_meaning">পরিবর্তন করা অর্থ</string>
+    <string name="dialog_message_max_pos_reached">সর্বোচ্চ সংখ্যাক পদ যুক্ত করা হয়েছে! অনুগ্রহ করে যেকোন পদ মুছুন অথবা যে পদ গুলো যুক্ত আছে সেগুলোতেই যুক্ত করুন.</string>
+    <string name="desc_back">ফিরে যান</string>
+    <string name="desc_favorite">প্রিয় তালিকায় যুক্ত অথবা বাদ দিন</string>
+    <string name="desc_speak">উচ্চারণ শুনুন</string>
+    <string name="question_report_title">প্রতিবেদন?</string>
+    <string name="question_report_description">আপনি কি আসলেই \"%1$s\" অন্তর্ভুক্তিটি প্রতিবেদন করতে চান?</string>
+    <string name="dialog_message_send">পাঠান</string>
+    <string name="err_enter_suggestion">কিছু পরামর্শ লিখুন আগে!</string>
+    <string name="hint_email">আপনার ইমেইল (ঐচ্ছিক)</string>
+    <string name="hint_suggestion">আপনার পরামর্শ</string>
+    <string name="heading_suggestion">আমাদের অ্যাপ সম্পর্কে বলুন।\nআপনি কি পছন্দ করেন, আপনি কি ঘৃণা করেন, আপনি কি চান, আপনি কি ভাবেন, এবং/অথবা আপনার পরামর্শ কি?</string>
+    <string name="menu_text_suggestion">পরামর্শ দিন</string>
+    <string name="msg_suggestion_send_success">পরামর্শ সফলভাবে পাঠানো হয়েছে! :)</string>
+    <string name="title_suggestion">পরামর্শ</string>
+    <string name="title_color_picker">থিম নির্বাচক</string>
 
 </resources>
 

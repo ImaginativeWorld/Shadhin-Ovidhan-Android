@@ -56,6 +56,9 @@ public class greek_alphabet_activity extends AppCompatActivity implements View.O
 
         //===================================================
 
+        /**
+         * Manually Creating the Greek Alphabet table
+         */
 
         mainList = (ListView) findViewById(R.id.list_main);
 
