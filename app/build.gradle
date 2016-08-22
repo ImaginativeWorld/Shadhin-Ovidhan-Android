@@ -1,14 +1,6 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
-        config {
-            keyAlias 'ShadhinOvidhanKey'
-            keyPassword 'IloveMuhammadSW'
-            storeFile file('G:/Collected Softwares/Android/SignedKeys/SO/soa_key_01.jks')
-            storePassword 'IloveMuhammadSW'
-        }
-    }
     compileSdkVersion 23
     buildToolsVersion '23.0.1'
     defaultConfig {
@@ -24,7 +16,6 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
         }
     }
     productFlavors {

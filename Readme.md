@@ -21,6 +21,9 @@ If you need further help regarding codes from Imaginative World, you can contact
 
 ## License ##
 
-From version 2x, Shadhin Ovidhan Android goes open source from freeware, licensed under **MOZILLA PUBLIC LICENSE Version 2.0**. You should receive a copy of the license in MPL-2.0.txt file with both binaries and source. An online version of the license can be found at: [http://www.mozilla.org/MPL/](http://www.mozilla.org/MPL/ "http://www.mozilla.org/MPL/")
+**Shadhin Ovidhan Android** Open Source project licensed under **MOZILLA PUBLIC LICENSE Version 2.0**. You should receive a copy of the license in MPL-2.0.txt file with both binaries and source. An online version of the license can be found at: [http://www.mozilla.org/MPL/](http://www.mozilla.org/MPL/ "http://www.mozilla.org/MPL/")
 
-**Copyright © Imaginative World. All Rights Reserved.**
+**Shadhin Ovidhan** - Name, Logo & its Database are the properties of **Imaginative World**. It's Database is maintained and copyrighted by **Imaginative World**. Any kind of USE and/or MODIFICATION without the PERMISSION of Imaginative World is PROHIBITED.
+    
+
+**Copyright © [Imaginative World]("<http://imaginativeworld.org"). All Rights Reserved.**
