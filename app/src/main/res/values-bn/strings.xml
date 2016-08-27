@@ -45,9 +45,7 @@
     <string name="menu_text_exit">বন্ধ</string>
 
 
-    <string name="title_advance_search">উন্নত অনুসন্ধান</string>
-    <string name="sub_title_bn_search">বাংলা অনুসন্ধান</string>
-    <string name="summary_bn_search">অনুসন্ধানে অর্থের %1$s থেকে মিল খোঁজা হবে</string>
+    <string name="title_advance_search">অনুসন্ধান</string>
     <string name="sub_title_en_search">ইংরেজি অনুসন্ধান</string>
     <string name="summary_en_search">অনুসন্ধানে ইংরেজি শব্দ/শব্দাংশের %1$s থেকে মিল খোঁজা হবে</string>
 
@@ -159,6 +157,10 @@
     <string name="msg_suggestion_send_success">পরামর্শ সফলভাবে পাঠানো হয়েছে! :)</string>
     <string name="title_suggestion">পরামর্শ</string>
     <string name="title_color_picker">থিম নির্বাচক</string>
+    <string name="hint_keyboard_enter_button_location">কিবোর্ডের নিচে-বামে কোনায় দেখুন।</string>
+    <string name="summary_search_on_type">লেখার সময় স্বয়ংক্রিয় অনুসন্ধান ফলাফল দেখাবে</string>
+    <string name="txt_search_queue_hint">অনুসন্ধানের জন্য লিখা শেষ হলে, কিবোর্ড থেকে ENTER চাপুন।</string>
+    <string name="pref_title_search_on_type">লিখার সময় স্বয়ংক্রিয় অনুসন্ধান</string>
 
 </resources>
 

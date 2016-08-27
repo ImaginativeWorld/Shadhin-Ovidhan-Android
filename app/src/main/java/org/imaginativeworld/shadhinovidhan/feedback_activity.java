@@ -60,6 +60,9 @@ public class feedback_activity extends AppCompatActivity implements View.OnClick
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(URL_market));
                 startActivity(intent);
+
+                finish();
+
                 break;
 
             case R.id.imgBtn_dislike:
@@ -68,9 +71,11 @@ public class feedback_activity extends AppCompatActivity implements View.OnClick
                         Toast.LENGTH_LONG);
                 t2.show();
 
-                Intent browserIntent2 = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse(URL_feedback));
-                startActivity(browserIntent2);
+                Intent suggestion_intent = new Intent(feedback_activity.this, SuggestionActivity.class);
+                startActivity(suggestion_intent);
+
+                finish();
+
                 break;
 
             case R.id.btn_close:

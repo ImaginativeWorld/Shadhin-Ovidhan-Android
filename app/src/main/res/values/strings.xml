@@ -2,7 +2,7 @@
 
     <string name="app_name" translatable="false">স্বাধীন অভিধান</string>
 
-    <string name="app_version" translatable="false">2.0.160823</string>
+    <string name="app_version" translatable="false">2.0.160828</string>
 
     <string name="about_description">An Open-source, independent and full featured Bengali-English Dictionary</string>
     <string name="website" translatable="false">http://imaginativeworld.org</string>
@@ -31,7 +31,6 @@
     <string name="new_item_text">Touch here for change it</string>
     <string name="no_meaning_text">No meaning yet!</string>
 
-    <!-- Main Window -->
     <string name="empty_list_text">Nothing found!</string>
     <string name="fav_empty_list_text">There is no entry in your favorite list!</string>
     <string name="main_window_welcome_text_search">Type the Bangla or English word in the Search box for search</string>
@@ -44,8 +43,6 @@
     <string name="search_type_from_first">start</string>
     <string name="search_type_from_middle">any where</string>
     <string name="search_type_from_last">end</string>
-
-    <!-- Update Texts -->
 
     <string name="server_txt_modified" translatable="false">MODIFIED</string>
     <string name="server_txt_sent_by_button_report" translatable="false">REPORTED</string>
@@ -65,18 +62,13 @@
     <string name="update_error">Error! Try again.</string>
     <string name="internet_not_connected">Internet not connected!</string>
 
-    <!-- Menu -->
     <string name="menu_text_favorite_list">Favorites</string>
     <string name="menu_text_history">History</string>
     <string name="menu_text_options">Options</string>
     <string name="menu_text_about">About</string>
     <string name="menu_text_exit">Exit</string>
 
-    <!-- preference -->
-
-    <string name="title_advance_search">Advanced Search</string>
-    <string name="sub_title_bn_search">Bangla Search</string>
-    <string name="summary_bn_search">Match from %1$s in the Search</string>
+    <string name="title_advance_search">Search</string>
     <string name="sub_title_en_search">English Search</string>
     <string name="summary_en_search">Match from %1$s in the Search</string>
 
@@ -89,11 +81,8 @@
     <string name="summary_auto_check_update">Shadhin will update automatically if internet connection found.</string>
 
 
-    <!-- Add Entry -->
-
     <string name="ui_txt_edit_meaning">Meaning</string>
 
-    <!-- details view -->
 
     <string name="question_remove_meaning_part_title">Remove?</string>
     <string name="question_remove_meaning_part_description">Are you sure want to Remove the meaning?</string>
@@ -113,24 +102,17 @@
     <string name="fav_list_btn_copy_to_clipboard">Copy to\nClipboard</string>
     <string name="fav_list_btn_view_meaning">View\nMeaning</string>
 
-    <!-- Error Msgs -->
     <string name="err_msg_unable_to_create_database">Unable to create database!</string>
 
-    <!-- Pref -->
     <string name="pref_update_db" translatable="false">pref_update_db</string>
     <string name="pref_language">UI Language</string>
     <string name="sub_title_select_language">Select UI Language</string>
     <string name="lang_bn">Bangla</string>
     <string name="lang_en">English</string>
 
-
-    <!-- History -->
     <string name="txt_no_history">No history found</string>
     <string name="txt_clear_history">Clear history</string>
 
-    <!-- send to server -->
-
-    <!-- Feedback -->
     <string name="txt_are_you_like_out_app">What’s your opinion about Shadhin Ovidhan?</string>
     <string name="feedback_give_us_five_star" translatable="false">Give us 5 star in Google Play Store!</string>
     <string name="feedback_tell_us_what_you_need" translatable="false">Tell us what you need?</string>
@@ -213,8 +195,11 @@
     <string name="err_enter_suggestion">Enter suggestions first!</string>
     <string name="msg_suggestion_send_success">Suggestion sent successfully! :)</string>
     <string name="const_unknown" translatable="false">UNKNOWN</string>
-    <string name="TAG" translatable="false">so_debug</string>
     <string name="title_color_picker">Theme picker</string>
+    <string name="pref_title_search_on_type">Auto search on typing</string>
+    <string name="summary_search_on_type">Auto show search result when typing</string>
+    <string name="hint_keyboard_enter_button_location">See bottom-right corner of the keyboard.</string>
+    <string name="txt_search_queue_hint">After completing the search text, click ENTER from keyboard.</string>
 
 
 </resources>

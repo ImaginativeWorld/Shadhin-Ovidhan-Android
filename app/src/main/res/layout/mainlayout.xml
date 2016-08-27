@@ -29,7 +29,7 @@
                 android:padding="16dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_menu_black_24dp"
-                android:tint="@color/white"/>
+                android:tint="@color/white" />
 
             <EditText
                 android:id="@+id/editTextSearch"
@@ -77,7 +77,6 @@
                 android:tint="@color/white" />
 
         </LinearLayout>
-
 
         <RelativeLayout
             android:layout_width="fill_parent"
@@ -139,6 +138,39 @@
             </LinearLayout>
 
         </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/bn_search_queue_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/search_bar_widget"
+            android:background="#E5ffe082"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:paddingBottom="7dp"
+            android:paddingLeft="@dimen/dialog_padding"
+            android:paddingRight="@dimen/dialog_padding"
+            android:paddingTop="7dp"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/txt_search_queue_hint"
+                android:textColor="@color/black" />
+
+            <ImageButton
+                android:id="@+id/imgView_search_hint_close"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="0dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_close_black_24dp" />
+
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"

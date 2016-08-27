@@ -44,6 +44,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -75,6 +76,8 @@ public class main_activity extends Activity
             R.id.txt_synonyms
     };
 
+    View bn_queue_hint;
+
     String _searchTerm = "";
 
     EditText editTextSearch;
@@ -88,6 +91,7 @@ public class main_activity extends Activity
 
     SharedPreferences sharedPref;
     String BnSearchType, EnSearchType;
+    Boolean IsBnAutoSearchOnType;
     int pref_feedback_show_counter;
     ListView listView, listViewHistory;
     Button btn_clr_history;
@@ -139,11 +143,9 @@ public class main_activity extends Activity
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         Lang = sharedPref.getString(preference_activity.pref_language, "bn");
 
-
         UI_theme = sharedPref.getString(preference_activity.pref_ui_theme, "light_green");
 
         so_tools.setUItheme(UI_theme, main_activity.this);
-
 
         sharedPref.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
             @Override
@@ -168,6 +170,13 @@ public class main_activity extends Activity
         setContentView(R.layout.mainlayout); // select default layout
 
         //===========================================================
+
+        bn_queue_hint = findViewById(R.id.bn_search_queue_hint);
+        bn_queue_hint.setVisibility(View.GONE);
+        bn_queue_hint.setOnClickListener(this);
+
+        ImageView imgView_search_hint_close = (ImageView) findViewById(R.id.imgView_search_hint_close);
+        imgView_search_hint_close.setOnClickListener(this);
 
         // All About Drawer init.
 
@@ -279,8 +288,8 @@ public class main_activity extends Activity
             editor.putInt(preference_activity.pref_feedback_show_counter, ++pref_feedback_show_counter);
             editor.apply();
 
-            Intent intt_feedback = new Intent(main_activity.this, feedback_activity.class);
-            startActivity(intt_feedback);
+            Intent int_feedback = new Intent(main_activity.this, feedback_activity.class);
+            startActivity(int_feedback);
         } else if (pref_feedback_show_counter < 15) {
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putInt(preference_activity.pref_feedback_show_counter, ++pref_feedback_show_counter);
@@ -353,7 +362,34 @@ public class main_activity extends Activity
             @Override
             public void afterTextChanged(Editable s) {
 
-                searchNow(s.toString());
+                if (!s.toString().equals("")) {
+
+                    if (s.toString().charAt(0) < 128) // Is English Alphabet
+                    {
+                        searchNow(s.toString());
+                    } else if (IsBnAutoSearchOnType) // If Auto search on
+                    {
+                        searchNow(s.toString());
+                    } else {
+                        btnClearSearch.setImageResource(R.drawable.ic_close_black_24dp);
+                        bn_queue_hint.setVisibility(View.VISIBLE);
+                    }
+                }
+                else
+                {
+                    /**
+                     * Copied from searchNow() function
+                     */
+                    adapter.changeCursor(null);
+                    txtView_result_count.setVisibility(View.GONE);
+                    welcomeLayout.setVisibility(View.VISIBLE);
+                    bn_queue_hint.setVisibility(View.GONE);
+
+                    //Change to Speak Icon
+                    btnClearSearch.setImageResource(R.drawable.ic_mic_black_24dp);
+
+                    _searchTerm = "";
+                }
 
             }
         });
@@ -369,6 +405,8 @@ public class main_activity extends Activity
                     _searchTerm = "";
 
                     searchNow(v.getText().toString());
+
+                    bn_queue_hint.setVisibility(View.GONE);
 
                     return true;
                 }
@@ -459,7 +497,12 @@ public class main_activity extends Activity
              * Here we check the text length.
              * - If length decreased means text being deleted. so nothing will happened.
              */
-            if (queryString.length() > _searchTerm.length()) {
+            if (queryString.length() >= _searchTerm.length()) {
+
+                _searchTerm = queryString;
+
+                bn_queue_hint.setVisibility(View.GONE);
+
                 Cursor cursor;
                 //Just change the adapter cursor to change the data view.. :)
                 if (queryString.charAt(0) < 128) {
@@ -503,18 +546,22 @@ public class main_activity extends Activity
                                 String.format(getString(R.string.total_one_result), 1));
                 }
 
-                //Change to Clear Icon
                 btnClearSearch.setImageResource(R.drawable.ic_close_black_24dp);
 
             }
+            else
+            {
+                _searchTerm = queryString;
+                bn_queue_hint.setVisibility(View.VISIBLE);
+            }
 
-            _searchTerm = queryString;
 
 
         } else {
             adapter.changeCursor(null);
             txtView_result_count.setVisibility(View.GONE);
             welcomeLayout.setVisibility(View.VISIBLE);
+            bn_queue_hint.setVisibility(View.GONE);
 
             //Change to Speak Icon
             btnClearSearch.setImageResource(R.drawable.ic_mic_black_24dp);
@@ -705,15 +752,13 @@ public class main_activity extends Activity
                         isEn = false;
                     }
 
-                    if(isEn)
-                    {
+                    if (isEn) {
                         sendData(getString(R.string.server_txt_sent_by_web_button_en), strTemp, "-");
 
-                    }else{
+                    } else {
 
                         sendData(getString(R.string.server_txt_sent_by_web_button_bn), strTemp, "-");
                     }
-
 
 
                     iSearch.putExtra(SearchManager.QUERY, term);
@@ -722,6 +767,18 @@ public class main_activity extends Activity
                     Toast.makeText(main_activity.this,
                             getString(R.string.enter_any_search_term_first), Toast.LENGTH_LONG).show();
                 }
+
+                break;
+
+            case R.id.bn_search_queue_hint:
+
+                Toast.makeText(main_activity.this, getString(R.string.hint_keyboard_enter_button_location), Toast.LENGTH_LONG).show();
+
+                break;
+
+            case R.id.imgView_search_hint_close:
+
+                bn_queue_hint.setVisibility(View.GONE);
 
                 break;
 
@@ -766,6 +823,7 @@ public class main_activity extends Activity
 
         pref_feedback_show_counter = sharedPref.getInt(preference_activity.pref_feedback_show_counter, 0);
 
+        IsBnAutoSearchOnType = sharedPref.getBoolean(preference_activity.pref_search_on_type, true);
     }
 
     private void RestartActivity() {
@@ -978,17 +1036,6 @@ public class main_activity extends Activity
 
             Intent greek_alp_intent = new Intent(main_activity.this, greek_alphabet_activity.class);
             startActivity(greek_alp_intent);
-
-            /**
-             * Almost no one use this feature.
-             */
-
-//        } else if (id == R.id.add_record) {
-
-//            Intent add_entry_intent = new Intent(main_activity.this, add_new_entry.class);
-//            startActivityForResult(add_entry_intent, 200);
-
-//            Toast.makeText(main_activity.this, "Under construction. Coming soon...", Toast.LENGTH_LONG).show();
 
         } else if (id == R.id.menu_suggestion) {
 

@@ -5,20 +5,18 @@
         android:title="@string/title_advance_search">
 
         <ListPreference
-            android:defaultValue="2"
-            android:entries="@array/bnAdvSearchListArray"
-            android:entryValues="@array/bnAdvSearchListValues"
-            android:key="bnAdvSearchType"
-            android:summary="@string/summary_bn_search"
-            android:title="@string/sub_title_bn_search" />
-
-        <ListPreference
             android:defaultValue="1"
             android:entries="@array/enAdvSearchListArray"
             android:entryValues="@array/enAdvSearchListValues"
             android:key="enAdvSearchType"
             android:summary="@string/summary_en_search"
             android:title="@string/sub_title_en_search" />
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="pref_search_on_type"
+            android:summary="@string/summary_search_on_type"
+            android:title="@string/pref_title_search_on_type" />
     </PreferenceCategory>
 
     <PreferenceCategory
