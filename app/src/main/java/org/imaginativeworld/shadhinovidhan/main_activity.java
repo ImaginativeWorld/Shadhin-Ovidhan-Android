@@ -264,11 +264,11 @@ public class main_activity extends Activity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                TextView text = (TextView) view.findViewById(android.R.id.text1);
+                TextView text = (TextView) view.findViewById(R.id.textView);
 
                 editTextSearch.setText(text.getText());
 
-                mDrawerLayout.closeDrawer(RightDrawer);
+                mDrawerLayout.closeDrawers();
 
             }
         });
