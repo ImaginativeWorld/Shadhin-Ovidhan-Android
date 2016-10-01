@@ -45,7 +45,6 @@
                 android:maxLines="1"
                 android:paddingLeft="@dimen/action_bar_button_margin"
                 android:paddingRight="@dimen/action_bar_button_margin"
-                android:singleLine="true"
                 android:textColor="@color/white"
                 android:textColorHint="@color/action_bar_bright_foreground_disabled_material_dark"
                 android:textCursorDrawable="@drawable/custom_cursor"

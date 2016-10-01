@@ -31,7 +31,7 @@
     <string name="wait">অপেক্ষা করুন...</string>
     <string name="update_not_found">কোনো হালনাগাদ নেই!</string>
 
-    <string name="new_update_info">সর্বশেষ সংস্করণ: %1$s.%2$s.%3$s</string>
+    <string name="new_update_info">সর্বশেষ সংস্করণ: %1$i.%2$i.%3$i</string>
     <string name="update_release_date">উন্মুক্তের তারিখ: %1$s</string>
     <string name="do_you_want_to_download_now">আপনি কি এখনি নতুন সংস্করণ ডাউনলোড করতে চান?</string>
 

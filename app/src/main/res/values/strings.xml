@@ -2,9 +2,11 @@
 
     <string name="app_name" translatable="false">স্বাধীন অভিধান</string>
 
-    <string name="app_version" translatable="false">2.0.160906</string>
+    <string name="app_version" translatable="false">2.1.000000</string>
 
     <string name="about_description">An Open-source, independent and full featured Bengali-English Dictionary</string>
+
+    <string name="organization" translatable="false">Imaginative World</string>
     <string name="website" translatable="false">http://imaginativeworld.org</string>
 
     <!--<string name="server_post_url" translatable="false">http://imaginativeworld.org/srv/soa/add.php</string>-->
@@ -55,7 +57,7 @@
     <string name="wait">Please Wait...</string>
     <string name="update_not_found">No update found!</string>
 
-    <string name="new_update_info">Latest Version: %1$s.%2$s.%3$s</string>
+    <string name="new_update_info">Latest Version: %1$i.%2$i.%3$i</string>
     <string name="update_release_date">Release Date: %1$s</string>
     <string name="do_you_want_to_download_now">Are you sure want to download the new version now?</string>
 
