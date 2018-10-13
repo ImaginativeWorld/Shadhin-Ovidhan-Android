@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion '24.0.1'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "org.imaginativeworld.shadhinovidhan"
         minSdkVersion 16
-        targetSdkVersion 24
+        targetSdkVersion 28
     }
     buildTypes {
         debug {
@@ -23,7 +23,15 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'com.android.support:design:24.2.1'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
+
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
+    implementation 'com.google.firebase:firebase-core:16.0.4'
+    implementation 'com.google.firebase:firebase-messaging:17.3.3'
 }
+
+
+apply plugin: 'com.google.gms.google-services'

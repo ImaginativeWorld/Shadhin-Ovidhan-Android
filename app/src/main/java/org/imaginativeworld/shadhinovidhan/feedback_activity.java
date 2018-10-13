@@ -10,7 +10,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -20,7 +20,7 @@ import android.widget.Toast;
 public class feedback_activity extends AppCompatActivity implements View.OnClickListener {
 
     Resources res;
-    private String URL_market, URL_feedback;
+    private String URL_market;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +42,10 @@ public class feedback_activity extends AppCompatActivity implements View.OnClick
         imgBtn_close.setOnClickListener(feedback_activity.this);
 
         //==================================================
-        res = getResources();
+        //res = getResources();
 
         URL_market = getString(R.string.url_market);
-        URL_feedback = getString(R.string.url_feedback);
+        //URL_feedback = getString(R.string.url_feedback);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class feedback_activity extends AppCompatActivity implements View.OnClick
         switch (v.getId()) {
             case R.id.imgBtn_like:
                 Toast t1 = Toast.makeText(feedback_activity.this,
-                        getString(R.string.feedback_give_us_five_star),
+                        getString(R.string.feedback_give_us_five_stars),
                         Toast.LENGTH_LONG);
                 t1.show();
 

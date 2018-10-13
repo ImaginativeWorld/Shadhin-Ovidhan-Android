@@ -116,7 +116,7 @@
     <string name="txt_clear_history">Clear history</string>
 
     <string name="txt_are_you_like_out_app">What’s your opinion about Shadhin Ovidhan?</string>
-    <string name="feedback_give_us_five_star" translatable="false">Give us 5 star in Google Play Store!</string>
+    <string name="feedback_give_us_five_stars" translatable="false">Give us 5 stars in Google Play Store!</string>
     <string name="feedback_tell_us_what_you_need" translatable="false">Tell us what you need?</string>
     <string name="summary_language">%1$s language activated.\nIf the language not automatically activated after changing the Language, then Restart the Application.</string>
     <string name="desc_web_search">Web Search</string>

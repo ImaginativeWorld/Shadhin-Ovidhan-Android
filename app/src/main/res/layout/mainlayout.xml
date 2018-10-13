@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
@@ -80,8 +80,8 @@
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_below="@+id/search_bar_widget">
+            android:layout_below="@+id/search_bar_widget"
+            android:layout_alignParentBottom="true">
 
             <ListView
                 android:id="@+id/list_view"
@@ -89,6 +89,11 @@
                 android:layout_height="wrap_content"
                 android:divider="@color/grey_300"
                 android:dividerHeight="1dp" />
+
+            <!--<androidx.recyclerview.widget.RecyclerView-->
+                <!--android:id="@+id/list_view"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent" />-->
 
 
             <TextView
@@ -146,10 +151,10 @@
             android:background="#E5ffe082"
             android:clickable="true"
             android:gravity="center_vertical"
-            android:paddingBottom="7dp"
             android:paddingLeft="@dimen/dialog_padding"
-            android:paddingRight="@dimen/dialog_padding"
             android:paddingTop="7dp"
+            android:paddingRight="@dimen/dialog_padding"
+            android:paddingBottom="7dp"
             android:visibility="visible">
 
             <TextView
@@ -196,7 +201,7 @@
 
     </RelativeLayout>
 
-    <android.support.design.widget.NavigationView
+    <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view_left"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -221,10 +226,10 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:paddingBottom="@dimen/dialog_title_bottom_padding"
             android:paddingLeft="@dimen/dialog_padding"
-            android:paddingRight="@dimen/dialog_padding"
             android:paddingTop="@dimen/dialog_padding"
+            android:paddingRight="@dimen/dialog_padding"
+            android:paddingBottom="@dimen/dialog_title_bottom_padding"
             android:text="@string/history_title"
             android:textColor="@color/black"
             android:textSize="@dimen/dialog_title_size" />
@@ -271,7 +276,7 @@
     </RelativeLayout>
 
 
-</android.support.v4.widget.DrawerLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
 
 
 

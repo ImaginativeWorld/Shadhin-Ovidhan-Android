@@ -6,7 +6,6 @@
 
 package org.imaginativeworld.shadhinovidhan;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
@@ -15,32 +14,28 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.PorterDuff;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.speech.RecognizerIntent;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
+import com.google.android.material.navigation.NavigationView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
-import android.util.TypedValue;
 import android.util.Xml;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -504,6 +499,8 @@ public class main_activity extends AppCompatActivity
              */
             if (queryString.length() >= _searchTerm.length()) {
 
+//                new SearchTask().execute(queryString);
+
                 _searchTerm = queryString;
 
                 bn_queue_hint.setVisibility(View.GONE);
@@ -511,6 +508,7 @@ public class main_activity extends AppCompatActivity
                 Cursor cursor;
                 //Just change the adapter cursor to change the data view.. :)
                 if (queryString.charAt(0) < 128) {
+
                     do {
                         cursor = dbManager.searchEN(queryString, EnSearchType);
 
@@ -523,6 +521,7 @@ public class main_activity extends AppCompatActivity
                     } while (cursor.getCount() == 0); // get the least match result
 
                 } else {
+
                     do {
                         cursor = dbManager.searchBN(queryString, BnSearchType);
 
@@ -533,6 +532,7 @@ public class main_activity extends AppCompatActivity
                             break;
 
                     } while (cursor.getCount() == 0);
+
                 }
 
                 int total_count = cursor.getCount();
@@ -574,6 +574,80 @@ public class main_activity extends AppCompatActivity
             _searchTerm = "";
         }
     }
+
+    /**
+     * TODO: nice jokes..
+     */
+//    private class SearchTask extends AsyncTask<String, Void, Integer> {
+//
+//        @Override
+//        protected Integer doInBackground(String... strings) {
+//            String queryString = strings[0];
+//
+//            _searchTerm = queryString;
+//
+////            bn_queue_hint.setVisibility(View.GONE);
+//
+//            Cursor cursor;
+//            //Just change the adapter cursor to change the data view.. :)
+//            if (queryString.charAt(0) < 128) {
+//
+//                do {
+//                    cursor = dbManager.searchEN(queryString, EnSearchType);
+//
+//                    if (queryString.length() >= 2)
+//                        queryString = queryString.substring(0, queryString.length() - 1);
+//
+//                    if (queryString.equals(""))
+//                        break;
+//
+//                } while (cursor.getCount() == 0); // get the least match result
+//
+//            } else {
+//
+//                do {
+//                    cursor = dbManager.searchBN(queryString, BnSearchType);
+//
+//                    if (queryString.length() >= 2)
+//                        queryString = queryString.substring(0, queryString.length() - 1);
+//
+//                    if (queryString.equals(""))
+//                        break;
+//
+//                } while (cursor.getCount() == 0);
+//
+//            }
+//
+//            int total_count = cursor.getCount();
+//
+//            if(total_count != 0) {
+//                adapter.changeCursor(cursor);
+//            }
+//
+//
+//
+//            return  cursor.getCount();
+//        }
+//
+//        @Override
+//        protected void onPostExecute(Integer total_count) {
+//            if (total_count != 0) {
+////                adapter.changeCursor(cursor);
+//                txtView_result_count.setVisibility(View.VISIBLE);
+//                if (total_count > 1)
+//                    if (total_count <= 100)
+//                        txtView_result_count.setText(String.format(getString(R.string.total_result), total_count));
+//                    else
+//                        txtView_result_count.setText(
+//                                String.format(getString(R.string.total_hundred_plus_result), 100));
+//                else
+//                    txtView_result_count.setText(
+//                            String.format(getString(R.string.total_one_result), 1));
+//            }
+//
+//            btnClearSearch.setImageResource(R.drawable.ic_close_black_24dp);
+//        }
+//    }
 
     void handleSendText(Intent intent) {
         String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
@@ -957,25 +1031,25 @@ public class main_activity extends AppCompatActivity
         alert.show();
     }
 
-    void sendData(String info, String word, String meaning) {
-        hashMap.clear();
+        void sendData(String info, String word, String meaning) {
+            hashMap.clear();
 
-        //?arg1=val1&arg2=val2
-        hashMap.put("info", info);
-        hashMap.put("word", so_tools.removeSymbolFromText(word));
-        hashMap.put("pron", word);
-        hashMap.put("meaning", meaning);
+            //?arg1=val1&arg2=val2
+            hashMap.put("info", info);
+            hashMap.put("word", so_tools.removeSymbolFromText(word));
+            hashMap.put("pron", word);
+            hashMap.put("meaning", meaning);
 
-        // Gets the URL from the UI's text field.
-        ConnectivityManager connMgr = (ConnectivityManager)
-                getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnected()) {
-            new sendDataToServer(hashMap, getString(R.string.server_post_url));
+            // Gets the URL from the UI's text field.
+            ConnectivityManager connMgr = (ConnectivityManager)
+                    getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+            if (networkInfo != null && networkInfo.isConnected()) {
+                new sendDataToServer(hashMap, getString(R.string.server_post_url));
+
+            }
 
         }
-
-    }
 
     @Override
     public void onBackPressed() {
