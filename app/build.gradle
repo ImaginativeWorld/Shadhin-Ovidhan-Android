@@ -5,6 +5,8 @@ android {
     buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "org.imaginativeworld.shadhinovidhan"
+        versionCode 13
+        versionName '2.2.181024'
         minSdkVersion 16
         targetSdkVersion 28
     }
@@ -29,12 +31,11 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
-
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
     implementation 'com.google.firebase:firebase-core:16.0.4'
-    implementation 'com.google.firebase:firebase-messaging:17.3.3'
+    implementation 'com.google.firebase:firebase-messaging:17.3.4'
+    implementation 'com.google.firebase:firebase-crash:16.2.1'
 }
-
 
 apply plugin: 'com.google.gms.google-services'

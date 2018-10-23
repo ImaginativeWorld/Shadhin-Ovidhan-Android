@@ -17,7 +17,9 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.util.Xml;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -39,18 +41,19 @@ import java.util.Locale;
 
 public class about_activity extends AppCompatActivity implements OnClickListener {
 
-//    String namedversion,
+    //    String namedversion,
 //            changelogurl, downloadurl, productpageurl,
 //            releasedate;
 //    int versionmajor, versionminor, versionrevision;
 //    XmlPullParser parser;
     Button btnClose;
-//    Button btnUpdate;
+    //    Button btnUpdate;
 //    View updateInfoView;
 //    TextView txtNewVersion, txtReleaseDate;
     Resources res;
-//    boolean ifUpdateAvailable = false;
+    //    boolean ifUpdateAvailable = false;
     TextView dev_url;
+    TextView txt_version;
 //    private String URL;
 
     @Override
@@ -100,6 +103,9 @@ public class about_activity extends AppCompatActivity implements OnClickListener
         dev_url.setOnClickListener(about_activity.this);
 
         res = getResources();
+
+        txt_version = findViewById(R.id.txt_version);
+        txt_version.setText(String.format("%s", BuildConfig.VERSION_NAME));
 
 //        URL = getString(R.string.update_check_url);
 

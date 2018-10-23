@@ -39,12 +39,13 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/txt_version"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/title_text"
                 android:layout_marginTop="3dp"
                 android:layout_toRightOf="@+id/img_logo"
-                android:text="@string/app_version"
+                android:text="0.0.0.0"
                 android:textSize="12sp" />
         </RelativeLayout>
 

@@ -2,7 +2,7 @@
 
     <string name="app_name" translatable="false">স্বাধীন অভিধান</string>
 
-    <string name="app_version" translatable="false">2.1.181020</string>
+    <!--<string name="app_version" translatable="false">2.1.181020</string>-->
 
     <string name="about_description">An Open-source, independent and full featured Bengali-English Dictionary</string>
 

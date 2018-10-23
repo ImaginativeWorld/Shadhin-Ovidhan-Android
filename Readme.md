@@ -10,7 +10,7 @@ Visit: [http://imaginativeworld.org/products/shadhin-ovidhan-android/](http://im
 
 ## Build Software ##
 
-**Android Studio 2.1**
+**Android Studio 3.2.1**
 
 
 ## How to compile: ##
