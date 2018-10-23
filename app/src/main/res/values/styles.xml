@@ -6,43 +6,24 @@
         <item name="colorPrimary">@color/light_green_700</item>
         <item name="colorPrimaryDark">@color/light_green_800</item>
         <item name="colorAccent">#333</item>
+
+        <item name="materialButtonStyle">@style/Widget.MaterialComponents.Button.TextButton</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
+    <style name="AppTheme.NoActionBar" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 
         <item name="colorPrimary">@color/light_green_700</item>
         <item name="colorPrimaryDark">@color/light_green_800</item>
         <item name="colorAccent">#333</item>
-        <!--<item name="colorAccent">@color/white</item>-->
 
+        <item name="materialButtonStyle">@style/Widget.MaterialComponents.Button.TextButton</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <!--<style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />-->
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-    <!--<style name="AppTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">-->
-        <!--&lt;!&ndash;<item name="android:textColorPrimary">@color/white</item>&ndash;&gt;-->
-        <!--&lt;!&ndash;<item name="android:textColorSecondary">@color/white</item>&ndash;&gt;-->
-        <!--&lt;!&ndash;<item name="android:textColorHint">@color/white</item>&ndash;&gt;-->
-
-        <!--<item name="android:textCursorDrawable">@null</item>-->
-
-        <!--<item name="colorPrimary">@color/light_green_700</item>-->
-        <!--<item name="colorPrimaryDark">@color/light_green_800</item>-->
-        <!--<item name="colorAccent">@color/white</item>-->
-
-        <!--&lt;!&ndash;<item name="android:textColor">@color/grey_800</item>&ndash;&gt;-->
-
-        <!--<item name="android:windowNoTitle">true</item>-->
-        <!--<item name="windowActionBar">false</item>-->
-
-        <!--&lt;!&ndash;<item name="android:itemTextAppearance">@style/CustomMenuTextAppearance</item>&ndash;&gt;-->
-
-
-    <!--</style>-->
+    <!--<style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />-->
 
     <!-- Application themes -->
 
@@ -146,21 +127,19 @@
     </style>
 
 
-
     <!-- ======================================================================= -->
 
-    <style name="AppOptionsTheme" parent="Theme.AppCompat.Light">
+    <!--<style name="AppOptionsTheme" parent="Theme.AppCompat.Light">-->
+    <style name="AppOptionsTheme" parent="Theme.MaterialComponents.Light">
 
-        <!--<item name="android:textColorPrimary">@color/black</item>-->
-        <!--<item name="android:textColorSecondary">@color/grey_900</item>-->
-        <!--<item name="android:textColorHint">@color/grey_800</item>-->
-        <!--<item name="colorAccent">@color/grey_900</item>-->
-
-        <!--<item name="android:background">@color/white</item>-->
+        <item name="colorPrimary">@color/light_green_700</item>
+        <item name="colorPrimaryDark">@color/light_green_800</item>
+        <item name="colorAccent">@color/light_green_700</item>
 
     </style>
 
 
+    <!-- ======================================================================= -->
     <!-- ======================================================================= -->
 
     <style name="Custom.DialogWindowTitle.AppCompat" parent="android:Widget">
@@ -168,13 +147,16 @@
         <item name="android:textColor">@android:color/transparent</item>
     </style>
 
-    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog.MinWidth">
+    <!--<style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog.MinWidth">-->
+    <style name="DialogTheme" parent="Theme.MaterialComponents.Light.Dialog.MinWidth">
 
         <item name="colorPrimary">@color/light_green_700</item>
         <item name="colorPrimaryDark">@color/light_green_800</item>
         <item name="colorAccent">@color/grey_800</item>
 
         <item name="android:textColor">@color/black</item>
+        
+        <item name="materialButtonStyle">@style/Widget.MaterialComponents.Button.TextButton</item>
 
     </style>
 
@@ -281,7 +263,7 @@
 
     <!--<style name="DialogTheme.DetailsView" parent="DialogTheme">-->
 
-        <!--<item name="android:windowTitleStyle">@style/Custom.DialogWindowTitle.AppCompat</item>-->
+    <!--<item name="android:windowTitleStyle">@style/Custom.DialogWindowTitle.AppCompat</item>-->
 
     <!--</style>-->
 
@@ -319,16 +301,11 @@
         <item name="android:textColor">@color/grey_700</item>
     </style>
 
-    <style name="dialog_button" parent="@style/Widget.AppCompat.Button.Borderless">
+    <style name="dialog_button" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">fill_parent</item>
-        <item name="android:layout_marginRight">@dimen/dialog_button_bar_button_horizontal_padding</item>
+        <item name="android:layout_marginRight">@dimen/dialog_button_bar_button_horizontal_padding
+        </item>
     </style>
-
-    <!-- ======================================================================= -->
-
-    <!--<style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />-->
-    <!--<style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />-->
-
 
 </resources>

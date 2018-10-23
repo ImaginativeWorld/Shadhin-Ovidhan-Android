@@ -2,60 +2,58 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="@dimen/dialog_button_bar_button_margin"
     android:layout_marginTop="@dimen/dialog_padding"
+    android:layout_marginBottom="@dimen/dialog_button_bar_button_margin"
     android:orientation="vertical">
 
-    <ScrollView
+    <LinearLayout
+        android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_layout"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
 
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:text="@string/str_database"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="@dimen/abc_text_size_headline_material"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/str_database"
-                android:textSize="@dimen/abc_text_size_headline_material"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/txtInfoDb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/abc_control_padding_material"
+            android:text="@string/wait" />
 
-            <TextView
-                android:id="@+id/txtInfoDb"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/abc_control_padding_material"
-                android:text="@string/wait"
-                android:textSize="@dimen/abc_text_size_medium_material" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/border_margin"
+            android:text="@string/str_favorites"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="@dimen/abc_text_size_headline_material"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/border_margin"
-                android:text="@string/str_favorites"
-                android:textSize="@dimen/abc_text_size_headline_material"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/txtInfoFav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/abc_control_padding_material"
+            android:text="@string/wait" />
 
-            <TextView
-                android:id="@+id/txtInfoFav"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/abc_control_padding_material"
-                android:text="@string/wait"
-                android:textSize="@dimen/abc_text_size_medium_material" />
+    </LinearLayout>
 
-        </LinearLayout>
-    </ScrollView>
 
     <LinearLayout
         android:id="@+id/btn_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dialog_button_bar_height"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/main_layout"
         android:layout_marginTop="@dimen/dialog_button_bar_button_margin"
         android:gravity="end|center_vertical"
         android:orientation="horizontal">
@@ -63,7 +61,7 @@
         <Button
             android:id="@+id/btnOk"
             style="@style/dialog_button"
-            android:text="@string/dialog_message_ok"/>
+            android:text="@string/dialog_message_ok" />
 
     </LinearLayout>
 

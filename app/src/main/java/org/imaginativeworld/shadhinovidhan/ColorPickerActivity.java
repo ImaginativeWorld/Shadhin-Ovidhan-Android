@@ -1,23 +1,37 @@
 package org.imaginativeworld.shadhinovidhan;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewCompat;
+
+import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.lang.reflect.Field;
+import java.util.Locale;
 
 public class ColorPickerActivity extends AppCompatActivity implements View.OnClickListener {
 
+    Context mContext;
     Button[] colorBtn = new Button[21];
-    Button btnOK, colorPreview;
+    Button btnOK;
+//    TextView colorPreview;
     String color, colorStr;
     int __id = 0;
     int __margin;
@@ -25,29 +39,35 @@ public class ColorPickerActivity extends AppCompatActivity implements View.OnCli
     LinearLayout.LayoutParams layoutParams;
     LinearLayout layoutMain;
 
-    public static int getResId(String resName, Class<?> c) {
-
-        try {
-            Field idField = c.getDeclaredField(resName);
-            return idField.getInt(idField);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return -1;
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
+        /**
+         * Change Language
+         */
+        String Lang = sharedPref.getString(preference_activity.pref_language, "bn");
+
+        Configuration config = getBaseContext().getResources().getConfiguration();
+
+        Locale locale = new Locale(Lang);
+        Locale.setDefault(locale);
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+
+        //============================================================
+
         setContentView(R.layout.activity_color_picker);
 
-        //Make window fill full width
-        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        mContext = ColorPickerActivity.this;
 
         layoutMain = (LinearLayout) findViewById(R.id.layoutMain);
         btnOK = (Button) findViewById(R.id.btnOk);
         btnOK.setOnClickListener(ColorPickerActivity.this);
-        colorPreview = (Button) findViewById(R.id.colorPreview);
+//        colorPreview = findViewById(R.id.colorPreview);
 
 
         // Get Display size in pixel
@@ -70,19 +90,25 @@ public class ColorPickerActivity extends AppCompatActivity implements View.OnCli
         }
 
         // Preview Setting
-        LinearLayout.LayoutParams lpColorPreview = new LinearLayout.LayoutParams(__width + 10 * 2, __width / 2);
-        lpColorPreview.setMargins(__margin, __margin, __margin, __margin);
+//        LinearLayout.LayoutParams lpColorPreview = new LinearLayout.LayoutParams(__width + 10 * 2, __width / 2);
+//        lpColorPreview.setMargins(__margin, __margin, __margin, __margin);
+
+//        colorPreview.setLayoutParams(lpColorPreview);
 
         /**
          * Get Intent Extras
          */
         Intent intent = getIntent();
         colorStr = intent.getStringExtra(getString(R.string.ColorName));
+        if (colorStr == null) {
+            colorStr = "light_green";
+        }
         color = getColorCodeAsString(colorStr);
 
-        colorPreview.setLayoutParams(lpColorPreview);
-        colorPreview.setBackgroundColor(Color.parseColor(color));
-        colorPreview.setText(colorStr.replace('_', ' '));
+        /**
+         * Set defaults
+         */
+        setButton(getColorButtonNumber(colorStr));
 
 
     }
@@ -134,24 +160,69 @@ public class ColorPickerActivity extends AppCompatActivity implements View.OnCli
         return "#ffffff";
     }
 
-    public int dpToPx(int dp) {
-        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-        int px = Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
-        return px;
+    int getColorButtonNumber(String colorName) {
+        switch (colorName) {
+            case "red":
+                return 1;
+            case "pink":
+                return 2;
+            case "purple":
+                return 3;
+            case "deep_purple":
+                return 4;
+            case "indigo":
+                return 5;
+            case "blue":
+                return 6;
+            case "light_blue":
+                return 7;
+            case "cyan":
+                return 8;
+            case "teal":
+                return 9;
+            case "green":
+                return 10;
+            case "light_green":
+                return 11;
+            case "lime":
+                return 12;
+            case "yellow":
+                return 13;
+            case "amber":
+                return 14;
+            case "orange":
+                return 15;
+            case "deep_orange":
+                return 16;
+            case "brown":
+                return 17;
+            case "grey":
+                return 18;
+            case "blue_grey":
+                return 19;
+            case "black":
+                return 20;
+        }
+
+        return 11;  // light_green
     }
 
     void setButton(int _id) {
 
         if (__id != 0) {
 
-            colorBtn[__id].setPadding(__margin, __margin, __margin, __margin);
+            colorBtn[__id].setText("");
+
         }
 
         __id = _id;
 
-        colorPreview.setBackgroundColor(Color.parseColor(color));
+        colorBtn[__id].setText("✔");
 
-        colorPreview.setText(colorStr.replace('_', ' '));
+//        colorPreview.setBackgroundColor(Color.parseColor(color));
+//        ViewCompat.setBackgroundTintList(colorPreview, ColorStateList.valueOf(Color.parseColor(color)));
+
+//        colorPreview.setText(colorStr.replace('_', ' '));
     }
 
 
@@ -162,15 +233,12 @@ public class ColorPickerActivity extends AppCompatActivity implements View.OnCli
 
                 color = "#f44336"; //Red
                 colorStr = "red";
-
                 setButton(1);
-
 
                 break;
             case R.id.color2:
                 color = "#e91e63"; //Pink
                 colorStr = "pink";
-
                 setButton(2);
 
                 break;
@@ -300,5 +368,23 @@ public class ColorPickerActivity extends AppCompatActivity implements View.OnCli
         intent.putExtras(conData);
         setResult(RESULT_OK, intent);
         finish();
+    }
+
+
+    public static int getResId(String resName, Class<?> c) {
+
+        try {
+            Field idField = c.getDeclaredField(resName);
+            return idField.getInt(idField);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    public int dpToPx(int dp) {
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        int px = Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+        return px;
     }
 }

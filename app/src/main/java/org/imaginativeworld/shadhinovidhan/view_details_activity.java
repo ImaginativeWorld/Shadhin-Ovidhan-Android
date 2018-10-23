@@ -4,8 +4,16 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
+/**
+ * History
+ * --------------------
+ * ver code 11
+ * 1. Removed "IsSendToServer" functionality.
+ */
+
 package org.imaginativeworld.shadhinovidhan;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -16,9 +24,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.appcompat.widget.PopupMenu;
+
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -55,12 +65,13 @@ public class view_details_activity
     final int MAX_POS = 12;
 
     /**
-     * @variable totalPost
+     * @variable _totalPos
      * It maintain the total number of POS created.
      */
     int _totalPos;
 
-    Boolean IsSendToServer;
+//    Boolean IsSendToServer;
+    @SuppressWarnings("unchecked")
     ArrayAdapter<String>[] adapter = new ArrayAdapter[MAX_POS];
     ArrayAdapter<String> synoAdapter;
     HashMap<String, Integer> mapPos = new HashMap<>();
@@ -81,6 +92,8 @@ public class view_details_activity
     private String sSynonyms;
     private String tEXTsyno, tEXT;
     private boolean isDBchanged = false;
+
+    @SuppressWarnings("unchecked")
     private ArrayList<String>[] sMeaningArrList = new ArrayList[MAX_POS];
     private ArrayList<String> sSynonymsArrList;
     private DBManager dbManager;
@@ -280,7 +293,7 @@ public class view_details_activity
 
         //=============================================================
 
-        IsSendToServer = sharedPref.getBoolean(preference_activity.pref_key_send_to_server, true);
+//        IsSendToServer = sharedPref.getBoolean(preference_activity.pref_key_send_to_server, true);
 
         //================================================================
         // Get the layout inflater
@@ -319,7 +332,8 @@ public class view_details_activity
                         public void onClick(DialogInterface dialog, int which) {
 
                             if (!userInput.getText().toString().equals("")) {
-                                sSynonymsArrList.set(position, userInput.getText().toString().replace("\n", " ").replace("\r", " "));
+                                sSynonymsArrList.set(position, userInput.getText().toString()
+                                        .replace("\n", " ").replace("\r", " "));
                                 synoAdapter.notifyDataSetChanged();
 
                                 updateDB();
@@ -379,7 +393,8 @@ public class view_details_activity
                                         public void onClick(DialogInterface dialog, int which) {
 
                                             if (!userInput.getText().toString().equals("")) {
-                                                sSynonymsArrList.set(position, userInput.getText().toString().replace("\n", " ").replace("\r", " "));
+                                                sSynonymsArrList.set(position, userInput.getText().toString()
+                                                        .replace("\n", " ").replace("\r", " "));
                                                 synoAdapter.notifyDataSetChanged();
 
                                                 updateDB();
@@ -433,16 +448,17 @@ public class view_details_activity
 
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_close:
 
-                if (isDBchanged) {
-                    if (IsSendToServer) {
-                        so_tools.sendData(getString(R.string.server_txt_modified), sWord, sMeaning, sSynonyms);
-                    }
-                }
+//                if (isDBchanged) {
+//                    if (IsSendToServer) {
+//                        so_tools.sendData(getString(R.string.server_txt_modified), sWord, sMeaning, sSynonyms);
+//                    }
+//                }
 
                 finishWithResult(false);
 
@@ -776,7 +792,7 @@ public class view_details_activity
                     builder.setView(DialogView);
 
                     //subTitleDialog.setText(getString(R.string.enter_change_meanings));
-                    userInput.setText(tEXT);
+//                    userInput.setText(tEXT);
                     userInput.setHint(R.string.new_meaning);
 
                     builder.setPositiveButton(getString(R.string.str_add), new DialogInterface.OnClickListener() {
@@ -950,11 +966,11 @@ public class view_details_activity
     protected void onStop() {
         super.onStop();
 
-        if (isDBchanged) {
-            if (IsSendToServer) {
-                so_tools.sendData(getString(R.string.server_txt_modified), sWord, sMeaning, sSynonyms);
-            }
-        }
+//        if (isDBchanged) {
+//            if (IsSendToServer) {
+//                so_tools.sendData(getString(R.string.server_txt_modified), sWord, sMeaning, sSynonyms);
+//            }
+//        }
 
         finishWithResult(false);
     }

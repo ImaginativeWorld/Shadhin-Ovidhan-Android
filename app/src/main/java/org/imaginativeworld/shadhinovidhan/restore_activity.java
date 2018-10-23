@@ -145,7 +145,7 @@ public class restore_activity extends AppCompatActivity implements View.OnClickL
         } catch (IOException e) {
             //Log.v("soa", "File write failed: " + e.toString());
 
-            txtViewDbInfo.setText(String.format(getString(R.string.no_backup_file_found), e.toString()));
+            txtViewDbInfo.setText(String.format(getString(R.string.no_backup_file_found), e.getMessage()));
         }
 
     }

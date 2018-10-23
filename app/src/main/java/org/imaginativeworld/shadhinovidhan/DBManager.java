@@ -16,9 +16,9 @@ import java.io.IOException;
 
 public class DBManager {
 
-    final String __LIMIT = "105";
+    private final String __LIMIT = "105";
 
-    DbHelperFavorites favDbHelper;
+    private DbHelperFavorites favDbHelper;
     private DatabaseHelper dbHelper;
     private Context context;
     private SQLiteDatabase database;

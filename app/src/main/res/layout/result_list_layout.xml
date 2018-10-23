@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/list_padding_vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/list_padding_vertical"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/list_padding_vertical">
+    android:paddingBottom="@dimen/list_padding_vertical">
+
 
     <TextView
         android:id="@+id/txt_pron"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textColor="?attr/colorPrimaryDark"
+        android:textColor="#333"
         android:textSize="@dimen/list_word_text"
         android:textStyle="bold"
-        android:visibility="visible" />
+        android:visibility="visible"
+        tools:text="@tools:sample/lorem" />
+
+    <!--
+android:textColor="?attr/colorPrimaryDark"
+    -->
 
     <TextView
         android:id="@+id/txt_meaning"
@@ -25,7 +31,8 @@
         android:paddingTop="3dp"
         android:textColor="@color/black"
         android:textSize="@dimen/list_meaning_text"
-        android:visibility="visible" />
+        android:visibility="visible"
+        tools:text="@tools:sample/lorem" />
 
     <!--android:maxLines="2"-->
 
@@ -35,7 +42,9 @@
         android:layout_height="wrap_content"
         android:paddingTop="3dp"
         android:textSize="@dimen/list_synonyms_text"
-        android:visibility="gone" />
+        android:visibility="gone"
+        tools:text="@tools:sample/lorem" />
+
 
 </LinearLayout>
 

@@ -60,7 +60,6 @@ public class bn_calendar_activity extends AppCompatActivity implements View.OnCl
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.bn_calendar_layout);
 
-
         bnMonth = (TextView) findViewById(R.id.bn_month);
         bnYear = (TextView) findViewById(R.id.bn_year);
 

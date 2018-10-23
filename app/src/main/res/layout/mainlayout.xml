@@ -83,26 +83,27 @@
             android:layout_below="@+id/search_bar_widget"
             android:layout_alignParentBottom="true">
 
-            <ListView
-                android:id="@+id/list_view"
+            <!--<ListView-->
+            <!--android:id="@+id/list_view"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:divider="@color/grey_300"-->
+            <!--android:dividerHeight="1dp" />-->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/main_list"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:divider="@color/grey_300"
-                android:dividerHeight="1dp" />
-
-            <!--<androidx.recyclerview.widget.RecyclerView-->
-                <!--android:id="@+id/list_view"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent" />-->
+                android:layout_height="match_parent"
+                android:background="#fff" />
 
 
-            <TextView
-                android:id="@+id/empty"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="@string/empty_list_text"
-                android:textSize="@dimen/abc_text_size_medium_material" />
+            <!--<TextView-->
+            <!--android:id="@+id/empty"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:text="@string/empty_list_text"-->
+            <!--android:textSize="@dimen/abc_text_size_medium_material" />-->
 
         </RelativeLayout>
 
@@ -263,10 +264,10 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_clr_history"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="match_parent"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="@string/txt_clear_history" />
 

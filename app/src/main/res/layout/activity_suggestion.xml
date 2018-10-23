@@ -2,35 +2,36 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/dialog_button_bar_button_margin"
     android:paddingTop="@dimen/dialog_padding"
     tools:context="org.imaginativeworld.shadhinovidhan.SuggestionActivity">
 
-    <TextView
-        android:id="@+id/textSuccess"
+
+    <LinearLayout
+        android:id="@+id/main_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/btn_layout"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="@dimen/dialog_padding"
         android:layout_marginRight="@dimen/dialog_padding"
-        android:alpha="0"
-        android:gravity="center"
-        android:text="@string/msg_suggestion_send_success"
-        android:textSize="@dimen/big_font_size"
-        android:visibility="gone"/>
+        android:orientation="vertical">
 
-    <ScrollView
-        android:id="@+id/suggestion_form"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/btn_layout"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="@dimen/dialog_padding"
-        android:layout_marginRight="@dimen/dialog_padding">
+        <TextView
+            android:id="@+id/textSuccess"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="@dimen/dialog_padding"
+            android:layout_marginRight="@dimen/dialog_padding"
+            android:alpha="0"
+            android:gravity="center"
+            android:text="@string/msg_suggestion_send_success"
+            android:textSize="@dimen/big_font_size"
+            android:visibility="gone" />
 
         <LinearLayout
+            android:id="@+id/suggestion_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -40,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dialog_button_bar_button_margin"
                 android:text="@string/heading_suggestion"
-                android:textColor="?attr/colorPrimary"/>
+                android:textColor="?attr/colorPrimary" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -65,21 +66,23 @@
                 <EditText
                     android:id="@+id/suggestion"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="200dp"
                     android:hint="@string/hint_suggestion"
                     android:inputType="textMultiLine"
-                    android:minLines="3" />
+                    android:minLines="5" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
-    </ScrollView>
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/btn_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dialog_button_bar_height"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/main_layout"
         android:layout_marginTop="@dimen/dialog_button_bar_button_margin"
         android:gravity="end|center_vertical"
         android:orientation="horizontal">

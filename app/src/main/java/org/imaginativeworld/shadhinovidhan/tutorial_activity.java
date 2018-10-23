@@ -6,11 +6,20 @@
 
 package org.imaginativeworld.shadhinovidhan;
 
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.preference.PreferenceManager;
 import android.view.View;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
+
+import java.util.Locale;
 
 public class tutorial_activity extends AppCompatActivity implements View.OnClickListener {
 
@@ -22,20 +31,40 @@ public class tutorial_activity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
+        /**
+         * Change Language
+         */
+        String Lang = sharedPref.getString(preference_activity.pref_language, "bn");
+
+        Configuration config = getBaseContext().getResources().getConfiguration();
+
+        Locale locale = new Locale(Lang);
+        Locale.setDefault(locale);
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+
+        //============================================================
+
         setContentView(R.layout.tutorial_layout);
 
-
-//        Intent intent = getIntent();
-//        String goWhere = intent.getStringExtra("goWhere");
+        //============================================================
 
         webView = (WebView) findViewById(R.id.webView);
 
-//        if(goWhere!=null)
-//        {
-//            if(goWhere.equals("backupNow"))
-//                webView.loadUrl("file:///android_asset/tutorials/fav-backup-why.html");
-//        }
-//        else
+        /**
+         * Fix: FileUriExposedException
+         */
+        WebViewClient webViewClient = new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                return false;
+            }
+        };
+        webView.setWebViewClient(webViewClient);
+
         webView.loadUrl("file:///android_asset/tutorials/index.html");
 
         btnClose = (Button) findViewById(R.id.btn_close);

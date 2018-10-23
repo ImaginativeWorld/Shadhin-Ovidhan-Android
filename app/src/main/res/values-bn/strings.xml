@@ -9,7 +9,7 @@
     <string name="new_item_text">এটি পরিবর্তন করতে এতে টাচ্‌ করুন</string>
     <string name="no_meaning_text">এখনো কোনো অর্থ নেই!</string>
 
-    <string name="search_hint">অনুসন্ধান...</string>
+    <string name="search_hint">অনুসন্ধান…</string>
     <string name="empty_list_text">দেখানোর মত কিছু পাওয়া যায়নি!</string>
     <string name="fav_empty_list_text">আপনার প্রিয় তালিকায় কোনো অন্তর্ভুক্তি নেই!</string>
     <string name="main_window_welcome_text_search">অনুসন্ধান করতে অনুসন্ধান বাক্সে বাংলা অথবা ইংরেজি শব্দটি লিখুন</string>
@@ -28,7 +28,7 @@
     <string name="update_available">হালনাগাদ পাওয়া যাচ্ছে!</string>
     <string name="check_update">হালনাগাদ পরীক্ষা করুন</string>
     <string name="update_now">এখনি হালনাগাদ করুন</string>
-    <string name="wait">অপেক্ষা করুন...</string>
+    <string name="wait">অপেক্ষা করুন…</string>
     <string name="update_not_found">কোনো হালনাগাদ নেই!</string>
 
     <string name="new_update_info">সর্বশেষ সংস্করণ: %1$i.%2$i.%3$i</string>
@@ -161,6 +161,11 @@
     <string name="summary_search_on_type">লেখার সময় স্বয়ংক্রিয় অনুসন্ধান ফলাফল দেখাবে</string>
     <string name="txt_search_queue_hint">অনুসন্ধানের জন্য লিখা শেষ হলে, কিবোর্ড থেকে ENTER চাপুন।</string>
     <string name="pref_title_search_on_type">লিখার সময় স্বয়ংক্রিয় অনুসন্ধান</string>
+    <string name="title_backup">ব্যাকআপ</string>
+    <string name="title_restore">ফেরত</string>
+    <string name="menu_title_dictionary">অভিধান</string>
+    <string name="menu_title_customize">পরিবর্তন</string>
+    <string name="menu_title_other">অন্যান্য</string>
 
 </resources>
 

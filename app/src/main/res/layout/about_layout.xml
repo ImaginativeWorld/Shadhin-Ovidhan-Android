@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/dialog_button_bar_button_margin">
 
     <RelativeLayout
+        android:id="@+id/main_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/btn_layout"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:paddingLeft="@dimen/dialog_padding"
-        android:paddingRight="@dimen/dialog_padding"
-        android:paddingTop="@dimen/dialog_padding">
+        android:paddingTop="@dimen/dialog_padding"
+        android:paddingRight="@dimen/dialog_padding">
 
         <RelativeLayout
             android:id="@+id/title"
@@ -54,94 +54,49 @@
             style="@style/Divider"
             android:layout_below="@id/title" />
 
-        <ScrollView
-            android:layout_width="fill_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_below="@id/divider_one">
+            android:layout_below="@id/divider_one"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-
-                <LinearLayout
-                    android:id="@+id/view_update"
-                    android:layout_width="fill_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/dialog_padding"
-                    android:background="@color/red_100"
-                    android:orientation="vertical"
-                    android:padding="12dp"
-                    android:visibility="visible">
+                    android:text="@string/about_description"
+                    android:textSize="16sp" />
 
-                    <TextView
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/update_available"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/abc_text_size_medium_material" />
+                <View style="@style/Divider" />
 
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/txtNewVersion"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/new_update_info" />
-
-                        <TextView
-                            android:id="@+id/txtReleaseDate"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/update_release_date" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/dev_url"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:text="@string/website"
+                    android:textColor="@color/light_blue_800"
+                    android:textSize="16sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/about_description"
-                        android:textSize="16sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/copyrights1"
+                    android:textSize="16sp" />
 
-                    <View style="@style/Divider" />
-
-                    <TextView
-                        android:id="@+id/dev_url"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/website"
-                        android:textColor="@color/light_blue_800"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/copyrights1"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/copyrights2"
-                        android:textSize="12sp" />
-
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/copyrights2"
+                    android:textSize="12sp" />
 
             </LinearLayout>
-        </ScrollView>
+
+        </LinearLayout>
+
 
     </RelativeLayout>
 
@@ -150,20 +105,20 @@
         android:id="@+id/btn_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dialog_button_bar_height"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/main_layout"
         android:layout_marginTop="@dimen/dialog_button_bar_button_margin"
         android:gravity="end|center_vertical"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btn_update"
-            style="@style/dialog_button"
-            android:text="@string/check_update"/>
+        <!--<Button-->
+        <!--android:id="@+id/btn_update"-->
+        <!--style="@style/dialog_button"-->
+        <!--android:text="@string/check_update"/>-->
 
         <Button
             android:id="@+id/btn_close"
             style="@style/dialog_button"
-            android:text="@string/dialog_message_ok"/>
+            android:text="@string/dialog_message_ok" />
 
     </LinearLayout>
 

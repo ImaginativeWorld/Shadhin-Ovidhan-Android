@@ -2,13 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="@dimen/dialog_button_bar_button_margin"
-    android:layout_marginTop="@dimen/dialog_padding">
+    android:layout_marginTop="@dimen/dialog_padding"
+    android:layout_marginBottom="@dimen/dialog_button_bar_button_margin">
 
     <LinearLayout
+        android:id="@+id/layout_main"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_layout"
         android:layout_alignParentTop="true"
         android:orientation="vertical">
 
@@ -56,8 +56,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:textColor="@color/grey_500"
                 android:textSize="@dimen/cal_grid_text_size"
                 android:textStyle="bold" />
@@ -68,8 +68,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:textColor="@color/grey_500"
                 android:textSize="@dimen/cal_grid_text_size"
                 android:textStyle="bold" />
@@ -80,8 +80,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:textColor="@color/grey_500"
                 android:textSize="@dimen/cal_grid_text_size"
                 android:textStyle="bold" />
@@ -92,8 +92,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:textColor="@color/grey_500"
                 android:textSize="@dimen/cal_grid_text_size"
                 android:textStyle="bold" />
@@ -104,8 +104,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:textColor="@color/grey_500"
                 android:textSize="@dimen/cal_grid_text_size"
                 android:textStyle="bold" />
@@ -116,8 +116,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:textColor="@color/grey_500"
                 android:textSize="@dimen/cal_grid_text_size"
                 android:textStyle="bold" />
@@ -128,14 +128,13 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:textColor="@color/grey_500"
                 android:textSize="@dimen/cal_grid_text_size"
                 android:textStyle="bold" />
 
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -150,8 +149,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -160,8 +159,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -170,8 +169,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -180,8 +179,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -190,8 +189,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -200,8 +199,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -210,8 +209,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:textSize="@dimen/cal_grid_text_size" />
 
         </LinearLayout>
@@ -229,8 +228,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
 
                 android:textSize="@dimen/cal_grid_text_size" />
 
@@ -240,8 +239,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
 
                 android:textSize="@dimen/cal_grid_text_size" />
 
@@ -251,8 +250,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
 
                 android:textSize="@dimen/cal_grid_text_size" />
 
@@ -262,8 +261,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
 
                 android:textSize="@dimen/cal_grid_text_size" />
 
@@ -273,8 +272,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
 
                 android:textSize="@dimen/cal_grid_text_size" />
 
@@ -284,8 +283,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
 
                 android:textSize="@dimen/cal_grid_text_size" />
 
@@ -295,8 +294,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
 
                 android:textSize="@dimen/cal_grid_text_size" />
 
@@ -315,8 +314,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
 
                 android:textSize="@dimen/cal_grid_text_size" />
 
@@ -326,8 +325,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
 
                 android:textSize="@dimen/cal_grid_text_size" />
 
@@ -337,8 +336,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
 
                 android:textSize="@dimen/cal_grid_text_size" />
 
@@ -348,8 +347,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
 
                 android:textSize="@dimen/cal_grid_text_size" />
 
@@ -359,8 +358,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
 
                 android:textSize="@dimen/cal_grid_text_size" />
 
@@ -370,8 +369,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
 
                 android:textSize="@dimen/cal_grid_text_size" />
 
@@ -381,8 +380,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
 
                 android:textSize="@dimen/cal_grid_text_size" />
 
@@ -401,8 +400,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
 
                 android:textSize="@dimen/cal_grid_text_size" />
 
@@ -412,8 +411,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
 
                 android:textSize="@dimen/cal_grid_text_size" />
 
@@ -423,8 +422,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
 
                 android:textSize="@dimen/cal_grid_text_size" />
 
@@ -434,8 +433,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
 
                 android:textSize="@dimen/cal_grid_text_size" />
 
@@ -445,8 +444,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
 
                 android:textSize="@dimen/cal_grid_text_size" />
 
@@ -456,8 +455,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
 
                 android:textSize="@dimen/cal_grid_text_size" />
 
@@ -467,8 +466,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
 
                 android:textSize="@dimen/cal_grid_text_size" />
 
@@ -487,8 +486,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -497,8 +496,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -507,8 +506,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -517,8 +516,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -527,8 +526,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -537,8 +536,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -547,8 +546,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:textSize="@dimen/cal_grid_text_size" />
 
         </LinearLayout>
@@ -566,8 +565,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -576,8 +575,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -586,8 +585,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -596,8 +595,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -606,8 +605,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -616,8 +615,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:textSize="@dimen/cal_grid_text_size" />
 
             <TextView
@@ -626,8 +625,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:paddingTop="@dimen/cal_grid_vertical_padding"
+                android:paddingBottom="@dimen/cal_grid_vertical_padding"
                 android:textSize="@dimen/cal_grid_text_size" />
 
         </LinearLayout>
@@ -635,12 +634,11 @@
 
     </LinearLayout>
 
-
     <LinearLayout
         android:id="@+id/btn_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dialog_button_bar_height"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/layout_main"
         android:layout_marginTop="@dimen/dialog_button_bar_button_margin"
         android:gravity="end|center_vertical"
         android:orientation="horizontal">

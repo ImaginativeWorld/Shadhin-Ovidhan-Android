@@ -51,26 +51,26 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory
-        android:key="pref_key_server"
-        android:title="@string/title_cloud">
+    <!--<PreferenceCategory-->
+        <!--android:key="pref_key_server"-->
+        <!--android:title="@string/title_cloud">-->
 
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:key="pref_key_send_to_server"
-            android:summary="@string/summary_send_to_server"
-            android:title="@string/sub_title_send_to_server" />
-    </PreferenceCategory>
+        <!--<CheckBoxPreference-->
+            <!--android:defaultValue="true"-->
+            <!--android:key="pref_key_send_to_server"-->
+            <!--android:summary="@string/summary_send_to_server"-->
+            <!--android:title="@string/sub_title_send_to_server" />-->
+    <!--</PreferenceCategory>-->
 
-    <PreferenceCategory
-        android:key="pref_key_update"
-        android:title="@string/title_update">
+    <!--<PreferenceCategory-->
+        <!--android:key="pref_key_update"-->
+        <!--android:title="@string/title_update">-->
 
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:key="pref_key_auto_update_check"
-            android:summary="@string/summary_auto_check_update"
-            android:title="@string/sub_title_auto_check_update" />
-    </PreferenceCategory>
+        <!--<CheckBoxPreference-->
+            <!--android:defaultValue="true"-->
+            <!--android:key="pref_key_auto_update_check"-->
+            <!--android:summary="@string/summary_auto_check_update"-->
+            <!--android:title="@string/sub_title_auto_check_update" />-->
+    <!--</PreferenceCategory>-->
 
 </PreferenceScreen>

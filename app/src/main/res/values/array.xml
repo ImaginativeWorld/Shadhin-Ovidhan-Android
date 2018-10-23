@@ -5,6 +5,7 @@
         <item>@string/search_type_from_middle</item>
         <item>@string/search_type_from_last</item>
     </string-array>
+
     <string-array name="enAdvSearchListValues">
         <item>1</item>
         <item>2</item>
@@ -15,6 +16,7 @@
         <item>@string/lang_bn</item>
         <item>@string/lang_en</item>
     </string-array>
+
     <string-array name="langListValues">
         <item>bn</item>
         <item>en</item>

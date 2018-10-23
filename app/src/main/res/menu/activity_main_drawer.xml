@@ -25,7 +25,7 @@
 
     </group>
 
-    <item android:title="অভিধান">
+    <item android:title="@string/menu_title_dictionary">
         <menu>
             <item
                 android:id="@+id/menu_suggestion"
@@ -34,7 +34,7 @@
         </menu>
     </item>
 
-    <item android:title="পরিবর্তন">
+    <item android:title="@string/menu_title_customize">
         <menu>
             <item
                 android:id="@+id/prefs"
@@ -48,7 +48,7 @@
         </menu>
     </item>
 
-    <item android:title="অন্যান্য">
+    <item android:title="@string/menu_title_other">
         <menu>
             <item
                 android:id="@+id/tutorial"

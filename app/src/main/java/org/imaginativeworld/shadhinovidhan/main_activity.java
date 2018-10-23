@@ -24,10 +24,16 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.speech.RecognizerIntent;
+
 import com.google.android.material.navigation.NavigationView;
+
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
@@ -49,6 +55,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.imaginativeworld.shadhinovidhan.listeners.ClickListener;
 import org.xmlpull.v1.XmlPullParser;
 
 import java.io.IOException;
@@ -65,16 +72,18 @@ public class main_activity extends AppCompatActivity
         implements View.OnClickListener, View.OnLongClickListener, NavigationView.OnNavigationItemSelectedListener {
 
     //for DB ovidhan
-    final String[] from = new String[]{
-            DatabaseHelper.SO_PRON,
-            DatabaseHelper.SO_MEANING,
-            DatabaseHelper.SO_SYNONYMS
-    };
-    final int[] to = new int[]{
-            R.id.txt_pron,
-            R.id.txt_meaning,
-            R.id.txt_synonyms
-    };
+//    final String[] from = new String[]{
+//            DatabaseHelper.SO_PRON,
+//            DatabaseHelper.SO_MEANING,
+//            DatabaseHelper.SO_SYNONYMS
+//    };
+//    final int[] to = new int[]{
+//            R.id.txt_pron,
+//            R.id.txt_meaning,
+//            R.id.txt_synonyms
+//    };
+
+    String lastZeroResultQueryString = "";
 
     View bn_queue_hint;
 
@@ -93,7 +102,16 @@ public class main_activity extends AppCompatActivity
     String BnSearchType, EnSearchType;
     Boolean IsBnAutoSearchOnType;
     int pref_feedback_show_counter;
-    ListView listView, listViewHistory;
+    //    ListView listView;
+    ListView listViewHistory;
+
+    // todo new codes
+    private RecyclerView mMainList;
+
+    private DictAdapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+
+
     Button btn_clr_history;
     MenuItem nav_bn_calendar;
     /**
@@ -126,11 +144,13 @@ public class main_activity extends AppCompatActivity
 
     boolean isBackPressed = false;
     private DBManager dbManager;
-    private CustomSimpleCursorAdapter adapter;
+//    private CustomSimpleCursorAdapter adapter;
 
     private DrawerLayout mDrawerLayout;
 
     private View RightDrawer;
+
+//    TextView emptyView;
 
 
     @Override
@@ -193,7 +213,7 @@ public class main_activity extends AppCompatActivity
 
         RightDrawer = findViewById(R.id.right_drawer);
 
-        mDrawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
+        mDrawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
             }
@@ -303,22 +323,28 @@ public class main_activity extends AppCompatActivity
         dbManager.open();
 
         //============================================================
+        // todo new codes
 
-        Cursor cursor = null;
+        mMainList = findViewById(R.id.main_list);
 
-        listView = (ListView) findViewById(R.id.list_view);
+        mLayoutManager = new LinearLayoutManager(this);
+        mMainList.setLayoutManager(mLayoutManager);
 
-        listView.setEmptyView(findViewById(R.id.empty)); // for empty view
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mMainList.getContext(),
+                DividerItemDecoration.VERTICAL);
+        mMainList.addItemDecoration(dividerItemDecoration);
 
-        adapter = new CustomSimpleCursorAdapter(this, R.layout.result_list_layout, cursor, from, to, 0);
-        adapter.notifyDataSetChanged();
+        //============================================================
 
-        listView.setAdapter(adapter);
+        /**
+         * For Initialize the on click listener.
+         */
+        mAdapter = new DictAdapter(getApplicationContext(), null);
+//        mMainList.setAdapter(mAdapter);
 
-        listView.setOnItemClickListener(new OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new ClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+            public void onItemClick(int position, View view) {
                 TextView idTextView = (TextView) view.findViewById(R.id.txt_pron);
                 TextView descTextView = (TextView) view.findViewById(R.id.txt_meaning);
                 TextView synoTextView = (TextView) view.findViewById(R.id.txt_synonyms);
@@ -344,6 +370,10 @@ public class main_activity extends AppCompatActivity
                 modify_intent.putExtra("synonyms", s_syno);
 
                 startActivityForResult(modify_intent, 100);
+            }
+
+            @Override
+            public void onItemLongClick(int position, View v) {
 
             }
         });
@@ -374,13 +404,17 @@ public class main_activity extends AppCompatActivity
                         btnClearSearch.setImageResource(R.drawable.ic_close_black_24dp);
                         bn_queue_hint.setVisibility(View.VISIBLE);
                     }
-                }
-                else
-                {
+                } else {
                     /**
                      * Copied from searchNow() function
                      */
-                    adapter.changeCursor(null);
+//                    adapter.changeCursor(null);
+
+                    // todo new code
+                    mAdapter = new DictAdapter(getApplicationContext(), null);
+
+//                    mMainList.swapAdapter(mAdapter, false);
+
                     txtView_result_count.setVisibility(View.GONE);
                     welcomeLayout.setVisibility(View.VISIBLE);
                     bn_queue_hint.setVisibility(View.GONE);
@@ -442,20 +476,20 @@ public class main_activity extends AppCompatActivity
 
         //=================================================================
 
-        if (sharedPref.getBoolean(preference_activity.pref_key_auto_update_check, true)) {
-            /**
-             * Check Update (Maybe only for beta release.. :D )
-             */
-            // Gets the URL from the UI's text field.
-            ConnectivityManager connMgr = (ConnectivityManager)
-                    getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-            if (networkInfo != null && networkInfo.isConnected()) {
-
-                new GetDataTask().execute(getString(R.string.update_check_url));
-
-            }
-        }
+//        if (sharedPref.getBoolean(preference_activity.pref_key_auto_update_check, true)) {
+//            /**
+//             * Check Update (Maybe only for beta release.. :D )
+//             */
+//            // Gets the URL from the UI's text field.
+//            ConnectivityManager connMgr = (ConnectivityManager)
+//                    getSystemService(Context.CONNECTIVITY_SERVICE);
+//            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+//            if (networkInfo != null && networkInfo.isConnected()) {
+//
+//                new GetDataTask().execute(getString(R.string.update_check_url));
+//
+//            }
+//        }
 
         //======================================================
         adapterHistory = new ArrayAdapter<>(this,
@@ -505,40 +539,61 @@ public class main_activity extends AppCompatActivity
 
                 bn_queue_hint.setVisibility(View.GONE);
 
-                Cursor cursor;
-                //Just change the adapter cursor to change the data view.. :)
+                Cursor cursor = null;
+
                 if (queryString.charAt(0) < 128) {
 
-                    do {
-                        cursor = dbManager.searchEN(queryString, EnSearchType);
+                    if (lastZeroResultQueryString.equals("") || !queryString.startsWith(lastZeroResultQueryString)) {
 
-                        if (queryString.length() >= 2)
-                            queryString = queryString.substring(0, queryString.length() - 1);
+                        do {
+                            cursor = dbManager.searchEN(queryString, EnSearchType);
 
-                        if (queryString.equals(""))
-                            break;
+                            if (cursor.getCount() == 0) {
+                                lastZeroResultQueryString = queryString;
+                            }
 
-                    } while (cursor.getCount() == 0); // get the least match result
+                            if (queryString.length() >= 2)
+                                queryString = queryString.substring(0, queryString.length() - 1);
+
+                        } while (cursor.getCount() == 0); // get the least match result
+
+                    }
 
                 } else {
 
-                    do {
-                        cursor = dbManager.searchBN(queryString, BnSearchType);
+                    if (lastZeroResultQueryString.equals("") || !queryString.startsWith(lastZeroResultQueryString)) {
 
-                        if (queryString.length() >= 2)
-                            queryString = queryString.substring(0, queryString.length() - 1);
+                        do {
+                            cursor = dbManager.searchBN(queryString, BnSearchType);
 
-                        if (queryString.equals(""))
-                            break;
+                            if (cursor.getCount() == 0) {
+                                lastZeroResultQueryString = queryString;
+                            }
 
-                    } while (cursor.getCount() == 0);
+                            if (queryString.length() >= 2)
+                                queryString = queryString.substring(0, queryString.length() - 1);
+
+//                        if (queryString.equals(""))
+//                            break;
+
+                        } while (cursor.getCount() == 0);
+
+                    }
 
                 }
 
-                int total_count = cursor.getCount();
+                int total_count = 0;
+                if (cursor != null) {
+                    total_count = cursor.getCount();
+                }
 
                 if (total_count != 0) {
-                    adapter.changeCursor(cursor);
+//                    adapter.changeCursor(cursor);
+                    // todo new code
+                    mAdapter = new DictAdapter(getApplicationContext(), cursor);
+                    mMainList.swapAdapter(mAdapter, false);
+
+
                     txtView_result_count.setVisibility(View.VISIBLE);
                     if (total_count > 1)
                         if (total_count <= 100)
@@ -553,17 +608,18 @@ public class main_activity extends AppCompatActivity
 
                 btnClearSearch.setImageResource(R.drawable.ic_close_black_24dp);
 
-            }
-            else
-            {
+            } else {
                 _searchTerm = queryString;
                 bn_queue_hint.setVisibility(View.VISIBLE);
             }
 
-
-
         } else {
-            adapter.changeCursor(null);
+//            adapter.changeCursor(null);
+            // todo new code
+//            mAdapter = new DictAdapter(getApplicationContext(), null);
+
+//            mMainList.swapAdapter(mAdapter, false);
+
             txtView_result_count.setVisibility(View.GONE);
             welcomeLayout.setVisibility(View.VISIBLE);
             bn_queue_hint.setVisibility(View.GONE);
@@ -923,133 +979,133 @@ public class main_activity extends AppCompatActivity
         imm.hideSoftInputFromWindow(editTextSearch.getWindowToken(), 0);
     }
 
-    public String GetData(String requestURL) throws IOException {
+//    public String GetData(String requestURL) throws IOException {
+//
+//        java.net.URL url;
+//        String response = "";
+//        List ls = new ArrayList();
+//
+//        try {
+//            url = new URL(requestURL);
+//
+//            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+//            conn.setReadTimeout(15000);
+//            conn.setConnectTimeout(15000);
+//            conn.setRequestMethod("GET");
+//            conn.setDoInput(true);
+//            conn.setDoOutput(true);
+//
+//            InputStream in = conn.getInputStream();
+//
+//
+//            try {
+//                parser = Xml.newPullParser();
+//                parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+//                parser.setInput(in, null);
+//                parser.nextTag(); //versioninfo
+//                parser.nextTag(); //namedversion
+//
+//                int eventType = parser.getEventType();
+//                while (eventType != XmlPullParser.END_DOCUMENT) {
+//
+//                    if (parser.getEventType() == XmlPullParser.START_TAG) {
+//                        parser.next();
+//                        ls.add(parser.getText());
+//                    }
+//
+//                    eventType = parser.next();
+//
+//                }
+//
+//                namedversion = (String) ls.get(0);
+//                try {
+//                    versionmajor = Integer.parseInt(ls.get(1).toString());
+//                } catch (NumberFormatException nfe) {
+//                    //System.out.println("Could not parse " + nfe);
+//                }
+//
+//                try {
+//                    versionminor = Integer.parseInt(ls.get(2).toString());
+//                } catch (NumberFormatException nfe) {
+//                    //System.out.println("Could not parse " + nfe);
+//                }
+//
+//                try {
+//                    versionrevision = Integer.parseInt(ls.get(3).toString());
+//                } catch (NumberFormatException nfe) {
+//                    //System.out.println("Could not parse " + nfe);
+//                }
+//
+//                changelogurl = (String) ls.get(4);
+//                downloadurl = (String) ls.get(5);
+//                productpageurl = (String) ls.get(6);
+//                releasedate = (String) ls.get(7);
+//
+//
+//            } finally {
+//                in.close();
+//            }
+//
+//        } catch (Exception e) {
+//            //e.printStackTrace();
+//            response = "e";
+//        }
+//
+//        return response;
+//    }
 
-        java.net.URL url;
-        String response = "";
-        List ls = new ArrayList();
+//    void UpdateFound() {
+//        AlertDialog.Builder adb = new AlertDialog.Builder(main_activity.this);
+//
+//        adb.setTitle(
+//                Html.fromHtml("<font color='#FFFFFF'>" + getString(R.string.update_available) + "</font>"));
+//
+//        String s =
+//                String.format(getString(R.string.new_update_info)
+//                        , versionmajor, versionminor, versionrevision) + "\n" +
+//                        String.format(getString(R.string.update_release_date) + "\n\n" +
+//                                getString(R.string.do_you_want_to_download_now), releasedate);
+//
+//        adb.setMessage(s);
+//
+//        adb.setNegativeButton(getString(R.string.no), null);
+//        adb.setPositiveButton(getString(R.string.yes), new AlertDialog.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int which) {
+//
+//                String URL_market = getString(R.string.url_market);
+//
+//                Intent browserIntent = new Intent(Intent.ACTION_VIEW,
+//                        Uri.parse(URL_market));
+//                startActivity(browserIntent);
+//
+//                alert.cancel();
+//            }
+//        });
+//
+//
+//        alert = adb.create();
+//        alert.show();
+//    }
 
-        try {
-            url = new URL(requestURL);
+    void sendData(String info, String word, String meaning) {
+        hashMap.clear();
 
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setReadTimeout(15000);
-            conn.setConnectTimeout(15000);
-            conn.setRequestMethod("GET");
-            conn.setDoInput(true);
-            conn.setDoOutput(true);
+        //?arg1=val1&arg2=val2
+        hashMap.put("info", info);
+        hashMap.put("word", so_tools.removeSymbolFromText(word));
+        hashMap.put("pron", word);
+        hashMap.put("meaning", meaning);
 
-            InputStream in = conn.getInputStream();
-
-
-            try {
-                parser = Xml.newPullParser();
-                parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-                parser.setInput(in, null);
-                parser.nextTag(); //versioninfo
-                parser.nextTag(); //namedversion
-
-                int eventType = parser.getEventType();
-                while (eventType != XmlPullParser.END_DOCUMENT) {
-
-                    if (parser.getEventType() == XmlPullParser.START_TAG) {
-                        parser.next();
-                        ls.add(parser.getText());
-                    }
-
-                    eventType = parser.next();
-
-                }
-
-                namedversion = (String) ls.get(0);
-                try {
-                    versionmajor = Integer.parseInt(ls.get(1).toString());
-                } catch (NumberFormatException nfe) {
-                    //System.out.println("Could not parse " + nfe);
-                }
-
-                try {
-                    versionminor = Integer.parseInt(ls.get(2).toString());
-                } catch (NumberFormatException nfe) {
-                    //System.out.println("Could not parse " + nfe);
-                }
-
-                try {
-                    versionrevision = Integer.parseInt(ls.get(3).toString());
-                } catch (NumberFormatException nfe) {
-                    //System.out.println("Could not parse " + nfe);
-                }
-
-                changelogurl = (String) ls.get(4);
-                downloadurl = (String) ls.get(5);
-                productpageurl = (String) ls.get(6);
-                releasedate = (String) ls.get(7);
-
-
-            } finally {
-                in.close();
-            }
-
-        } catch (Exception e) {
-            //e.printStackTrace();
-            response = "e";
-        }
-
-        return response;
-    }
-
-    void UpdateFound() {
-        AlertDialog.Builder adb = new AlertDialog.Builder(main_activity.this);
-
-        adb.setTitle(
-                Html.fromHtml("<font color='#FFFFFF'>" + getString(R.string.update_available) + "</font>"));
-
-        String s =
-                String.format(getString(R.string.new_update_info)
-                        , versionmajor, versionminor, versionrevision) + "\n" +
-                        String.format(getString(R.string.update_release_date) + "\n\n" +
-                                getString(R.string.do_you_want_to_download_now), releasedate);
-
-        adb.setMessage(s);
-
-        adb.setNegativeButton(getString(R.string.no), null);
-        adb.setPositiveButton(getString(R.string.yes), new AlertDialog.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-
-                String URL_market = getString(R.string.url_market);
-
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse(URL_market));
-                startActivity(browserIntent);
-
-                alert.cancel();
-            }
-        });
-
-
-        alert = adb.create();
-        alert.show();
-    }
-
-        void sendData(String info, String word, String meaning) {
-            hashMap.clear();
-
-            //?arg1=val1&arg2=val2
-            hashMap.put("info", info);
-            hashMap.put("word", so_tools.removeSymbolFromText(word));
-            hashMap.put("pron", word);
-            hashMap.put("meaning", meaning);
-
-            // Gets the URL from the UI's text field.
-            ConnectivityManager connMgr = (ConnectivityManager)
-                    getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-            if (networkInfo != null && networkInfo.isConnected()) {
-                new sendDataToServer(hashMap, getString(R.string.server_post_url));
-
-            }
+        // Gets the URL from the UI's text field.
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            new sendDataToServer(hashMap, getString(R.string.server_post_url));
 
         }
+
+    }
 
     @Override
     public void onBackPressed() {
@@ -1160,56 +1216,56 @@ public class main_activity extends AppCompatActivity
     }
 
 
-    // Uses AsyncTask to create a task away from the main UI thread. This task takes a
-    // URL string and uses it to create an HttpUrlConnection. Once the connection
-    // has been established, the AsyncTask downloads the contents of the webpage as
-    // an InputStream. Finally, the InputStream is converted into a string, which is
-    // displayed in the UI by the AsyncTask's onPostExecute method.
-    private class GetDataTask extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... urls) {
-
-            // params comes from the execute() call: params[0] is the url.
-            try {
-                return GetData(urls[0]);
-            } catch (IOException e) {
-                return e.toString();
-            }
-        }
-
-        // onPostExecute displays the results of the AsyncTask.
-        @Override
-        protected void onPostExecute(String result) {
-
-            if (result.equals("")) {
-
-                String version = getString(R.string.app_version);
-                String[] v;
-                v = version.split("\\.");
-
-                try {
-
-                    if (Integer.parseInt(v[0]) < versionmajor) {
-                        UpdateFound();
-                    } else if (Integer.parseInt(v[0]) == versionmajor) {
-                        if (Integer.parseInt(v[1]) < versionminor) {
-                            UpdateFound();
-                        } else if (Integer.parseInt(v[1]) == versionminor) {
-                            if (Integer.parseInt(v[2]) < versionrevision) {
-                                UpdateFound();
-                            }
-                        }
-                    }
-
-                } catch (NumberFormatException nfe) {
-                    //System.out.println("Could not parse " + nfe);
-                }
-
-            }
-
-        }
-
-    }
+//    // Uses AsyncTask to create a task away from the main UI thread. This task takes a
+//    // URL string and uses it to create an HttpUrlConnection. Once the connection
+//    // has been established, the AsyncTask downloads the contents of the webpage as
+//    // an InputStream. Finally, the InputStream is converted into a string, which is
+//    // displayed in the UI by the AsyncTask's onPostExecute method.
+//    private class GetDataTask extends AsyncTask<String, Void, String> {
+//        @Override
+//        protected String doInBackground(String... urls) {
+//
+//            // params comes from the execute() call: params[0] is the url.
+//            try {
+//                return GetData(urls[0]);
+//            } catch (IOException e) {
+//                return e.toString();
+//            }
+//        }
+//
+//        // onPostExecute displays the results of the AsyncTask.
+//        @Override
+//        protected void onPostExecute(String result) {
+//
+//            if (result.equals("")) {
+//
+//                String version = getString(R.string.app_version);
+//                String[] v;
+//                v = version.split("\\.");
+//
+//                try {
+//
+//                    if (Integer.parseInt(v[0]) < versionmajor) {
+//                        UpdateFound();
+//                    } else if (Integer.parseInt(v[0]) == versionmajor) {
+//                        if (Integer.parseInt(v[1]) < versionminor) {
+//                            UpdateFound();
+//                        } else if (Integer.parseInt(v[1]) == versionminor) {
+//                            if (Integer.parseInt(v[2]) < versionrevision) {
+//                                UpdateFound();
+//                            }
+//                        }
+//                    }
+//
+//                } catch (NumberFormatException nfe) {
+//                    //System.out.println("Could not parse " + nfe);
+//                }
+//
+//            }
+//
+//        }
+//
+//    }
 }
 
 

@@ -6,8 +6,11 @@
 
 package org.imaginativeworld.shadhinovidhan;
 
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
@@ -36,9 +39,6 @@ public class greek_alphabet_activity extends AppCompatActivity implements View.O
 
         setContentView(R.layout.greek_alphabet_layout);
 
-        //Make window fill full width
-        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
         //initialize the items
         btnClose = (Button) findViewById(R.id.btn_close);
         btnClose.setOnClickListener(greek_alphabet_activity.this);
@@ -52,7 +52,6 @@ public class greek_alphabet_activity extends AppCompatActivity implements View.O
             }
 
         });
-
 
         //===================================================
 
