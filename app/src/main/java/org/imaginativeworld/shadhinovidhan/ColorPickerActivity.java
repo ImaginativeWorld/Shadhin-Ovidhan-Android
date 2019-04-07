@@ -31,7 +31,7 @@ public class ColorPickerActivity extends AppCompatActivity implements View.OnCli
     Context mContext;
     Button[] colorBtn = new Button[21];
     Button btnOK;
-//    TextView colorPreview;
+
     String color, colorStr;
     int __id = 0;
     int __margin;

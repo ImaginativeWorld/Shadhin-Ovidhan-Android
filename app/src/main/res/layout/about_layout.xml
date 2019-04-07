@@ -111,10 +111,10 @@
         android:gravity="end|center_vertical"
         android:orientation="horizontal">
 
-        <!--<Button-->
-        <!--android:id="@+id/btn_update"-->
-        <!--style="@style/dialog_button"-->
-        <!--android:text="@string/check_update"/>-->
+        <Button
+            android:id="@+id/btn_privacy_policy"
+            style="@style/dialog_button"
+            android:text="Privacy Policy" />
 
         <Button
             android:id="@+id/btn_close"
