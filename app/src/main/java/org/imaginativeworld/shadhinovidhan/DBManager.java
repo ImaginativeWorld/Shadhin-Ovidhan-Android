@@ -11,10 +11,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.io.IOException;
 
 public class DBManager {
+
+    private final String TAG = "DBManager";
 
     private final String __LIMIT = "105";
 
@@ -68,7 +71,7 @@ public class DBManager {
 
         ContentValues contentValue = new ContentValues();
 
-        contentValue.put(DatabaseHelper._WORD, so_tools.removeSymbolFromText(_word));
+        contentValue.put(DatabaseHelper._WORD, so_tools.removeSymbolFromText(_word, true, true));
         contentValue.put(DatabaseHelper.SO_PRON, _word);
         contentValue.put(DatabaseHelper.SO_MEANING, _meaning);
         contentValue.put(DatabaseHelper.SO_SYNONYMS, _synonyms);
@@ -95,30 +98,28 @@ public class DBManager {
             case "1":
 
                 whereArgs = new String[]{
-                        so_tools.removeSymbolFromText(_word) + "%"
+                        so_tools.removeSymbolFromText(_word, true, true) + "%"
                 };
 
                 break;
             case "2":
 
                 whereArgs = new String[]{
-                        "%" + so_tools.removeSymbolFromText(_word) + "%"
+                        "%" + so_tools.removeSymbolFromText(_word, true, true) + "%"
                 };
 
                 break;
             default:
 
                 whereArgs = new String[]{
-                        "%" + so_tools.removeSymbolFromText(_word)
+                        "%" + so_tools.removeSymbolFromText(_word, true, true)
                 };
 
                 break;
         }
 
-
         Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, tableColumns, whereClause, whereArgs,
                 null, null, DatabaseHelper.SO_PRON, __LIMIT);
-
 
         if (cursor != null) {
             try {
@@ -128,6 +129,7 @@ public class DBManager {
             } catch (Exception ignored) {
             }
         }
+
         return cursor;
 
     }
@@ -149,12 +151,37 @@ public class DBManager {
             case "1":
 
                 whereArgs = new String[]{
-                        _word + "%"
+                        so_tools.removeSymbolFromText(_word, false, false) + "%"
                 };
 
                 break;
             case "2":
 
+                // replace multiple spaces into one
+                _word = _word.replaceAll(" +", " ");
+
+                // Remove unnecessary characters
+                _word = so_tools.removeSymbolFromText(_word, false, false);
+
+                // check total space in string
+                int len = _word.length();
+                int totalSpace = 0;
+                for (int i = 0; i < len; i++) {
+                    if (_word.charAt(i) == ' ') {
+                        totalSpace++;
+                    }
+                }
+
+                // Improve search using sql "%" wildcard
+                if (totalSpace >= 1 && _word.charAt(len - 1) != ' ') {
+
+                    _word = so_tools.removeSymbolFromText(_word, false, false)
+                            .trim()
+                            .replace(" ", "%");
+
+                }
+
+                // final where query
                 whereArgs = new String[]{
                         "%" + _word + "%"
                 };
@@ -163,7 +190,7 @@ public class DBManager {
             default:
 
                 whereArgs = new String[]{
-                        "%" + _word
+                        "%" + so_tools.removeSymbolFromText(_word, false, false)
                 };
 
                 break;
@@ -237,13 +264,13 @@ public class DBManager {
         contentValues.put(DatabaseHelper.SO_MODIFY, true);
 
         return database.update(DatabaseHelper.TABLE_NAME, contentValues,
-                DatabaseHelper._WORD + " = \"" + so_tools.removeSymbolFromText(_word) + "\"", null);
+                DatabaseHelper._WORD + " = \"" + so_tools.removeSymbolFromText(_word, true, true) + "\"", null);
     }
 
     public int delete(String _word) {
         //Must use double quotation mark for string logic in sql language.
         return database.delete(DatabaseHelper.TABLE_NAME,
-                DatabaseHelper._WORD + " = \"" + so_tools.removeSymbolFromText(_word) + "\"", null);
+                DatabaseHelper._WORD + " = \"" + so_tools.removeSymbolFromText(_word, true, true) + "\"", null);
     }
 
     //================
@@ -298,7 +325,7 @@ public class DBManager {
         //Must use double quotation mark for string logic in sql language.
         //it return the location from where the value was deleted. or return 0.
         return databaseFav.delete(DatabaseHelper.TABLE_FAVORITE_NAME,
-                DatabaseHelper.SO_FAVORITE + " = \"" + so_tools.removeSymbolFromText(_word) + "\"", null);
+                DatabaseHelper.SO_FAVORITE + " = \"" + so_tools.removeSymbolFromText(_word, true, true) + "\"", null);
     }
 
     public int deleteInfoFavorite(String _word) {

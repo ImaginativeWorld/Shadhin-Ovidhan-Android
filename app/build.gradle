@@ -5,8 +5,8 @@ android {
     buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "org.imaginativeworld.shadhinovidhan"
-        versionCode 14
-        versionName '2.3.190408'
+        versionCode 15
+        versionName '2.4.190428'
         minSdkVersion 16
         targetSdkVersion 28
     }
@@ -34,7 +34,7 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
     implementation 'com.google.firebase:firebase-core:16.0.8'
-    implementation 'com.google.firebase:firebase-messaging:17.5.0'
+    implementation 'com.google.firebase:firebase-messaging:17.6.0'
     implementation 'com.google.firebase:firebase-crash:16.2.1'
 }
 

@@ -6,7 +6,10 @@
 
 package org.imaginativeworld.shadhinovidhan;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,12 +18,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
+
+    public static final String TAG = "DatabaseHelper";
 
     // Table Name
     public static final String TABLE_NAME = "ovidhan";
@@ -40,10 +46,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     static final String DB_NAME = "IWSO.DB"; // DON'T USE UNDERSCORE ("_") in database name.. :3
 
     /**
-     * @DB_VERSION : database version
-     *
-     *********[ HISTORY ]*********
-     *
+     * DB_VERSION : database version
+     * <p>
+     * ********[ HISTORY ]*********
+     * <p>
      * DB_version: App_version : [Total DB entry] (file_name) Comments
      * --------------------------------------------------------------------------
      * 1: 1.0 to 1.1
@@ -52,8 +58,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * 4: 1.5 : (IWSO_2.3) Remove [favorite] table and make Favourite independent.. :)
      * 5: 1.6 : [19539] (IWSO_2.4) New entry added and old entry corrected
      * 6: 2.0 to -.- : [25799] (IWSO_3.0) New Database rule, 6686 (6267 unique) new entry (from GT)
+     * 7: Fix: Android 9 Pie crash problem.
      */
-    static final int DB_VERSION = 6;
+    private static final int DB_VERSION = 7;
 
     //The Android's default system path of your application database.
     private static String DB_PATH =
@@ -92,6 +99,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 this.getReadableDatabase();
 
+                // Fix: Android 9 Pie crash problem.
+                this.close();
+
                 try {
 
                     copyDataBase();
@@ -107,6 +117,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } else {
 
             this.getReadableDatabase();
+
+            // Fix: Android 9 Pie crash problem.
+            this.close();
 
             try {
 
@@ -220,11 +233,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(myContext);
             settings.edit().putBoolean(myContext.getString(R.string.pref_update_db), true).apply();
             //settings.edit().putBoolean(myContext.getString(R.string.pref_is_fav_clear_notify_read), false).apply();
+
+
+            new AlertDialog.Builder(myContext)
+                    .setTitle(myContext.getString(R.string.app_name) + " has new database update!")
+                    .setMessage("Please restart " + myContext.getString(R.string.app_name) + " to upgrade database.")
+                    .setCancelable(false)
+                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ((Activity) myContext).finishAffinity();
+                        }
+                    })
+                    .show();
         }
 
 
     }
 
+    @Override
+    public void onOpen(SQLiteDatabase db) {
+        super.onOpen(db);
+
+        // Fix: Android 9 Pie crash problem.
+        db.disableWriteAheadLogging();
+    }
 }
 
 

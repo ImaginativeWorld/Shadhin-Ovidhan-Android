@@ -28,6 +28,7 @@ public class DbHelperFavorites extends SQLiteOpenHelper {
     private static String DB_PATH =
             //"/data/data/org.imaginativeworld.shadhinovidhan/databases/";
             appContextHelper.getAppContext().getDatabasePath(DB_NAME).getAbsolutePath();
+
     private SQLiteDatabase myDataBase;
 
     public DbHelperFavorites(Context context) {
@@ -102,6 +103,5 @@ public class DbHelperFavorites extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
-
 
 }

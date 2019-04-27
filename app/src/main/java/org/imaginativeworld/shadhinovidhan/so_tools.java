@@ -15,9 +15,17 @@ import java.util.HashMap;
 
 public class so_tools {
 
-    static String removeSymbolFromText(String str) {
-        return str
-                .replace(" ", "")
+    static String removeSymbolFromText(String text, boolean isRemoveSpace, boolean isRemoveSemiColon) {
+
+        if (isRemoveSpace) {
+            text = text.replace(" ", "");
+        }
+
+        if (isRemoveSemiColon) {
+            text = text.replace(";", "");
+        }
+
+        text = text
                 .replace("_", "")
                 .replace("-", "")
                 .replace(".", "")
@@ -30,7 +38,6 @@ public class so_tools {
                 .replace(")", "")
                 .replace("<", "")
                 .replace(">", "")
-                .replace(";", "")
                 .replace(",", "")
                 .replace("?", "")
                 .replace("!", "")
@@ -49,6 +56,8 @@ public class so_tools {
                 .replace("\"", "")
                 .replace("~", "")
                 .replace("`", "");
+
+        return text.replaceAll(" +", " ");
     }
 
     public static void sendData(String info, String word, String meaning, String synonyms) {
@@ -57,7 +66,7 @@ public class so_tools {
 
         //?arg1=val1&arg2=val2
         hashMap.put("info", info);
-        hashMap.put("word", so_tools.removeSymbolFromText(word));
+        hashMap.put("word", so_tools.removeSymbolFromText(word, true, true));
         hashMap.put("pron", word);
         hashMap.put("meaning", meaning);
         if (synonyms != null)

@@ -552,8 +552,9 @@ public class main_activity extends AppCompatActivity
                                 lastZeroResultQueryString = queryString;
                             }
 
-                            if (queryString.length() >= 2)
+                            if (queryString.length() >= 2) {
                                 queryString = queryString.substring(0, queryString.length() - 1);
+                            }
 
                         } while (cursor.getCount() == 0); // get the least match result
 
@@ -1092,7 +1093,7 @@ public class main_activity extends AppCompatActivity
 
         //?arg1=val1&arg2=val2
         hashMap.put("info", info);
-        hashMap.put("word", so_tools.removeSymbolFromText(word));
+        hashMap.put("word", so_tools.removeSymbolFromText(word, true, true));
         hashMap.put("pron", word);
         hashMap.put("meaning", meaning);
 
