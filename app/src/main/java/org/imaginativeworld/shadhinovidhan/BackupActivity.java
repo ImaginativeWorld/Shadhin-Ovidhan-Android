@@ -23,7 +23,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class backup_activity extends AppCompatActivity implements View.OnClickListener {
+public class BackupActivity extends AppCompatActivity implements View.OnClickListener {
 
     final int MY_PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE = 510;
     //Views
@@ -52,14 +52,14 @@ public class backup_activity extends AppCompatActivity implements View.OnClickLi
         txtViewDbInfo = (TextView) findViewById(R.id.txtInfoDb);
         txtViewFavInfo = (TextView) findViewById(R.id.txtInfoFav);
         btnOK = (Button) findViewById(R.id.btnOk);
-        btnOK.setOnClickListener(backup_activity.this);
+        btnOK.setOnClickListener(BackupActivity.this);
 
         //check permission for Marshmallow
-        if (ContextCompat.checkSelfPermission(backup_activity.this,
+        if (ContextCompat.checkSelfPermission(BackupActivity.this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             //Log.v("soa", "Permission denied");
 
-            ActivityCompat.requestPermissions(backup_activity.this,
+            ActivityCompat.requestPermissions(BackupActivity.this,
                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                     MY_PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE);
 

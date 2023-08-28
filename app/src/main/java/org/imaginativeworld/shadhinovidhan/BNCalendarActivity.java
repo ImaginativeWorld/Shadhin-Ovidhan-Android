@@ -10,7 +10,9 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.util.TypedValue;
 import android.view.View;
 import android.view.Window;
@@ -20,7 +22,7 @@ import android.widget.TextView;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class bn_calendar_activity extends AppCompatActivity implements View.OnClickListener {
+public class BNCalendarActivity extends AppCompatActivity implements View.OnClickListener {
 
     final int TOTAL_DAY_TEXT = 42;
 
@@ -55,7 +57,7 @@ public class bn_calendar_activity extends AppCompatActivity implements View.OnCl
          * Set Dialog Theme
          */
         String UI_theme = sharedPref.getString(preference_activity.pref_ui_theme, "light_green");
-        so_tools.setDialogUItheme(UI_theme, bn_calendar_activity.this);
+        so_tools.setDialogUItheme(UI_theme, BNCalendarActivity.this);
 
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.bn_calendar_layout);
@@ -64,7 +66,7 @@ public class bn_calendar_activity extends AppCompatActivity implements View.OnCl
         bnYear = (TextView) findViewById(R.id.bn_year);
 
         btnExit = (Button) findViewById(R.id.btn_close);
-        btnExit.setOnClickListener(bn_calendar_activity.this);
+        btnExit.setOnClickListener(BNCalendarActivity.this);
 
         day[0] = (TextView) findViewById(R.id.cal_day_01);
         day[1] = (TextView) findViewById(R.id.cal_day_02);
@@ -123,8 +125,8 @@ public class bn_calendar_activity extends AppCompatActivity implements View.OnCl
 
     public void generateBnCalendar() {
 
-        iw_bangla_calendar bnCalendar =
-                new iw_bangla_calendar((GregorianCalendar) GregorianCalendar.getInstance());
+        IWBanglaCalendar bnCalendar =
+                new IWBanglaCalendar((GregorianCalendar) GregorianCalendar.getInstance());
 
         bnMonth.setText(bnCalendar.getMonth());
         bnYear.setText(bnCalendar.getYear());
@@ -171,18 +173,26 @@ public class bn_calendar_activity extends AppCompatActivity implements View.OnCl
         if (dayOfWeek == Calendar.SATURDAY)
             dayOfWeek = 0;
 
-        int startLoop = bnCalendar.getDateInt()-1;
+        int startLoop = bnCalendar.getDateInt() - 1;
 
         if (startLoop >= 7)
             startLoop %= 7;
 
+
+        /**
+         * Let,
+         * today = 27
+         * so, 26%7 = 5 (0..6)
+         *
+         * 1 2 3 4 5 6 7
+         *
+         */
         int startDayInWeek = dayOfWeek;
-        while(startLoop!=0)
-        {
+        while (startLoop != 0) {
             startDayInWeek--;
             startLoop--;
-            if(startDayInWeek<0)
-                startDayInWeek=6;
+            if (startDayInWeek < 0)
+                startDayInWeek = 6;
         }
 
         BnDate = bnCalendar.getDateInt();

@@ -10,7 +10,6 @@ import android.app.AlertDialog;
 import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -19,7 +18,6 @@ import android.graphics.PorterDuff;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -35,9 +33,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Editable;
-import android.text.Html;
 import android.text.TextWatcher;
-import android.util.Xml;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -58,17 +54,12 @@ import android.widget.Toast;
 import org.imaginativeworld.shadhinovidhan.listeners.ClickListener;
 import org.xmlpull.v1.XmlPullParser;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 
-public class main_activity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity
         implements View.OnClickListener, View.OnLongClickListener, NavigationView.OnNavigationItemSelectedListener {
 
     //for DB ovidhan
@@ -165,7 +156,7 @@ public class main_activity extends AppCompatActivity
 
         UI_theme = sharedPref.getString(preference_activity.pref_ui_theme, "light_green");
 
-        so_tools.setUItheme(UI_theme, main_activity.this);
+        so_tools.setUItheme(UI_theme, MainActivity.this);
 
         sharedPref.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
             @Override
@@ -261,7 +252,7 @@ public class main_activity extends AppCompatActivity
         btnClearSearch.setOnLongClickListener(this);
 
         btn_search_web = (ImageButton) findViewById(R.id.searchWeb);
-        btn_search_web.setOnClickListener(main_activity.this);
+        btn_search_web.setOnClickListener(MainActivity.this);
         btn_search_web.setOnLongClickListener(this);
 
         txtView_welcome = (TextView) findViewById(R.id.txt_welcome);
@@ -308,7 +299,7 @@ public class main_activity extends AppCompatActivity
             editor.putInt(preference_activity.pref_feedback_show_counter, ++pref_feedback_show_counter);
             editor.apply();
 
-            Intent int_feedback = new Intent(main_activity.this, feedback_activity.class);
+            Intent int_feedback = new Intent(MainActivity.this, feedback_activity.class);
             startActivity(int_feedback);
         } else if (pref_feedback_show_counter < 15) {
             SharedPreferences.Editor editor = sharedPref.edit();
@@ -509,8 +500,8 @@ public class main_activity extends AppCompatActivity
             }
         }
 
-        iw_bangla_calendar bnCalendar =
-                new iw_bangla_calendar((GregorianCalendar) GregorianCalendar.getInstance());
+        IWBanglaCalendar bnCalendar =
+                new IWBanglaCalendar((GregorianCalendar) GregorianCalendar.getInstance());
 
         String str = bnCalendar.getFullDate();
 
@@ -900,7 +891,7 @@ public class main_activity extends AppCompatActivity
                     iSearch.putExtra(SearchManager.QUERY, term);
                     startActivity(iSearch);
                 } else {
-                    Toast.makeText(main_activity.this,
+                    Toast.makeText(MainActivity.this,
                             getString(R.string.enter_any_search_term_first), Toast.LENGTH_LONG).show();
                 }
 
@@ -908,7 +899,7 @@ public class main_activity extends AppCompatActivity
 
             case R.id.bn_search_queue_hint:
 
-                Toast.makeText(main_activity.this, getString(R.string.hint_keyboard_enter_button_location), Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, getString(R.string.hint_keyboard_enter_button_location), Toast.LENGTH_LONG).show();
 
                 break;
 
@@ -928,7 +919,7 @@ public class main_activity extends AppCompatActivity
         switch (v.getId()) {
             case R.id.searchWeb:
 
-                Toast.makeText(main_activity.this,
+                Toast.makeText(MainActivity.this,
                         getString(R.string.desc_web_search), Toast.LENGTH_LONG).show();
 
                 break;
@@ -937,12 +928,12 @@ public class main_activity extends AppCompatActivity
 
                 if (editTextSearch.getText().toString().equals("")) {
 
-                    Toast.makeText(main_activity.this,
+                    Toast.makeText(MainActivity.this,
                             getString(R.string.desc_speech_to_text), Toast.LENGTH_LONG).show();
 
                 } else {
 
-                    Toast.makeText(main_activity.this,
+                    Toast.makeText(MainActivity.this,
                             getString(R.string.desc_clear_search), Toast.LENGTH_LONG).show();
                 }
 
@@ -964,7 +955,7 @@ public class main_activity extends AppCompatActivity
 
     private void RestartActivity() {
 
-        main_activity.this.recreate();
+        MainActivity.this.recreate();
 
     }
 
@@ -1117,7 +1108,7 @@ public class main_activity extends AppCompatActivity
         }
 
         isBackPressed = true;
-        Toast.makeText(main_activity.this, "Press once again to exit", Toast.LENGTH_LONG)
+        Toast.makeText(MainActivity.this, "Press once again to exit", Toast.LENGTH_LONG)
                 .show();
 
         new Handler().postDelayed(new Runnable() {
@@ -1133,8 +1124,8 @@ public class main_activity extends AppCompatActivity
 
     void resetThings() {
 
-        iw_bangla_calendar bnCalendar =
-                new iw_bangla_calendar((GregorianCalendar) GregorianCalendar.getInstance());
+        IWBanglaCalendar bnCalendar =
+                new IWBanglaCalendar((GregorianCalendar) GregorianCalendar.getInstance());
 
         String str = bnCalendar.getFullDate();
 
@@ -1151,16 +1142,16 @@ public class main_activity extends AppCompatActivity
         if (id == R.id.textBanglaCalendar) {
 
             Toast
-                    .makeText(main_activity.this,
+                    .makeText(MainActivity.this,
                             "Bangla Calendar - Bangladesh version", Toast.LENGTH_LONG)
                     .show();
 
-            Intent bnCalendar_intent = new Intent(main_activity.this, bn_calendar_activity.class);
+            Intent bnCalendar_intent = new Intent(MainActivity.this, BNCalendarActivity.class);
             startActivity(bnCalendar_intent);
 
         } else if (id == R.id.favorite) {
 
-            Intent fav_intent = new Intent(main_activity.this, favorite_list_activity.class);
+            Intent fav_intent = new Intent(MainActivity.this, favorite_list_activity.class);
             startActivityForResult(fav_intent, 400);
 
 
@@ -1170,27 +1161,27 @@ public class main_activity extends AppCompatActivity
 
         } else if (id == R.id.greek_alp) {
 
-            Intent greek_alp_intent = new Intent(main_activity.this, greek_alphabet_activity.class);
+            Intent greek_alp_intent = new Intent(MainActivity.this, greek_alphabet_activity.class);
             startActivity(greek_alp_intent);
 
         } else if (id == R.id.menu_suggestion) {
 
-            Intent suggestion_intent = new Intent(main_activity.this, SuggestionActivity.class);
+            Intent suggestion_intent = new Intent(MainActivity.this, SuggestionActivity.class);
             startActivity(suggestion_intent);
 
         } else if (id == R.id.prefs) {
 
-            Intent prefs_intent = new Intent(main_activity.this, preference_activity.class);
+            Intent prefs_intent = new Intent(MainActivity.this, preference_activity.class);
             startActivityForResult(prefs_intent, 300);
 
         } else if (id == R.id.tutorial) {
 
-            Intent tutorial_intent = new Intent(main_activity.this, tutorial_activity.class);
+            Intent tutorial_intent = new Intent(MainActivity.this, tutorial_activity.class);
             startActivity(tutorial_intent);
 
         } else if (id == R.id.about) {
 
-            Intent about_intent = new Intent(main_activity.this, about_activity.class);
+            Intent about_intent = new Intent(MainActivity.this, about_activity.class);
             startActivity(about_intent);
 
         } else if (id == R.id.giveRating) {
@@ -1202,11 +1193,11 @@ public class main_activity extends AppCompatActivity
         } else if (id == R.id.exit) {
 
             //API >= 16
-            main_activity.this.finishAffinity();
+            MainActivity.this.finishAffinity();
 
         } else if (id == R.id.change_theme_color) {
 
-            Intent color_intent = new Intent(main_activity.this, ColorPickerActivity.class);
+            Intent color_intent = new Intent(MainActivity.this, ColorPickerActivity.class);
             color_intent.putExtra(getString(R.string.ColorName), UI_theme);
             startActivityForResult(color_intent, 600);
         }

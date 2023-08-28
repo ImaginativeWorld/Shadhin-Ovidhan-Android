@@ -37,7 +37,7 @@
             android:summary="@string/desc_btn_backup"
             android:title="@string/pref_btn_backup">
             <intent
-                android:targetClass="org.imaginativeworld.shadhinovidhan.backup_activity"
+                android:targetClass="org.imaginativeworld.shadhinovidhan.BackupActivity"
                 android:targetPackage="org.imaginativeworld.shadhinovidhan" />
         </Preference>
 

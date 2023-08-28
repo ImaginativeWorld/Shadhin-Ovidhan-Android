@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "123974153429",
+    "firebase_url": "https://shadhin-ovidhan-android.firebaseio.com",
+    "project_id": "shadhin-ovidhan-android",
+    "storage_bucket": "shadhin-ovidhan-android.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123974153429:android:0d873d071a69f1b9",
+        "android_client_info": {
+          "package_name": "org.imaginativeworld.shadhinovidhan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "123974153429-g7n9jk55n5qdnhsh539o2051uuqjfbn7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.imaginativeworld.shadhinovidhan",
+            "certificate_hash": "ed782a3a560896c8604787a293ad8849408fe618"
+          }
+        },
+        {
+          "client_id": "123974153429-o4npveibni6ls1ujb6g19ij6nrvgdd92.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.imaginativeworld.shadhinovidhan",
+            "certificate_hash": "3da033d8ffdbe5c47cecac6004a7c1151aa805fc"
+          }
+        },
+        {
+          "client_id": "123974153429-f50bg7c1pulngv2ibjursphj8r4t8pk6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjQ7wWoJKz4p7YUAy7jXxF0yXqWvcCqIk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "123974153429-f50bg7c1pulngv2ibjursphj8r4t8pk6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

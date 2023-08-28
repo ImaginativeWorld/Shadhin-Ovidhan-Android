@@ -1,25 +1,13 @@
-# Shadhin Ovidhan Android #
+# Shadhin Ovidhan Android
+
 Shadhin Ovidhan Android - An Open-source, independent and full featured Bengali-English Dictionary.
 
 Visit: [http://imaginativeworld.org/products/shadhin-ovidhan-android/](http://imaginativeworld.org/products/shadhin-ovidhan-android/ "Imaginative World") for latest version.
 
-## Download ##
+## Download
 [Google Play](https://play.google.com/store/apps/details?id=org.imaginativeworld.shadhinovidhan)
 
-
-
-## Build Software ##
-
-**Android Studio 3.2.1**
-
-
-## How to compile: ##
-
-Just open and build! :)
-
-If you need further help regarding codes from Imaginative World, you can contact us using our [Feedback page](http://blog.imaginativeworld.org/feedback "Imaginative World Feedback page").
-
-## License ##
+## License
 
 **Shadhin Ovidhan Android** Open Source project licensed under **MOZILLA PUBLIC LICENSE Version 2.0**. You should receive a copy of the license in MPL-2.0.txt file with both binaries and source. An online version of the license can be found at: [http://www.mozilla.org/MPL/](http://www.mozilla.org/MPL/ "MPL")
 

@@ -26,6 +26,18 @@
  * <p/>
  * Version: 1.0
  * Last Update: 18 May 2015
+ * <p>
+ * Bangla (Bangladesh) Calendar
+ * <p>
+ * Thinking & Coding:
+ * Md. Mahmudul Hasan Shohag
+ * imaginativeshohag@yahoo.com
+ * <p>
+ * Give me feedback and bug report:
+ * imaginativeshohag@yahoo.com
+ * <p>
+ * Version: 1.0
+ * Last Update: 18 May 2015
  */
 
 /**
@@ -46,7 +58,7 @@ package org.imaginativeworld.shadhinovidhan;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class iw_bangla_calendar {
+public class IWBanglaCalendar {
 
     String StrDay;
     String StrMonth;
@@ -58,7 +70,7 @@ public class iw_bangla_calendar {
 
     GregorianCalendar calendar = new GregorianCalendar();
 
-    public iw_bangla_calendar(GregorianCalendar cal) {
+    public IWBanglaCalendar(GregorianCalendar cal) {
 
         calendar.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
 
