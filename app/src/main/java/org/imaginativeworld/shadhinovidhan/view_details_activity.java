@@ -24,11 +24,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.MenuPopupHelper;
-import androidx.appcompat.widget.PopupMenu;
-
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -43,6 +38,10 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.MenuPopupHelper;
+import androidx.appcompat.widget.PopupMenu;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -167,6 +166,10 @@ public class view_details_activity
         sWord = intent.getStringExtra("word");
         sMeaning = intent.getStringExtra("meaning");
         sSynonyms = intent.getStringExtra("synonyms");
+
+        if (sMeaning == null) {
+            sMeaning = "";
+        }
 
         setTitle(sWord);
 
