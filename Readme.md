@@ -2,6 +2,9 @@
 
 Shadhin Ovidhan Android - An Open-source, independent and full featured Bengali-English Dictionary.
 
+> [!CAUTION]
+> Shadhin Ovidhan Android is now a closed-source project. This repository will remain here as archived.
+
 Visit: [http://imaginativeworld.org/products/shadhin-ovidhan-android/](http://imaginativeworld.org/products/shadhin-ovidhan-android/ "Imaginative World") for latest version.
 
 ## Download
